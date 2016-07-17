@@ -1,0 +1,614 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>YARN搭建手册 | Timmy live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Lee">
+    
+
+    
+    <meta name="description" content="环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试##1. 环境及版本介绍###1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop###1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YARN搭建手册">
+<meta property="og:url" content="http://yoursite.com/2016/07/16/Yarn搭建手册/index.html">
+<meta property="og:site_name" content="Timmy live">
+<meta property="og:description" content="环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试##1. 环境及版本介绍###1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop###1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都">
+<meta property="og:updated_time" content="2016-07-16T13:36:17.059Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YARN搭建手册">
+<meta name="twitter:description" content="环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试##1. 环境及版本介绍###1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop###1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页Home</a></li>
+					
+						<li><a href="/archives">归档Archives</a></li>
+					
+						<li><a href="/about">关于About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/16/Yarn搭建手册/" title="YARN搭建手册" itemprop="url">YARN搭建手册</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-16T13:05:49.000Z" itemprop="datePublished"> Published 2016-07-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-目标机器"><span class="toc-number">1.</span> <span class="toc-text">2. 目标机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置文件介绍"><span class="toc-number">2.</span> <span class="toc-text">3. 配置文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-core-site-xml"><span class="toc-number">2.1.</span> <span class="toc-text">3.1 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-hdfs-site-xml"><span class="toc-number">2.2.</span> <span class="toc-text">3.2 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-mapred-site-xml"><span class="toc-number">2.3.</span> <span class="toc-text">3.3 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-yarn-site-xml"><span class="toc-number">2.4.</span> <span class="toc-text">3.4 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-在yarn-env-sh-mapred-env-sh-hadoop-env-sh-追加以下内容"><span class="toc-number">2.5.</span> <span class="toc-text">3.5 在yarn-env.sh  mapred-env.sh  hadoop-env.sh  追加以下内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-配置工作"><span class="toc-number">3.</span> <span class="toc-text">4. 配置工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建单独用户"><span class="toc-number">3.1.</span> <span class="toc-text">4.1 创建单独用户</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<ol>
+<li><a href="#env-version">环境及版本介绍</a></li>
+<li><a href="#net-machine-top">目标机器</a></li>
+<li><a href="#settings">配置文件介绍</a></li>
+<li><a href="#config">配置工作</a></li>
+<li><a href="#test">测试</a><br>##<a name="env-version"></a>1. 环境及版本介绍<br>###1.1 机器Centos6.8<br>关闭防火墙服务启动 chkconfig iptables off<br>停止防火墙 service iptables stop<br>###1.2 yarn 2.7.2<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">外层的启动脚本在sbin目录</div><div class="line">Native的so文件都在lib/native目录</div><div class="line">配置程序文件都放置在libexec</div><div class="line">配置文件都在etc目录，对应以前版本的conf目录</div><div class="line">所有的jar包都在share/hadoop目录下面</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>###1.3 jdk1.8</p>
+<h2 id="2-目标机器"><a href="#2-目标机器" class="headerlink" title="2. 目标机器"></a><a name="net-machine-top"></a>2. 目标机器</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">IP</th>
+<th style="text-align:left">hostname</th>
+<th style="text-align:left">机器身份</th>
+<th style="text-align:left">作用</th>
+<th style="text-align:left">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">192.168.1.11</td>
+<td style="text-align:left">master</td>
+<td style="text-align:left">NameNode、SecondaryNameNode、ResourceManager</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">product环境namenode与resourceManager分开</td>
+</tr>
+<tr>
+<td style="text-align:left">192.168.1.10</td>
+<td style="text-align:left">slave1</td>
+<td style="text-align:left">DataNode、NodeManager</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-配置文件介绍"><a href="#3-配置文件介绍" class="headerlink" title="3. 配置文件介绍"></a>3. <a name="settings"></a>配置文件介绍</h2><h3 id="3-1-core-site-xml"><a href="#3-1-core-site-xml" class="headerlink" title="3.1 core-site.xml"></a>3.1 core-site.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>指定NameNode的IP地址和端口号<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="3-2-hdfs-site-xml"><a href="#3-2-hdfs-site-xml" class="headerlink" title="3.2 hdfs-site.xml"></a>3.2 hdfs-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">                &lt;value&gt;hdfs://master:9000&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line"></div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;io.file.buffer.size&lt;/name&gt;</div><div class="line">                &lt;value&gt;131072&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+<h3 id="3-3-mapred-site-xml"><a href="#3-3-mapred-site-xml" class="headerlink" title="3.3 mapred-site.xml"></a>3.3 mapred-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">                &lt;value&gt;yarn&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;slave1:10020&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;slave1:19888&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+<h3 id="3-4-yarn-site-xml"><a href="#3-4-yarn-site-xml" class="headerlink" title="3.4 yarn-site.xml"></a>3.4 yarn-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;&lt;configuration&gt;</div><div class="line"></div><div class="line">&lt;!-- Site specific YARN configuration properties --&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8032&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.scheduler.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8033&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.resource-tracker.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8034&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.admin.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8035&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8036&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">                &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
+<h3 id="3-5-在yarn-env-sh-mapred-env-sh-hadoop-env-sh-追加以下内容"><a href="#3-5-在yarn-env-sh-mapred-env-sh-hadoop-env-sh-追加以下内容" class="headerlink" title="3.5 在yarn-env.sh  mapred-env.sh  hadoop-env.sh  追加以下内容"></a>3.5 在yarn-env.sh  mapred-env.sh  hadoop-env.sh  追加以下内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/java/default</div><div class="line">export CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib</div><div class="line"></div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export HADOOP_PID_DIR=/home/hadoop/pids</div><div class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</div><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native&quot;</div><div class="line"></div><div class="line">export HADOOP_PREFIX=$HADOOP_HOME</div><div class="line"></div><div class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</div><div class="line">export YARN_HOME=$HADOOP_HOME</div><div class="line"></div><div class="line">export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export HDFS_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line"></div><div class="line">export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native</div><div class="line"></div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</div></pre></td></tr></table></figure>
+<h2 id="4-配置工作"><a href="#4-配置工作" class="headerlink" title="4. 配置工作"></a><a name="config"></a>4. 配置工作</h2><p>以下4.1内容在master、slave1中分别执行</p>
+<h3 id="4-1-创建单独用户"><a href="#4-1-创建单独用户" class="headerlink" title="4.1 创建单独用户"></a>4.1 创建单独用户</h3><ul>
+<li><p>为进行安全隔离，另设账户运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#切换su</div><div class="line">useradd hadoop</div><div class="line">passwd hadoop</div><div class="line">tar -zxvf hadoop-2.7.4.tar.gz -C /usr/local/hadoop</div><div class="line">chown -r hadoop /usr/local/hadoop</div><div class="line">sudo yum -y install openssl openssl-devel bzip2 lz4 snappy zlib openssh-clients</div><div class="line">#切换hadoop</div><div class="line">mkdir -p /home/hadoop/yarn/yarn_data/hdfs/namenode</div><div class="line">mkdir -p /home/hadoop/yarn/yarn_data/hdfs/datanode</div><div class="line">mkdir /home/hadoop/pids</div><div class="line">cp /usr/local/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/hadoop/etc/hadoop/mapred-site.xml</div><div class="line"># master  backup   互备签名  hosts   分别在master backup上运行</div><div class="line"># 默认生成~/.ssh/authorized_keys文件</div><div class="line">cd ~/</div><div class="line">ssh-keygen</div><div class="line">chmod 600 ~/.ssh/authorized_keys</div><div class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+<li><p>/etc/hosts增加以下两行,如果环境有更多机器，在每台机器上都设立所有hostname的IP映射</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">192.168.1.11 master</div><div class="line">192.168.1.10 slave1</div></pre></td></tr></table></figure>
+</li>
+<li><p>将以下内容覆盖到etc/slaves中,作用是设置datanode，使用start-all脚本时启动所有datanode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">master</div><div class="line">slave1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###4.2 将配置文件复制到slave1中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -r /usr/local/hadoop/etc hadoop@slave1</div></pre></td></tr></table></figure></p>
+<p>###4.3 ssh登录配置</p>
+<ul>
+<li>将master ~/.ssh/id_rsa.pub的内容拷贝至slave1的~/.ssh/authorized_keys</li>
+<li>将slave1 ~/.ssh/id_rsa.pub的内容拷贝至master的~/.ssh/authorized_keys</li>
+<li>测试:以下命令分别在master slave1中运行,执行中首次需输入yes确认,无需密码,即认为ssh配置完毕<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh hadoop@master</div><div class="line">ssh hadoop@slave1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>###4.4 master下执行文件夹初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop/</div><div class="line">bin/hdfs namenode -format</div><div class="line">sbin/start-all.sh</div><div class="line"># 开启history service</div><div class="line">sbin/mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure></p>
+<p>##<a name="test"></a>5. 测试</p>
+<p>###5.1 运行状况测试</p>
+<ul>
+<li>master下运行netstat -tunlp 是否存在8032 8033 8034 8035 8036 9000 50090 50075 50070 50020 50010的网络监听</li>
+<li>master下50070 50090 8036可以进入网页查看当前yarn&amp;hadoop系统状态</li>
+<li>如果有不正常情况，查看/usr/local/hadoop/logs下的日志<br>###5.2 作业运行测试<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop</div><div class="line">bin/hadoop fs -mkdir /wordcount</div><div class="line">#home/hadoop/index.md   目标分析文件</div><div class="line">bin/hadoop fs /home/hadoop/index.md /wordcount</div><div class="line">bin/hadoop fs -copyFromLocal /home/hadoop/index.md  /wordcount</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /wordcount /output2</div><div class="line">bin/hadoop fs -cat /output2/*</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果系统正常，可以看见词语频率分析</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/07/16/Yarn搭建手册/" data-title="YARN搭建手册 | Timmy live" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/16/first-page/"  title="代码语法约定">
+ <strong>下一篇：</strong><br/> 
+ <span>代码语法约定
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/07/16/Yarn搭建手册/" data-title="YARN搭建手册" data-url="http://yoursite.com/2016/07/16/Yarn搭建手册/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-目标机器"><span class="toc-number">1.</span> <span class="toc-text">2. 目标机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置文件介绍"><span class="toc-number">2.</span> <span class="toc-text">3. 配置文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-core-site-xml"><span class="toc-number">2.1.</span> <span class="toc-text">3.1 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-hdfs-site-xml"><span class="toc-number">2.2.</span> <span class="toc-text">3.2 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-mapred-site-xml"><span class="toc-number">2.3.</span> <span class="toc-text">3.3 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-yarn-site-xml"><span class="toc-number">2.4.</span> <span class="toc-text">3.4 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-在yarn-env-sh-mapred-env-sh-hadoop-env-sh-追加以下内容"><span class="toc-number">2.5.</span> <span class="toc-text">3.5 在yarn-env.sh  mapred-env.sh  hadoop-env.sh  追加以下内容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-配置工作"><span class="toc-number">3.</span> <span class="toc-text">4. 配置工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建单独用户"><span class="toc-number">3.1.</span> <span class="toc-text">4.1 创建单独用户</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/生活感悟/篮球人生/环境部署/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活感悟/篮球人生/环境部署/数据分析/数据存储/" title="数据存储">数据存储<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活感悟/篮球人生/环境部署/" title="环境部署">环境部署<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活感悟/" title="生活感悟">生活感悟<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活感悟/篮球人生/" title="篮球人生">篮球人生<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spring/" title="spring">spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/grunt/" title="grunt">grunt<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/npm/" title="npm">npm<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/node/" title="node">node<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/keepalived/" title="keepalived">keepalived<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/transactional/" title="transactional">transactional<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/xml/" title="xml">xml<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dtd/" title="dtd">dtd<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dubbo/" title="dubbo">dubbo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.hoterran.info" target="_blank" title="一个面向程序员交流分享的新一代社区">运维与开发</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://club.alibabatech.org/" target="_blank" title="ali Blog">ali Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Christiansted, United States Virgin Islands <br/>
+			believer it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Lee">Lee</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"witerlee"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
