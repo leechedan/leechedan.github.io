@@ -11,16 +11,16 @@
     
 
     
-    <meta name="description" content="node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;dataDir=/home/lee/zookeeper/node-01/data&amp;quot; &amp;gt;&amp;gt; /usr/loc">
+    <meta name="description" content="node-01&amp;#x673A;&amp;#x5668;12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;dataDir=/home/lee/zookeeper/node-01/data&amp;quot; &amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Yarn搭建手册">
 <meta property="og:url" content="http://yoursite.com/2016/07/17/Zookeeper集群安装手册/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;dataDir=/home/lee/zookeeper/node-01/data&amp;quot; &amp;gt;&amp;gt; /usr/loc">
+<meta property="og:description" content="node-01&amp;#x673A;&amp;#x5668;12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;dataDir=/home/lee/zookeeper/node-01/data&amp;quot; &amp;gt">
 <meta property="og:updated_time" content="2016-07-17T05:56:55.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yarn搭建手册">
-<meta name="twitter:description" content="node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;dataDir=/home/lee/zookeeper/node-01/data&amp;quot; &amp;gt;&amp;gt; /usr/loc">
+<meta name="twitter:description" content="node-01&amp;#x673A;&amp;#x5668;12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;dataDir=/home/lee/zookeeper/node-01/data&amp;quot; &amp;gt">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -48,7 +48,7 @@
 				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -64,7 +64,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -87,22 +87,22 @@
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-17T05:05:49.000Z" itemprop="datePublished"> 发表于 2016-07-17</time>
+    <time datetime="2016-07-17T05:05:49.000Z" itemprop="datePublished"> Published 2016-07-17</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			
 		
 		</div>
 		
-		<p>node-01机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo &quot;192.168.1.11 lee1&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;192.168.1.12 lee2&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;dataDir=/home/lee/zookeeper/node-01/data&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;dataLogDir=/home/lee/zookeeper/node-01/log&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:1=lee1:12281:13381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:2=lee2:22281:23381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line"># 在dataDir下新建文件myid,内容为1</div><div class="line">echo 1 &gt;&gt; /home/lee/zookeeper/node-01/data/myid</div></pre></td></tr></table></figure></p>
-<p>node-02机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo &quot;192.168.1.11 lee1&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;192.168.1.12 lee2&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;dataDir=/home/lee/zookeeper/node-02/data&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;dataLogDir=/home/lee/zookeeper/node-02/log&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:1=lee1:12281:13381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:2=lee2:22281:23381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line"># 在dataDir下新建文件myid,内容为2</div><div class="line">echo 2 &gt;&gt; /home/lee/zookeeper/node-01/data/myid</div></pre></td></tr></table></figure></p>
-<p>在两台机器启动zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tail -f zookeeper.out</div><div class="line"># 如果输出不正常，显示一直在重试所有端口的话,很可能表明ip类型与监听的ip类型不一致</div><div class="line"># 检查监听端口及ip类型 </div><div class="line">echo stat|nc localhost 2181</div><div class="line">#  0.0.0.0为ipv4  八个0为ipv6</div><div class="line"># 如果为ipv6</div><div class="line">echo &quot;export _JAVA_OPTIONS=\&quot;-Djava.net.preferIPv4Stack=true\&quot;&quot; &gt;&gt; /etc/profile</div></pre></td></tr></table></figure></p>
+		<p>node-01&#x673A;&#x5668;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo &quot;192.168.1.11 lee1&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;192.168.1.12 lee2&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;dataDir=/home/lee/zookeeper/node-01/data&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;dataLogDir=/home/lee/zookeeper/node-01/log&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:1=lee1:12281:13381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:2=lee2:22281:23381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line"># &#x5728;dataDir&#x4E0B;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;myid,&#x5185;&#x5BB9;&#x4E3A;1</div><div class="line">echo 1 &gt;&gt; /home/lee/zookeeper/node-01/data/myid</div></pre></td></tr></table></figure></p>
+<p>node-02&#x673A;&#x5668;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo &quot;192.168.1.11 lee1&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;192.168.1.12 lee2&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;dataDir=/home/lee/zookeeper/node-02/data&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;dataLogDir=/home/lee/zookeeper/node-02/log&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:1=lee1:12281:13381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:2=lee2:22281:23381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line"># &#x5728;dataDir&#x4E0B;&#x65B0;&#x5EFA;&#x6587;&#x4EF6;myid,&#x5185;&#x5BB9;&#x4E3A;2</div><div class="line">echo 2 &gt;&gt; /home/lee/zookeeper/node-01/data/myid</div></pre></td></tr></table></figure></p>
+<p>&#x5728;&#x4E24;&#x53F0;&#x673A;&#x5668;&#x542F;&#x52A8;zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tail -f zookeeper.out</div><div class="line"># &#x5982;&#x679C;&#x8F93;&#x51FA;&#x4E0D;&#x6B63;&#x5E38;&#xFF0C;&#x663E;&#x793A;&#x4E00;&#x76F4;&#x5728;&#x91CD;&#x8BD5;&#x6240;&#x6709;&#x7AEF;&#x53E3;&#x7684;&#x8BDD;,&#x5F88;&#x53EF;&#x80FD;&#x8868;&#x660E;ip&#x7C7B;&#x578B;&#x4E0E;&#x76D1;&#x542C;&#x7684;ip&#x7C7B;&#x578B;&#x4E0D;&#x4E00;&#x81F4;</div><div class="line"># &#x68C0;&#x67E5;&#x76D1;&#x542C;&#x7AEF;&#x53E3;&#x53CA;ip&#x7C7B;&#x578B; </div><div class="line">echo stat|nc localhost 2181</div><div class="line">#  0.0.0.0&#x4E3A;ipv4  &#x516B;&#x4E2A;0&#x4E3A;ipv6</div><div class="line"># &#x5982;&#x679C;&#x4E3A;ipv6</div><div class="line">echo &quot;export _JAVA_OPTIONS=\&quot;-Djava.net.preferIPv4Stack=true\&quot;&quot; &gt;&gt; /etc/profile</div></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -116,7 +116,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/zookeeper/">zookeeper</a><a href="/tags/centos/">centos</a>
+  <span></span> <a href="/tags/centos/">centos</a><a href="/tags/zookeeper/">zookeeper</a>
   </div>
 
 </div>
@@ -164,26 +164,30 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
 			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
 		  
 		
 		  
@@ -196,15 +200,11 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/centos/" title="centos">centos<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
@@ -227,12 +227,16 @@
 				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -251,13 +255,13 @@
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -494,7 +498,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

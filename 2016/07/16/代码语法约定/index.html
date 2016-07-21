@@ -11,7 +11,7 @@
     
 
     
-    <meta name="description" content="代码语法约定框架设计
+    <meta name="description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x8BED;&amp;#x6CD5;&amp;#x7EA6;&amp;#x5B9A;&amp;#x6846;&amp;#x67B6;&amp;#x8BBE;&amp;#x8BA1;
 alibaba-dubbo
 google-protobuf
 netty4
@@ -20,25 +20,13 @@ spring4
 mybatis
 redis3
 
-目录
-代码组织结构
-缩写使用
-类命名
-方法命名
-字段命名
-日志系统
-异常系统
-工程入手
-maven-settings
-eclipse-javadoc
-log-template
-
-代码组织结构###系统命名123groupId: $&amp;#123;gr">
+&amp;#x76EE;&amp;#x5F55;
+&amp;#x4EE3;&amp;#x7801;&amp;#x7EC4;&amp;#x7EC7;&amp;#x7">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码语法约定">
 <meta property="og:url" content="http://yoursite.com/2016/07/16/代码语法约定/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="代码语法约定框架设计
+<meta property="og:description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x8BED;&amp;#x6CD5;&amp;#x7EA6;&amp;#x5B9A;&amp;#x6846;&amp;#x67B6;&amp;#x8BBE;&amp;#x8BA1;
 alibaba-dubbo
 google-protobuf
 netty4
@@ -47,24 +35,12 @@ spring4
 mybatis
 redis3
 
-目录
-代码组织结构
-缩写使用
-类命名
-方法命名
-字段命名
-日志系统
-异常系统
-工程入手
-maven-settings
-eclipse-javadoc
-log-template
-
-代码组织结构###系统命名123groupId: $&amp;#123;gr">
-<meta property="og:updated_time" content="2016-07-17T02:52:35.392Z">
+&amp;#x76EE;&amp;#x5F55;
+&amp;#x4EE3;&amp;#x7801;&amp;#x7EC4;&amp;#x7EC7;&amp;#x7">
+<meta property="og:updated_time" content="2016-07-21T15:30:25.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码语法约定">
-<meta name="twitter:description" content="代码语法约定框架设计
+<meta name="twitter:description" content="&amp;#x4EE3;&amp;#x7801;&amp;#x8BED;&amp;#x6CD5;&amp;#x7EA6;&amp;#x5B9A;&amp;#x6846;&amp;#x67B6;&amp;#x8BBE;&amp;#x8BA1;
 alibaba-dubbo
 google-protobuf
 netty4
@@ -73,20 +49,8 @@ spring4
 mybatis
 redis3
 
-目录
-代码组织结构
-缩写使用
-类命名
-方法命名
-字段命名
-日志系统
-异常系统
-工程入手
-maven-settings
-eclipse-javadoc
-log-template
-
-代码组织结构###系统命名123groupId: $&amp;#123;gr">
+&amp;#x76EE;&amp;#x5F55;
+&amp;#x4EE3;&amp;#x7801;&amp;#x7EC4;&amp;#x7EC7;&amp;#x7">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -114,7 +78,7 @@ log-template
 				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -130,7 +94,7 @@ log-template
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -153,20 +117,20 @@ log-template
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-15T17:05:49.000Z" itemprop="datePublished"> 发表于 2016-07-16</time>
+    <time datetime="2016-07-15T17:05:49.000Z" itemprop="datePublished"> Published 2016-07-16</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码语法约定"><span class="toc-number">1.</span> <span class="toc-text">代码语法约定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#框架设计"><span class="toc-number">1.1.</span> <span class="toc-text">框架设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.2.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码组织结构"><span class="toc-number">1.3.</span> <span class="toc-text">代码组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#common包命名："><span class="toc-number">1.3.1.</span> <span class="toc-text">common包命名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#core包命名："><span class="toc-number">1.3.2.</span> <span class="toc-text">core包命名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#api包命名"><span class="toc-number">1.3.3.</span> <span class="toc-text">api包命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol包命名："><span class="toc-number">1.3.4.</span> <span class="toc-text">protocol包命名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写使用"><span class="toc-number">1.3.5.</span> <span class="toc-text">缩写使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类命名"><span class="toc-number">1.3.6.</span> <span class="toc-text">类命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命名常用后缀及方法"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">命名常用后缀及方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法命名"><span class="toc-number">1.3.7.</span> <span class="toc-text">方法命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量命名"><span class="toc-number">1.3.8.</span> <span class="toc-text"> 变量命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志系统"><span class="toc-number">1.4.</span> <span class="toc-text"> 日志系统:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常系统"><span class="toc-number">1.5.</span> <span class="toc-text"> 异常系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程入手须知"><span class="toc-number">1.6.</span> <span class="toc-text">工程入手须知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven-3-3-9"><span class="toc-number">1.6.1.</span> <span class="toc-text"> maven 3.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-java-code-style-code-template"><span class="toc-number">1.6.2.</span> <span class="toc-text">eclipse java-code style-code template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-java-editor-templates"><span class="toc-number">1.6.3.</span> <span class="toc-text"> eclipse java-editor-templates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档管理"><span class="toc-number">1.7.</span> <span class="toc-text">文档管理</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="代码语法约定"><a href="#代码语法约定" class="headerlink" title="代码语法约定"></a>代码语法约定</h1><h2 id="框架设计"><a href="#框架设计" class="headerlink" title="框架设计"></a>框架设计</h2><ol>
+		<h1 id="&#x4EE3;&#x7801;&#x8BED;&#x6CD5;&#x7EA6;&#x5B9A;"><a href="#&#x4EE3;&#x7801;&#x8BED;&#x6CD5;&#x7EA6;&#x5B9A;" class="headerlink" title="&#x4EE3;&#x7801;&#x8BED;&#x6CD5;&#x7EA6;&#x5B9A;"></a>&#x4EE3;&#x7801;&#x8BED;&#x6CD5;&#x7EA6;&#x5B9A;</h1><h2 id="&#x6846;&#x67B6;&#x8BBE;&#x8BA1;"><a href="#&#x6846;&#x67B6;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x6846;&#x67B6;&#x8BBE;&#x8BA1;"></a>&#x6846;&#x67B6;&#x8BBE;&#x8BA1;</h2><ol>
 <li><a href="http://dubbo.io/User+Guide-zh.htm" target="_blank" rel="external">alibaba-dubbo</a></li>
 <li><a href="https://github.com/google/protobuf/wiki" target="_blank" rel="external">google-protobuf</a></li>
 <li><a href="https://github.com/netty/netty/wiki/New-and-noteworthy-in-4.1" target="_blank" rel="external">netty4</a></li>
@@ -175,25 +139,25 @@ log-template
 <li>mybatis</li>
 <li>redis3</li>
 </ol>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
-<li><a href="#short-naming">代码组织结构</a></li>
-<li><a href="#short-naming">缩写使用</a></li>
-<li><a href="#class-naming">类命名</a></li>
-<li><a href="#method-naming">方法命名</a></li>
-<li><a href="#field-naming">字段命名</a></li>
-<li><a href="#log-system">日志系统</a></li>
-<li><a href="#exception-system">异常系统</a></li>
-<li><a href="#guide">工程入手</a></li>
+<h2 id="&#x76EE;&#x5F55;"><a href="#&#x76EE;&#x5F55;" class="headerlink" title="&#x76EE;&#x5F55;"></a>&#x76EE;&#x5F55;</h2><ol>
+<li><a href="#short-naming">&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;</a></li>
+<li><a href="#short-naming">&#x7F29;&#x5199;&#x4F7F;&#x7528;</a></li>
+<li><a href="#class-naming">&#x7C7B;&#x547D;&#x540D;</a></li>
+<li><a href="#method-naming">&#x65B9;&#x6CD5;&#x547D;&#x540D;</a></li>
+<li><a href="#field-naming">&#x5B57;&#x6BB5;&#x547D;&#x540D;</a></li>
+<li><a href="#log-system">&#x65E5;&#x5FD7;&#x7CFB;&#x7EDF;</a></li>
+<li><a href="#exception-system">&#x5F02;&#x5E38;&#x7CFB;&#x7EDF;</a></li>
+<li><a href="#guide">&#x5DE5;&#x7A0B;&#x5165;&#x624B;</a></li>
 <li><a href="#maven-settings">maven-settings</a></li>
 <li><a href="#eclipse-javadoc">eclipse-javadoc</a></li>
 <li><a href="#log-template">log-template</a></li>
 </ol>
-<h2 id="代码组织结构"><a href="#代码组织结构" class="headerlink" title="代码组织结构"></a><a name="sturcture"></a>代码组织结构</h2><p>###系统命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">groupId: $&#123;group&#125;</div><div class="line">artifactId: lvb-$&#123;system&#125;-$&#123;module&#125;</div><div class="line">$&#123;module&#125;分common, core, api, protocol等模块</div></pre></td></tr></table></figure></p>
-<h3 id="common包命名："><a href="#common包命名：" class="headerlink" title="common包命名："></a>common包命名：</h3><ul>
+<h2 id="&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;"><a href="#&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;" class="headerlink" title="&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;"></a><a name="sturcture"></a>&#x4EE3;&#x7801;&#x7EC4;&#x7EC7;&#x7ED3;&#x6784;</h2><p>###&#x7CFB;&#x7EDF;&#x547D;&#x540D;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">groupId: ${group}</div><div class="line">artifactId: lvb-${system}-${module}</div><div class="line">${module}&#x5206;common, core, api, protocol&#x7B49;&#x6A21;&#x5757;</div></pre></td></tr></table></figure></p>
+<h3 id="common&#x5305;&#x547D;&#x540D;&#xFF1A;"><a href="#common&#x5305;&#x547D;&#x540D;&#xFF1A;" class="headerlink" title="common&#x5305;&#x547D;&#x540D;&#xFF1A;"></a>common&#x5305;&#x547D;&#x540D;&#xFF1A;</h3><ul>
 <li>${group}.${system}.${module}</li>
 <li>${group}.${system}.${module}.common</li>
 </ul>
-<h3 id="core包命名："><a href="#core包命名：" class="headerlink" title="core包命名："></a>core包命名：</h3><ul>
+<h3 id="core&#x5305;&#x547D;&#x540D;&#xFF1A;"><a href="#core&#x5305;&#x547D;&#x540D;&#xFF1A;" class="headerlink" title="core&#x5305;&#x547D;&#x540D;&#xFF1A;"></a>core&#x5305;&#x547D;&#x540D;&#xFF1A;</h3><ul>
 <li>${group}.${system}.${module}</li>
 <li>${group}.${system}.${module}.model</li>
 <li>${group}.${system}.${module}.mappers</li>
@@ -203,63 +167,63 @@ log-template
 <li>${group}.${system}.${module}.outter.service.impl</li>
 <li>${group}.${system}.${module}.util</li>
 </ul>
-<h3 id="api包命名"><a href="#api包命名" class="headerlink" title="api包命名"></a>api包命名</h3><ul>
+<h3 id="api&#x5305;&#x547D;&#x540D;"><a href="#api&#x5305;&#x547D;&#x540D;" class="headerlink" title="api&#x5305;&#x547D;&#x540D;"></a>api&#x5305;&#x547D;&#x540D;</h3><ul>
 <li>${group}.${system}.${module}.web</li>
 <li>${group}.${system}.${module}.web.controller</li>
 <li>${group}.${system}.${module}.web.filter</li>
 <li>${group}.${system}.${module}.web.listener</li>
 <li>${group}.${system}.${module}.web.util</li>
 </ul>
-<h3 id="protocol包命名："><a href="#protocol包命名：" class="headerlink" title="protocol包命名："></a>protocol包命名：</h3><p>${group}.${system}.${module}.* OutterService</p>
-<h3 id="缩写使用"><a href="#缩写使用" class="headerlink" title="缩写使用"></a><a name="short-naming"></a>缩写使用</h3><p>除对于各行业熟知不会有歧义的词[如URL]，不建议使用缩写，如ADDR、TEL、US、HK，原因在于缩写会使得小写化时的驼峰难以理解，同时spring的Bean自动命名规则使得只小写首字母生成的bean名难以理解</p>
-<h3 id="类命名"><a href="#类命名" class="headerlink" title="类命名"></a><a name="class-naming"></a>类命名</h3><p>####原则-编号重要性递减</p>
+<h3 id="protocol&#x5305;&#x547D;&#x540D;&#xFF1A;"><a href="#protocol&#x5305;&#x547D;&#x540D;&#xFF1A;" class="headerlink" title="protocol&#x5305;&#x547D;&#x540D;&#xFF1A;"></a>protocol&#x5305;&#x547D;&#x540D;&#xFF1A;</h3><p>${group}.${system}.${module}.* OutterService</p>
+<h3 id="&#x7F29;&#x5199;&#x4F7F;&#x7528;"><a href="#&#x7F29;&#x5199;&#x4F7F;&#x7528;" class="headerlink" title="&#x7F29;&#x5199;&#x4F7F;&#x7528;"></a><a name="short-naming"></a>&#x7F29;&#x5199;&#x4F7F;&#x7528;</h3><p>&#x9664;&#x5BF9;&#x4E8E;&#x5404;&#x884C;&#x4E1A;&#x719F;&#x77E5;&#x4E0D;&#x4F1A;&#x6709;&#x6B67;&#x4E49;&#x7684;&#x8BCD;[&#x5982;URL]&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;&#x7F29;&#x5199;&#xFF0C;&#x5982;ADDR&#x3001;TEL&#x3001;US&#x3001;HK&#xFF0C;&#x539F;&#x56E0;&#x5728;&#x4E8E;&#x7F29;&#x5199;&#x4F1A;&#x4F7F;&#x5F97;&#x5C0F;&#x5199;&#x5316;&#x65F6;&#x7684;&#x9A7C;&#x5CF0;&#x96BE;&#x4EE5;&#x7406;&#x89E3;&#xFF0C;&#x540C;&#x65F6;spring&#x7684;Bean&#x81EA;&#x52A8;&#x547D;&#x540D;&#x89C4;&#x5219;&#x4F7F;&#x5F97;&#x53EA;&#x5C0F;&#x5199;&#x9996;&#x5B57;&#x6BCD;&#x751F;&#x6210;&#x7684;bean&#x540D;&#x96BE;&#x4EE5;&#x7406;&#x89E3;</p>
+<h3 id="&#x7C7B;&#x547D;&#x540D;"><a href="#&#x7C7B;&#x547D;&#x540D;" class="headerlink" title="&#x7C7B;&#x547D;&#x540D;"></a><a name="class-naming"></a>&#x7C7B;&#x547D;&#x540D;</h3><p>####&#x539F;&#x5219;-&#x7F16;&#x53F7;&#x91CD;&#x8981;&#x6027;&#x9012;&#x51CF;</p>
 <ul>
-<li>对于继承类沿用父类的命名规则</li>
-<li>使用名词+动词形式的驼峰结构</li>
-<li>对于接口实现类，尽量保持与接口后缀相同<h4 id="命名常用后缀及方法"><a href="#命名常用后缀及方法" class="headerlink" title="命名常用后缀及方法"></a>命名常用后缀及方法</h4></li>
-<li>抽象类: Abstract${name}</li>
-<li>接口类: ${name}${Action}，${name}Service, ${name}ServiceWrap</li>
-<li>数据类: ${name}DBDao, ${name}CacheDao</li>
-<li>工具类: ${name}Utils</li>
-<li>枚举类: ${name}Enum,${name}Type,${name}Statu,${name}</li>
+<li>&#x5BF9;&#x4E8E;&#x7EE7;&#x627F;&#x7C7B;&#x6CBF;&#x7528;&#x7236;&#x7C7B;&#x7684;&#x547D;&#x540D;&#x89C4;&#x5219;</li>
+<li>&#x4F7F;&#x7528;&#x540D;&#x8BCD;+&#x52A8;&#x8BCD;&#x5F62;&#x5F0F;&#x7684;&#x9A7C;&#x5CF0;&#x7ED3;&#x6784;</li>
+<li>&#x5BF9;&#x4E8E;&#x63A5;&#x53E3;&#x5B9E;&#x73B0;&#x7C7B;&#xFF0C;&#x5C3D;&#x91CF;&#x4FDD;&#x6301;&#x4E0E;&#x63A5;&#x53E3;&#x540E;&#x7F00;&#x76F8;&#x540C;<h4 id="&#x547D;&#x540D;&#x5E38;&#x7528;&#x540E;&#x7F00;&#x53CA;&#x65B9;&#x6CD5;"><a href="#&#x547D;&#x540D;&#x5E38;&#x7528;&#x540E;&#x7F00;&#x53CA;&#x65B9;&#x6CD5;" class="headerlink" title="&#x547D;&#x540D;&#x5E38;&#x7528;&#x540E;&#x7F00;&#x53CA;&#x65B9;&#x6CD5;"></a>&#x547D;&#x540D;&#x5E38;&#x7528;&#x540E;&#x7F00;&#x53CA;&#x65B9;&#x6CD5;</h4></li>
+<li>&#x62BD;&#x8C61;&#x7C7B;: Abstract${name}</li>
+<li>&#x63A5;&#x53E3;&#x7C7B;: ${name}${Action}&#xFF0C;${name}Service, ${name}ServiceWrap</li>
+<li>&#x6570;&#x636E;&#x7C7B;: ${name}DBDao, ${name}CacheDao</li>
+<li>&#x5DE5;&#x5177;&#x7C7B;: ${name}Utils</li>
+<li>&#x679A;&#x4E3E;&#x7C7B;: ${name}Enum,${name}Type,${name}Statu,${name}</li>
 </ul>
-<h3 id="方法命名"><a href="#方法命名" class="headerlink" title="方法命名"></a><a name="method-naming"></a>方法命名</h3><ul>
-<li>原则: 动词-名词的驼峰结构</li>
+<h3 id="&#x65B9;&#x6CD5;&#x547D;&#x540D;"><a href="#&#x65B9;&#x6CD5;&#x547D;&#x540D;" class="headerlink" title="&#x65B9;&#x6CD5;&#x547D;&#x540D;"></a><a name="method-naming"></a>&#x65B9;&#x6CD5;&#x547D;&#x540D;</h3><ul>
+<li>&#x539F;&#x5219;: &#x52A8;&#x8BCD;-&#x540D;&#x8BCD;&#x7684;&#x9A7C;&#x5CF0;&#x7ED3;&#x6784;</li>
 </ul>
 <ol>
-<li>判断函数: 输出bool值，is${statu}, exist${status}</li>
-<li>断言函数: 输出异常，validate${status}</li>
-<li>增删查改<ul>
-<li>确定性id查询使用get前缀</li>
-<li>函数名前缀及返回值规则list set zset|K-V</li>
-<li>添加用add|set,返回boolean</li>
-<li>删除remove|del,返回用boolean</li>
-<li>查询集合用query</li>
-<li>查询存在用isMember|exists</li>
-<li>全部删除使用clear</li>
+<li>&#x5224;&#x65AD;&#x51FD;&#x6570;: &#x8F93;&#x51FA;bool&#x503C;&#xFF0C;is${statu}, exist${status}</li>
+<li>&#x65AD;&#x8A00;&#x51FD;&#x6570;: &#x8F93;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;validate${status}</li>
+<li>&#x589E;&#x5220;&#x67E5;&#x6539;<ul>
+<li>&#x786E;&#x5B9A;&#x6027;id&#x67E5;&#x8BE2;&#x4F7F;&#x7528;get&#x524D;&#x7F00;</li>
+<li>&#x51FD;&#x6570;&#x540D;&#x524D;&#x7F00;&#x53CA;&#x8FD4;&#x56DE;&#x503C;&#x89C4;&#x5219;list set zset|K-V</li>
+<li>&#x6DFB;&#x52A0;&#x7528;add|set,&#x8FD4;&#x56DE;boolean</li>
+<li>&#x5220;&#x9664;remove|del,&#x8FD4;&#x56DE;&#x7528;boolean</li>
+<li>&#x67E5;&#x8BE2;&#x96C6;&#x5408;&#x7528;query</li>
+<li>&#x67E5;&#x8BE2;&#x5B58;&#x5728;&#x7528;isMember|exists</li>
+<li>&#x5168;&#x90E8;&#x5220;&#x9664;&#x4F7F;&#x7528;clear</li>
 </ul>
 </li>
 </ol>
-<h3 id="变量命名"><a href="#变量命名" class="headerlink" title=" 变量命名"></a><a name="field-naming"></a> 变量命名</h3><ul>
-<li>常量: 单词与单词之间以” _“隔开。public final static</li>
-<li>变量: 类型的首字母小写化后进行命名，如果有重复,前缀区分，后缀取类名</li>
-<li>参数：参数重要性进行排序, 如果使用引用类型进行形参结果返回，dest在后， source在前</li>
+<h3 id="&#x53D8;&#x91CF;&#x547D;&#x540D;"><a href="#&#x53D8;&#x91CF;&#x547D;&#x540D;" class="headerlink" title=" &#x53D8;&#x91CF;&#x547D;&#x540D;"></a><a name="field-naming"></a> &#x53D8;&#x91CF;&#x547D;&#x540D;</h3><ul>
+<li>&#x5E38;&#x91CF;: &#x5355;&#x8BCD;&#x4E0E;&#x5355;&#x8BCD;&#x4E4B;&#x95F4;&#x4EE5;&#x201D; _&#x201C;&#x9694;&#x5F00;&#x3002;public final static</li>
+<li>&#x53D8;&#x91CF;: &#x7C7B;&#x578B;&#x7684;&#x9996;&#x5B57;&#x6BCD;&#x5C0F;&#x5199;&#x5316;&#x540E;&#x8FDB;&#x884C;&#x547D;&#x540D;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x91CD;&#x590D;,&#x524D;&#x7F00;&#x533A;&#x5206;&#xFF0C;&#x540E;&#x7F00;&#x53D6;&#x7C7B;&#x540D;</li>
+<li>&#x53C2;&#x6570;&#xFF1A;&#x53C2;&#x6570;&#x91CD;&#x8981;&#x6027;&#x8FDB;&#x884C;&#x6392;&#x5E8F;, &#x5982;&#x679C;&#x4F7F;&#x7528;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#x8FDB;&#x884C;&#x5F62;&#x53C2;&#x7ED3;&#x679C;&#x8FD4;&#x56DE;&#xFF0C;dest&#x5728;&#x540E;&#xFF0C; source&#x5728;&#x524D;</li>
 </ul>
-<h2 id="日志系统"><a href="#日志系统" class="headerlink" title=" 日志系统:"></a><a name="log-system"></a> 日志系统:</h2><ul>
-<li>使用logback输出到文件，自动按max-size进行切分,后期有必要进行接口输出</li>
-<li>输出目的: 对于错误日志进行分析，解决bug, 判断系统运行稳定性、压力点，进行事故原因分析</li>
-<li>输出原则: 由于错误警告日志的分析不能离开上下文日志，所以不能单独完全按照LEVEL进行分开输出</li>
-<li>输出方法:<ul>
-<li>对于警告及错误日志进行单独文件输出，及时快读找到报错及不稳定点。</li>
-<li>对于info信息进行临界值输出，达到info级别的日志全部输出到同一文件,在找到警告及错误信息后在该日志寻找上下文信息。</li>
+<h2 id="&#x65E5;&#x5FD7;&#x7CFB;&#x7EDF;"><a href="#&#x65E5;&#x5FD7;&#x7CFB;&#x7EDF;" class="headerlink" title=" &#x65E5;&#x5FD7;&#x7CFB;&#x7EDF;:"></a><a name="log-system"></a> &#x65E5;&#x5FD7;&#x7CFB;&#x7EDF;:</h2><ul>
+<li>&#x4F7F;&#x7528;logback&#x8F93;&#x51FA;&#x5230;&#x6587;&#x4EF6;&#xFF0C;&#x81EA;&#x52A8;&#x6309;max-size&#x8FDB;&#x884C;&#x5207;&#x5206;,&#x540E;&#x671F;&#x6709;&#x5FC5;&#x8981;&#x8FDB;&#x884C;&#x63A5;&#x53E3;&#x8F93;&#x51FA;</li>
+<li>&#x8F93;&#x51FA;&#x76EE;&#x7684;: &#x5BF9;&#x4E8E;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF0C;&#x89E3;&#x51B3;bug, &#x5224;&#x65AD;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x7A33;&#x5B9A;&#x6027;&#x3001;&#x538B;&#x529B;&#x70B9;&#xFF0C;&#x8FDB;&#x884C;&#x4E8B;&#x6545;&#x539F;&#x56E0;&#x5206;&#x6790;</li>
+<li>&#x8F93;&#x51FA;&#x539F;&#x5219;: &#x7531;&#x4E8E;&#x9519;&#x8BEF;&#x8B66;&#x544A;&#x65E5;&#x5FD7;&#x7684;&#x5206;&#x6790;&#x4E0D;&#x80FD;&#x79BB;&#x5F00;&#x4E0A;&#x4E0B;&#x6587;&#x65E5;&#x5FD7;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x80FD;&#x5355;&#x72EC;&#x5B8C;&#x5168;&#x6309;&#x7167;LEVEL&#x8FDB;&#x884C;&#x5206;&#x5F00;&#x8F93;&#x51FA;</li>
+<li>&#x8F93;&#x51FA;&#x65B9;&#x6CD5;:<ul>
+<li>&#x5BF9;&#x4E8E;&#x8B66;&#x544A;&#x53CA;&#x9519;&#x8BEF;&#x65E5;&#x5FD7;&#x8FDB;&#x884C;&#x5355;&#x72EC;&#x6587;&#x4EF6;&#x8F93;&#x51FA;&#xFF0C;&#x53CA;&#x65F6;&#x5FEB;&#x8BFB;&#x627E;&#x5230;&#x62A5;&#x9519;&#x53CA;&#x4E0D;&#x7A33;&#x5B9A;&#x70B9;&#x3002;</li>
+<li>&#x5BF9;&#x4E8E;info&#x4FE1;&#x606F;&#x8FDB;&#x884C;&#x4E34;&#x754C;&#x503C;&#x8F93;&#x51FA;&#xFF0C;&#x8FBE;&#x5230;info&#x7EA7;&#x522B;&#x7684;&#x65E5;&#x5FD7;&#x5168;&#x90E8;&#x8F93;&#x51FA;&#x5230;&#x540C;&#x4E00;&#x6587;&#x4EF6;,&#x5728;&#x627E;&#x5230;&#x8B66;&#x544A;&#x53CA;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x540E;&#x5728;&#x8BE5;&#x65E5;&#x5FD7;&#x5BFB;&#x627E;&#x4E0A;&#x4E0B;&#x6587;&#x4FE1;&#x606F;&#x3002;</li>
 </ul>
 </li>
 </ul>
-<h2 id="异常系统"><a href="#异常系统" class="headerlink" title=" 异常系统"></a><a name="exception-system"></a> 异常系统</h2><p>凡是为可能为跨语言client提供接口服务的系统都需要捕获异常，给client提供code&amp;reason</p>
-<h2 id="工程入手须知"><a href="#工程入手须知" class="headerlink" title="工程入手须知"></a><a name="guide"></a>工程入手须知</h2><h3 id="maven-3-3-9"><a href="#maven-3-3-9" class="headerlink" title=" maven 3.3.9"></a><a name="maven-settings"></a> maven 3.3.9</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">downloadSources</span>&gt;</span>true<span class="tag">&lt;/<span class="name">downloadSources</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">downloadJavadocs</span>&gt;</span>true<span class="tag">&lt;/<span class="name">downloadJavadocs</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.targetJdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">project.build.targetJdk</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.26:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.26:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="eclipse-java-code-style-code-template"><a href="#eclipse-java-code-style-code-template" class="headerlink" title="eclipse java-code style-code template"></a><a name="eclipse-javadoc"></a>eclipse java-code style-code template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Copyright 2016 © ****.com Corp. All Rights Reserverd.</div><div class="line"> *</div><div class="line"> * 广州****技术有限公司    http://www.****.com</div><div class="line"> *</div><div class="line"> * Create Date : $&#123;date&#125;</div><div class="line"> **/</div><div class="line">$&#123;package_declaration&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> *</div><div class="line"> * @author &lt;a href=&quot;mailto:$&#123;name&#125;@*.com&quot;&gt;$&#123;name&#125;&lt;/a&gt;</div><div class="line"> *</div><div class="line"> */</div><div class="line">$&#123;type_declaration&#125;</div></pre></td></tr></table></figure>
-<h3 id="eclipse-java-editor-templates"><a href="#eclipse-java-editor-templates" class="headerlink" title=" eclipse java-editor-templates"></a><a name="log-template"></a> eclipse java-editor-templates</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&#123;:import(org.slf4j.Logger,org.slf4j.LoggerFactory,org.slf4j.Logger,org.slf4j.Logger)&#125;</div><div class="line">private static final Logger logger = LoggerFactory.getLogger($&#123;enclosing_type&#125;.class);</div></pre></td></tr></table></figure>
-<h2 id="文档管理"><a href="#文档管理" class="headerlink" title="文档管理"></a>文档管理</h2><p>使用Markdown语法<br>使用<a href="http://andriusvelykis.github.io/reflow-maven-skin" title="Reflow document" target="_blank" rel="external">reflow-maven-skin</a>，可参考源代码<a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin source code" target="_blank" rel="external">available on GitHub</a></p>
+<h2 id="&#x5F02;&#x5E38;&#x7CFB;&#x7EDF;"><a href="#&#x5F02;&#x5E38;&#x7CFB;&#x7EDF;" class="headerlink" title=" &#x5F02;&#x5E38;&#x7CFB;&#x7EDF;"></a><a name="exception-system"></a> &#x5F02;&#x5E38;&#x7CFB;&#x7EDF;</h2><p>&#x51E1;&#x662F;&#x4E3A;&#x53EF;&#x80FD;&#x4E3A;&#x8DE8;&#x8BED;&#x8A00;client&#x63D0;&#x4F9B;&#x63A5;&#x53E3;&#x670D;&#x52A1;&#x7684;&#x7CFB;&#x7EDF;&#x90FD;&#x9700;&#x8981;&#x6355;&#x83B7;&#x5F02;&#x5E38;&#xFF0C;&#x7ED9;client&#x63D0;&#x4F9B;code&amp;reason</p>
+<h2 id="&#x5DE5;&#x7A0B;&#x5165;&#x624B;&#x987B;&#x77E5;"><a href="#&#x5DE5;&#x7A0B;&#x5165;&#x624B;&#x987B;&#x77E5;" class="headerlink" title="&#x5DE5;&#x7A0B;&#x5165;&#x624B;&#x987B;&#x77E5;"></a><a name="guide"></a>&#x5DE5;&#x7A0B;&#x5165;&#x624B;&#x987B;&#x77E5;</h2><h3 id="maven-3-3-9"><a href="#maven-3-3-9" class="headerlink" title=" maven 3.3.9"></a><a name="maven-settings"></a> maven 3.3.9</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">downloadSources</span>&gt;</span>true<span class="tag">&lt;/<span class="name">downloadSources</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">downloadJavadocs</span>&gt;</span>true<span class="tag">&lt;/<span class="name">downloadJavadocs</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.targetJdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">project.build.targetJdk</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.26:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.26:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="eclipse-java-code-style-code-template"><a href="#eclipse-java-code-style-code-template" class="headerlink" title="eclipse java-code style-code template"></a><a name="eclipse-javadoc"></a>eclipse java-code style-code template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Copyright 2016 &#xA9; ****.com Corp. All Rights Reserverd.</div><div class="line"> *</div><div class="line"> * &#x5E7F;&#x5DDE;****&#x6280;&#x672F;&#x6709;&#x9650;&#x516C;&#x53F8;    http://www.****.com</div><div class="line"> *</div><div class="line"> * Create Date : ${date}</div><div class="line"> **/</div><div class="line">${package_declaration}</div><div class="line"></div><div class="line">/**</div><div class="line"> *</div><div class="line"> * @author &lt;a href=&quot;mailto:${name}@*.com&quot;&gt;${name}&lt;/a&gt;</div><div class="line"> *</div><div class="line"> */</div><div class="line">${type_declaration}</div></pre></td></tr></table></figure>
+<h3 id="eclipse-java-editor-templates"><a href="#eclipse-java-editor-templates" class="headerlink" title=" eclipse java-editor-templates"></a><a name="log-template"></a> eclipse java-editor-templates</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">${:import(org.slf4j.Logger,org.slf4j.LoggerFactory,org.slf4j.Logger,org.slf4j.Logger)}</div><div class="line">private static final Logger logger = LoggerFactory.getLogger(${enclosing_type}.class);</div></pre></td></tr></table></figure>
+<h2 id="&#x6587;&#x6863;&#x7BA1;&#x7406;"><a href="#&#x6587;&#x6863;&#x7BA1;&#x7406;" class="headerlink" title="&#x6587;&#x6863;&#x7BA1;&#x7406;"></a>&#x6587;&#x6863;&#x7BA1;&#x7406;</h2><p>&#x4F7F;&#x7528;Markdown&#x8BED;&#x6CD5;<br>&#x4F7F;&#x7528;<a href="http://andriusvelykis.github.io/reflow-maven-skin" title="Reflow document" target="_blank" rel="external">reflow-maven-skin</a>&#xFF0C;&#x53EF;&#x53C2;&#x8003;&#x6E90;&#x4EE3;&#x7801;<a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin source code" target="_blank" rel="external">available on GitHub</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -313,26 +277,30 @@ log-template
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#代码语法约定"><span class="toc-number">1.</span> <span class="toc-text">代码语法约定</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#框架设计"><span class="toc-number">1.1.</span> <span class="toc-text">框架设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">1.2.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码组织结构"><span class="toc-number">1.3.</span> <span class="toc-text">代码组织结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#common包命名："><span class="toc-number">1.3.1.</span> <span class="toc-text">common包命名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#core包命名："><span class="toc-number">1.3.2.</span> <span class="toc-text">core包命名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#api包命名"><span class="toc-number">1.3.3.</span> <span class="toc-text">api包命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol包命名："><span class="toc-number">1.3.4.</span> <span class="toc-text">protocol包命名：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写使用"><span class="toc-number">1.3.5.</span> <span class="toc-text">缩写使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类命名"><span class="toc-number">1.3.6.</span> <span class="toc-text">类命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#命名常用后缀及方法"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">命名常用后缀及方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法命名"><span class="toc-number">1.3.7.</span> <span class="toc-text">方法命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量命名"><span class="toc-number">1.3.8.</span> <span class="toc-text"> 变量命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#日志系统"><span class="toc-number">1.4.</span> <span class="toc-text"> 日志系统:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常系统"><span class="toc-number">1.5.</span> <span class="toc-text"> 异常系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程入手须知"><span class="toc-number">1.6.</span> <span class="toc-text">工程入手须知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven-3-3-9"><span class="toc-number">1.6.1.</span> <span class="toc-text"> maven 3.3.9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-java-code-style-code-template"><span class="toc-number">1.6.2.</span> <span class="toc-text">eclipse java-code style-code template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eclipse-java-editor-templates"><span class="toc-number">1.6.3.</span> <span class="toc-text"> eclipse java-editor-templates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档管理"><span class="toc-number">1.7.</span> <span class="toc-text">文档管理</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
 			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
 		  
 		
 		  
@@ -345,15 +313,11 @@ log-template
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/centos/" title="centos">centos<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
@@ -376,12 +340,16 @@ log-template
 				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -400,13 +368,13 @@ log-template
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -643,7 +611,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
