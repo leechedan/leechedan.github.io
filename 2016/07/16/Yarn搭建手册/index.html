@@ -11,28 +11,28 @@
     
 
     
-    <meta name="description" content="&amp;#x73AF;&amp;#x5883;&amp;#x53CA;&amp;#x7248;&amp;#x672C;&amp;#x4ECB;&amp;#x7ECD;
-&amp;#x76EE;&amp;#x6807;&amp;#x673A;&amp;#x5668;
-&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;&amp;#x4ECB;&amp;#x7ECD;
-&amp;#x914D;&amp;#x7F6E;&amp;#x5DE5;&amp;#x4F5C;
-&amp;#x6D4B;&amp;#x8BD5;##1. &amp;#x73A">
+    <meta name="description" content="环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试##1. 环境及版本介绍###1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop###1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YARN搭建手册">
 <meta property="og:url" content="http://yoursite.com/2016/07/16/Yarn搭建手册/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="&amp;#x73AF;&amp;#x5883;&amp;#x53CA;&amp;#x7248;&amp;#x672C;&amp;#x4ECB;&amp;#x7ECD;
-&amp;#x76EE;&amp;#x6807;&amp;#x673A;&amp;#x5668;
-&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;&amp;#x4ECB;&amp;#x7ECD;
-&amp;#x914D;&amp;#x7F6E;&amp;#x5DE5;&amp;#x4F5C;
-&amp;#x6D4B;&amp;#x8BD5;##1. &amp;#x73A">
+<meta property="og:description" content="环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试##1. 环境及版本介绍###1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop###1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都">
 <meta property="og:updated_time" content="2016-07-17T02:51:11.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YARN搭建手册">
-<meta name="twitter:description" content="&amp;#x73AF;&amp;#x5883;&amp;#x53CA;&amp;#x7248;&amp;#x672C;&amp;#x4ECB;&amp;#x7ECD;
-&amp;#x76EE;&amp;#x6807;&amp;#x673A;&amp;#x5668;
-&amp;#x914D;&amp;#x7F6E;&amp;#x6587;&amp;#x4EF6;&amp;#x4ECB;&amp;#x7ECD;
-&amp;#x914D;&amp;#x7F6E;&amp;#x5DE5;&amp;#x4F5C;
-&amp;#x6D4B;&amp;#x8BD5;##1. &amp;#x73A">
+<meta name="twitter:description" content="环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试##1. 环境及版本介绍###1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop###1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -113,74 +113,74 @@
 		</div>
 		
 		<ol>
-<li><a href="#env-version">&#x73AF;&#x5883;&#x53CA;&#x7248;&#x672C;&#x4ECB;&#x7ECD;</a></li>
-<li><a href="#net-machine-top">&#x76EE;&#x6807;&#x673A;&#x5668;</a></li>
-<li><a href="#settings">&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4ECB;&#x7ECD;</a></li>
-<li><a href="#config">&#x914D;&#x7F6E;&#x5DE5;&#x4F5C;</a></li>
-<li><a href="#test">&#x6D4B;&#x8BD5;</a><br>##<a name="env-version"></a>1. &#x73AF;&#x5883;&#x53CA;&#x7248;&#x672C;&#x4ECB;&#x7ECD;<br>###1.1 &#x673A;&#x5668;Centos6.8<br>&#x5173;&#x95ED;&#x9632;&#x706B;&#x5899;&#x670D;&#x52A1;&#x542F;&#x52A8; chkconfig iptables off<br>&#x505C;&#x6B62;&#x9632;&#x706B;&#x5899; service iptables stop<br>###1.2 yarn 2.7.2<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#x5916;&#x5C42;&#x7684;&#x542F;&#x52A8;&#x811A;&#x672C;&#x5728;sbin&#x76EE;&#x5F55;</div><div class="line">Native&#x7684;so&#x6587;&#x4EF6;&#x90FD;&#x5728;lib/native&#x76EE;&#x5F55;</div><div class="line">&#x914D;&#x7F6E;&#x7A0B;&#x5E8F;&#x6587;&#x4EF6;&#x90FD;&#x653E;&#x7F6E;&#x5728;libexec</div><div class="line">&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x90FD;&#x5728;etc&#x76EE;&#x5F55;&#xFF0C;&#x5BF9;&#x5E94;&#x4EE5;&#x524D;&#x7248;&#x672C;&#x7684;conf&#x76EE;&#x5F55;</div><div class="line">&#x6240;&#x6709;&#x7684;jar&#x5305;&#x90FD;&#x5728;share/hadoop&#x76EE;&#x5F55;&#x4E0B;&#x9762;</div></pre></td></tr></table></figure>
+<li><a href="#env-version">环境及版本介绍</a></li>
+<li><a href="#net-machine-top">目标机器</a></li>
+<li><a href="#settings">配置文件介绍</a></li>
+<li><a href="#config">配置工作</a></li>
+<li><a href="#test">测试</a><br>##<a name="env-version"></a>1. 环境及版本介绍<br>###1.1 机器Centos6.8<br>关闭防火墙服务启动 chkconfig iptables off<br>停止防火墙 service iptables stop<br>###1.2 yarn 2.7.2<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">外层的启动脚本在sbin目录</div><div class="line">Native的so文件都在lib/native目录</div><div class="line">配置程序文件都放置在libexec</div><div class="line">配置文件都在etc目录，对应以前版本的conf目录</div><div class="line">所有的jar包都在share/hadoop目录下面</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>###1.3 jdk1.8</p>
-<h2 id="2-&#x76EE;&#x6807;&#x673A;&#x5668;"><a href="#2-&#x76EE;&#x6807;&#x673A;&#x5668;" class="headerlink" title="2. &#x76EE;&#x6807;&#x673A;&#x5668;"></a><a name="net-machine-top"></a>2. &#x76EE;&#x6807;&#x673A;&#x5668;</h2><table>
+<h2 id="2-目标机器"><a href="#2-目标机器" class="headerlink" title="2. 目标机器"></a><a name="net-machine-top"></a>2. 目标机器</h2><table>
 <thead>
 <tr>
 <th style="text-align:left">IP</th>
 <th style="text-align:left">hostname</th>
-<th style="text-align:left">&#x673A;&#x5668;&#x8EAB;&#x4EFD;</th>
-<th style="text-align:left">&#x4F5C;&#x7528;</th>
-<th style="text-align:left">&#x5907;&#x6CE8;</th>
+<th style="text-align:left">机器身份</th>
+<th style="text-align:left">作用</th>
+<th style="text-align:left">备注</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left">192.168.1.11</td>
 <td style="text-align:left">master</td>
-<td style="text-align:left">NameNode&#x3001;SecondaryNameNode&#x3001;ResourceManager</td>
+<td style="text-align:left">NameNode、SecondaryNameNode、ResourceManager</td>
 <td style="text-align:left"></td>
-<td style="text-align:left">product&#x73AF;&#x5883;namenode&#x4E0E;resourceManager&#x5206;&#x5F00;</td>
+<td style="text-align:left">product环境namenode与resourceManager分开</td>
 </tr>
 <tr>
 <td style="text-align:left">192.168.1.10</td>
 <td style="text-align:left">slave1</td>
-<td style="text-align:left">DataNode&#x3001;NodeManager</td>
+<td style="text-align:left">DataNode、NodeManager</td>
 </tr>
 </tbody>
 </table>
-<h2 id="3-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4ECB;&#x7ECD;"><a href="#3-&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4ECB;&#x7ECD;" class="headerlink" title="3. &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4ECB;&#x7ECD;"></a>3. <a name="settings"></a>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4ECB;&#x7ECD;</h2><h3 id="3-1-core-site-xml"><a href="#3-1-core-site-xml" class="headerlink" title="3.1 core-site.xml"></a>3.1 core-site.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>&#x6307;&#x5B9A;NameNode&#x7684;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#x53F7;<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="3-配置文件介绍"><a href="#3-配置文件介绍" class="headerlink" title="3. 配置文件介绍"></a>3. <a name="settings"></a>配置文件介绍</h2><h3 id="3-1-core-site-xml"><a href="#3-1-core-site-xml" class="headerlink" title="3.1 core-site.xml"></a>3.1 core-site.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">configuration</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>指定NameNode的IP地址和端口号<span class="tag">&lt;/<span class="name">description</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="3-2-hdfs-site-xml"><a href="#3-2-hdfs-site-xml" class="headerlink" title="3.2 hdfs-site.xml"></a>3.2 hdfs-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;fs.defaultFS&lt;/name&gt;</div><div class="line">                &lt;value&gt;hdfs://master:9000&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line"></div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;io.file.buffer.size&lt;/name&gt;</div><div class="line">                &lt;value&gt;131072&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
 <h3 id="3-3-mapred-site-xml"><a href="#3-3-mapred-site-xml" class="headerlink" title="3.3 mapred-site.xml"></a>3.3 mapred-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;configuration&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</div><div class="line">                &lt;value&gt;yarn&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;slave1:10020&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;slave1:19888&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
 <h3 id="3-4-yarn-site-xml"><a href="#3-4-yarn-site-xml" class="headerlink" title="3.4 yarn-site.xml"></a>3.4 yarn-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;pre name=&quot;code&quot; class=&quot;html&quot;&gt;&lt;configuration&gt;</div><div class="line"></div><div class="line">&lt;!-- Site specific YARN configuration properties --&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8032&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.scheduler.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8033&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.resource-tracker.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8034&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.admin.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8035&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt;</div><div class="line">                &lt;value&gt;master:8036&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">                &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</div><div class="line">                &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-<h3 id="3-5-&#x5728;yarn-env-sh-mapred-env-sh-hadoop-env-sh-&#x8FFD;&#x52A0;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;"><a href="#3-5-&#x5728;yarn-env-sh-mapred-env-sh-hadoop-env-sh-&#x8FFD;&#x52A0;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;" class="headerlink" title="3.5 &#x5728;yarn-env.sh  mapred-env.sh  hadoop-env.sh  &#x8FFD;&#x52A0;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;"></a>3.5 &#x5728;yarn-env.sh  mapred-env.sh  hadoop-env.sh  &#x8FFD;&#x52A0;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/java/default</div><div class="line">export CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib</div><div class="line"></div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export HADOOP_PID_DIR=/home/hadoop/pids</div><div class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</div><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native&quot;</div><div class="line"></div><div class="line">export HADOOP_PREFIX=$HADOOP_HOME</div><div class="line"></div><div class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</div><div class="line">export YARN_HOME=$HADOOP_HOME</div><div class="line"></div><div class="line">export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export HDFS_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line"></div><div class="line">export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native</div><div class="line"></div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</div></pre></td></tr></table></figure>
-<h2 id="4-&#x914D;&#x7F6E;&#x5DE5;&#x4F5C;"><a href="#4-&#x914D;&#x7F6E;&#x5DE5;&#x4F5C;" class="headerlink" title="4. &#x914D;&#x7F6E;&#x5DE5;&#x4F5C;"></a><a name="config"></a>4. &#x914D;&#x7F6E;&#x5DE5;&#x4F5C;</h2><p>&#x4EE5;&#x4E0B;4.1&#x5185;&#x5BB9;&#x5728;master&#x3001;slave1&#x4E2D;&#x5206;&#x522B;&#x6267;&#x884C;</p>
-<h3 id="4-1-&#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7528;&#x6237;"><a href="#4-1-&#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7528;&#x6237;" class="headerlink" title="4.1 &#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7528;&#x6237;"></a>4.1 &#x521B;&#x5EFA;&#x5355;&#x72EC;&#x7528;&#x6237;</h3><ul>
-<li><p>&#x4E3A;&#x8FDB;&#x884C;&#x5B89;&#x5168;&#x9694;&#x79BB;&#xFF0C;&#x53E6;&#x8BBE;&#x8D26;&#x6237;&#x8FD0;&#x884C;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#&#x5207;&#x6362;su</div><div class="line">useradd hadoop</div><div class="line">passwd hadoop</div><div class="line">tar -zxvf hadoop-2.7.4.tar.gz -C /usr/local/hadoop</div><div class="line">chown -r hadoop /usr/local/hadoop</div><div class="line">sudo yum -y install openssl openssl-devel bzip2 lz4 snappy zlib openssh-clients</div><div class="line">#&#x5207;&#x6362;hadoop</div><div class="line">mkdir -p /home/hadoop/yarn/yarn_data/hdfs/namenode</div><div class="line">mkdir -p /home/hadoop/yarn/yarn_data/hdfs/datanode</div><div class="line">mkdir /home/hadoop/pids</div><div class="line">cp /usr/local/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/hadoop/etc/hadoop/mapred-site.xml</div><div class="line"># master  backup   &#x4E92;&#x5907;&#x7B7E;&#x540D;  hosts   &#x5206;&#x522B;&#x5728;master backup&#x4E0A;&#x8FD0;&#x884C;</div><div class="line"># &#x9ED8;&#x8BA4;&#x751F;&#x6210;~/.ssh/authorized_keys&#x6587;&#x4EF6;</div><div class="line">cd ~/</div><div class="line">ssh-keygen</div><div class="line">chmod 600 ~/.ssh/authorized_keys</div><div class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<h3 id="3-5-在yarn-env-sh-mapred-env-sh-hadoop-env-sh-追加以下内容"><a href="#3-5-在yarn-env-sh-mapred-env-sh-hadoop-env-sh-追加以下内容" class="headerlink" title="3.5 在yarn-env.sh  mapred-env.sh  hadoop-env.sh  追加以下内容"></a>3.5 在yarn-env.sh  mapred-env.sh  hadoop-env.sh  追加以下内容</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/java/default</div><div class="line">export CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib</div><div class="line"></div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export HADOOP_PID_DIR=/home/hadoop/pids</div><div class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</div><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native&quot;</div><div class="line"></div><div class="line">export HADOOP_PREFIX=$HADOOP_HOME</div><div class="line"></div><div class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</div><div class="line">export YARN_HOME=$HADOOP_HOME</div><div class="line"></div><div class="line">export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export HDFS_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line"></div><div class="line">export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native</div><div class="line"></div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</div></pre></td></tr></table></figure>
+<h2 id="4-配置工作"><a href="#4-配置工作" class="headerlink" title="4. 配置工作"></a><a name="config"></a>4. 配置工作</h2><p>以下4.1内容在master、slave1中分别执行</p>
+<h3 id="4-1-创建单独用户"><a href="#4-1-创建单独用户" class="headerlink" title="4.1 创建单独用户"></a>4.1 创建单独用户</h3><ul>
+<li><p>为进行安全隔离，另设账户运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#切换su</div><div class="line">useradd hadoop</div><div class="line">passwd hadoop</div><div class="line">tar -zxvf hadoop-2.7.4.tar.gz -C /usr/local/hadoop</div><div class="line">chown -r hadoop /usr/local/hadoop</div><div class="line">sudo yum -y install openssl openssl-devel bzip2 lz4 snappy zlib openssh-clients</div><div class="line">#切换hadoop</div><div class="line">mkdir -p /home/hadoop/yarn/yarn_data/hdfs/namenode</div><div class="line">mkdir -p /home/hadoop/yarn/yarn_data/hdfs/datanode</div><div class="line">mkdir /home/hadoop/pids</div><div class="line">cp /usr/local/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/hadoop/etc/hadoop/mapred-site.xml</div><div class="line"># master  backup   互备签名  hosts   分别在master backup上运行</div><div class="line"># 默认生成~/.ssh/authorized_keys文件</div><div class="line">cd ~/</div><div class="line">ssh-keygen</div><div class="line">chmod 600 ~/.ssh/authorized_keys</div><div class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
 </li>
-<li><p>/etc/hosts&#x589E;&#x52A0;&#x4EE5;&#x4E0B;&#x4E24;&#x884C;,&#x5982;&#x679C;&#x73AF;&#x5883;&#x6709;&#x66F4;&#x591A;&#x673A;&#x5668;&#xFF0C;&#x5728;&#x6BCF;&#x53F0;&#x673A;&#x5668;&#x4E0A;&#x90FD;&#x8BBE;&#x7ACB;&#x6240;&#x6709;hostname&#x7684;IP&#x6620;&#x5C04;</p>
+<li><p>/etc/hosts增加以下两行,如果环境有更多机器，在每台机器上都设立所有hostname的IP映射</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">192.168.1.11 master</div><div class="line">192.168.1.10 slave1</div></pre></td></tr></table></figure>
 </li>
-<li><p>&#x5C06;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x8986;&#x76D6;&#x5230;etc/slaves&#x4E2D;,&#x4F5C;&#x7528;&#x662F;&#x8BBE;&#x7F6E;datanode&#xFF0C;&#x4F7F;&#x7528;start-all&#x811A;&#x672C;&#x65F6;&#x542F;&#x52A8;&#x6240;&#x6709;datanode</p>
+<li><p>将以下内容覆盖到etc/slaves中,作用是设置datanode，使用start-all脚本时启动所有datanode</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">master</div><div class="line">slave1</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###4.2 &#x5C06;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x590D;&#x5236;&#x5230;slave1&#x4E2D;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -r /usr/local/hadoop/etc hadoop@slave1</div></pre></td></tr></table></figure></p>
-<p>###4.3 ssh&#x767B;&#x5F55;&#x914D;&#x7F6E;</p>
+<p>###4.2 将配置文件复制到slave1中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp -r /usr/local/hadoop/etc hadoop@slave1</div></pre></td></tr></table></figure></p>
+<p>###4.3 ssh登录配置</p>
 <ul>
-<li>&#x5C06;master ~/.ssh/id_rsa.pub&#x7684;&#x5185;&#x5BB9;&#x62F7;&#x8D1D;&#x81F3;slave1&#x7684;~/.ssh/authorized_keys</li>
-<li>&#x5C06;slave1 ~/.ssh/id_rsa.pub&#x7684;&#x5185;&#x5BB9;&#x62F7;&#x8D1D;&#x81F3;master&#x7684;~/.ssh/authorized_keys</li>
-<li>&#x6D4B;&#x8BD5;:&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5206;&#x522B;&#x5728;master slave1&#x4E2D;&#x8FD0;&#x884C;,&#x6267;&#x884C;&#x4E2D;&#x9996;&#x6B21;&#x9700;&#x8F93;&#x5165;yes&#x786E;&#x8BA4;,&#x65E0;&#x9700;&#x5BC6;&#x7801;,&#x5373;&#x8BA4;&#x4E3A;ssh&#x914D;&#x7F6E;&#x5B8C;&#x6BD5;<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh hadoop@master</div><div class="line">ssh hadoop@slave1</div></pre></td></tr></table></figure>
+<li>将master ~/.ssh/id_rsa.pub的内容拷贝至slave1的~/.ssh/authorized_keys</li>
+<li>将slave1 ~/.ssh/id_rsa.pub的内容拷贝至master的~/.ssh/authorized_keys</li>
+<li>测试:以下命令分别在master slave1中运行,执行中首次需输入yes确认,无需密码,即认为ssh配置完毕<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh hadoop@master</div><div class="line">ssh hadoop@slave1</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###4.4 master&#x4E0B;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x5939;&#x521D;&#x59CB;&#x5316;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop/</div><div class="line">bin/hdfs namenode -format</div><div class="line">sbin/start-all.sh</div><div class="line"># &#x5F00;&#x542F;history service</div><div class="line">sbin/mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure></p>
-<p>##<a name="test"></a>5. &#x6D4B;&#x8BD5;</p>
-<p>###5.1 &#x8FD0;&#x884C;&#x72B6;&#x51B5;&#x6D4B;&#x8BD5;</p>
+<p>###4.4 master下执行文件夹初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop/</div><div class="line">bin/hdfs namenode -format</div><div class="line">sbin/start-all.sh</div><div class="line"># 开启history service</div><div class="line">sbin/mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure></p>
+<p>##<a name="test"></a>5. 测试</p>
+<p>###5.1 运行状况测试</p>
 <ul>
-<li>master&#x4E0B;&#x8FD0;&#x884C;netstat -tunlp &#x662F;&#x5426;&#x5B58;&#x5728;8032 8033 8034 8035 8036 9000 50090 50075 50070 50020 50010&#x7684;&#x7F51;&#x7EDC;&#x76D1;&#x542C;</li>
-<li>master&#x4E0B;50070 50090 8036&#x53EF;&#x4EE5;&#x8FDB;&#x5165;&#x7F51;&#x9875;&#x67E5;&#x770B;&#x5F53;&#x524D;yarn&amp;hadoop&#x7CFB;&#x7EDF;&#x72B6;&#x6001;</li>
-<li>&#x5982;&#x679C;&#x6709;&#x4E0D;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#xFF0C;&#x67E5;&#x770B;/usr/local/hadoop/logs&#x4E0B;&#x7684;&#x65E5;&#x5FD7;<br>###5.2 &#x4F5C;&#x4E1A;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop</div><div class="line">bin/hadoop fs -mkdir /wordcount</div><div class="line">#home/hadoop/index.md   &#x76EE;&#x6807;&#x5206;&#x6790;&#x6587;&#x4EF6;</div><div class="line">bin/hadoop fs /home/hadoop/index.md /wordcount</div><div class="line">bin/hadoop fs -copyFromLocal /home/hadoop/index.md  /wordcount</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /wordcount /output2</div><div class="line">bin/hadoop fs -cat /output2/*</div></pre></td></tr></table></figure>
+<li>master下运行netstat -tunlp 是否存在8032 8033 8034 8035 8036 9000 50090 50075 50070 50020 50010的网络监听</li>
+<li>master下50070 50090 8036可以进入网页查看当前yarn&amp;hadoop系统状态</li>
+<li>如果有不正常情况，查看/usr/local/hadoop/logs下的日志<br>###5.2 作业运行测试<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop</div><div class="line">bin/hadoop fs -mkdir /wordcount</div><div class="line">#home/hadoop/index.md   目标分析文件</div><div class="line">bin/hadoop fs /home/hadoop/index.md /wordcount</div><div class="line">bin/hadoop fs -copyFromLocal /home/hadoop/index.md  /wordcount</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /wordcount /output2</div><div class="line">bin/hadoop fs -cat /output2/*</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x6B63;&#x5E38;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x89C1;&#x8BCD;&#x8BED;&#x9891;&#x7387;&#x5206;&#x6790;</p>
+<p>如果系统正常，可以看见词语频率分析</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -217,10 +217,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/07/17/Zookeeper集群安装手册/" title="Yarn搭建手册">
+ <a href="/2016/07/17/Zookeeper集群安装手册/" title="Zookeeper集群搭建手册">
   <strong>上一篇：</strong><br/>
   <span>
-  Yarn搭建手册</span>
+  Zookeeper集群搭建手册</span>
 </a>
 </div>
 
@@ -265,7 +265,7 @@
 		  
 		
 		  
-			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>2</sup></a></li>
 		  
 		
 		  
@@ -290,6 +290,10 @@
 			
 		
 			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/代码约定/" title="代码约定">代码约定<sup>1</sup></a></li>
 			
 		
@@ -303,10 +307,6 @@
 		
 			
 				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -591,6 +591,5 @@ var _hmt = _hmt || [];
 <!-- Tiny_search Begin -->
 
 <!-- Tiny_search End -->
-
   </body>
 </html>
