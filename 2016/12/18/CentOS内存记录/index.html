@@ -4,26 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Zookeeper集群搭建手册 | Timmy live</title>
+    <title>CentOS内存记录 | Timmy live</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Lee">
     
 
     
-    <meta name="description" content="Abstractzookeeper的作用重点在于提供数据交换，抵抗物理宕机引起的服务不可用带来的影响，首先更重要的是代码的质量、健壮性。这里记录一下自己搭建集群的过程
-安装配置过程node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;">
+    <meta name="description" content="来源由于将NM的内存比例调成5，使得yarn-client模式可以执行任务，任务结束后，内存没有释放，free -m与 ps -auf统计的数值差别较大，于是查看具体原因
+缓存机制介绍为了提高文件系统性能，内核利用一部分物理内存分配出缓冲区，用于缓存系统操作和数据文件，当内核收到读写的请求时，内核先去缓存区找是否有请求的数据，有就直接返回，如果没有则通过驱动程序直接操作磁盘。缓存机制优点：减少系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Zookeeper集群搭建手册">
-<meta property="og:url" content="http://yoursite.com/2016/07/17/Zookeeper集群安装手册/index.html">
+<meta property="og:title" content="CentOS内存记录">
+<meta property="og:url" content="http://yoursite.com/2016/12/18/CentOS内存记录/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="Abstractzookeeper的作用重点在于提供数据交换，抵抗物理宕机引起的服务不可用带来的影响，首先更重要的是代码的质量、健壮性。这里记录一下自己搭建集群的过程
-安装配置过程node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;">
-<meta property="og:updated_time" content="2016-07-22T10:07:22.181Z">
+<meta property="og:description" content="来源由于将NM的内存比例调成5，使得yarn-client模式可以执行任务，任务结束后，内存没有释放，free -m与 ps -auf统计的数值差别较大，于是查看具体原因
+缓存机制介绍为了提高文件系统性能，内核利用一部分物理内存分配出缓冲区，用于缓存系统操作和数据文件，当内核收到读写的请求时，内核先去缓存区找是否有请求的数据，有就直接返回，如果没有则通过驱动程序直接操作磁盘。缓存机制优点：减少系统">
+<meta property="og:updated_time" content="2016-12-18T09:34:44.710Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zookeeper集群搭建手册">
-<meta name="twitter:description" content="Abstractzookeeper的作用重点在于提供数据交换，抵抗物理宕机引起的服务不可用带来的影响，首先更重要的是代码的质量、健壮性。这里记录一下自己搭建集群的过程
-安装配置过程node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;gt; /etc/hostsecho &amp;quot;192.168.1.12 lee2&amp;quot; &amp;gt;">
+<meta name="twitter:title" content="CentOS内存记录">
+<meta name="twitter:description" content="来源由于将NM的内存比例调成5，使得yarn-client模式可以执行任务，任务结束后，内存没有释放，free -m与 ps -auf统计的数值差别较大，于是查看具体原因
+缓存机制介绍为了提高文件系统性能，内核利用一部分物理内存分配出缓冲区，用于缓存系统操作和数据文件，当内核收到读写的请求时，内核先去缓存区找是否有请求的数据，有就直接返回，如果没有则通过驱动程序直接操作磁盘。缓存机制优点：减少系统">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -83,14 +83,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/17/Zookeeper集群安装手册/" title="Zookeeper集群搭建手册" itemprop="url">Zookeeper集群搭建手册</a>
+      <a href="/2016/12/18/CentOS内存记录/" title="CentOS内存记录" itemprop="url">CentOS内存记录</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-17T05:05:49.000Z" itemprop="datePublished"> 发表于 2016-07-17</time>
+    <time datetime="2016-12-18T09:00:00.000Z" itemprop="datePublished"> 发表于 2016-12-18</time>
     
   </p>
 </header>
@@ -99,16 +99,14 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装配置过程"><span class="toc-number">2.</span> <span class="toc-text">安装配置过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-number">3.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">4.</span> <span class="toc-text">测试</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#来源"><span class="toc-number">1.</span> <span class="toc-text">来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存机制介绍"><span class="toc-number">2.</span> <span class="toc-text">缓存机制介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存统计命令"><span class="toc-number">3.</span> <span class="toc-text">内存统计命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本文完"><span class="toc-number">4.</span> <span class="toc-text">本文完</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>zookeeper的作用重点在于提供数据交换，抵抗物理宕机引起的服务不可用带来的影响，首先更重要的是代码的质量、健壮性。这里记录一下自己搭建集群的过程</p>
-<h3 id="安装配置过程"><a href="#安装配置过程" class="headerlink" title="安装配置过程"></a>安装配置过程</h3><p>node-01机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo &quot;192.168.1.11 lee1&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;192.168.1.12 lee2&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;dataDir=/home/lee/zookeeper/node-01/data&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;dataLogDir=/home/lee/zookeeper/node-01/log&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:1=lee1:12281:13381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:2=lee2:22281:23381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line"># 在dataDir下新建文件myid,内容为1</div><div class="line">echo 1 &gt;&gt; /home/lee/zookeeper/node-01/data/myid</div></pre></td></tr></table></figure></p>
-<p>node-02机器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">echo &quot;192.168.1.11 lee1&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;192.168.1.12 lee2&quot; &gt;&gt; /etc/hosts</div><div class="line">echo &quot;dataDir=/home/lee/zookeeper/node-02/data&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;dataLogDir=/home/lee/zookeeper/node-02/log&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:1=lee1:12281:13381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line">echo &quot;server:2=lee2:22281:23381&quot; &gt;&gt; /usr/local/zookeeper/conf/zoo.cfg</div><div class="line"># 在dataDir下新建文件myid,内容为2</div><div class="line">echo 2 &gt;&gt; /home/lee/zookeeper/node-01/data/myid</div></pre></td></tr></table></figure></p>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>在两台机器启动zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">tail -f zookeeper.out</div><div class="line"># 如果输出不正常，显示一直在重试所有端口的话,很可能表明ip类型与监听的ip类型不一致</div><div class="line"># 检查监听端口及ip类型 </div><div class="line">echo stat|nc localhost 2181</div><div class="line">#  0.0.0.0为ipv4  八个0为ipv6</div><div class="line"># 如果为ipv6</div><div class="line">echo &quot;export _JAVA_OPTIONS=\&quot;-Djava.net.preferIPv4Stack=true\&quot;&quot; &gt;&gt; /etc/profile</div></pre></td></tr></table></figure></p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>要点之一是正确解析到目标机器ip，所以如果通过hosts文件内容解析不出来的话，有必要server:1=后面直接使用内网IP+端口<br>正常的启动日志zookeeper.out如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">Picked up _JAVA_OPTIONS: -Djava.net.preferIPv4Stack=true</div><div class="line"> [myid:] - INFO  [main:QuorumPeerConfig@103] - Reading configuration from: /usr/local/zookeeper/bin/../conf/zoo.cfg</div><div class="line"> [myid:] - INFO  [main:QuorumPeer$QuorumServer@149] - Resolved hostname: lvb01 to address: lvb01/192.168.203.131</div><div class="line"> [myid:] - INFO  [main:QuorumPeer$QuorumServer@149] - Resolved hostname: 192.168.203.136 to address: /192.168.203.136</div><div class="line"># zookeeper集群要求挂机超过一半才判定集群失败，所以尽量设置奇数台机器</div><div class="line"> [myid:] - WARN  [main:QuorumPeerConfig@284] - No server failure will be tolerated. You need at least 3 servers.</div><div class="line"> [myid:] - INFO  [main:QuorumPeerConfig@331] - Defaulting to majority quorums</div><div class="line"> [myid:2] - INFO  [main:DatadirCleanupManager@78] - autopurge.snapRetainCount set to 3</div><div class="line"> [myid:2] - INFO  [main:DatadirCleanupManager@79] - autopurge.purgeInterval set to 0</div><div class="line"> [myid:2] - INFO  [main:DatadirCleanupManager@101] - Purge task is not scheduled.</div><div class="line"> [myid:2] - INFO  [main:QuorumPeerMain@127] - Starting quorum peer</div><div class="line"> [myid:2] - INFO  [main:NIOServerCnxnFactory@89] - binding to port 0.0.0.0/0.0.0.0:2181</div><div class="line"> [myid:2] - INFO  [main:QuorumPeer@1019] - tickTime set to 2000</div><div class="line"> [myid:2] - INFO  [main:QuorumPeer@1039] - minSessionTimeout set to -1</div><div class="line"> [myid:2] - INFO  [main:QuorumPeer@1050] - maxSessionTimeout set to -1</div><div class="line"> [myid:2] - INFO  [main:QuorumPeer@1065] - initLimit set to 10</div><div class="line"> [myid:2] - INFO  [main:FileSnap@83] - Reading snapshot /home/app/zookeeper/node-02/data/version-2/snapshot.801</div><div class="line"> [myid:2] - INFO  [ListenerThread:QuorumCnxManager$Listener@534] - My election bind port: /192.168.203.136:63381</div><div class="line"> [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:QuorumPeer@774] - LOOKING</div><div class="line"> [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:FastLeaderElection@818] - New election. My id =  2, proposed zxid=0x300000204</div><div class="line"> [myid:2] - INFO  [WorkerReceiver[myid=2]:FastLeaderElection@600] - Notification: 1 (message format version), 1 (n.leader), 0x300000204 (n.zxid), 0x19 (n.round), LOOKING (n.state), 1 (n.sid), 0x3 (n.peerEpoch) LOOKING (my state)</div><div class="line"> [myid:2] - INFO  [WorkerReceiver[myid=2]:FastLeaderElection@600] - Notification: 1 (message format version), 2 (n.leader), 0x300000204 (n.zxid), 0x1 (n.round), LOOKING (n.state), 2 (n.sid), 0x3 (n.peerEpoch) LOOKING (my state)</div><div class="line"> [myid:2] - INFO  [WorkerReceiver[myid=2]:FastLeaderElection@600] - Notification: 1 (message format version), 1 (n.leader), 0x300000204 (n.zxid), 0x19 (n.round), LOOKING (n.state), 1 (n.sid), 0x3 (n.peerEpoch) LOOKING (my state)</div><div class="line"> [myid:2] - INFO  [WorkerReceiver[myid=2]:FastLeaderElection@600] - Notification: 1 (message format version), 2 (n.leader), 0x300000204 (n.zxid), 0x19 (n.round), LOOKING (n.state), 2 (n.sid), 0x3 (n.peerEpoch) LOOKING (my state)</div><div class="line"> [myid:2] - INFO  [WorkerReceiver[myid=2]:FastLeaderElection@600] - Notification: 1 (message format version), 2 (n.leader), 0x300000204 (n.zxid), 0x19 (n.round), LOOKING (n.state), 1 (n.sid), 0x3 (n.peerEpoch) LOOKING (my state)</div><div class="line"> [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:QuorumPeer@856] - LEADING</div><div class="line"> [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:Leader@59] - TCP NoDelay set to: true</div><div class="line"> [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:Environment@100] - Server environment:zookeeper.version=3.4.8--1, built on 02/06/2016 03:18 GMT</div><div class="line"> [myid:2] - INFO  [QuorumPeer[myid=2]/0.0.0.0:2181:Environment@100] - Server environment:host.name=localhost</div></pre></td></tr></table></figure></p>
-  
+		<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><p>由于将NM的内存比例调成5，使得yarn-client模式可以执行任务，任务结束后，内存没有释放，free -m与 ps -auf统计的数值差别较大，于是查看具体原因</p>
+<h2 id="缓存机制介绍"><a href="#缓存机制介绍" class="headerlink" title="缓存机制介绍"></a>缓存机制介绍</h2><p>为了提高文件系统性能，内核利用一部分物理内存分配出缓冲区，用于缓存系统操作和数据文件，当内核收到读写的请求时，内核先去缓存区找是否有请求的数据，有就直接返回，如果没有则通过驱动程序直接操作磁盘。<br>缓存机制优点：减少系统调用次数，降低CPU上下文切换和磁盘访问频率。</p>
+<h2 id="内存统计命令"><a href="#内存统计命令" class="headerlink" title="内存统计命令"></a>内存统计命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cat /proc/meminfo</div><div class="line">free -g</div><div class="line">#根据程序占用进行内存统计,与上两命令差别在于缓存未统计</div><div class="line">ps aux | awk &apos;&#123;mem += $6&#125; END &#123;print mem/1024/1024&#125;&apos;</div><div class="line">#查看进程的缓存</div><div class="line">slabtop --sort=c</div><div class="line">#清理缓存</div><div class="line">#释放pagecache</div><div class="line">echo 1 &gt;/proc/sys/vm/drop_caches</div><div class="line">##释放dentries和inodes</div><div class="line">echo 2 &gt;/proc/sys/vm/drop_caches</div><div class="line">#释放pagecache、dentries和inodes</div><div class="line">echo 3 &gt;/proc/sys/vm/drop_caches</div></pre></td></tr></table></figure>
+<h2 id="本文完"><a href="#本文完" class="headerlink" title="本文完"></a>本文完</h2>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -121,7 +119,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/centos/">centos</a><a href="/tags/zookeeper/">zookeeper</a>
+  <span></span> <a href="/tags/centos/">centos</a>
   </div>
 
 </div>
@@ -130,7 +128,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/17/Zookeeper集群安装手册/" data-title="Zookeeper集群搭建手册 | Timmy live" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/12/18/CentOS内存记录/" data-title="CentOS内存记录 | Timmy live" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -144,18 +142,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/07/17/Cf-Cluster/" title="基于模糊聚类和协同过滤的混合推荐系统">
+ <a href="/2016/12/18/CentOS升级Python2.7过程/" title="CentOS升级Python2.7过程">
   <strong>上一篇：</strong><br/>
   <span>
-  基于模糊聚类和协同过滤的混合推荐系统</span>
+  CentOS升级Python2.7过程</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/07/16/Yarn搭建手册/"  title="YARN搭建手册">
+<a href="/2016/12/18/CAS-配置过程/"  title="CAS配置过程记录">
  <strong>下一篇：</strong><br/> 
- <span>YARN搭建手册
+ <span>CAS配置过程记录
 </span>
 </a>
 </div>
@@ -164,7 +162,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/17/Zookeeper集群安装手册/" data-title="Zookeeper集群搭建手册" data-url="http://yoursite.com/2016/07/17/Zookeeper集群安装手册/"></div>
+	<div class="ds-thread" data-thread-key="2016/12/18/CentOS内存记录/" data-title="CentOS内存记录" data-url="http://yoursite.com/2016/12/18/CentOS内存记录/"></div>
 </section>
 
 
@@ -174,7 +172,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Abstract"><span class="toc-number">1.</span> <span class="toc-text">Abstract</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装配置过程"><span class="toc-number">2.</span> <span class="toc-text">安装配置过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动"><span class="toc-number">3.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">4.</span> <span class="toc-text">测试</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#来源"><span class="toc-number">1.</span> <span class="toc-text">来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存机制介绍"><span class="toc-number">2.</span> <span class="toc-text">缓存机制介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存统计命令"><span class="toc-number">3.</span> <span class="toc-text">内存统计命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本文完"><span class="toc-number">4.</span> <span class="toc-text">本文完</span></a></li></ol>
  
   </div>
 

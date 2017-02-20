@@ -31,7 +31,7 @@
 
 1. 环境及版本介绍1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop
 1.2 yarn 2.7.212345外层的启动脚本在sbin目录Native的so文件都在lib/native目录配置程序文件都放置在libexec配置文件都在etc目">
-<meta property="og:updated_time" content="2016-11-26T06:18:24.756Z">
+<meta property="og:updated_time" content="2016-12-18T09:41:46.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YARN搭建手册">
 <meta name="twitter:description" content="环境及版本介绍
@@ -117,7 +117,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境及版本介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 环境及版本介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-机器Centos6-8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 机器Centos6.8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-yarn-2-7-2"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 yarn 2.7.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-jdk1-8-1-7"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 jdk1.8/1.7</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-目标机器"><span class="toc-number">2.</span> <span class="toc-text">2. 目标机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置文件介绍"><span class="toc-number">3.</span> <span class="toc-text">3. 配置文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-core-site-xml"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-hdfs-site-xml"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-mapred-site-xml"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-yarn-site-xml"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-环境变量设置"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 环境变量设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-配置工作"><span class="toc-number">4.</span> <span class="toc-text">4. 配置工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建单独用户"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建单独用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-将配置文件复制到slave1中"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 将配置文件复制到slave1中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-ssh登录配置"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 ssh登录配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-master下执行文件夹初始化"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 master下执行文件夹初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-测试"><span class="toc-number">5.</span> <span class="toc-text">5. 测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-运行状况测试"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 运行状况测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-作业运行测试"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 作业运行测试</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境及版本介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 环境及版本介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-机器Centos6-8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 机器Centos6.8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-yarn-2-7-2"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 yarn 2.7.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-jdk1-8-1-7"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 jdk1.8/1.7</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-目标机器"><span class="toc-number">2.</span> <span class="toc-text">2. 目标机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置文件介绍"><span class="toc-number">3.</span> <span class="toc-text">3. 配置文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-core-site-xml"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-hdfs-site-xml"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-mapred-site-xml"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-yarn-site-xml"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-环境变量设置"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 环境变量设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-配置工作"><span class="toc-number">4.</span> <span class="toc-text">4. 配置工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建单独用户"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建单独用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-将配置文件复制到slave1中"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 将配置文件复制到slave1中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-ssh登录配置"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 ssh登录配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-master下执行文件夹初始化"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 master下执行文件夹初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-测试"><span class="toc-number">5.</span> <span class="toc-text">5. 测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-运行状况测试"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 运行状况测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-作业运行测试"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 作业运行测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Spark配置"><span class="toc-number">6.</span> <span class="toc-text">6 Spark配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#疑难"><span class="toc-number">6.1.</span> <span class="toc-text">疑难</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RM的内存资源配置-配置的是资源调度相关"><span class="toc-number">6.2.</span> <span class="toc-text">RM的内存资源配置, 配置的是资源调度相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NM的内存资源配置，配置的是硬件资源相关"><span class="toc-number">6.3.</span> <span class="toc-text">NM的内存资源配置，配置的是硬件资源相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AM内存配置相关参数，配置的是任务相关"><span class="toc-number">6.4.</span> <span class="toc-text">AM内存配置相关参数，配置的是任务相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-zeppelin配置"><span class="toc-number">7.</span> <span class="toc-text">7 zeppelin配置</span></a></li></ol>
 		
 		</div>
 		
@@ -184,7 +184,8 @@
 <li><p>如果正确配置了public key仍显示invalid,可尝试清空对应用户目录下.ssh/know_hosts文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh hadoop@master</div><div class="line">ssh hadoop@slave1</div></pre></td></tr></table></figure>
 </li>
-<li><p>此处的ssh公钥登陆可以不使用机器位置限制，将公钥行尾的@hostname删除，优点在于可将公钥统一添加到各结点行尾，缺点在于降低安全性</p>
+<li><p>如果使用scp命令将.ssh文件夹全然拷贝到其他机器，可能引发.ssh文件夹的安全上下文环境错误，导致仍然无法访问。下列命令是用于恢复重置安全上下文。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">restorecon -FRvv ~/.ssh</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="4-4-master下执行文件夹初始化"><a href="#4-4-master下执行文件夹初始化" class="headerlink" title="4.4 master下执行文件夹初始化"></a>4.4 master下执行文件夹初始化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop/</div><div class="line">bin/hdfs namenode -format</div><div class="line">sbin/start-all.sh</div><div class="line"># 开启history service</div><div class="line">sbin/mr-jobhistory-daemon.sh start historyserver</div></pre></td></tr></table></figure>
@@ -192,9 +193,16 @@
 <li>master下运行netstat -tunlp 是否存在8032 8033 8034 8035 8036 9000 50090 50075 50070 50020 50010的网络监听</li>
 <li>master下50070 50090 8036可以进入网页查看当前yarn&amp;hadoop系统状态</li>
 <li>如果有不正常情况，查看/usr/local/hadoop/logs下的日志</li>
+<li>cluster id 不一致<br>Incompatible clusterIDs in /home/hadoop/…<br>该情况下需要重新format datanode</li>
 </ul>
 <h3 id="5-2-作业运行测试"><a href="#5-2-作业运行测试" class="headerlink" title="5.2 作业运行测试"></a>5.2 作业运行测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /usr/local/hadoop</div><div class="line">bin/hadoop fs -mkdir /wordcount</div><div class="line">#home/hadoop/index.md   目标分析文件</div><div class="line">bin/hadoop fs /home/hadoop/index.md /wordcount</div><div class="line">bin/hadoop fs -copyFromLocal /home/hadoop/index.md  /wordcount</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.2.jar wordcount /wordcount /output2</div><div class="line">bin/hadoop fs -cat /output2/*</div></pre></td></tr></table></figure>
 <p>如果系统正常，可以看见词语频率分析</p>
+<h2 id="6-Spark配置"><a href="#6-Spark配置" class="headerlink" title="6 Spark配置"></a>6 Spark配置</h2><p>编辑slaves设置worker结点域名，如果是yarn-client模式，不需要启动worker或者slaves文件为空即可。<br>修改spark-env.sh如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">export SPARK_WORKER_CORES=1</div><div class="line">export JAVA_HOME=/usr/java/jdk1.8.0_111</div><div class="line">export CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib</div><div class="line">export SPARK_HOME=/usr/local/spark</div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export HADOOP_PID_DIR=/home/hadoop/pids</div><div class="line">export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native</div><div class="line">export HADOOP_OPTS=&quot;$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native&quot;</div><div class="line">export HADOOP_PREFIX=$HADOOP_HOME</div><div class="line">export HADOOP_MAPRED_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_COMMON_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_HDFS_HOME=$HADOOP_HOME</div><div class="line">export YARN_HOME=$HADOOP_HOME</div><div class="line">export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export HDFS_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop</div><div class="line">export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native</div><div class="line">export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin</div><div class="line">export _JAVA_OPTIONS=&quot;-Djava.net.preferIPv4Stack=true&quot;</div><div class="line">SPARK_MASTER_IP=he01</div><div class="line">SPARK_LOCAL_DIRS=$SPARK_HOME/local</div><div class="line">SPARK_DRIVER_MEMORY=1G</div></pre></td></tr></table></figure></p>
+<h3 id="疑难"><a href="#疑难" class="headerlink" title="疑难"></a>疑难</h3><p>. is running beyond physical memory limits. Current usage: 336 MB of 1 GB physical memory used; 2.3 GB of 2.1 GB virtual memory used. Killing container.<br>yarn.nodemanager.vmem-pmem-ratio 虚拟内存率，默认2.1，当Container要求的内存大于最大内存率内存时会kill container。<br>解决办法之一是在yarn.xml文件中设置yarn.nodemanager.vmem-check-enabled为false,这会让hadoop丧失针对内存泄露对系统的保护功能，不建议。<br>之二是修改内存参数，yarn.nodemanager.vmem-pmem-ratio从默认值2.1调大可以解决上面的问题。<br>以下是内存参数介绍</p>
+<h3 id="RM的内存资源配置-配置的是资源调度相关"><a href="#RM的内存资源配置-配置的是资源调度相关" class="headerlink" title="RM的内存资源配置, 配置的是资源调度相关"></a>RM的内存资源配置, 配置的是资源调度相关</h3><p>RM1：yarn.scheduler.minimum-allocation-mb 分配给AM单个容器可申请的最小内存<br>RM2：yarn.scheduler.maximum-allocation-mb 分配给AM单个容器可申请的最大内存<br>注：最小值可以计算一个节点最大Container数量，一旦设置，不可动态改变</p>
+<h3 id="NM的内存资源配置，配置的是硬件资源相关"><a href="#NM的内存资源配置，配置的是硬件资源相关" class="headerlink" title="NM的内存资源配置，配置的是硬件资源相关"></a>NM的内存资源配置，配置的是硬件资源相关</h3><p>NM1：yarn.nodemanager.resource.memory-mb 节点最大可用内存<br>NM2：yarn.nodemanager.vmem-pmem-ratio 虚拟内存率，默认2.1<br>注：RM1、RM2的值均不能大于NM1的值，NM1可以计算节点最大最大Container数量，max(Container)=NM1/RM2，一旦设置，不可动态改变</p>
+<h3 id="AM内存配置相关参数，配置的是任务相关"><a href="#AM内存配置相关参数，配置的是任务相关" class="headerlink" title="AM内存配置相关参数，配置的是任务相关"></a>AM内存配置相关参数，配置的是任务相关</h3><p>AM1：mapreduce.map.memory.mb 分配给map Container的内存大小<br>AM2：mapreduce.reduce.memory.mb 分配给reduce Container的内存大小<br>这两个值应该在RM1和RM2这两个值之间，AM2的值最好为AM1的两倍，这两个值可以在启动时改变<br>AM3：mapreduce.map.Java.opts 运行map任务的jvm参数，如-Xmx，-Xms等选项<br>AM4：mapreduce.reduce.java.opts 运行reduce任务的jvm参数，如-Xmx，-Xms等选项<br>注：这两个值应该在AM1和AM2之间</p>
+<h2 id="7-zeppelin配置"><a href="#7-zeppelin配置" class="headerlink" title="7 zeppelin配置"></a>7 zeppelin配置</h2><p>首先，如果自己构建Zeppelin会产生构建的困难问题，不自己构建会有hadoop/spark环境不匹配的问题<br><a href="https://zeppelin.apache.org/docs/0.6.2/install/install.html" target="_blank" rel="external">构建zeppelin-apache-getting-started</a> 注意scala版本问题./dev/change_scala_version.sh 2.11<br>笔者直接下载的apache-zeppelin-0.6.2版本，hadoop2.7.2，spark2.0.2-scala2.11.7,解压之后需要替换lib目录下的hadoop-core/common/anoatations、jackson-core/annotations/dababind库，否则可能产生java.lang.NoSuchMethodError: org.apache.hadoop.tracing.SpanReceiverHost.get(Lorg/apache/hadoop/conf/Configuration;Ljava/lang/String;)Lorg/apache/hadoop/tracing/SpanReceiverHost<br>以下为zeppelin-env.sh增加的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/java/default</div><div class="line">#此处可以使用yarn-client即由yarn进行资源与任务分配，spark只担任客户端的角色像yarn提交任务</div><div class="line"># Spark master url. eg. spark://master_addr:7077. Leave empty if you want to use local mode.</div><div class="line">export MASTER=yarn-client</div><div class="line">export SPARK_HOME=/usr/local/spark</div><div class="line">export HBASE_HOME=/usr/local/hbase</div><div class="line">export HADOOP_HOME=/usr/local/hadoop</div><div class="line">export HADOOP_CONF_DIR=$&#123;HADOOP_HOME&#125;/etc/hadoop</div><div class="line">export PYSPARK_PYTHON=/usr/bin/python</div><div class="line">export PYTHONPATH=$&#123;SPARK_HOME&#125;/python:$&#123;SPARK_HOME&#125;/python/build:$PYTHONPATH</div></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -208,7 +216,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/hadoop/">hadoop</a><a href="/tags/centos/">centos</a>
+  <span></span> <a href="/tags/centos/">centos</a><a href="/tags/hadoop/">hadoop</a>
   </div>
 
 </div>
@@ -261,7 +269,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境及版本介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 环境及版本介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-机器Centos6-8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 机器Centos6.8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-yarn-2-7-2"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 yarn 2.7.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-jdk1-8-1-7"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 jdk1.8/1.7</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-目标机器"><span class="toc-number">2.</span> <span class="toc-text">2. 目标机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置文件介绍"><span class="toc-number">3.</span> <span class="toc-text">3. 配置文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-core-site-xml"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-hdfs-site-xml"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-mapred-site-xml"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-yarn-site-xml"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-环境变量设置"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 环境变量设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-配置工作"><span class="toc-number">4.</span> <span class="toc-text">4. 配置工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建单独用户"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建单独用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-将配置文件复制到slave1中"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 将配置文件复制到slave1中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-ssh登录配置"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 ssh登录配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-master下执行文件夹初始化"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 master下执行文件夹初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-测试"><span class="toc-number">5.</span> <span class="toc-text">5. 测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-运行状况测试"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 运行状况测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-作业运行测试"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 作业运行测试</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境及版本介绍"><span class="toc-number">1.</span> <span class="toc-text">1. 环境及版本介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-机器Centos6-8"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 机器Centos6.8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-yarn-2-7-2"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 yarn 2.7.2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-jdk1-8-1-7"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 jdk1.8/1.7</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-目标机器"><span class="toc-number">2.</span> <span class="toc-text">2. 目标机器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-配置文件介绍"><span class="toc-number">3.</span> <span class="toc-text">3. 配置文件介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-core-site-xml"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-hdfs-site-xml"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-mapred-site-xml"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-yarn-site-xml"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-环境变量设置"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 环境变量设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-配置工作"><span class="toc-number">4.</span> <span class="toc-text">4. 配置工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-创建单独用户"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建单独用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-将配置文件复制到slave1中"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 将配置文件复制到slave1中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-ssh登录配置"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 ssh登录配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-master下执行文件夹初始化"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 master下执行文件夹初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-测试"><span class="toc-number">5.</span> <span class="toc-text">5. 测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-运行状况测试"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 运行状况测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-作业运行测试"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 作业运行测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Spark配置"><span class="toc-number">6.</span> <span class="toc-text">6 Spark配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#疑难"><span class="toc-number">6.1.</span> <span class="toc-text">疑难</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RM的内存资源配置-配置的是资源调度相关"><span class="toc-number">6.2.</span> <span class="toc-text">RM的内存资源配置, 配置的是资源调度相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NM的内存资源配置，配置的是硬件资源相关"><span class="toc-number">6.3.</span> <span class="toc-text">NM的内存资源配置，配置的是硬件资源相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AM内存配置相关参数，配置的是任务相关"><span class="toc-number">6.4.</span> <span class="toc-text">AM内存配置相关参数，配置的是任务相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-zeppelin配置"><span class="toc-number">7.</span> <span class="toc-text">7 zeppelin配置</span></a></li></ol>
  
   </div>
 
@@ -275,15 +283,19 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>1</sup></a></li>
+			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>2</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/环境部署/" title="环境部署">环境部署<sup>2</sup></a></li>
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/环境部署/" title="环境部署">环境部署<sup>5</sup></a></li>
 		  
 		
 		</ul>
@@ -296,15 +308,23 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/centos/" title="centos">centos<sup>2</sup></a></li>
+				<li><a href="/tags/centos/" title="centos">centos<sup>4</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>1</sup></a></li>
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -350,6 +370,22 @@
 	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a>
+    </div>
+  </div>
+
+
+  
+<div class="github-card">
+<p class="asidetitle">访问统计</p>
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/1.js?i=5q3titj4y9g&amp;s=220&amp;m=0&amp;v=true&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
+</div>
+
+
 </aside>
 </div>
     </div>
@@ -384,7 +420,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
 		<a href="/about" target="_blank" title="Lee">Lee</a>
 		
@@ -396,6 +432,7 @@
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
 
 <script type="text/javascript">
 $(document).ready(function(){ 
@@ -560,6 +597,7 @@ $(document).ready(function(){
   }
 }); 
 </script>
+
 
 
 

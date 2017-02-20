@@ -1,0 +1,574 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CAS配置过程记录 | Timmy live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Lee">
+    
+
+    
+    <meta name="description" content="证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
+SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAS配置过程记录">
+<meta property="og:url" content="http://yoursite.com/2016/12/18/CAS-配置过程/index.html">
+<meta property="og:site_name" content="Timmy live">
+<meta property="og:description" content="证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
+SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localh">
+<meta property="og:updated_time" content="2016-12-18T10:20:44.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CAS配置过程记录">
+<meta name="twitter:description" content="证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
+SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localh">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页Home</a></li>
+					
+						<li><a href="/archives">归档Archives</a></li>
+					
+						<li><a href="/about">关于About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/12/18/CAS-配置过程/" title="CAS配置过程记录" itemprop="url">CAS配置过程记录</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
+		
+  <p class="article-time">
+    <time datetime="2016-12-18T04:00:00.000Z" itemprop="datePublished"> 发表于 2016-12-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#证书的配置"><span class="toc-number">1.</span> <span class="toc-text">证书的配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSO服务端"><span class="toc-number">2.</span> <span class="toc-text">SSO服务端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导出sso-crt证书"><span class="toc-number">3.</span> <span class="toc-text">导出sso.crt证书</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cas服务器端配置Tomcat的HTTPS服务"><span class="toc-number">4.</span> <span class="toc-text">cas服务器端配置Tomcat的HTTPS服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CAS-数据库帐密认证"><span class="toc-number">5.</span> <span class="toc-text">CAS-数据库帐密认证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重要xml"><span class="toc-number">5.1.</span> <span class="toc-text">重要xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置的来由"><span class="toc-number">5.2.</span> <span class="toc-text">配置的来由</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本文完"><span class="toc-number">6.</span> <span class="toc-text">本文完</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="证书的配置"><a href="#证书的配置" class="headerlink" title="证书的配置"></a>证书的配置</h1><p>主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。</p>
+<h1 id="SSO服务端"><a href="#SSO服务端" class="headerlink" title="SSO服务端"></a>SSO服务端</h1><p>生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -genkey -keyalg RSA -alias sso -dname &quot;cn=localhost&quot; </div><div class="line">-keystore /home/ndoc/.keystore -storepass 123654</div></pre></td></tr></table></figure></p>
+<p>说明：指定使用RSA算法，生成别名为mlongbosso的证书，口令为123654，证书的DN为”cn=localhost” ，这个DN必须同当前主机完整名称一致!!在正式环境中lo9calhost就应该替换为申请的外网域名)，这样，jvm在SSL握手过程中，match域名的时候才能将持有的证书CN与cas-server地址域名成功匹配。</p>
+<h1 id="导出sso-crt证书"><a href="#导出sso-crt证书" class="headerlink" title="导出sso.crt证书"></a>导出sso.crt证书</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -export -alias sso -file /home/ndoc/sso.crt </div><div class="line">-keystore /home/ndoc/.keystore -storepass 123654</div></pre></td></tr></table></figure>
+<p>(注释：从.keystore中导出别名为sso的证书，生成文件sso.crt)</p>
+<h1 id="cas服务器端配置Tomcat的HTTPS服务"><a href="#cas服务器端配置Tomcat的HTTPS服务" class="headerlink" title="cas服务器端配置Tomcat的HTTPS服务"></a>cas服务器端配置Tomcat的HTTPS服务</h1><p>keystoreFile属性值为.keystore文件路径, keystorePass属性值为证书存贮口令<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8443"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">SSLEnabled</span>=<span class="string">"true"</span></span></div><div class="line">       <span class="attr">maxThreads</span>=<span class="string">"150"</span> <span class="attr">scheme</span>=<span class="string">"https"</span> <span class="attr">secure</span>=<span class="string">"true"</span></div><div class="line">       <span class="attr">clientAuth</span>=<span class="string">"false"</span> <span class="attr">sslProtocol</span>=<span class="string">"TLS"</span></div><div class="line">        <span class="attr">keystoreFile</span>=<span class="string">"/home/ndoc/.keystore"</span></div><div class="line">        <span class="attr">keystorePass</span>=<span class="string">"123654"</span></div><div class="line">         /&gt;</div></pre></td></tr></table></figure></p>
+<p>应用端<br>应用端即SSO客户端.</p>
+<p>注释： Windows下为%JAVA_HOME% , Linux下为$JAVA_HOME</p>
+<p>将sso.crt导入到应用服务器所使用的jre的可信任证书仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -import -alias sso -file /home/ndoc/sso.crt </div><div class="line">-keystore $JAVA_HOME/jre/lib/security/cacerts -storepass 123654</div></pre></td></tr></table></figure></p>
+<p>列出jre可信任证书仓库中证书名单，验证导入是否成功，如果导入成功，应该在列表中能找到sso这个别名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass 123654</div><div class="line">#注意：如果此处导入失败，或者要重新导入，需要先**删除**%JAVA_HOME%/jre/lib/security/cacerts文件(删除前请备份)</div></pre></td></tr></table></figure></p>
+<p>为应用服务器开启CAS<br>应用服务器即SSO客户端。修改web.xml文件，增加如下filter：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Authentication Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.jasig.cas.client.authentication.AuthenticationFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>casServerLoginUrl<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>https://localhost:9443/cas/login<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>serverName<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>http://localhost:7090<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Authentication Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Validation Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>casServerUrlPrefix<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>https://localhost:9443/cas<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>serverName<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>http://localhost:7090<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Validation Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>几个配置项说明：</p>
+<p>serverName指当前应用的域名地址和端口(80端口可不写)<br>casServerLoginUrl配置sso登录地址<br>casServerUrlPrefix设置sso应用地址<br>url-pattern配置需要sso保护的资源地址<br>测试客户端配置<br>测试客户端即测试人员所使用的浏览器端。</p>
+<p>在测试浏览器中(受信任的根证书颁发机构项)导入sso.crt证书<br>访问任意一个需要sso验证的地址<br>跳转到sso登录界面后，输入正确的用户名和密码<br>正常返回到原页面</p>
+<h1 id="CAS-数据库帐密认证"><a href="#CAS-数据库帐密认证" class="headerlink" title="CAS-数据库帐密认证"></a>CAS-数据库帐密认证</h1><p>由于目前cas版本变化带来的内部组件变化，导致配置大相径庭，本文采用CAS-4.2.0配置数据库认证。使用Mysql做数据库，所以将mysql:mysql-connector-driver:5.1.38复制到WEB-INF/lib文件夹下，由于该文件夹下使用了spring-jdbc,所以我们配置datasource bean时使用org.springframework.jdbc.datasource.DriverManagerDataSource</p>
+<h2 id="重要xml"><a href="#重要xml" class="headerlink" title="重要xml"></a>重要xml</h2><p>可能变化的属性可以配置在cas.properties文件中完成，首先配置完成后的xml如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cas.jdbc.authn.query.sql=select password from p_user where username=?</div></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"queryDatabaseDataSource"</span>  </span></div><div class="line">        <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost/privilege"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span>  </div><div class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </div><div class="line">	  </div><div class="line">	 <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"queryDatabaseAuthenticationHandler"</span> <span class="attr">alias</span>=<span class="string">"primaryAuthenticationHandler"</span> /&gt;</span></div><div class="line">	 <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"queryDatabaseDataSource"</span> <span class="attr">alias</span>=<span class="string">"queryEncodeDatabaseDataSource"</span> /&gt;</span></div><div class="line">	 <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"defaultPasswordEncoder"</span> <span class="attr">alias</span>=<span class="string">"passwordEncoder"</span> /&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- 屏蔽帐号名密码认证bean,并引用到queryDatabaseAuthenticationHandler&lt;alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" /&gt; --&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="配置的来由"><a href="#配置的来由" class="headerlink" title="配置的来由"></a>配置的来由</h2><p>首先打开classes/log4j2.xml文件编辑，打开appender修改修别到info，打印多一些日志。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2016-12-17 21:53:28,242 INFO [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - QueryDatabaseAuthenticationHandler failed authenticating casuser</div><div class="line">2016-12-17 21:53:28,242 DEBUG [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - QueryDatabaseAuthenticationHandler exception details: Authentication handler is not configured correctly</div></pre></td></tr></table></figure></p>
+<p>以下是QueryDatabaseAuthenticationHandler代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span>(<span class="string">"queryDatabaseAuthenticationHandler"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueryDatabaseAuthenticationHandler</span> <span class="keyword">extends</span> <span class="title">AbstractJdbcUsernamePasswordAuthenticationHandler</span> </span>&#123;</div><div class="line">    <span class="meta">@NotNull</span></div><div class="line">    <span class="keyword">private</span> String sql;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> HandlerResult <span class="title">authenticateUsernamePasswordInternal</span><span class="params">(<span class="keyword">final</span> UsernamePasswordCredential credential)</span></span></div><div class="line">            <span class="keyword">throws</span> GeneralSecurityException, PreventedException &#123;</div><div class="line">            <span class="comment">//可以得知sql为空或datasource未设置</span></div><div class="line">        <span class="keyword">if</span> (StringUtils.isBlank(<span class="keyword">this</span>.sql) || getJdbcTemplate() == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> GeneralSecurityException(<span class="string">"Authentication handler is not configured correctly"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">final</span> String username = credential.getUsername();</div><div class="line">        <span class="keyword">final</span> String encryptedPassword = <span class="keyword">this</span>.getPasswordEncoder().encode(credential.getPassword());</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">final</span> String dbPassword = getJdbcTemplate().queryForObject(<span class="keyword">this</span>.sql, String.class, username);</div><div class="line">            <span class="keyword">if</span> (!dbPassword.equals(encryptedPassword)) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> FailedLoginException(<span class="string">"Password does not match value on record."</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IncorrectResultSizeDataAccessException e) &#123;</div><div class="line">            <span class="keyword">if</span> (e.getActualSize() == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AccountNotFoundException(username + <span class="string">" not found with SQL query"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> FailedLoginException(<span class="string">"Multiple records found for "</span> + username);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> DataAccessException e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> PreventedException(<span class="string">"SQL exception while executing query for "</span> + username, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> createHandlerResult(credential, <span class="keyword">this</span>.principalFactory.createPrincipal(username), <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> sql The sql to set.</div><div class="line">     */</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSql</span><span class="params">(@Value(<span class="string">"$&#123;cas.jdbc.authn.query.sql:&#125;"</span>)</span> <span class="keyword">final</span> String sql) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.sql = sql;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="meta">@Autowired</span>(required = <span class="keyword">false</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataSource</span><span class="params">(@Qualifier(<span class="string">"queryDatabaseDataSource"</span>)</span> <span class="keyword">final</span> DataSource dataSource) </span>&#123;</div><div class="line">        <span class="keyword">super</span>.setDataSource(dataSource);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>可以看出需要属性cas.jdbc.authn.query.sql即用于查询密码的sql，需要javax.sql.DataSource接口的bean名字为queryDatabaseDataSource<br>以下为QueryAndEncodeDatabaseAuthenticationHandler构造函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Autowired</span>(required = <span class="keyword">false</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QueryAndEncodeDatabaseAuthenticationHandler</span><span class="params">(@Qualifier(<span class="string">"queryEncodeDatabaseDataSource"</span>)</span><span class="keyword">final</span> DataSource datasource, @<span class="title">Value</span><span class="params">(<span class="string">"$&#123;cas.jdbc.authn.query.encode.sql:&#125;"</span>)</span><span class="keyword">final</span> String sql,                @<span class="title">Value</span><span class="params">(<span class="string">"$&#123;cas.jdbc.authn.query.encode.alg:&#125;"</span>)</span><span class="keyword">final</span> String algorithmName) </span>&#123;</div></pre></td></tr></table></figure>
+</li>
+<li><p>可知该bean仍然需要一个queryEncodeDatabaseDataSource为名字的bean，所以<br><alias name="queryDatabaseDataSource" alias="queryEncodeDatabaseDataSource">复制别名</alias></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public abstract class AbstractUsernamePasswordAuthenticationHandler extends</div><div class="line">    AbstractPreAndPostProcessingAuthenticationHandler &#123;</div><div class="line">     @NotNull</div><div class="line">    private PasswordEncoder passwordEncoder = new PlainTextPasswordEncoder();</div><div class="line">...&#125;</div><div class="line">@Component(&quot;plainTextPasswordEncoder&quot;)</div><div class="line">public final class PlainTextPasswordEncoder implements PasswordEncoder &#123;</div><div class="line">    @Override</div><div class="line">    public String encode(final String password) &#123;</div><div class="line">        return password;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@Component(&quot;defaultPasswordEncoder&quot;)</div><div class="line">public final class DefaultPasswordEncoder implements PasswordEncoder &#123;</div><div class="line"></div><div class="line">    private static final char[] HEX_DIGITS = &#123;&apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;,</div><div class="line">                                                &apos;9&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;&#125;;</div><div class="line">    private static final int HEX_RIGHT_SHIFT_COEFFICIENT = 4;</div><div class="line">    private static final int HEX_HIGH_BITS_BITWISE_FLAG = 0x0f;</div><div class="line">    private final String encodingAlgorithm;</div><div class="line">    @Value(&quot;$&#123;cas.authn.password.encoding.char:&#125;&quot;)</div><div class="line">    private String characterEncoding;</div><div class="line">...&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果不设置passwordencoder即为无加密plainTextPasswordEncoder，我们修改别名使用defaultPasswordEncoder即为MD5加密,当然我们可以配置以下属性增加安全性</p>
+<ul>
+<li>cas.jdbc.authn.query.encode.sql=</li>
+<li>cas.jdbc.authn.query.encode.alg=</li>
+<li>cas.jdbc.authn.query.encode.salt.static=</li>
+<li>cas.jdbc.authn.query.encode.password=</li>
+<li>cas.jdbc.authn.query.encode.salt=</li>
+<li>cas.jdbc.authn.query.encode.iterations.field=</li>
+<li>cas.jdbc.authn.query.encode.iterations=</li>
+</ul>
+</li>
+</ul>
+<h1 id="本文完"><a href="#本文完" class="headerlink" title="本文完"></a>本文完</h1>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/工程手册/">工程手册</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2016/12/18/CAS-配置过程/" data-title="CAS配置过程记录 | Timmy live" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/12/18/CentOS内存记录/" title="CentOS内存记录">
+  <strong>上一篇：</strong><br/>
+  <span>
+  CentOS内存记录</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/23/mathjax-syntax/"  title="mathjax syntax">
+ <strong>下一篇：</strong><br/> 
+ <span>mathjax syntax
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/12/18/CAS-配置过程/" data-title="CAS配置过程记录" data-url="http://yoursite.com/2016/12/18/CAS-配置过程/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#证书的配置"><span class="toc-number">1.</span> <span class="toc-text">证书的配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSO服务端"><span class="toc-number">2.</span> <span class="toc-text">SSO服务端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导出sso-crt证书"><span class="toc-number">3.</span> <span class="toc-text">导出sso.crt证书</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cas服务器端配置Tomcat的HTTPS服务"><span class="toc-number">4.</span> <span class="toc-text">cas服务器端配置Tomcat的HTTPS服务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CAS-数据库帐密认证"><span class="toc-number">5.</span> <span class="toc-text">CAS-数据库帐密认证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重要xml"><span class="toc-number">5.1.</span> <span class="toc-text">重要xml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置的来由"><span class="toc-number">5.2.</span> <span class="toc-text">配置的来由</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本文完"><span class="toc-number">6.</span> <span class="toc-text">本文完</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/环境部署/" title="环境部署">环境部署<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代码约定/" title="代码约定">代码约定<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spring/" title="spring">spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dubbo/" title="dubbo">dubbo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.hoterran.info" target="_blank" title="一个面向程序员交流分享的新一代社区">运维与开发</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://club.alibabatech.org/" target="_blank" title="ali Blog">ali Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a>
+    </div>
+  </div>
+
+
+  
+<div class="github-card">
+<p class="asidetitle">访问统计</p>
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/1.js?i=5q3titj4y9g&amp;s=220&amp;m=0&amp;v=true&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Christiansted, United States Virgin Islands <br/>
+			believer it or not</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Lee">Lee</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"witerlee"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+  </body>
+</html>

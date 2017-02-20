@@ -13,7 +13,7 @@
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="Timmy live">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="Timmy live">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Timmy live">
@@ -75,17 +75,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/01/27/Ranger使用体验/" title="Ranger平台使用体验" itemprop="url">
+    <a href="/2016/07/17/Zookeeper集群安装手册/" title="Zookeeper集群搭建手册" itemprop="url">
   
-    <h1 itemprop="name">Ranger平台使用体验</h1>
+    <h1 itemprop="name">Zookeeper集群搭建手册</h1>
     
      
-           <p itemprop="description" >Ranger平台使用体验
-需求来源Hadoop平台需要进行权限控制，限制对YARN资源的使用、HDFS文件的读取控制。
-Ranger介绍Ranger是Hadoop平台的集中式安全管理框架，能够为hadoop平台组件提供细粒度的访问控制。通过Ranger, Hadoop管理员能够轻</p>
+           <p itemprop="description" >Abstractzookeeper的作用重点在于提供数据交换，抵抗物理宕机引起的服务不可用带来的影响，首先更重要的是代码的质量、健壮性。这里记录一下自己搭建集群的过程
+安装配置过程node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot</p>
         
     
-    <time datetime="2017-01-27T04:00:00.000Z" itemprop="datePublished">2017-01-27</time>
+    <time datetime="2016-07-17T05:05:49.000Z" itemprop="datePublished">2016-07-17</time>
   </a>
 </section>
 
@@ -97,15 +96,22 @@ Ranger介绍Ranger是Hadoop平台的集中式安全管理框架，能够为hadoo
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/01/10/hadoop-kerberos配置记录/" title="hadoop-kerberos配置记录" itemprop="url">
+    <a href="/2016/07/16/Yarn搭建手册/" title="YARN搭建手册" itemprop="url">
   
-    <h1 itemprop="name">hadoop-kerberos配置记录</h1>
+    <h1 itemprop="name">YARN搭建手册</h1>
     
      
-           <p itemprop="description" >需求来源防止hadoop组件被非法侵入控制及调用.比如Datanode对读入输出并没有认证。导致如果一些客户端如果知道block的ID，就可以任意的访问DataNode上block的数据。jobtracker没有进行认证导致可以随意改变job的状态，非法用户可以伪装成nodema</p>
+           <p itemprop="description" >环境及版本介绍
+目标机器
+配置文件介绍
+配置工作
+测试
+
+1. 环境及版本介绍1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop
+1.2 yarn 2.7.212345外层的启动脚本</p>
         
     
-    <time datetime="2017-01-10T14:00:00.000Z" itemprop="datePublished">2017-01-10</time>
+    <time datetime="2016-07-16T13:05:49.000Z" itemprop="datePublished">2016-07-16</time>
   </a>
 </section>
 
@@ -117,162 +123,34 @@ Ranger介绍Ranger是Hadoop平台的集中式安全管理框架，能够为hadoo
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2016/12/19/Zeppelin操作记录/" title="Zeppelin操作记录" itemprop="url">
+    <a href="/2016/07/16/代码语法约定/" title="代码语法约定" itemprop="url">
   
-    <h1 itemprop="name">Zeppelin操作记录</h1>
+    <h1 itemprop="name">代码语法约定</h1>
     
      
-           <p itemprop="description" >来源将Zeppelin-0.6.2部署之后，今天替换成yarn-client模式报错了。背景已经将原生的hadoop三jar包替换成2.7.2，zeppelin里面也只有2.7.2的版本号，不知道具体原因为何。查询关键报失的函数retryOtherThanRemoteExcept</p>
+           <p itemprop="description" >代码语法约定框架设计
+alibaba-dubbo
+google-protobuf
+netty4
+jdk8
+spring4
+mybatis
+redis3
+
+目录
+代码组织结构
+缩写使用
+类命名
+方法命名
+字段命名
+日志系统
+异常系统
+工程入手
+maven-settings
+ecli</p>
         
     
-    <time datetime="2016-12-19T12:00:00.000Z" itemprop="datePublished">2016-12-19</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/12/18/CentOS升级Python2.7过程/" title="CentOS升级Python2.7过程" itemprop="url">
-  
-    <h1 itemprop="name">CentOS升级Python2.7过程</h1>
-    
-     
-           <p itemprop="description" >需求由于假设了Zeppelin服务器，需要为数据团队提供python环境运行科学库算法。Python2.6为centos6.8系统默认自带同时被其yum工具依赖，2.6下使用科学库及数据库连接出现了较多问题，同时之前做过多次2.7升级，于是本次升级之后将工作记录下来备查，同时尽量</p>
-        
-    
-    <time datetime="2016-12-18T10:00:00.000Z" itemprop="datePublished">2016-12-18</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/12/18/CentOS内存记录/" title="CentOS内存记录" itemprop="url">
-  
-    <h1 itemprop="name">CentOS内存记录</h1>
-    
-     
-           <p itemprop="description" >来源由于将NM的内存比例调成5，使得yarn-client模式可以执行任务，任务结束后，内存没有释放，free -m与 ps -auf统计的数值差别较大，于是查看具体原因
-缓存机制介绍为了提高文件系统性能，内核利用一部分物理内存分配出缓冲区，用于缓存系统操作和数据文件，当内核收到</p>
-        
-    
-    <time datetime="2016-12-18T09:00:00.000Z" itemprop="datePublished">2016-12-18</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/12/18/CAS-配置过程/" title="CAS配置过程记录" itemprop="url">
-  
-    <h1 itemprop="name">CAS配置过程记录</h1>
-    
-     
-           <p itemprop="description" >证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
-SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12k</p>
-        
-    
-    <time datetime="2016-12-18T04:00:00.000Z" itemprop="datePublished">2016-12-18</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/07/23/mathjax-syntax/" title="mathjax syntax" itemprop="url">
-  
-    <h1 itemprop="name">mathjax syntax</h1>
-    
-     
-           <p itemprop="description" >欢迎使用 Cmd Markdown 编辑阅读器
-我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：
-
-
-整理知</p>
-        
-    
-    <time datetime="2016-07-22T16:57:34.000Z" itemprop="datePublished">2016-07-23</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/07/22/PearsonCorrelation/" title="PearsonCorrelation" itemprop="url">
-  
-    <h1 itemprop="name">PearsonCorrelation</h1>
-    
-     
-           <p itemprop="description" >转自 DM张朋飞 CNBlogs基于皮尔森相关系数的协同过滤算法刚看到一新闻说很多互联网公司尤其是草根北京的都缺少有针对性的CTO，看完我感觉我要努力学好算法，争取自己创业。
-PearsonCorrelation两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高</p>
-        
-    
-    <time datetime="2016-07-22T09:53:23.000Z" itemprop="datePublished">2016-07-22</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/07/22/Correlation/" title="Correlation" itemprop="url">
-  
-    <h1 itemprop="name">Correlation</h1>
-    
-     
-           <p itemprop="description" >转自 DM张朋飞 CNBlogs数学期望的理解微笑早些时候，法国有两个大数学家，一个叫做布莱士·帕斯卡，一个叫做费马。帕斯卡认识两个赌徒，这两个赌徒向他提出了一个问题。他们说，他俩下赌金之后，约定谁先赢满5局，谁就获得全部赌金。赌了半天，A赢了4局，B赢了3局，时间很晚了，他们都</p>
-        
-    
-    <time datetime="2016-07-22T09:51:27.000Z" itemprop="datePublished">2016-07-22</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2016/07/17/Cf-Cluster/" title="基于模糊聚类和协同过滤的混合推荐系统" itemprop="url">
-  
-    <h1 itemprop="name">基于模糊聚类和协同过滤的混合推荐系统</h1>
-    
-     
-           <p itemprop="description" >转自 DM张朋飞 CNBlogsHybrid Recommender System based on Fuzzy Clustering and Collaborative Filtering给出题目，想找的话直接在ElsevierSD里下载即可。并不是逐句翻译，一些简单的背景比如</p>
-        
-    
-    <time datetime="2016-07-17T14:00:00.000Z" itemprop="datePublished">2016-07-17</time>
+    <time datetime="2016-07-15T17:05:49.000Z" itemprop="datePublished">2016-07-16</time>
   </a>
 </section>
 
@@ -283,7 +161,7 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 
 
   <nav id="page-nav" class="clearfix unexpand">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 </div>
