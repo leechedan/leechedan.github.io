@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.quantm.club/2018/10/21/docker-rep-maven/</loc>
+    <lastmod>2018-10-26T17:23:38.629Z</lastmod>
+  </url>  <url>
+    <loc>https://blog.quantm.club/2016/07/17/Cf-Cluster/</loc>
+    <lastmod>2018-10-26T17:20:36.332Z</lastmod>
+  </url>  <url>
     <loc>https://blog.quantm.club/2016/07/22/Correlation/</loc>
     <lastmod>2018-10-26T17:06:24.418Z</lastmod>
   </url>  <url>
@@ -9,9 +15,6 @@
   </url>  <url>
     <loc>https://blog.quantm.club/2016/07/23/mathjax-syntax/</loc>
     <lastmod>2018-10-26T17:04:41.693Z</lastmod>
-  </url>  <url>
-    <loc>https://blog.quantm.club/2018/10/21/docker-rep-maven/</loc>
-    <lastmod>2018-10-26T17:04:11.527Z</lastmod>
   </url>  <url>
     <loc>https://blog.quantm.club/2016/12/18/CentOS%E5%8D%87%E7%BA%A7Python2.7%E8%BF%87%E7%A8%8B/</loc>
     <lastmod>2018-10-26T17:01:39.564Z</lastmod>
@@ -24,9 +27,6 @@
   </url>  <url>
     <loc>https://blog.quantm.club/2018/03/10/scala/</loc>
     <lastmod>2018-10-26T16:58:04.508Z</lastmod>
-  </url>  <url>
-    <loc>https://blog.quantm.club/2016/07/17/Cf-Cluster/</loc>
-    <lastmod>2018-10-11T15:29:26.345Z</lastmod>
   </url>  <url>
     <loc>https://blog.quantm.club/2017/01/27/Ranger%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/</loc>
     <lastmod>2017-02-06T02:10:49.215Z</lastmod>
