@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>PearsonCorrelation | Timmy live</title>
+    <title>PearsonCorrelation 搜索推荐 | Timmy live</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Lee">
@@ -15,18 +15,18 @@
 PearsonCorrelation两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高，这是因为相关系数越高，就意味着这两个变量的共变部分越多，所以从其中一个变量的变化就可越多地获知另一个变量的变化。如果两">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PearsonCorrelation">
-<meta property="og:url" content="http://yoursite.com/2016/07/22/PearsonCorrelation/index.html">
+<meta property="og:url" content="https://blog.quantm.club/2016/07/22/PearsonCorrelation/index.html">
 <meta property="og:site_name" content="Timmy live">
 <meta property="og:description" content="转自 DM张朋飞 CNBlogs基于皮尔森相关系数的协同过滤算法刚看到一新闻说很多互联网公司尤其是草根北京的都缺少有针对性的CTO，看完我感觉我要努力学好算法，争取自己创业。
 PearsonCorrelation两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高，这是因为相关系数越高，就意味着这两个变量的共变部分越多，所以从其中一个变量的变化就可越多地获知另一个变量的变化。如果两">
-<meta property="og:image" content="http://yoursite.com/caculate.png">
-<meta property="og:image" content="http://yoursite.com/ration.png">
+<meta property="og:image" content="https://blog.quantm.club/caculate.png">
+<meta property="og:image" content="https://blog.quantm.club/ration.png">
 <meta property="og:updated_time" content="2016-12-18T10:22:33.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PearsonCorrelation">
 <meta name="twitter:description" content="转自 DM张朋飞 CNBlogs基于皮尔森相关系数的协同过滤算法刚看到一新闻说很多互联网公司尤其是草根北京的都缺少有针对性的CTO，看完我感觉我要努力学好算法，争取自己创业。
 PearsonCorrelation两个变量之间的相关系数越高，从一个变量去预测另一个变量的精确度就越高，这是因为相关系数越高，就意味着这两个变量的共变部分越多，所以从其中一个变量的变化就可越多地获知另一个变量的变化。如果两">
-<meta name="twitter:image" content="http://yoursite.com/caculate.png">
+<meta name="twitter:image" content="https://blog.quantm.club/caculate.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -54,7 +54,7 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -71,7 +71,7 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
 						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="hidden" name="q" value="site:blog.quantm.club">
 					</form>
 					
 					</li>
@@ -93,14 +93,14 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-22T09:53:23.000Z" itemprop="datePublished"> 发表于 2016-07-22</time>
+    <time datetime="2016-07-22T09:53:23.000Z" itemprop="datePublished"> 發表於 2016-07-22</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#转自-DM张朋飞-CNBlogs"><span class="toc-number">1.</span> <span class="toc-text">转自 DM张朋飞 CNBlogs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PearsonCorrelation"><span class="toc-number">1.1.</span> <span class="toc-text">PearsonCorrelation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法简介"><span class="toc-number">1.2.</span> <span class="toc-text">算法简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发现的问题"><span class="toc-number">1.3.</span> <span class="toc-text">发现的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法实现"><span class="toc-number">1.4.</span> <span class="toc-text">算法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法结果"><span class="toc-number">1.5.</span> <span class="toc-text">算法结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SlopeOne算法简介"><span class="toc-number">1.6.</span> <span class="toc-text">SlopeOne算法简介</span></a></li></ol></li></ol>
 		
@@ -343,7 +343,7 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/07/22/PearsonCorrelation/" data-title="PearsonCorrelation | Timmy live" data-tsina="null" class="share clearfix">
+	  <div data-url="https://blog.quantm.club/2016/07/22/PearsonCorrelation/" data-title="PearsonCorrelation | Timmy live" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -378,22 +378,22 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#转自-DM张朋飞-CNBlogs"><span class="toc-number">1.</span> <span class="toc-text">转自 DM张朋飞 CNBlogs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PearsonCorrelation"><span class="toc-number">1.1.</span> <span class="toc-text">PearsonCorrelation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法简介"><span class="toc-number">1.2.</span> <span class="toc-text">算法简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发现的问题"><span class="toc-number">1.3.</span> <span class="toc-text">发现的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法实现"><span class="toc-number">1.4.</span> <span class="toc-text">算法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法结果"><span class="toc-number">1.5.</span> <span class="toc-text">算法结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SlopeOne算法简介"><span class="toc-number">1.6.</span> <span class="toc-text">SlopeOne算法简介</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -422,7 +422,7 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -430,19 +430,19 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 			
 		
 			
+				<li><a href="/tags/sbt/" title="sbt">sbt<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
@@ -461,12 +461,56 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/Akka/" title="Akka">Akka<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Stream/" title="Stream">Stream<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Reactive/" title="Reactive">Reactive<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Scala/" title="Scala">Scala<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/大数据/" title="大数据">大数据<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/推荐/" title="推荐">推荐<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Actor/" title="Actor">Actor<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cas/" title="cas">cas<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OAuth/" title="OAuth">OAuth<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
+			
+		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -485,21 +529,21 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
   
   <div class="tagcloudlist">
-    <p class="asidetitle">标签云</p>
+    <p class="asidetitle">標簽雲</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a>
+       <a href="/tags/Actor/" style="font-size: 10px;">Actor</a> <a href="/tags/Akka/" style="font-size: 10px;">Akka</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/OAuth/" style="font-size: 10px;">OAuth</a> <a href="/tags/Reactive/" style="font-size: 10px;">Reactive</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/cas/" style="font-size: 10px;">cas</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/mathjax/" style="font-size: 10px;">mathjax</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nexus/" style="font-size: 10px;">nexus</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sbt/" style="font-size: 15px;">sbt</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a> <a href="/tags/单点登录/" style="font-size: 10px;">单点登录</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/推荐/" style="font-size: 10px;">推荐</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/相关性/" style="font-size: 10px;">相关性</a> <a href="/tags/系统搭建/" style="font-size: 10px;">系统搭建</a> <a href="/tags/系统维护/" style="font-size: 10px;">系统维护</a> <a href="/tags/论文/" style="font-size: 10px;">论文</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a>
     </div>
   </div>
 
 
   
 <div class="github-card">
-<p class="asidetitle">访问统计</p>
+<p class="asidetitle">location Statics</p>
 <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
 </div>
 
@@ -733,7 +777,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
