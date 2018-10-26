@@ -12,18 +12,21 @@
 
     
     <meta name="description" content="证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
-SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localh">
+SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；
+keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localho">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CAS配置过程记录">
 <meta property="og:url" content="http://yoursite.com/2016/12/18/CAS-配置过程/index.html">
 <meta property="og:site_name" content="Timmy live">
 <meta property="og:description" content="证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
-SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localh">
+SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；
+keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localho">
 <meta property="og:updated_time" content="2016-12-18T10:20:44.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CAS配置过程记录">
 <meta name="twitter:description" content="证书的配置主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。
-SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；12keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localh">
+SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；
+keytool -genkey -keyalg RSA -alias sso -dname &amp;quot;cn=localho">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -104,33 +107,151 @@ SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导
 		</div>
 		
 		<h1 id="证书的配置"><a href="#证书的配置" class="headerlink" title="证书的配置"></a>证书的配置</h1><p>主要分为两大步：服务端生成配置证书.keystore，应用端导入证书sso.crt import to jre/lib/security/cacerts。</p>
-<h1 id="SSO服务端"><a href="#SSO服务端" class="headerlink" title="SSO服务端"></a>SSO服务端</h1><p>生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -genkey -keyalg RSA -alias sso -dname &quot;cn=localhost&quot; </div><div class="line">-keystore /home/ndoc/.keystore -storepass 123654</div></pre></td></tr></table></figure></p>
+<h1 id="SSO服务端"><a href="#SSO服务端" class="headerlink" title="SSO服务端"></a>SSO服务端</h1><p>生成keystore, 此文件用于tomcat/conf/server.xml中配置及导出证书；</p>
+<pre><code class="shell">keytool -genkey -keyalg RSA -alias sso -dname &quot;cn=localhost&quot; 
+-keystore /home/ndoc/.keystore -storepass 123654
+</code></pre>
 <p>说明：指定使用RSA算法，生成别名为mlongbosso的证书，口令为123654，证书的DN为”cn=localhost” ，这个DN必须同当前主机完整名称一致!!在正式环境中lo9calhost就应该替换为申请的外网域名)，这样，jvm在SSL握手过程中，match域名的时候才能将持有的证书CN与cas-server地址域名成功匹配。</p>
-<h1 id="导出sso-crt证书"><a href="#导出sso-crt证书" class="headerlink" title="导出sso.crt证书"></a>导出sso.crt证书</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -export -alias sso -file /home/ndoc/sso.crt </div><div class="line">-keystore /home/ndoc/.keystore -storepass 123654</div></pre></td></tr></table></figure>
+<h1 id="导出sso-crt证书"><a href="#导出sso-crt证书" class="headerlink" title="导出sso.crt证书"></a>导出sso.crt证书</h1><pre><code class="shell">keytool -export -alias sso -file /home/ndoc/sso.crt 
+-keystore /home/ndoc/.keystore -storepass 123654
+</code></pre>
 <p>(注释：从.keystore中导出别名为sso的证书，生成文件sso.crt)</p>
-<h1 id="cas服务器端配置Tomcat的HTTPS服务"><a href="#cas服务器端配置Tomcat的HTTPS服务" class="headerlink" title="cas服务器端配置Tomcat的HTTPS服务"></a>cas服务器端配置Tomcat的HTTPS服务</h1><p>keystoreFile属性值为.keystore文件路径, keystorePass属性值为证书存贮口令<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8443"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">SSLEnabled</span>=<span class="string">"true"</span></span></div><div class="line">       <span class="attr">maxThreads</span>=<span class="string">"150"</span> <span class="attr">scheme</span>=<span class="string">"https"</span> <span class="attr">secure</span>=<span class="string">"true"</span></div><div class="line">       <span class="attr">clientAuth</span>=<span class="string">"false"</span> <span class="attr">sslProtocol</span>=<span class="string">"TLS"</span></div><div class="line">        <span class="attr">keystoreFile</span>=<span class="string">"/home/ndoc/.keystore"</span></div><div class="line">        <span class="attr">keystorePass</span>=<span class="string">"123654"</span></div><div class="line">         /&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="cas服务器端配置Tomcat的HTTPS服务"><a href="#cas服务器端配置Tomcat的HTTPS服务" class="headerlink" title="cas服务器端配置Tomcat的HTTPS服务"></a>cas服务器端配置Tomcat的HTTPS服务</h1><p>keystoreFile属性值为.keystore文件路径, keystorePass属性值为证书存贮口令</p>
+<pre><code class="xml"> &lt;Connector port=&quot;8443&quot; protocol=&quot;HTTP/1.1&quot; SSLEnabled=&quot;true&quot;
+        maxThreads=&quot;150&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+        clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot;
+         keystoreFile=&quot;/home/ndoc/.keystore&quot;
+         keystorePass=&quot;123654&quot;
+          /&gt;
+</code></pre>
 <p>应用端<br>应用端即SSO客户端.</p>
 <p>注释： Windows下为%JAVA_HOME% , Linux下为$JAVA_HOME</p>
-<p>将sso.crt导入到应用服务器所使用的jre的可信任证书仓库中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -import -alias sso -file /home/ndoc/sso.crt </div><div class="line">-keystore $JAVA_HOME/jre/lib/security/cacerts -storepass 123654</div></pre></td></tr></table></figure></p>
-<p>列出jre可信任证书仓库中证书名单，验证导入是否成功，如果导入成功，应该在列表中能找到sso这个别名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass 123654</div><div class="line">#注意：如果此处导入失败，或者要重新导入，需要先**删除**%JAVA_HOME%/jre/lib/security/cacerts文件(删除前请备份)</div></pre></td></tr></table></figure></p>
-<p>为应用服务器开启CAS<br>应用服务器即SSO客户端。修改web.xml文件，增加如下filter：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Authentication Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.jasig.cas.client.authentication.AuthenticationFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>casServerLoginUrl<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>https://localhost:9443/cas/login<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>serverName<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>http://localhost:7090<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Authentication Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Validation Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>casServerUrlPrefix<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>https://localhost:9443/cas<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>serverName<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>http://localhost:7090<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>CAS Validation Filter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>将sso.crt导入到应用服务器所使用的jre的可信任证书仓库中</p>
+<pre><code class="shell">keytool -import -alias sso -file /home/ndoc/sso.crt 
+-keystore $JAVA_HOME/jre/lib/security/cacerts -storepass 123654
+</code></pre>
+<p>列出jre可信任证书仓库中证书名单，验证导入是否成功，如果导入成功，应该在列表中能找到sso这个别名</p>
+<pre><code class="shell">keytool -list -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass 123654
+#注意：如果此处导入失败，或者要重新导入，需要先**删除**%JAVA_HOME%/jre/lib/security/cacerts文件(删除前请备份)
+</code></pre>
+<p>为应用服务器开启CAS<br>应用服务器即SSO客户端。修改web.xml文件，增加如下filter：</p>
+<pre><code class="xml">&lt;filter&gt;
+        &lt;filter-name&gt;CAS Authentication Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.authentication.AuthenticationFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;casServerLoginUrl&lt;/param-name&gt;
+            &lt;param-value&gt;https://localhost:9443/cas/login&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;serverName&lt;/param-name&gt;
+            &lt;param-value&gt;http://localhost:7090&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Authentication Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS Validation Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;casServerUrlPrefix&lt;/param-name&gt;
+            &lt;param-value&gt;https://localhost:9443/cas&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;serverName&lt;/param-name&gt;
+            &lt;param-value&gt;http://localhost:7090&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Validation Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+</code></pre>
 <p>几个配置项说明：</p>
 <p>serverName指当前应用的域名地址和端口(80端口可不写)<br>casServerLoginUrl配置sso登录地址<br>casServerUrlPrefix设置sso应用地址<br>url-pattern配置需要sso保护的资源地址<br>测试客户端配置<br>测试客户端即测试人员所使用的浏览器端。</p>
 <p>在测试浏览器中(受信任的根证书颁发机构项)导入sso.crt证书<br>访问任意一个需要sso验证的地址<br>跳转到sso登录界面后，输入正确的用户名和密码<br>正常返回到原页面</p>
 <h1 id="CAS-数据库帐密认证"><a href="#CAS-数据库帐密认证" class="headerlink" title="CAS-数据库帐密认证"></a>CAS-数据库帐密认证</h1><p>由于目前cas版本变化带来的内部组件变化，导致配置大相径庭，本文采用CAS-4.2.0配置数据库认证。使用Mysql做数据库，所以将mysql:mysql-connector-driver:5.1.38复制到WEB-INF/lib文件夹下，由于该文件夹下使用了spring-jdbc,所以我们配置datasource bean时使用org.springframework.jdbc.datasource.DriverManagerDataSource</p>
-<h2 id="重要xml"><a href="#重要xml" class="headerlink" title="重要xml"></a>重要xml</h2><p>可能变化的属性可以配置在cas.properties文件中完成，首先配置完成后的xml如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cas.jdbc.authn.query.sql=select password from p_user where username=?</div></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"queryDatabaseDataSource"</span>  </span></div><div class="line">        <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost/privilege"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span> /&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span>  </div><div class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span>  </div><div class="line">	  </div><div class="line">	 <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"queryDatabaseAuthenticationHandler"</span> <span class="attr">alias</span>=<span class="string">"primaryAuthenticationHandler"</span> /&gt;</span></div><div class="line">	 <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"queryDatabaseDataSource"</span> <span class="attr">alias</span>=<span class="string">"queryEncodeDatabaseDataSource"</span> /&gt;</span></div><div class="line">	 <span class="tag">&lt;<span class="name">alias</span> <span class="attr">name</span>=<span class="string">"defaultPasswordEncoder"</span> <span class="attr">alias</span>=<span class="string">"passwordEncoder"</span> /&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- 屏蔽帐号名密码认证bean,并引用到queryDatabaseAuthenticationHandler&lt;alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" /&gt; --&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="配置的来由"><a href="#配置的来由" class="headerlink" title="配置的来由"></a>配置的来由</h2><p>首先打开classes/log4j2.xml文件编辑，打开appender修改修别到info，打印多一些日志。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2016-12-17 21:53:28,242 INFO [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - QueryDatabaseAuthenticationHandler failed authenticating casuser</div><div class="line">2016-12-17 21:53:28,242 DEBUG [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - QueryDatabaseAuthenticationHandler exception details: Authentication handler is not configured correctly</div></pre></td></tr></table></figure></p>
-<p>以下是QueryDatabaseAuthenticationHandler代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span>(<span class="string">"queryDatabaseAuthenticationHandler"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueryDatabaseAuthenticationHandler</span> <span class="keyword">extends</span> <span class="title">AbstractJdbcUsernamePasswordAuthenticationHandler</span> </span>&#123;</div><div class="line">    <span class="meta">@NotNull</span></div><div class="line">    <span class="keyword">private</span> String sql;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">final</span> HandlerResult <span class="title">authenticateUsernamePasswordInternal</span><span class="params">(<span class="keyword">final</span> UsernamePasswordCredential credential)</span></span></div><div class="line">            <span class="keyword">throws</span> GeneralSecurityException, PreventedException &#123;</div><div class="line">            <span class="comment">//可以得知sql为空或datasource未设置</span></div><div class="line">        <span class="keyword">if</span> (StringUtils.isBlank(<span class="keyword">this</span>.sql) || getJdbcTemplate() == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> GeneralSecurityException(<span class="string">"Authentication handler is not configured correctly"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">final</span> String username = credential.getUsername();</div><div class="line">        <span class="keyword">final</span> String encryptedPassword = <span class="keyword">this</span>.getPasswordEncoder().encode(credential.getPassword());</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            <span class="keyword">final</span> String dbPassword = getJdbcTemplate().queryForObject(<span class="keyword">this</span>.sql, String.class, username);</div><div class="line">            <span class="keyword">if</span> (!dbPassword.equals(encryptedPassword)) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> FailedLoginException(<span class="string">"Password does not match value on record."</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> IncorrectResultSizeDataAccessException e) &#123;</div><div class="line">            <span class="keyword">if</span> (e.getActualSize() == <span class="number">0</span>) &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AccountNotFoundException(username + <span class="string">" not found with SQL query"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> FailedLoginException(<span class="string">"Multiple records found for "</span> + username);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">final</span> DataAccessException e) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> PreventedException(<span class="string">"SQL exception while executing query for "</span> + username, e);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> createHandlerResult(credential, <span class="keyword">this</span>.principalFactory.createPrincipal(username), <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * <span class="doctag">@param</span> sql The sql to set.</div><div class="line">     */</div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSql</span><span class="params">(@Value(<span class="string">"$&#123;cas.jdbc.authn.query.sql:&#125;"</span>)</span> <span class="keyword">final</span> String sql) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.sql = sql;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="meta">@Autowired</span>(required = <span class="keyword">false</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDataSource</span><span class="params">(@Qualifier(<span class="string">"queryDatabaseDataSource"</span>)</span> <span class="keyword">final</span> DataSource dataSource) </span>&#123;</div><div class="line">        <span class="keyword">super</span>.setDataSource(dataSource);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="重要xml"><a href="#重要xml" class="headerlink" title="重要xml"></a>重要xml</h2><p>可能变化的属性可以配置在cas.properties文件中完成，首先配置完成后的xml如下</p>
+<pre><code>cas.jdbc.authn.query.sql=select password from p_user where username=?
+</code></pre><pre><code class="xml">&lt;bean id=&quot;queryDatabaseDataSource&quot;  
+        class=&quot;org.springframework.jdbc.datasource.DriverManagerDataSource&quot;&gt;  
+        &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot; /&gt;  
+        &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost/privilege&quot; /&gt;  
+        &lt;property name=&quot;username&quot; value=&quot;root&quot; /&gt;  
+        &lt;property name=&quot;password&quot; value=&quot;&quot; /&gt;  
+    &lt;/bean&gt;  
+
+     &lt;alias name=&quot;queryDatabaseAuthenticationHandler&quot; alias=&quot;primaryAuthenticationHandler&quot; /&gt;
+     &lt;alias name=&quot;queryDatabaseDataSource&quot; alias=&quot;queryEncodeDatabaseDataSource&quot; /&gt;
+     &lt;alias name=&quot;defaultPasswordEncoder&quot; alias=&quot;passwordEncoder&quot; /&gt;
+
+    &lt;!-- 屏蔽帐号名密码认证bean,并引用到queryDatabaseAuthenticationHandler&lt;alias name=&quot;acceptUsersAuthenticationHandler&quot; alias=&quot;primaryAuthenticationHandler&quot; /&gt; --&gt;
+</code></pre>
+<h2 id="配置的来由"><a href="#配置的来由" class="headerlink" title="配置的来由"></a>配置的来由</h2><p>首先打开classes/log4j2.xml文件编辑，打开appender修改修别到info，打印多一些日志。</p>
+<pre><code>2016-12-17 21:53:28,242 INFO [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - QueryDatabaseAuthenticationHandler failed authenticating casuser
+2016-12-17 21:53:28,242 DEBUG [org.jasig.cas.authentication.PolicyBasedAuthenticationManager] - QueryDatabaseAuthenticationHandler exception details: Authentication handler is not configured correctly
+</code></pre><p>以下是QueryDatabaseAuthenticationHandler代码</p>
+<pre><code class="java">@Component(&quot;queryDatabaseAuthenticationHandler&quot;)
+public class QueryDatabaseAuthenticationHandler extends AbstractJdbcUsernamePasswordAuthenticationHandler {
+    @NotNull
+    private String sql;
+    @Override
+    protected final HandlerResult authenticateUsernamePasswordInternal(final UsernamePasswordCredential credential)
+            throws GeneralSecurityException, PreventedException {
+            //可以得知sql为空或datasource未设置
+        if (StringUtils.isBlank(this.sql) || getJdbcTemplate() == null) {
+            throw new GeneralSecurityException(&quot;Authentication handler is not configured correctly&quot;);
+        }
+        final String username = credential.getUsername();
+        final String encryptedPassword = this.getPasswordEncoder().encode(credential.getPassword());
+        try {
+            final String dbPassword = getJdbcTemplate().queryForObject(this.sql, String.class, username);
+            if (!dbPassword.equals(encryptedPassword)) {
+                throw new FailedLoginException(&quot;Password does not match value on record.&quot;);
+            }
+        } catch (final IncorrectResultSizeDataAccessException e) {
+            if (e.getActualSize() == 0) {
+                throw new AccountNotFoundException(username + &quot; not found with SQL query&quot;);
+            } else {
+                throw new FailedLoginException(&quot;Multiple records found for &quot; + username);
+            }
+        } catch (final DataAccessException e) {
+            throw new PreventedException(&quot;SQL exception while executing query for &quot; + username, e);
+        }
+        return createHandlerResult(credential, this.principalFactory.createPrincipal(username), null);
+    }
+    /**
+     * @param sql The sql to set.
+     */
+    @Autowired
+    public void setSql(@Value(&quot;${cas.jdbc.authn.query.sql:}&quot;) final String sql) {
+        this.sql = sql;
+    }
+    @Override
+    @Autowired(required = false)
+    public void setDataSource(@Qualifier(&quot;queryDatabaseDataSource&quot;) final DataSource dataSource) {
+        super.setDataSource(dataSource);
+    }
+}
+</code></pre>
 <ul>
-<li><p>可以看出需要属性cas.jdbc.authn.query.sql即用于查询密码的sql，需要javax.sql.DataSource接口的bean名字为queryDatabaseDataSource<br>以下为QueryAndEncodeDatabaseAuthenticationHandler构造函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Autowired</span>(required = <span class="keyword">false</span>)</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">QueryAndEncodeDatabaseAuthenticationHandler</span><span class="params">(@Qualifier(<span class="string">"queryEncodeDatabaseDataSource"</span>)</span><span class="keyword">final</span> DataSource datasource, @<span class="title">Value</span><span class="params">(<span class="string">"$&#123;cas.jdbc.authn.query.encode.sql:&#125;"</span>)</span><span class="keyword">final</span> String sql,                @<span class="title">Value</span><span class="params">(<span class="string">"$&#123;cas.jdbc.authn.query.encode.alg:&#125;"</span>)</span><span class="keyword">final</span> String algorithmName) </span>&#123;</div></pre></td></tr></table></figure>
-</li>
-<li><p>可知该bean仍然需要一个queryEncodeDatabaseDataSource为名字的bean，所以<br><alias name="queryDatabaseDataSource" alias="queryEncodeDatabaseDataSource">复制别名</alias></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public abstract class AbstractUsernamePasswordAuthenticationHandler extends</div><div class="line">    AbstractPreAndPostProcessingAuthenticationHandler &#123;</div><div class="line">     @NotNull</div><div class="line">    private PasswordEncoder passwordEncoder = new PlainTextPasswordEncoder();</div><div class="line">...&#125;</div><div class="line">@Component(&quot;plainTextPasswordEncoder&quot;)</div><div class="line">public final class PlainTextPasswordEncoder implements PasswordEncoder &#123;</div><div class="line">    @Override</div><div class="line">    public String encode(final String password) &#123;</div><div class="line">        return password;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">@Component(&quot;defaultPasswordEncoder&quot;)</div><div class="line">public final class DefaultPasswordEncoder implements PasswordEncoder &#123;</div><div class="line"></div><div class="line">    private static final char[] HEX_DIGITS = &#123;&apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;,</div><div class="line">                                                &apos;9&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;&#125;;</div><div class="line">    private static final int HEX_RIGHT_SHIFT_COEFFICIENT = 4;</div><div class="line">    private static final int HEX_HIGH_BITS_BITWISE_FLAG = 0x0f;</div><div class="line">    private final String encodingAlgorithm;</div><div class="line">    @Value(&quot;$&#123;cas.authn.password.encoding.char:&#125;&quot;)</div><div class="line">    private String characterEncoding;</div><div class="line">...&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>如果不设置passwordencoder即为无加密plainTextPasswordEncoder，我们修改别名使用defaultPasswordEncoder即为MD5加密,当然我们可以配置以下属性增加安全性</p>
+<li>可以看出需要属性cas.jdbc.authn.query.sql即用于查询密码的sql，需要javax.sql.DataSource接口的bean名字为queryDatabaseDataSource<br>以下为QueryAndEncodeDatabaseAuthenticationHandler构造函数<br>```java</li>
+</ul>
+<p>@Autowired(required = false)<br>    public QueryAndEncodeDatabaseAuthenticationHandler(@Qualifier(“queryEncodeDatabaseDataSource”)final DataSource datasource, @Value(“${cas.jdbc.authn.query.encode.sql:}”)final String sql,                @Value(“${cas.jdbc.authn.query.encode.alg:}”)final String algorithmName) {</p>
+<pre><code>* 可知该bean仍然需要一个queryEncodeDatabaseDataSource为名字的bean，所以
+&lt;alias name=&quot;queryDatabaseDataSource&quot; alias=&quot;queryEncodeDatabaseDataSource&quot; /&gt;复制别名
+</code></pre><p>public abstract class AbstractUsernamePasswordAuthenticationHandler extends<br>    AbstractPreAndPostProcessingAuthenticationHandler {<br>     @NotNull<br>    private PasswordEncoder passwordEncoder = new PlainTextPasswordEncoder();<br>…}<br>@Component(“plainTextPasswordEncoder”)<br>public final class PlainTextPasswordEncoder implements PasswordEncoder {<br>    @Override<br>    public String encode(final String password) {<br>        return password;<br>    }<br>}<br>@Component(“defaultPasswordEncoder”)<br>public final class DefaultPasswordEncoder implements PasswordEncoder {</p>
+<pre><code>private static final char[] HEX_DIGITS = {&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;,
+                                            &#39;9&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;};
+private static final int HEX_RIGHT_SHIFT_COEFFICIENT = 4;
+private static final int HEX_HIGH_BITS_BITWISE_FLAG = 0x0f;
+private final String encodingAlgorithm;
+@Value(&quot;${cas.authn.password.encoding.char:}&quot;)
+private String characterEncoding;
+</code></pre><p>…}<br>```</p>
 <ul>
+<li>如果不设置passwordencoder即为无加密plainTextPasswordEncoder，我们修改别名使用defaultPasswordEncoder即为MD5加密,当然我们可以配置以下属性增加安全性<ul>
 <li>cas.jdbc.authn.query.encode.sql=</li>
 <li>cas.jdbc.authn.query.encode.alg=</li>
 <li>cas.jdbc.authn.query.encode.salt.static=</li>
@@ -212,11 +333,15 @@ SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -249,11 +374,11 @@ SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -361,10 +486,15 @@ SSO服务端生成keystore, 此文件用于tomcat/conf/server.xml中配置及导
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

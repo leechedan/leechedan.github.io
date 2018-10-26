@@ -12,18 +12,24 @@
 
     
     <meta name="description" content="需求由于假设了Zeppelin服务器，需要为数据团队提供python环境运行科学库算法。Python2.6为centos6.8系统默认自带同时被其yum工具依赖，2.6下使用科学库及数据库连接出现了较多问题，同时之前做过多次2.7升级，于是本次升级之后将工作记录下来备查，同时尽量写好脚本。
-操作为提高速度，可以在~/pip.ini中编辑增加以下内容1234[global]index-url = h">
+操作为提高速度，可以在~/pip.ini中编辑增加以下内容
+[global]
+index-url = htt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS升级Python2.7过程">
 <meta property="og:url" content="http://yoursite.com/2016/12/18/CentOS升级Python2.7过程/index.html">
 <meta property="og:site_name" content="Timmy live">
 <meta property="og:description" content="需求由于假设了Zeppelin服务器，需要为数据团队提供python环境运行科学库算法。Python2.6为centos6.8系统默认自带同时被其yum工具依赖，2.6下使用科学库及数据库连接出现了较多问题，同时之前做过多次2.7升级，于是本次升级之后将工作记录下来备查，同时尽量写好脚本。
-操作为提高速度，可以在~/pip.ini中编辑增加以下内容1234[global]index-url = h">
+操作为提高速度，可以在~/pip.ini中编辑增加以下内容
+[global]
+index-url = htt">
 <meta property="og:updated_time" content="2016-12-18T10:18:19.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS升级Python2.7过程">
 <meta name="twitter:description" content="需求由于假设了Zeppelin服务器，需要为数据团队提供python环境运行科学库算法。Python2.6为centos6.8系统默认自带同时被其yum工具依赖，2.6下使用科学库及数据库连接出现了较多问题，同时之前做过多次2.7升级，于是本次升级之后将工作记录下来备查，同时尽量写好脚本。
-操作为提高速度，可以在~/pip.ini中编辑增加以下内容1234[global]index-url = h">
+操作为提高速度，可以在~/pip.ini中编辑增加以下内容
+[global]
+index-url = htt">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -104,8 +110,49 @@
 		</div>
 		
 		<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>由于假设了Zeppelin服务器，需要为数据团队提供python环境运行科学库算法。Python2.6为centos6.8系统默认自带同时被其yum工具依赖，2.6下使用科学库及数据库连接出现了较多问题，同时之前做过多次2.7升级，于是本次升级之后将工作记录下来备查，同时尽量写好脚本。</p>
-<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>为提高速度，可以在~/pip.ini中编辑增加以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">index-url = http://pypi.douban.com/simple/</div><div class="line">[install]</div><div class="line">trusted-host=mirrors.douban.com</div></pre></td></tr></table></figure></p>
-<p>本次安装了matplotlib/MySQL-python及其依赖包。<br>首先下载matplotlib-1.5.3.tar.gz  Python-2.7.8.tar.xz numpy-1.11.2.tar.gz setuptools-1.4.2.tar.gz pip-1.5.5.tar.gz MySQL-python-1.2.4b4 scipy.tar.gz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">#libpng freetype为matplotlib需要，tk tcl tkinter gcc-c++ ssl为编译python需要  rpm ssl mysql python-devel为mysqldb需要</div><div class="line">yum install libpng-devel freetype-devel gcc-c++ tcl-devel tk-devel tkinter openssl openssl-devel rpm-build mysql-devel python-devel -y</div><div class="line">xz -d Python-2.7.8.tar.xz</div><div class="line">tar -xvf Python-2.7.8.tar</div><div class="line">cd Python-2.7.8</div><div class="line">mv Modules/Setup.dist Modules/Setup.dist.bak</div><div class="line">#本次centos安装的tk tcl为8.5版本，而python2.7安装包默认8.2版本，所以需要修改编译信息为8.5</div><div class="line">sed &apos;218,221s/^#//g;329s/^#//g;333s/^#//g;329s/^#//g;348s/^#//g;337s/^#//g;358s/^#//g;348s/8.2/8.5/g;&apos; Modules/Setup.dist.bak  &gt;Modules/Setup.dist</div><div class="line">./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; make install</div><div class="line">cd ..</div><div class="line">rm -f /usr/bin/python</div><div class="line">#将python命令进行软连接</div><div class="line">ln -s /usr/local/bin/python2.7  /usr/bin/python</div><div class="line">mv /usr/bin/yum /usr/bin/yum2.6</div><div class="line">#将yum指向系统原生默认的python位置/usr/bin/python2.6</div><div class="line">sed  &apos;s/bin\/python/bin\/python2.6/g&apos;  /usr/bin/yum2.6 &gt; /usr/bin/yum</div><div class="line">chmod 755 /usr/bin/yum*</div><div class="line">tar -zxvf setuptools-1.4.2.tar.gz &amp;&amp; cd setuptools-1.4.2 &amp;&amp; python setup.py install</div><div class="line">cd ..</div><div class="line">tar -zxvf numpy-1.11.2.tar.gz &amp;&amp; cd numpy-1.11.2 &amp;&amp; python setup.py install</div><div class="line">cd ../scipy &amp;&amp; python setup.py install</div><div class="line">cd ..</div><div class="line">tar -zxvf pip-1.5.5.tar.gz &amp;&amp; cd pip-1.5.5 &amp;&amp; python setup.py install</div><div class="line">rm -f /usr/local/bin/pip</div><div class="line">#pip备份并重新连接</div><div class="line">ln -s /usr/local/bin/pip2.7  /usr/local/bin/pip</div><div class="line">pip install python-dateutil cycler</div><div class="line">cd ..</div><div class="line">tar -zxvf matplotlib-1.5.3.tar.gz &amp;&amp; cd matplotlib-1.5.3 &amp;&amp; python setup.py install</div><div class="line">cd ..</div><div class="line">tar -zxvf MySQL-python-1.2.4b4.tar.gz &amp;&amp; cd MySQL-python-1.2.4b4</div><div class="line">mv site.cfg site.cfg.bak</div><div class="line">#修改mysql_config.cfg配置文件路径</div><div class="line">sed &apos;s/connector/#connector/g;s/#mysql/mysql/g;s/local\/bin/bin\/mysql/g&apos; site.cfg.bak &gt; site.cfg</div><div class="line">python setup.py install</div></pre></td></tr></table></figure></p>
+<h1 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h1><p>为提高速度，可以在~/pip.ini中编辑增加以下内容</p>
+<pre><code>[global]
+index-url = http://pypi.douban.com/simple/
+[install]
+trusted-host=mirrors.douban.com
+</code></pre><p>本次安装了matplotlib/MySQL-python及其依赖包。<br>首先下载matplotlib-1.5.3.tar.gz  Python-2.7.8.tar.xz numpy-1.11.2.tar.gz setuptools-1.4.2.tar.gz pip-1.5.5.tar.gz MySQL-python-1.2.4b4 scipy.tar.gz</p>
+<pre><code class="shell">#!/bin/sh
+#libpng freetype为matplotlib需要，tk tcl tkinter gcc-c++ ssl为编译python需要  rpm ssl mysql python-devel为mysqldb需要
+yum install libpng-devel freetype-devel gcc-c++ tcl-devel tk-devel tkinter openssl openssl-devel rpm-build mysql-devel python-devel -y
+xz -d Python-2.7.8.tar.xz
+tar -xvf Python-2.7.8.tar
+cd Python-2.7.8
+mv Modules/Setup.dist Modules/Setup.dist.bak
+#本次centos安装的tk tcl为8.5版本，而python2.7安装包默认8.2版本，所以需要修改编译信息为8.5
+sed &#39;218,221s/^#//g;329s/^#//g;333s/^#//g;329s/^#//g;348s/^#//g;337s/^#//g;358s/^#//g;348s/8.2/8.5/g;&#39; Modules/Setup.dist.bak  &gt;Modules/Setup.dist
+./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; make install
+cd ..
+rm -f /usr/bin/python
+#将python命令进行软连接
+ln -s /usr/local/bin/python2.7  /usr/bin/python
+mv /usr/bin/yum /usr/bin/yum2.6
+#将yum指向系统原生默认的python位置/usr/bin/python2.6
+sed  &#39;s/bin\/python/bin\/python2.6/g&#39;  /usr/bin/yum2.6 &gt; /usr/bin/yum
+chmod 755 /usr/bin/yum*
+tar -zxvf setuptools-1.4.2.tar.gz &amp;&amp; cd setuptools-1.4.2 &amp;&amp; python setup.py install
+cd ..
+tar -zxvf numpy-1.11.2.tar.gz &amp;&amp; cd numpy-1.11.2 &amp;&amp; python setup.py install
+cd ../scipy &amp;&amp; python setup.py install
+cd ..
+tar -zxvf pip-1.5.5.tar.gz &amp;&amp; cd pip-1.5.5 &amp;&amp; python setup.py install
+rm -f /usr/local/bin/pip
+#pip备份并重新连接
+ln -s /usr/local/bin/pip2.7  /usr/local/bin/pip
+pip install python-dateutil cycler
+cd ..
+tar -zxvf matplotlib-1.5.3.tar.gz &amp;&amp; cd matplotlib-1.5.3 &amp;&amp; python setup.py install
+cd ..
+tar -zxvf MySQL-python-1.2.4b4.tar.gz &amp;&amp; cd MySQL-python-1.2.4b4
+mv site.cfg site.cfg.bak
+#修改mysql_config.cfg配置文件路径
+sed &#39;s/connector/#connector/g;s/#mysql/mysql/g;s/local\/bin/bin\/mysql/g&#39; site.cfg.bak &gt; site.cfg
+python setup.py install
+</code></pre>
 <h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>在python-shell中输入import matplotlib以及import MySQLdb如果不报错，即表示成功安装</p>
 <h1 id="本文完"><a href="#本文完" class="headerlink" title="本文完"></a>本文完</h1>  
 	</div>
@@ -178,11 +225,15 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -215,11 +266,11 @@
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -327,10 +378,15 @@
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

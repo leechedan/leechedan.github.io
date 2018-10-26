@@ -101,7 +101,99 @@
 		</div>
 		
 		<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><p>将Zeppelin-0.6.2部署之后，今天替换成yarn-client模式报错了。背景已经将原生的hadoop三jar包替换成2.7.2，zeppelin里面也只有2.7.2的版本号，不知道具体原因为何。查询关键报失的函数retryOtherThanRemoteException发现竟然是在2.7.3中出现的，猜想全部替换成2.7.3肯定可以解决，但是不清楚问题来源，会不会是zeppelin的jar包经过2.7.3的hadoop编译而来。<br>. 既然确定是2.7.3及以上的hadoop版本引发的问题，name肯定是某个地方引入了2.7.2以上版本jar包带来的问题，在搜索hadoop的jar包以及zeppelin-local-repo文件夹之后，转到spark的lib目录发现holly shit一堆的2.7.3jar包，日了我。</p>
-<h2 id="错误日志如下"><a href="#错误日志如下" class="headerlink" title="错误日志如下"></a>错误日志如下</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">ERROR [2016-12-19 20:07:54,103] (&#123;pool-1-thread-5&#125; Utils.java[invokeMethod]:40) - </div><div class="line">java.lang.reflect.InvocationTargetException</div><div class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</div><div class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</div><div class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</div><div class="line">	at java.lang.reflect.Method.invoke(Method.java:497)</div><div class="line">	at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)</div><div class="line">	at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.createSparkSession(SparkInterpreter.java:347)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.getSparkSession(SparkInterpreter.java:217)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:816)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:512)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:181)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:159)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.getProgress(LazyOpenInterpreter.java:110)</div><div class="line">	at org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer.getProgress(RemoteInterpreterServer.java:404)</div><div class="line">	at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1509)</div><div class="line">	at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1494)</div><div class="line">	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)</div><div class="line">	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)</div><div class="line">	at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:285)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</div><div class="line">	at java.lang.Thread.run(Thread.java:745)</div><div class="line">Caused by: java.lang.NoSuchMethodError: org.apache.hadoop.io.retry.RetryPolicies.retryOtherThanRemoteException(Lorg/apache/hadoop/io/retry/RetryPolicy;Ljava/util/Map;)Lorg/apache/hadoop/io/retry/RetryPolicy;</div><div class="line">	at org.apache.hadoop.yarn.client.RMProxy.createRetryPolicy(RMProxy.java:255)</div><div class="line">	at org.apache.hadoop.yarn.client.RMProxy.createRMProxy(RMProxy.java:91)</div><div class="line">	at org.apache.hadoop.yarn.client.ClientRMProxy.createRMProxy(ClientRMProxy.java:72)</div><div class="line">	at org.apache.hadoop.yarn.client.api.impl.YarnClientImpl.serviceStart(YarnClientImpl.java:187)</div><div class="line">	at org.apache.hadoop.service.AbstractService.start(AbstractService.java:193)</div><div class="line">	at org.apache.spark.deploy.yarn.Client.submitApplication(Client.scala:151)</div><div class="line">	at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:56)</div><div class="line">	at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:149)</div><div class="line">	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:497)</div><div class="line">	at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2258)</div><div class="line">	at org.apache.spark.sql.SparkSession$Builder$$anonfun$8.apply(SparkSession.scala:831)</div><div class="line">	at org.apache.spark.sql.SparkSession$Builder$$anonfun$8.apply(SparkSession.scala:823)</div><div class="line">	at scala.Option.getOrElse(Option.scala:121)</div><div class="line">	at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:823)</div><div class="line">	... 24 more</div><div class="line"> INFO [2016-12-19 20:07:54,104] (&#123;pool-1-thread-5&#125; SparkInterpreter.java[createSparkSession]:348) - Created Spark session</div><div class="line">ERROR [2016-12-19 20:07:54,104] (&#123;pool-1-thread-5&#125; PySparkInterpreter.java[open]:161) - Error</div><div class="line">java.lang.NullPointerException</div><div class="line">	at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)</div><div class="line">	at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext_2(SparkInterpreter.java:367)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext(SparkInterpreter.java:356)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.getSparkContext(SparkInterpreter.java:138)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:818)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:512)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:181)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:159)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.getProgress(LazyOpenInterpreter.java:110)</div><div class="line">	at org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer.getProgress(RemoteInterpreterServer.java:404)</div><div class="line">	at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1509)</div><div class="line">	at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1494)</div><div class="line">	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)</div><div class="line">	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)</div><div class="line">	at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:285)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</div><div class="line">	at java.lang.Thread.run(Thread.java:745)</div><div class="line">ERROR [2016-12-19 20:07:54,104] (&#123;pool-1-thread-5&#125; TThreadPoolServer.java[run]:296) - Error occurred during processing of message.</div><div class="line">org.apache.zeppelin.interpreter.InterpreterException: java.lang.NullPointerException</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:162)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.getProgress(LazyOpenInterpreter.java:110)</div><div class="line">	at org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer.getProgress(RemoteInterpreterServer.java:404)</div><div class="line">	at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1509)</div><div class="line">	at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1494)</div><div class="line">	at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)</div><div class="line">	at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)</div><div class="line">	at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:285)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)</div><div class="line">	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)</div><div class="line">	at java.lang.Thread.run(Thread.java:745)</div><div class="line">Caused by: java.lang.NullPointerException</div><div class="line">	at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)</div><div class="line">	at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext_2(SparkInterpreter.java:367)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext(SparkInterpreter.java:356)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.getSparkContext(SparkInterpreter.java:138)</div><div class="line">	at org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:818)</div><div class="line">	at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:512)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:181)</div><div class="line">	at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:159)</div><div class="line">	... 11 more</div></pre></td></tr></table></figure>
+<h2 id="错误日志如下"><a href="#错误日志如下" class="headerlink" title="错误日志如下"></a>错误日志如下</h2><pre><code class="shell">ERROR [2016-12-19 20:07:54,103] ({pool-1-thread-5} Utils.java[invokeMethod]:40) - 
+java.lang.reflect.InvocationTargetException
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+    at java.lang.reflect.Method.invoke(Method.java:497)
+    at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)
+    at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)
+    at org.apache.zeppelin.spark.SparkInterpreter.createSparkSession(SparkInterpreter.java:347)
+    at org.apache.zeppelin.spark.SparkInterpreter.getSparkSession(SparkInterpreter.java:217)
+    at org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:816)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)
+    at org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:512)
+    at org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:181)
+    at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:159)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.getProgress(LazyOpenInterpreter.java:110)
+    at org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer.getProgress(RemoteInterpreterServer.java:404)
+    at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1509)
+    at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1494)
+    at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+    at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+    at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:285)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NoSuchMethodError: org.apache.hadoop.io.retry.RetryPolicies.retryOtherThanRemoteException(Lorg/apache/hadoop/io/retry/RetryPolicy;Ljava/util/Map;)Lorg/apache/hadoop/io/retry/RetryPolicy;
+    at org.apache.hadoop.yarn.client.RMProxy.createRetryPolicy(RMProxy.java:255)
+    at org.apache.hadoop.yarn.client.RMProxy.createRMProxy(RMProxy.java:91)
+    at org.apache.hadoop.yarn.client.ClientRMProxy.createRMProxy(ClientRMProxy.java:72)
+    at org.apache.hadoop.yarn.client.api.impl.YarnClientImpl.serviceStart(YarnClientImpl.java:187)
+    at org.apache.hadoop.service.AbstractService.start(AbstractService.java:193)
+    at org.apache.spark.deploy.yarn.Client.submitApplication(Client.scala:151)
+    at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend.start(YarnClientSchedulerBackend.scala:56)
+    at org.apache.spark.scheduler.TaskSchedulerImpl.start(TaskSchedulerImpl.scala:149)
+    at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:497)
+    at org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2258)
+    at org.apache.spark.sql.SparkSession$Builder$$anonfun$8.apply(SparkSession.scala:831)
+    at org.apache.spark.sql.SparkSession$Builder$$anonfun$8.apply(SparkSession.scala:823)
+    at scala.Option.getOrElse(Option.scala:121)
+    at org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:823)
+    ... 24 more
+ INFO [2016-12-19 20:07:54,104] ({pool-1-thread-5} SparkInterpreter.java[createSparkSession]:348) - Created Spark session
+ERROR [2016-12-19 20:07:54,104] ({pool-1-thread-5} PySparkInterpreter.java[open]:161) - Error
+java.lang.NullPointerException
+    at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)
+    at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)
+    at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext_2(SparkInterpreter.java:367)
+    at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext(SparkInterpreter.java:356)
+    at org.apache.zeppelin.spark.SparkInterpreter.getSparkContext(SparkInterpreter.java:138)
+    at org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:818)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)
+    at org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:512)
+    at org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:181)
+    at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:159)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.getProgress(LazyOpenInterpreter.java:110)
+    at org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer.getProgress(RemoteInterpreterServer.java:404)
+    at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1509)
+    at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1494)
+    at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+    at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+    at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:285)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+ERROR [2016-12-19 20:07:54,104] ({pool-1-thread-5} TThreadPoolServer.java[run]:296) - Error occurred during processing of message.
+org.apache.zeppelin.interpreter.InterpreterException: java.lang.NullPointerException
+    at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:162)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.getProgress(LazyOpenInterpreter.java:110)
+    at org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer.getProgress(RemoteInterpreterServer.java:404)
+    at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1509)
+    at org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService$Processor$getProgress.getResult(RemoteInterpreterService.java:1494)
+    at org.apache.thrift.ProcessFunction.process(ProcessFunction.java:39)
+    at org.apache.thrift.TBaseProcessor.process(TBaseProcessor.java:39)
+    at org.apache.thrift.server.TThreadPoolServer$WorkerProcess.run(TThreadPoolServer.java:285)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NullPointerException
+    at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:38)
+    at org.apache.zeppelin.spark.Utils.invokeMethod(Utils.java:33)
+    at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext_2(SparkInterpreter.java:367)
+    at org.apache.zeppelin.spark.SparkInterpreter.createSparkContext(SparkInterpreter.java:356)
+    at org.apache.zeppelin.spark.SparkInterpreter.getSparkContext(SparkInterpreter.java:138)
+    at org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:818)
+    at org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)
+    at org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:512)
+    at org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:181)
+    at org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:159)
+    ... 11 more
+</code></pre>
 <h2 id="本文未完待编辑"><a href="#本文未完待编辑" class="headerlink" title="本文未完待编辑"></a>本文未完待编辑</h2>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -115,7 +207,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/centos/">centos</a><a href="/tags/hadoop/">hadoop</a><a href="/tags/yarn-client/">yarn-client</a>
+  <span></span> <a href="/tags/hadoop/">hadoop</a><a href="/tags/centos/">centos</a><a href="/tags/yarn-client/">yarn-client</a>
   </div>
 
 </div>
@@ -178,11 +270,15 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -215,11 +311,11 @@
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -327,10 +423,15 @@
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

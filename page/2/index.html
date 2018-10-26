@@ -75,13 +75,54 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
+    <a href="/2016/07/22/Correlation/" title="Correlation" itemprop="url">
+  
+    <h1 itemprop="name">Correlation</h1>
+    
+     
+           <p itemprop="description" >转自 DM张朋飞 CNBlogs数学期望的理解微笑早些时候，法国有两个大数学家，一个叫做布莱士·帕斯卡，一个叫做费马。帕斯卡认识两个赌徒，这两个赌徒向他提出了一个问题。他们说，他俩下赌金之后，约定谁先赢满5局，谁就获得全部赌金。赌了半天，A赢了4局，B赢了3局，时间很晚了，他们都</p>
+        
+    
+    <time datetime="2016-07-22T09:51:27.000Z" itemprop="datePublished">2016-07-22</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2016/07/17/Cf-Cluster/" title="基于模糊聚类和协同过滤的混合推荐系统" itemprop="url">
+  
+    <h1 itemprop="name">基于模糊聚类和协同过滤的混合推荐系统</h1>
+    
+     
+           <p itemprop="description" >转自 DM张朋飞 CNBlogsHybrid Recommender System based on Fuzzy Clustering and Collaborative Filtering给出题目，想找的话直接在ElsevierSD里下载即可。并不是逐句翻译，一些简单的背景比如</p>
+        
+    
+    <time datetime="2016-07-17T14:00:00.000Z" itemprop="datePublished">2016-07-17</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
     <a href="/2016/07/17/Zookeeper集群安装手册/" title="Zookeeper集群搭建手册" itemprop="url">
   
     <h1 itemprop="name">Zookeeper集群搭建手册</h1>
     
      
            <p itemprop="description" >Abstractzookeeper的作用重点在于提供数据交换，抵抗物理宕机引起的服务不可用带来的影响，首先更重要的是代码的质量、健壮性。这里记录一下自己搭建集群的过程
-安装配置过程node-01机器12345678echo &amp;quot;192.168.1.11 lee1&amp;quot</p>
+安装配置过程node-01机器
+echo &amp;quot;192.168.1.11 lee1&amp;quot; &amp;gt;&amp;</p>
         
     
     <time datetime="2016-07-17T05:05:49.000Z" itemprop="datePublished">2016-07-17</time>
@@ -108,7 +149,7 @@
 测试
 
 1. 环境及版本介绍1.1 机器Centos6.8关闭防火墙服务启动 chkconfig iptables off停止防火墙 service iptables stop
-1.2 yarn 2.7.212345外层的启动脚本</p>
+1.2 yarn 2.7.2外层的启动脚本在sbin</p>
         
     
     <time datetime="2016-07-16T13:05:49.000Z" itemprop="datePublished">2016-07-16</time>
@@ -177,11 +218,15 @@ ecli</p>
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -214,11 +259,11 @@ ecli</p>
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -326,10 +371,15 @@ ecli</p>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

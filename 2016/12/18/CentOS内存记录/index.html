@@ -105,7 +105,20 @@
 		
 		<h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><p>由于将NM的内存比例调成5，使得yarn-client模式可以执行任务，任务结束后，内存没有释放，free -m与 ps -auf统计的数值差别较大，于是查看具体原因</p>
 <h2 id="缓存机制介绍"><a href="#缓存机制介绍" class="headerlink" title="缓存机制介绍"></a>缓存机制介绍</h2><p>为了提高文件系统性能，内核利用一部分物理内存分配出缓冲区，用于缓存系统操作和数据文件，当内核收到读写的请求时，内核先去缓存区找是否有请求的数据，有就直接返回，如果没有则通过驱动程序直接操作磁盘。<br>缓存机制优点：减少系统调用次数，降低CPU上下文切换和磁盘访问频率。</p>
-<h2 id="内存统计命令"><a href="#内存统计命令" class="headerlink" title="内存统计命令"></a>内存统计命令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">cat /proc/meminfo</div><div class="line">free -g</div><div class="line">#根据程序占用进行内存统计,与上两命令差别在于缓存未统计</div><div class="line">ps aux | awk &apos;&#123;mem += $6&#125; END &#123;print mem/1024/1024&#125;&apos;</div><div class="line">#查看进程的缓存</div><div class="line">slabtop --sort=c</div><div class="line">#清理缓存</div><div class="line">#释放pagecache</div><div class="line">echo 1 &gt;/proc/sys/vm/drop_caches</div><div class="line">##释放dentries和inodes</div><div class="line">echo 2 &gt;/proc/sys/vm/drop_caches</div><div class="line">#释放pagecache、dentries和inodes</div><div class="line">echo 3 &gt;/proc/sys/vm/drop_caches</div></pre></td></tr></table></figure>
+<h2 id="内存统计命令"><a href="#内存统计命令" class="headerlink" title="内存统计命令"></a>内存统计命令</h2><pre><code class="shell">cat /proc/meminfo
+free -g
+#根据程序占用进行内存统计,与上两命令差别在于缓存未统计
+ps aux | awk &#39;{mem += $6} END {print mem/1024/1024}&#39;
+#查看进程的缓存
+slabtop --sort=c
+#清理缓存
+#释放pagecache
+echo 1 &gt;/proc/sys/vm/drop_caches
+##释放dentries和inodes
+echo 2 &gt;/proc/sys/vm/drop_caches
+#释放pagecache、dentries和inodes
+echo 3 &gt;/proc/sys/vm/drop_caches
+</code></pre>
 <h2 id="本文完"><a href="#本文完" class="headerlink" title="本文完"></a>本文完</h2>  
 	</div>
 		<footer class="article-footer clearfix">
@@ -182,11 +195,15 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -219,11 +236,11 @@
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -331,10 +348,15 @@
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

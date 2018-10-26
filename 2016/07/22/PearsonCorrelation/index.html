@@ -140,10 +140,190 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 </table>
 <p>皮尔逊相关也称为积差相关（或积矩相关）是英国统计学家皮尔逊于20世纪提出的一种计算直线相关的方法。<br>假设有两个变量X、Y，那么两变量间的皮尔逊相关系数可通过以下公式计算：<br><img src="caculate.png" alt=""><br>从公式一可以看出只要两个变量的标准差都不为0相关系数才有意义。<br>该系数不足：需要指出的是，相关系数有一个明显的缺点，即它接近于1的程度与数据组数n相关，这容易给人一种假象。因为，当n较小时，相关系数的波动较大，对有些样本相关系数的绝对值易接近于1；当n较大时，相关系数的绝对值容易偏小。特别是当n=2时，相关系数的绝对值总为1。因此在样本容量n较小时，我们仅凭相关系数较大就判定变量x与y之间有密切的线性关系是不妥当的。</p>
 <h3 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h3><p>我们先做个词法分析基于用户说明这个算法是以用户为主体的算法，这种以用户为主体的算法比较强调的是社会性的属性，也就是说这类算法更加强调把和你有相似爱好的其他的用户的物品推荐给你，与之对应的是基于物品的推荐算法，这种更加强调把和你你喜欢的物品相似的物品推荐给你。然后就是协同过滤了，所谓协同就是大家一起帮助你啦，然后后面跟个过滤，就是大家是商量过后才把结果告诉你的，不然信息量太大了。所以，综合起来说就是这么一个算法，那些和你有相似爱好的小伙伴们一起来商量一下，然后告诉你什么东西你会喜欢。<br>如何计算相似度，可采用皮尔森相关系数也可以用交集除以并集，本篇只介绍第一种。<br>如何找最近邻K呢？我们知道，在找和你兴趣爱好相似的小伙伴的时候，我们可能可以找到几百个，但是有些是好基友，但有些只是普通朋友，那么一般的，我们会定一个数K，和你最相似的K个小伙伴就是你的好基友了，他们的爱好可能和你的爱好相差不大，让他们来推荐东西给你（比如肥皂）是最好不过了。<br>何为和你相似呢？简单的说就是，比如你喜欢macbook,iphone,ipad，A小伙伴喜欢macbook,iphone,note2,小米盒子,肥皂，蜡烛,B小伙伴喜欢macbook,iphone,ipad,肥皂,润肤霜,C女神喜欢雅诗兰黛,SK2,香奈儿，D屌丝喜欢ipad,诺基亚8250,小霸王学习机那么很明显，B小伙伴和你更加相似，而C女神完全和你不在一个档次上，那我们推荐的时候会把肥皂推荐给你，因为我们觉得肥皂可能最适合你。<br>那么，如何找出这K个基友呢？最直接的办法就是把目标用户和数据库中的所有用户进行比较，找出和目标用户最相似的K个用户，这就是好基友了。<br>这么做理论上是没什么问题的，但是当数据量巨大的时候，计算K个基友的时间将会非常长，而且你想想就知道，数据库中的大部分用户其实和你是没有什么交集的，所没必要计算所有用户了，只需要计算和你有交集的用户就行了。要计算和你有交集的用户，就要用到物品到用户的反查表，什么是反查表呢？很简单，还是是上面那个AB小伙伴和C女神的例子，反查表就是喜欢macbook的有你，A，B，喜欢iphone的有你，B。。。就是喜欢某些物品的用户，有了这个表，我们就可以看出来，和你有关系的用户就只有A和B，D了，而C女神和你没有任何交集，所以不用去想C了。<br>这样，我们有了A和B,D，然后就分别计算A和B,D与你的相似度，不管用哪个相似性公式，我们算出来都是B和你更相似(在这个例子中，一般会用Jaccard来计算，因为这些向量不是特别好余弦化)，但如果此时我们的K设定为2，那么我们就得出了与你最相邻的基友是B和A。<br>这就是与目标用户最相邻的K个用户的计算。通过这K个用户来推荐商品了<br>好了，你的好基友我们也算出来了，接下来要向你推荐商品了。但是我们可推荐的商品有小米盒子，note2，蜡烛，润肤霜，肥皂这么四种，到底哪种才是你需要的呢？这里的算法就比较广泛了，我们可以不排序，都一股脑推荐给你，但这明显可能有些你不怎么感兴趣，我们也可以做一些处理，假如我们算出来A和你的相似度是25%，B和你的相似度是80%，那么对于上面这些产品，我们的推荐度可以这么来算<br>小米盒子: 1<em>0.25 = 0.25<br>note2: 1</em>0.25 = 0.25<br>蜡烛: 1<em>0.25 = 0.25<br>润肤霜: 1</em>0.8 = 0.8<br>肥皂: 1<em>0.8+1</em>0.25=1.05<br>好了，通过这个例子，你大概知道了为什么会推荐肥皂给你了吧，这就是基于用户的协同推荐算法的描述，总结起来就是这么几步<br>1.计算其他用户和你的相似度，可以使用反差表忽略一部分用户<br>2.根据相似度的高低找出K个与你最相似的邻居<br>3.在这些邻居喜欢的物品中，根据邻居与你的远近程度算出每一件物品的推荐度<br>4.根据每一件物品的推荐度高低给你推荐物品。<br>比如上面那个例子，首先，我们通过反查表忽略掉了C女神，然后计算出A和B,D与你的相似度，然后根据K=2找出最相似的邻居A和B，接着根据A,B与你相似度计算出每件物品的推荐度并排序，最后根据排好序的推荐度给你推荐商品。<br>这个算法实现起来也比较简单，但是在实际应用中有时候也会有问题的。<br>     比如一些非常流行的商品可能很多人都喜欢，这种商品推荐给你就没什么意义了，所以计算的时候需要对这种商品加一个权重或者把这种商品完全去掉也行。再有，对于一些通用的东西，比如买书的时候的工具书，如现代汉语词典，新华字典神马的，通用性太强了，推荐也没什么必要了。<br>这些都是推荐系统的脏数据，如何去掉脏数据，这是数据预处理的时候事情了，这里就不多说了。<br>     例：由于用户给电影打分有好有坏[1到5分]，而我们上面的例子中都是说的喜欢某件物品而没有说不喜欢的情况，所以首先，我们要把数据处理一下，简单的来做，我们可以认为3分以上的话代表这个用户喜欢这个电影，否则就是不喜欢，这样显得有点太死板了，我们也可以这么来定义，比如用户A对30部电影打分了，首先求出他打分的平均值，然后高于这个平均值的我们觉得用户喜欢这个电影，否则认为他不喜欢。<br>     主要参考文献<a href="http://blog.csdn.net/ygrx/article/details/15501679" target="_blank" rel="external">http://blog.csdn.net/ygrx/article/details/15501679</a></p>
-<h3 id="发现的问题"><a href="#发现的问题" class="headerlink" title="发现的问题"></a>发现的问题</h3><pre><code>发现了二个知识点。
+<h3 id="发现的问题"><a href="#发现的问题" class="headerlink" title="发现的问题"></a>发现的问题</h3><pre><code>  发现了二个知识点。
 </code></pre><p>报空指针异常<br>   Node[] recommend = new Node[preference[0].length];<br>       for(int j=0; j&lt;recommend.length; j++) {<br>         recommend[j] = new Node();<br>       }<br>     对recommend数组new完空间后必须用for循环一个一个初始化，否则recommend[i].itemID就会包空指针，因为recommend[i]本身就是null。<br>数组参数<br>   public Point[] calcPearson(int i, int[][] preference) {<br>       Point[] pearCorrelation = new Point[preference.length-1];<br>       数组pearsonCorrelation里可以直接用形参的preference的属性，比如长度，实际上就是地址传递，当然可以了。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>可能某些地方有些小错误，希望路过的指出来，文件粘贴在工程路径下。
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">package</span> util;</div><div class="line">  <span class="keyword">import</span> java.io.BufferedReader;</div><div class="line">  <span class="keyword">import</span> java.io.File;</div><div class="line">  <span class="keyword">import</span> java.io.FileNotFoundException;</div><div class="line">  <span class="keyword">import</span> java.io.FileReader;</div><div class="line">  <span class="keyword">import</span> java.io.IOException;</div><div class="line">  <span class="keyword">import</span> java.security.acl.Permission;</div><div class="line">  <span class="keyword">import</span> java.util.Arrays;</div><div class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CollaborFiltering</span> </span>&#123;</div><div class="line">   <span class="comment">/**</span></div><div class="line">    * <span class="doctag">@param</span> args</div><div class="line">    */</div><div class="line">   <span class="comment">//找最相关的5个人进行推荐，没有判断强弱相关</span></div><div class="line">   <span class="keyword">static</span> <span class="keyword">int</span> NEARK = <span class="number">5</span>;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">     <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">     CollaborFiltering cf = <span class="keyword">new</span> CollaborFiltering();</div><div class="line">     <span class="keyword">int</span>[][] preference = cf.readFile(<span class="string">"preference.data"</span>);</div><div class="line">     <span class="comment">//System.out.println(cf);</span></div><div class="line"> <span class="comment">//    for(int i=0; i&lt;preference.length; i++) &#123;</span></div><div class="line"> <span class="comment">//      for(int j=0; j&lt;preference[0].length;j++) &#123;</span></div><div class="line"> <span class="comment">//        System.out.print(preference[i][j]+" ");</span></div><div class="line"> <span class="comment">//      &#125;</span></div><div class="line"> <span class="comment">//      System.out.println();</span></div><div class="line"> <span class="comment">//    &#125;</span></div><div class="line">     <span class="comment">//System.out.println(preference);</span></div><div class="line">     cf.go(preference);</div><div class="line">   &#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">(<span class="keyword">int</span>[][] preference)</span> </span>&#123;</div><div class="line">     <span class="comment">//物品数目</span></div><div class="line">     <span class="keyword">int</span> itemNum = preference[<span class="number">0</span>].length;</div><div class="line">     <span class="comment">//对于每个用户</span></div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;preference.length; i++) &#123;</div><div class="line">       <span class="comment">//计算每个用户和其他用户的相似系数存入Point pearCorrelation中</span></div><div class="line">       Point[] pearCorrelation = calcPearson(i,preference);</div><div class="line">       Arrays.sort(pearCorrelation);</div><div class="line">       <span class="comment">//只取前NEARK个，对每种不存在于用户i的物品计算推荐度</span></div><div class="line">       <span class="comment">//如果每种都有，则不推荐</span></div><div class="line">       Node[] recommend = calcRecommendation(i,pearCorrelation,preference);</div><div class="line">       Arrays.sort(recommend);</div><div class="line">       <span class="comment">//输出前3中推荐物品</span></div><div class="line">       System.out.print(<span class="string">"第"</span>+i+<span class="string">"个用户的前三个推荐物品及推荐度为："</span>);</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;<span class="number">3</span>; j++) &#123;</div><div class="line">         System.out.println(recommend[j].itemId+<span class="string">"物品，推荐度为"</span>+recommend[j].recommendation);</div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">   &#125;</div><div class="line">   <span class="keyword">public</span> Node[] calcRecommendation(<span class="keyword">int</span> i,Point[] pearCorrelation,<span class="keyword">int</span>[][] preference) &#123;</div><div class="line">     <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">     Node[] recommend = <span class="keyword">new</span> Node[preference[<span class="number">0</span>].length];</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;recommend.length; j++) &#123;</div><div class="line">       recommend[j] = <span class="keyword">new</span> Node();</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">int</span> t = <span class="number">0</span>;<span class="comment">//recommend下标</span></div><div class="line">     <span class="comment">//对每种不存在于i的物品计算推荐度</span></div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;preference[<span class="number">0</span>].length; j++) &#123;</div><div class="line">       <span class="keyword">if</span>(preference[i][j]==<span class="number">0</span>) &#123;</div><div class="line">         recommend[t].itemId = j;</div><div class="line">         <span class="keyword">double</span> temp = <span class="number">0.0</span>;</div><div class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;NEARK; k++) &#123;</div><div class="line">           temp += preference[pearCorrelation[k].userID][j]</div><div class="line">               *pearCorrelation[k].correlation;</div><div class="line">         &#125;</div><div class="line">         recommend[t].recommendation = temp;</div><div class="line">         t++;</div><div class="line">       &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span> recommend;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//计算i用户和其他用户的皮尔森系数</span></div><div class="line">   <span class="keyword">public</span> Point[] calcPearson(<span class="keyword">int</span> i, <span class="keyword">int</span>[][] preference) &#123;</div><div class="line">     <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">     <span class="comment">//System.out.println(preference.length);</span></div><div class="line">     <span class="comment">//不是preference[0].length</span></div><div class="line">     Point[] pearCorrelation = <span class="keyword">new</span> Point[preference.length-<span class="number">1</span>];</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;pearCorrelation.length; j++) &#123;</div><div class="line">       pearCorrelation[j] = <span class="keyword">new</span> Point();</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">int</span> t = <span class="number">0</span>;<span class="comment">//pearCorrelation的下标</span></div><div class="line">     <span class="keyword">double</span> sumX = <span class="number">0</span>;</div><div class="line">     <span class="keyword">double</span> sumY = <span class="number">0</span>;</div><div class="line">     <span class="keyword">double</span> squareX = <span class="number">0</span>;</div><div class="line">     <span class="keyword">double</span> squareY = <span class="number">0</span>;</div><div class="line">     <span class="keyword">double</span> sumXTimesY = <span class="number">0</span>;</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;preference[<span class="number">0</span>].length; j++) &#123;</div><div class="line">       sumX += preference[i][j];</div><div class="line">       squareX += preference[i][j]*preference[i][j];</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;preference.length; k++) &#123;</div><div class="line">       <span class="keyword">if</span>(k!=i) &#123;</div><div class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;preference[<span class="number">0</span>].length; j++) &#123;</div><div class="line">           sumY += preference[k][j];</div><div class="line">          squareY += preference[k][j]*preference[k][j];</div><div class="line">          sumXTimesY += preference[i][j]*preference[k][j];</div><div class="line">        &#125;</div><div class="line"><span class="comment">//        System.out.println(t);</span></div><div class="line"><span class="comment">//        System.out.println(pearCorrelation[t]);</span></div><div class="line">        pearCorrelation[t].userID = k;</div><div class="line">        <span class="keyword">int</span> n = preference[<span class="number">0</span>].length;</div><div class="line">        <span class="comment">//公式4，不用2，怕出现大数</span></div><div class="line">        <span class="keyword">double</span> temp = (sumXTimesY - sumX*sumY/n)</div><div class="line">            /(Math.sqrt((squareX - sumX*sumX/n)*(squareY - sumY*sumY/n)));</div><div class="line">        pearCorrelation[t].correlation = temp;</div><div class="line">        sumY = <span class="number">0</span>;</div><div class="line">        squareY = <span class="number">0</span>;</div><div class="line">        sumXTimesY = <span class="number">0</span>;</div><div class="line">        t++;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> pearCorrelation;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[][] readFile(String filename) &#123;</div><div class="line">    File file = <span class="keyword">new</span> File(filename);</div><div class="line">    FileReader fr;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    String line = <span class="string">""</span>;</div><div class="line">    <span class="comment">//想让数据的列等于数据列，找到了方法，但感觉还不如直接写呢</span></div><div class="line">    <span class="comment">//行：br.readLine().split(",").length;</span></div><div class="line">    <span class="comment">//列：几次br.readLine()就几次</span></div><div class="line">    <span class="keyword">int</span>[][] preference = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>][<span class="number">8</span>];</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      fr = <span class="keyword">new</span> FileReader(file);</div><div class="line">      BufferedReader br = <span class="keyword">new</span> BufferedReader(fr);</div><div class="line">      String[] data = <span class="keyword">new</span> String[<span class="number">10</span>];</div><div class="line">      <span class="keyword">while</span>(br.ready()) &#123;</div><div class="line">        data = br.readLine().split(<span class="string">","</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;data.length; j++) &#123;</div><div class="line">          preference[i][j] = Integer.parseInt(data[j]);</div><div class="line">        &#125;</div><div class="line">        i++;</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">      <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">      e.printStackTrace();</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">      <span class="comment">// TODO Auto-generated catch block</span></div><div class="line">      e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> preference;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Point</span>&gt;</span>&#123;</div><div class="line">  <span class="keyword">double</span> correlation;</div><div class="line">  <span class="keyword">int</span> userID;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> correlation, <span class="keyword">int</span> userID)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.correlation = correlation;</div><div class="line">    <span class="keyword">this</span>.userID = userID;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.correlation = <span class="number">0.0</span>;</div><div class="line">    <span class="keyword">this</span>.userID = <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Point o)</span> </span>&#123;</div><div class="line">    <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">    <span class="comment">//向上取整</span></div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)Math.ceil(o.correlation - <span class="keyword">this</span>.correlation);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Node</span>&gt; </span>&#123;</div><div class="line">  <span class="keyword">int</span> itemId;</div><div class="line">  <span class="keyword">double</span> recommendation;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> itemId, <span class="keyword">double</span> recommendation)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.itemId = itemId;</div><div class="line">    <span class="keyword">this</span>.recommendation = recommendation;</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>();</div><div class="line">    <span class="keyword">this</span>.itemId = <span class="number">0</span>;</div><div class="line">    <span class="keyword">this</span>.recommendation = <span class="number">0.0</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Node o)</span> </span>&#123;</div><div class="line">    <span class="comment">// TODO Auto-generated method stub</span></div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)Math.ceil(o.recommendation - <span class="keyword">this</span>.recommendation);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>  可能某些地方有些小错误，希望路过的指出来，文件粘贴在工程路径下。
+</code></pre><pre><code class="java">   package util;
+   import java.io.BufferedReader;
+   import java.io.File;
+   import java.io.FileNotFoundException;
+   import java.io.FileReader;
+   import java.io.IOException;
+   import java.security.acl.Permission;
+   import java.util.Arrays;
+  public class CollaborFiltering {
+    /**
+     * @param args
+     */
+    //找最相关的5个人进行推荐，没有判断强弱相关
+    static int NEARK = 5;
+    public static void main(String[] args) {
+      // TODO Auto-generated method stub
+      CollaborFiltering cf = new CollaborFiltering();
+      int[][] preference = cf.readFile(&quot;preference.data&quot;);
+      //System.out.println(cf);
+  //    for(int i=0; i&lt;preference.length; i++) {
+  //      for(int j=0; j&lt;preference[0].length;j++) {
+  //        System.out.print(preference[i][j]+&quot; &quot;);
+  //      }
+  //      System.out.println();
+  //    }
+      //System.out.println(preference);
+      cf.go(preference);
+    }
+    public void go(int[][] preference) {
+      //物品数目
+      int itemNum = preference[0].length;
+      //对于每个用户
+      for(int i=0; i&lt;preference.length; i++) {
+        //计算每个用户和其他用户的相似系数存入Point pearCorrelation中
+        Point[] pearCorrelation = calcPearson(i,preference);
+        Arrays.sort(pearCorrelation);
+        //只取前NEARK个，对每种不存在于用户i的物品计算推荐度
+        //如果每种都有，则不推荐
+        Node[] recommend = calcRecommendation(i,pearCorrelation,preference);
+        Arrays.sort(recommend);
+        //输出前3中推荐物品
+        System.out.print(&quot;第&quot;+i+&quot;个用户的前三个推荐物品及推荐度为：&quot;);
+        for(int j=0; j&lt;3; j++) {
+          System.out.println(recommend[j].itemId+&quot;物品，推荐度为&quot;+recommend[j].recommendation);
+        }
+      }
+    }
+    public Node[] calcRecommendation(int i,Point[] pearCorrelation,int[][] preference) {
+      // TODO Auto-generated method stub
+      Node[] recommend = new Node[preference[0].length];
+      for(int j=0; j&lt;recommend.length; j++) {
+        recommend[j] = new Node();
+      }
+      int t = 0;//recommend下标
+      //对每种不存在于i的物品计算推荐度
+      for(int j=0; j&lt;preference[0].length; j++) {
+        if(preference[i][j]==0) {
+          recommend[t].itemId = j;
+          double temp = 0.0;
+          for(int k=0; k&lt;NEARK; k++) {
+            temp += preference[pearCorrelation[k].userID][j]
+                *pearCorrelation[k].correlation;
+          }
+          recommend[t].recommendation = temp;
+          t++;
+        }
+      }
+      return recommend;
+    }
+    //计算i用户和其他用户的皮尔森系数
+    public Point[] calcPearson(int i, int[][] preference) {
+      // TODO Auto-generated method stub
+      //System.out.println(preference.length);
+      //不是preference[0].length
+      Point[] pearCorrelation = new Point[preference.length-1];
+      for(int j=0; j&lt;pearCorrelation.length; j++) {
+        pearCorrelation[j] = new Point();
+      }
+      int t = 0;//pearCorrelation的下标
+      double sumX = 0;
+      double sumY = 0;
+      double squareX = 0;
+      double squareY = 0;
+      double sumXTimesY = 0;
+      for(int j=0; j&lt;preference[0].length; j++) {
+        sumX += preference[i][j];
+        squareX += preference[i][j]*preference[i][j];
+      }
+      for(int k=0; k&lt;preference.length; k++) {
+        if(k!=i) {
+          for(int j=0; j&lt;preference[0].length; j++) {
+            sumY += preference[k][j];
+           squareY += preference[k][j]*preference[k][j];
+           sumXTimesY += preference[i][j]*preference[k][j];
+         }
+ //        System.out.println(t);
+ //        System.out.println(pearCorrelation[t]);
+         pearCorrelation[t].userID = k;
+         int n = preference[0].length;
+         //公式4，不用2，怕出现大数
+         double temp = (sumXTimesY - sumX*sumY/n)
+             /(Math.sqrt((squareX - sumX*sumX/n)*(squareY - sumY*sumY/n)));
+         pearCorrelation[t].correlation = temp;
+         sumY = 0;
+         squareY = 0;
+         sumXTimesY = 0;
+         t++;
+       }
+     }
+     return pearCorrelation;
+   }
+   public int[][] readFile(String filename) {
+     File file = new File(filename);
+     FileReader fr;
+     int i = 0;
+     String line = &quot;&quot;;
+     //想让数据的列等于数据列，找到了方法，但感觉还不如直接写呢
+     //行：br.readLine().split(&quot;,&quot;).length;
+     //列：几次br.readLine()就几次
+     int[][] preference = new int[20][8];
+     try {
+       fr = new FileReader(file);
+       BufferedReader br = new BufferedReader(fr);
+       String[] data = new String[10];
+       while(br.ready()) {
+         data = br.readLine().split(&quot;,&quot;);
+         for(int j=0; j&lt;data.length; j++) {
+           preference[i][j] = Integer.parseInt(data[j]);
+         }
+         i++;
+       }
+     } catch (FileNotFoundException e) {
+       // TODO Auto-generated catch block
+       e.printStackTrace();
+     } catch (IOException e) {
+       // TODO Auto-generated catch block
+       e.printStackTrace();
+     }
+     return preference;
+   }
+ }
+ class Point implements Comparable&lt;Point&gt;{
+   double correlation;
+   int userID;
+   public Point(int correlation, int userID) {
+     super();
+     this.correlation = correlation;
+     this.userID = userID;
+   }
+   public Point() {
+     super();
+     this.correlation = 0.0;
+     this.userID = 0;
+   }
+   @Override
+   public int compareTo(Point o) {
+     // TODO Auto-generated method stub
+     //向上取整
+     return (int)Math.ceil(o.correlation - this.correlation);
+   }
+ }
+ class Node implements Comparable&lt;Node&gt; {
+   int itemId;
+   double recommendation;
+   public Node(int itemId, double recommendation) {
+     super();
+     this.itemId = itemId;
+     this.recommendation = recommendation;
+   }
+   public Node() {
+     super();
+     this.itemId = 0;
+     this.recommendation = 0.0;
+   }
+   @Override
+   public int compareTo(Node o) {
+     // TODO Auto-generated method stub
+     return (int)Math.ceil(o.recommendation - this.recommendation);
+   }
+ }
+</code></pre>
 <h3 id="算法结果"><a href="#算法结果" class="headerlink" title="算法结果"></a>算法结果</h3><p>  1: 第0个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br>  2: 0物品，推荐度为0.0<br>  3: 0物品，推荐度为0.0<br>  4: 第1个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br>  5: 0物品，推荐度为0.0<br>  6: 0物品，推荐度为0.0<br>  7: 第2个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br>  8: 0物品，推荐度为0.0<br>  9: 0物品，推荐度为0.0<br> 10: 第3个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 11: 0物品，推荐度为0.0<br> 12: 0物品，推荐度为0.0<br> 13: 第4个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 14: 0物品，推荐度为0.0<br> 15: 0物品，推荐度为0.0<br> 16: 第5个用户的前三个推荐物品及推荐度为：0物品，推荐度为-1.2065801598977062<br> 17: 1物品，推荐度为-0.6250679252351032<br> 18: 0物品，推荐度为0.0<br> 19: 第6个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 20: 0物品，推荐度为0.0<br> 21: 0物品，推荐度为0.0<br> 22: 第7个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 23: 0物品，推荐度为0.0<br> 24: 0物品，推荐度为0.0<br> 25: 第8个用户的前三个推荐物品及推荐度为：7物品，推荐度为4.900861489379543<br> 26: 2物品，推荐度为2.2926479930225945<br> 27: 3物品，推荐度为0.9362076885241352<br> 28: 第9个用户的前三个推荐物品及推荐度为：6物品，推荐度为3.4208275957538516<br> 29: 3物品，推荐度为2.011535304429741<br> 30: 0物品，推荐度为0.0<br> 31: 第10个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 32: 0物品，推荐度为0.0<br> 33: 0物品，推荐度为0.0<br> 34: 第11个用户的前三个推荐物品及推荐度为：3物品，推荐度为1.653912517180694<br> 35: 4物品，推荐度为-0.21710473429718952<br> 36: 5物品，推荐度为-0.08640254911566059<br> 37: 第12个用户的前三个推荐物品及推荐度为：2物品，推荐度为0.6330997741726283<br> 38: 3物品，推荐度为0.056476085889952676<br> 39: 0物品，推荐度为0.0<br> 40: 第13个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 41: 0物品，推荐度为0.0<br> 42: 0物品，推荐度为0.0<br> 43: 第14个用户的前三个推荐物品及推荐度为：1物品，推荐度为0.21816543783752018<br> 44: 0物品，推荐度为0.0<br> 45: 0物品，推荐度为0.0<br> 46: 第15个用户的前三个推荐物品及推荐度为：4物品，推荐度为0.6634659622686077<br> 47: 0物品，推荐度为0.0<br> 48: 0物品，推荐度为0.0<br> 49: 第16个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 50: 0物品，推荐度为0.0<br> 51: 0物品，推荐度为0.0<br> 52: 第17个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 53: 0物品，推荐度为0.0<br> 54: 0物品，推荐度为0.0<br> 55: 第18个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 56: 0物品，推荐度为0.0<br> 57: 0物品，推荐度为0.0<br> 58: 第19个用户的前三个推荐物品及推荐度为：0物品，推荐度为0.0<br> 59: 0物品，推荐度为0.0<br> 60: 0物品，推荐度为0.0<br> 61:</p>
 <h3 id="SlopeOne算法简介"><a href="#SlopeOne算法简介" class="headerlink" title="SlopeOne算法简介"></a>SlopeOne算法简介</h3><p><img src="ration.png" alt=""><br>      用户Z对事物B的打分可能是多少呢？股票上有个说法是平均值可以掩盖一切异常波动，所以股票上的各个技术指标收拾不同时间段的平均值的曲线图或者柱状图等。同样的，Slope One算法也认为：平均值也可以代替某两个未知个体之间的打分差异，事物A对事物B的平均很差是：((3 - 4) + (2 - 4)) / 2 = -1.5，也就是说人们对事物B的打分一般比事物A的打分要高1.5，于是Slope one算法就猜测Z对事物B的打分是4 + 1.5 = 5.5。<br>有n个人对事物A和事物B打分了，R(A-&gt;B)表示这n个人对A和对B打分的平均差（A-B）,有m个人对事物B和事物C打分 了，R（B-&gt;C）表示这m个人对B和对C打分的平均差（B-C），注意都是平均差而不是平方差，现在某个用户对A的打分是ra，对C的打分是 rc，那么A对B的打分可能是：<br>       rb = (n <em> (ra - R(A-&gt;B)) + m </em> (rc + R(B-&gt;C)))/(m+n) 。</p>
   
@@ -217,11 +397,15 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -254,11 +438,11 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -366,10 +550,15 @@ PearsonCorrelation两个变量之间的相关系数越高，从一个变量去�
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

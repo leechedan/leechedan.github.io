@@ -108,15 +108,209 @@
 		<hr>
 <h2 id="需求来源"><a href="#需求来源" class="headerlink" title="需求来源"></a>需求来源</h2><p>防止hadoop组件被非法侵入控制及调用.比如Datanode对读入输出并没有认证。导致如果一些客户端如果知道block的ID，就可以任意的访问DataNode上block的数据。jobtracker没有进行认证导致可以随意改变job的状态，非法用户可以伪装成nodemanager进行任务的领取。</p>
 <h2 id="配置思路"><a href="#配置思路" class="headerlink" title="配置思路"></a>配置思路</h2><p>hadoop组件原生使用的kerberos进行授权认证，这是一种A如何向B证明自己就是他所声称的那个人的证明机制。通过加强票据的检验，可以防止组件被冒充及入侵。kerberos使用比较广泛，linux中curl命令大都集成了票据的集成，windows也有相关使用，但是笔者没有在windows配置成功。Kerberos的授权思路大致如下图所示。<br><img src="kerberos_01_06.gif" alt="cmd-markdown-logo"></p>
-<h2 id="kerberos的配置及安装"><a href="#kerberos的配置及安装" class="headerlink" title="kerberos的配置及安装"></a>kerberos的配置及安装</h2><p>此处不属于本文范畴所以尽量省略<br>以下为krb5.conf配置文件内容，在kdc和所有server都需要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[kdc]</div><div class="line"> profile = /usr/local/var/krb5kdc/kdc.conf</div><div class="line">[logging]</div><div class="line"> default = FILE:/var/log/krb5libs.log</div><div class="line"> kdc = FILE:/var/log/krb5kdc.log</div><div class="line"> admin_server = FILE:/var/log/kadmind.log</div><div class="line">[libdefaults]</div><div class="line"> default_realm = DOMAIN.COM</div><div class="line"> dns_lookup_realm = true</div><div class="line"> dns_lookup_kdc = true</div><div class="line"> ticket_lifetime = 24h</div><div class="line"> forwardable = true</div><div class="line"> ccache_type = 4</div><div class="line"> proxiable = true</div><div class="line"> renew_lifetime = 7d</div><div class="line">[realms]</div><div class="line"> DOMAIN.COM = &#123;</div><div class="line">  kdc = kerberos.DOMAIN.com</div><div class="line">  admin_server = kerberos.DOMAIN.com</div><div class="line"> &#125;</div><div class="line">[domain_realm]</div><div class="line"> .DOMAIN.com = DOMAIN.COM</div><div class="line"> DOMAIN.com = DOMAIN.COM</div><div class="line">[login]</div><div class="line"> krb4_convert = true</div><div class="line"> krb4_get_tickets = false</div></pre></td></tr></table></figure></p>
-<p>如果是kdc，则需要配置/usr/local/var/krb5kdc/kdc.conf,内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[kdcdefaults]</div><div class="line"> kdc_ports = 750,88</div><div class="line"> kdc_tcp_ports = 88</div><div class="line">[realms]</div><div class="line"> DOMAIN.COM = &#123;</div><div class="line">  acl_file = /usr/local/var/krb5kdc/kadm5.acl</div><div class="line">  dict_file = /usr/share/dict/words</div><div class="line">  admin_keytab = /usr/local/var/krb5kdc/kadm5.keytab</div><div class="line">  kdc_ports = 750,88</div><div class="line">  max_life = 1d 0h 0m 0s</div><div class="line">  max_renewable_life = 7d 0h 0m 0s</div><div class="line">  supported_enctypes = des3-hmac-sha1:normal des-cbc-crc:normal des:normal des:v4 des:norealm des:onlyrealm</div><div class="line">  default_principal_flags = +preauth</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="kerberos的配置及安装"><a href="#kerberos的配置及安装" class="headerlink" title="kerberos的配置及安装"></a>kerberos的配置及安装</h2><p>此处不属于本文范畴所以尽量省略<br>以下为krb5.conf配置文件内容，在kdc和所有server都需要</p>
+<pre><code>[kdc]
+ profile = /usr/local/var/krb5kdc/kdc.conf
+[logging]
+ default = FILE:/var/log/krb5libs.log
+ kdc = FILE:/var/log/krb5kdc.log
+ admin_server = FILE:/var/log/kadmind.log
+[libdefaults]
+ default_realm = DOMAIN.COM
+ dns_lookup_realm = true
+ dns_lookup_kdc = true
+ ticket_lifetime = 24h
+ forwardable = true
+ ccache_type = 4
+ proxiable = true
+ renew_lifetime = 7d
+[realms]
+ DOMAIN.COM = {
+  kdc = kerberos.DOMAIN.com
+  admin_server = kerberos.DOMAIN.com
+ }
+[domain_realm]
+ .DOMAIN.com = DOMAIN.COM
+ DOMAIN.com = DOMAIN.COM
+[login]
+ krb4_convert = true
+ krb4_get_tickets = false
+</code></pre><p>如果是kdc，则需要配置/usr/local/var/krb5kdc/kdc.conf,内容如下</p>
+<pre><code class="shell">[kdcdefaults]
+ kdc_ports = 750,88
+ kdc_tcp_ports = 88
+[realms]
+ DOMAIN.COM = {
+  acl_file = /usr/local/var/krb5kdc/kadm5.acl
+  dict_file = /usr/share/dict/words
+  admin_keytab = /usr/local/var/krb5kdc/kadm5.keytab
+  kdc_ports = 750,88
+  max_life = 1d 0h 0m 0s
+  max_renewable_life = 7d 0h 0m 0s
+  supported_enctypes = des3-hmac-sha1:normal des-cbc-crc:normal des:normal des:v4 des:norealm des:onlyrealm
+  default_principal_flags = +preauth
+ }
+</code></pre>
 <p>在KDC机器配置好管理员账户admin/admin@DOMAIN.COM之后需要生成princs，一般由两个或以上账户组成，其中一个必须为<a href="https://hadoop.apache.org/docs/r1.0.4/webhdfs.html#HDFS+Configuration+Options" target="_blank" rel="external">HTTP</a>开头。<br>生成hadoop.keytab分发到所有hadoop组件所在的机器<br>测试过程<br>启动认证进程/usr/local/sbin/kadmind  /usr/local/sbin/krb5kdc</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[hadoop@he02 hadoop]$ kinit -k -t hadoop.keytab hadoop/he02@DOMAIN.COM -V</div><div class="line">Using default cache: /tmp/krb5cc_500</div><div class="line">Using principal: hadoop/he02@DOMAIN.COM</div><div class="line">Using keytab: hadoop.keytab</div><div class="line">Authenticated to Kerberos v5</div><div class="line">[hadoop@he02 hadoop]$ klist</div><div class="line">Ticket cache: FILE:/tmp/krb5cc_500</div><div class="line">Default principal: hadoop/he02@DOMAIN.COM</div><div class="line">Valid starting       Expires              Service principal</div><div class="line">date  date  krbtgt/DOMAIN.COM@DOMAIN.COM</div><div class="line">        renew until date</div></pre></td></tr></table></figure>
-<p>即表示认证成功</p>
-<h2 id="hadoop配置"><a href="#hadoop配置" class="headerlink" title="hadoop配置"></a>hadoop配置</h2><p>以下为core-site.xml配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.hduser.hosts<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.hduser.groups<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.security.authentication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>kerberos<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.security.authorization<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.default.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://cs10:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.hadoop.groups<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.hadoop.hosts<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>mapred-site.xml添加以下配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.keytab<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobtracker.kerberos.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobtracker.keytab.file<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.tasktracker.kerberos.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.tasktracker.keytab.file<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.task.tracker.task-controller<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.mapred.LinuxTaskController<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.tasktracker.group<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>yarn-site.xml添加以下配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.keytab<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.keytab<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>hdfs-site.xml添加以下配置,携带kerberos.internal.spnego.principal后缀的需要使用HTTP开头的princ,否则会报No Key to Store<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.keytab.file<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.kerberos.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.kerberos.internal.spnego.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>HTTP/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.block.access.token.enable<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.secondary.namenode.keytab.file<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.secondary.namenode.kerberos.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.secondary.namenode.kerberos.internal.spnego.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>HTTP/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir.perm<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>700<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.keytab.file<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.kerberos.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>hadoop/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.webhdfs.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.web.authentication.kerberos.principal<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>HTTP/_HOST@DOMAIN.COM<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.web.authentication.kerberos.keytab<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>/usr/local/hadoop/etc/hadoop/hadoop.keytab<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 此处在启动dataNode的时候会checkSecureConfig(dnConf, conf, resources);需要检查安全设置，设置此值不得已否则异常</span></div><div class="line">  Cannot start secure DataNode without configuring either privileged resources or SASL RPC data transfer protection and SSL for HTTP.</div><div class="line">  Using privileged resources in combination with SASL RPC data transfer protection is not supported. --&gt;</div><div class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>ignore.secure.ports.for.testing<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<pre><code>[hadoop@he02 hadoop]$ kinit -k -t hadoop.keytab hadoop/he02@DOMAIN.COM -V
+Using default cache: /tmp/krb5cc_500
+Using principal: hadoop/he02@DOMAIN.COM
+Using keytab: hadoop.keytab
+Authenticated to Kerberos v5
+[hadoop@he02 hadoop]$ klist
+Ticket cache: FILE:/tmp/krb5cc_500
+Default principal: hadoop/he02@DOMAIN.COM
+Valid starting       Expires              Service principal
+date  date  krbtgt/DOMAIN.COM@DOMAIN.COM
+        renew until date
+</code></pre><p>即表示认证成功</p>
+<h2 id="hadoop配置"><a href="#hadoop配置" class="headerlink" title="hadoop配置"></a>hadoop配置</h2><p>以下为core-site.xml配置</p>
+<pre><code class="xml">    &lt;property&gt;
+      &lt;name&gt;hadoop.proxyuser.hduser.hosts&lt;/name&gt;
+      &lt;value&gt;*&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;hadoop.proxyuser.hduser.groups&lt;/name&gt;
+      &lt;value&gt;*&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+      &lt;value&gt;kerberos&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;hadoop.security.authorization&lt;/name&gt;
+      &lt;value&gt;true&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;fs.default.name&lt;/name&gt;
+        &lt;value&gt;hdfs://cs10:9000&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;hadoop.proxyuser.hadoop.groups&lt;/name&gt;
+      &lt;value&gt;*&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+      &lt;name&gt;hadoop.proxyuser.hadoop.hosts&lt;/name&gt;
+      &lt;value&gt;*&lt;/value&gt;
+    &lt;/property&gt;
+</code></pre>
+<p>mapred-site.xml添加以下配置</p>
+<pre><code class="xml">  &lt;property&gt;
+    &lt;name&gt;mapreduce.jobhistory.keytab&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;mapreduce.jobhistory.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;mapreduce.jobtracker.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;mapreduce.jobtracker.keytab.file&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;mapreduce.tasktracker.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;mapreduce.tasktracker.keytab.file&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;mapred.task.tracker.task-controller&lt;/name&gt;
+    &lt;value&gt;org.apache.hadoop.mapred.LinuxTaskController&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;mapreduce.tasktracker.group&lt;/name&gt;
+    &lt;value&gt;hadoop&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
+<p>yarn-site.xml添加以下配置</p>
+<pre><code class="xml">  &lt;property&gt;
+    &lt;name&gt;yarn.resourcemanager.keytab&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.resourcemanager.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.keytab&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
+<p>hdfs-site.xml添加以下配置,携带kerberos.internal.spnego.principal后缀的需要使用HTTP开头的princ,否则会报No Key to Store</p>
+<pre><code class="xml">  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.keytab.file&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+    &lt;value&gt;HTTP/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.block.access.token.enable&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.secondary.namenode.keytab.file&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.secondary.namenode.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+    &lt;value&gt;HTTP/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;
+    &lt;value&gt;700&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.datanode.keytab.file&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.datanode.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;hadoop/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;dfs.web.authentication.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;HTTP/_HOST@DOMAIN.COM&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;dfs.web.authentication.kerberos.keytab&lt;/name&gt;
+    &lt;value&gt;/usr/local/hadoop/etc/hadoop/hadoop.keytab&lt;/value&gt;
+  &lt;/property&gt;
+    &lt;!-- 此处在启动dataNode的时候会checkSecureConfig(dnConf, conf, resources);需要检查安全设置，设置此值不得已否则异常
+    Cannot start secure DataNode without configuring either privileged resources or SASL RPC data transfer protection and SSL for HTTP.
+    Using privileged resources in combination with SASL RPC data transfer protection is not supported. --&gt;
+  &lt;property&gt;
+    &lt;name&gt;ignore.secure.ports.for.testing&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+</code></pre>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>以下摘取自<a href="https://hadoop.apache.org/docs/r1.0.4/webhdfs.html#HDFS+Configuration+Options" target="_blank" rel="external">apache-hadoop-webhdfs</a></p>
 <table>
 <thead>
@@ -211,11 +405,15 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -248,11 +446,11 @@
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -360,10 +558,15 @@
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });

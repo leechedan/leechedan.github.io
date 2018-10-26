@@ -33,7 +33,9 @@ maven-settings
 eclipse-javadoc
 log-template
 
-代码组织结构###系统命名123groupId: $&amp;#123;gr">
+代码组织结构###系统命名
+groupId: ${group}
+ar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="代码语法约定">
 <meta property="og:url" content="http://yoursite.com/2016/07/16/代码语法约定/index.html">
@@ -60,7 +62,9 @@ maven-settings
 eclipse-javadoc
 log-template
 
-代码组织结构###系统命名123groupId: $&amp;#123;gr">
+代码组织结构###系统命名
+groupId: ${group}
+ar">
 <meta property="og:updated_time" content="2016-07-17T02:52:35.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代码语法约定">
@@ -86,7 +90,9 @@ maven-settings
 eclipse-javadoc
 log-template
 
-代码组织结构###系统命名123groupId: $&amp;#123;gr">
+代码组织结构###系统命名
+groupId: ${group}
+ar">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -188,8 +194,11 @@ log-template
 <li><a href="#eclipse-javadoc">eclipse-javadoc</a></li>
 <li><a href="#log-template">log-template</a></li>
 </ol>
-<h2 id="代码组织结构"><a href="#代码组织结构" class="headerlink" title="代码组织结构"></a><a name="sturcture"></a>代码组织结构</h2><p>###系统命名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">groupId: $&#123;group&#125;</div><div class="line">artifactId: lvb-$&#123;system&#125;-$&#123;module&#125;</div><div class="line">$&#123;module&#125;分common, core, api, protocol等模块</div></pre></td></tr></table></figure></p>
-<h3 id="common包命名："><a href="#common包命名：" class="headerlink" title="common包命名："></a>common包命名：</h3><ul>
+<h2 id="代码组织结构"><a href="#代码组织结构" class="headerlink" title="代码组织结构"></a><a name="sturcture"></a>代码组织结构</h2><p>###系统命名</p>
+<pre><code>groupId: ${group}
+artifactId: lvb-${system}-${module}
+${module}分common, core, api, protocol等模块
+</code></pre><h3 id="common包命名："><a href="#common包命名：" class="headerlink" title="common包命名："></a>common包命名：</h3><ul>
 <li>${group}.${system}.${module}</li>
 <li>${group}.${system}.${module}.common</li>
 </ul>
@@ -256,10 +265,58 @@ log-template
 </li>
 </ul>
 <h2 id="异常系统"><a href="#异常系统" class="headerlink" title=" 异常系统"></a><a name="exception-system"></a> 异常系统</h2><p>凡是为可能为跨语言client提供接口服务的系统都需要捕获异常，给client提供code&amp;reason</p>
-<h2 id="工程入手须知"><a href="#工程入手须知" class="headerlink" title="工程入手须知"></a><a name="guide"></a>工程入手须知</h2><h3 id="maven-3-3-9"><a href="#maven-3-3-9" class="headerlink" title=" maven 3.3.9"></a><a name="maven-settings"></a> maven 3.3.9</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">downloadSources</span>&gt;</span>true<span class="tag">&lt;/<span class="name">downloadSources</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">downloadJavadocs</span>&gt;</span>true<span class="tag">&lt;/<span class="name">downloadJavadocs</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">project.build.targetJdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">project.build.targetJdk</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.26:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://192.168.1.26:8081/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="eclipse-java-code-style-code-template"><a href="#eclipse-java-code-style-code-template" class="headerlink" title="eclipse java-code style-code template"></a><a name="eclipse-javadoc"></a>eclipse java-code style-code template</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Copyright 2016 © ****.com Corp. All Rights Reserverd.</div><div class="line"> *</div><div class="line"> * 广州****技术有限公司    http://www.****.com</div><div class="line"> *</div><div class="line"> * Create Date : $&#123;date&#125;</div><div class="line"> **/</div><div class="line">$&#123;package_declaration&#125;</div><div class="line"></div><div class="line">/**</div><div class="line"> *</div><div class="line"> * @author &lt;a href=&quot;mailto:$&#123;name&#125;@*.com&quot;&gt;$&#123;name&#125;&lt;/a&gt;</div><div class="line"> *</div><div class="line"> */</div><div class="line">$&#123;type_declaration&#125;</div></pre></td></tr></table></figure>
-<h3 id="eclipse-java-editor-templates"><a href="#eclipse-java-editor-templates" class="headerlink" title=" eclipse java-editor-templates"></a><a name="log-template"></a> eclipse java-editor-templates</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$&#123;:import(org.slf4j.Logger,org.slf4j.LoggerFactory,org.slf4j.Logger,org.slf4j.Logger)&#125;</div><div class="line">private static final Logger logger = LoggerFactory.getLogger($&#123;enclosing_type&#125;.class);</div></pre></td></tr></table></figure>
-<h2 id="文档管理"><a href="#文档管理" class="headerlink" title="文档管理"></a>文档管理</h2><p>使用Markdown语法<br>使用<a href="http://andriusvelykis.github.io/reflow-maven-skin" title="Reflow document" target="_blank" rel="external">reflow-maven-skin</a>，可参考源代码<a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin source code" target="_blank" rel="external">available on GitHub</a></p>
+<h2 id="工程入手须知"><a href="#工程入手须知" class="headerlink" title="工程入手须知"></a><a name="guide"></a>工程入手须知</h2><h3 id="maven-3-3-9"><a href="#maven-3-3-9" class="headerlink" title=" maven 3.3.9"></a><a name="maven-settings"></a> maven 3.3.9</h3><pre><code class="xml">&lt;profile&gt;
+    &lt;id&gt;nexus&lt;/id&gt;
+    &lt;properties&gt;
+        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+        &lt;downloadSources&gt;true&lt;/downloadSources&gt;
+        &lt;downloadJavadocs&gt;true&lt;/downloadJavadocs&gt;
+        &lt;project.build.targetJdk&gt;1.8&lt;/project.build.targetJdk&gt;
+    &lt;/properties&gt;
+    &lt;repositories&gt;
+        &lt;repository&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;url&gt;http://192.168.1.26:8081/nexus/content/groups/public/&lt;/url&gt;
+            &lt;releases&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/releases&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/repository&gt;
+    &lt;/repositories&gt;
+    &lt;pluginRepositories&gt;
+        &lt;pluginRepository&gt;
+            &lt;id&gt;nexus&lt;/id&gt;
+            &lt;url&gt;http://192.168.1.26:8081/nexus/content/groups/public/&lt;/url&gt;
+            &lt;releases&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/releases&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/snapshots&gt;
+        &lt;/pluginRepository&gt;
+    &lt;/pluginRepositories&gt;
+&lt;/profile&gt;
+</code></pre>
+<h3 id="eclipse-java-code-style-code-template"><a href="#eclipse-java-code-style-code-template" class="headerlink" title="eclipse java-code style-code template"></a><a name="eclipse-javadoc"></a>eclipse java-code style-code template</h3><pre><code>/**
+ * Copyright 2016 © ****.com Corp. All Rights Reserverd.
+ *
+ * 广州****技术有限公司    http://www.****.com
+ *
+ * Create Date : ${date}
+ **/
+${package_declaration}
+
+/**
+ *
+ * @author &lt;a href=&quot;mailto:${name}@*.com&quot;&gt;${name}&lt;/a&gt;
+ *
+ */
+${type_declaration}
+</code></pre><h3 id="eclipse-java-editor-templates"><a href="#eclipse-java-editor-templates" class="headerlink" title=" eclipse java-editor-templates"></a><a name="log-template"></a> eclipse java-editor-templates</h3><pre><code>${:import(org.slf4j.Logger,org.slf4j.LoggerFactory,org.slf4j.Logger,org.slf4j.Logger)}
+private static final Logger logger = LoggerFactory.getLogger(${enclosing_type}.class);
+</code></pre><h2 id="文档管理"><a href="#文档管理" class="headerlink" title="文档管理"></a>文档管理</h2><p>使用Markdown语法<br>使用<a href="http://andriusvelykis.github.io/reflow-maven-skin" title="Reflow document" target="_blank" rel="external">reflow-maven-skin</a>，可参考源代码<a href="http://github.com/andriusvelykis/reflow-maven-skin" title="Reflow Maven skin source code" target="_blank" rel="external">available on GitHub</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -328,11 +385,15 @@ log-template
 		<ul>
 		
 		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
 		  
 		
 		  
-			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>3</sup></a></li>
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>4</sup></a></li>
 		  
 		
 		  
@@ -365,11 +426,11 @@ log-template
 			
 		
 			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 			
@@ -477,10 +538,15 @@ log-template
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 <script src="/js/jquery.qrcode-0.12.0.min.js"></script>
-
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
 
 <script type="text/javascript">
 $(document).ready(function(){ 
+  $("pre").addClass("prettyprint");
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
   $('.navbar').click(function(){
     $('header nav').toggleClass('shownav');
   });
