@@ -1,7 +1,7 @@
 
  <!DOCTYPE HTML>
-<html >
-<head>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
     <title>Scala学习记录 sbt Akka Stream Reactive Scala 大数据 Actor scala | Timmy live</title>
@@ -11,25 +11,21 @@
     
 
     
-    <meta name="description" content="总结scala接触语法 -&amp;gt; sbt配置 -&amp;gt; actor（消息模式） -&amp;gt; cluster(分布式集群) -&amp;gt; stream（响应式流计算） -&amp;gt; scalaz(scalaJs)
-需求来源相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源
-初识首次知道scal">
+    <meta name="description" content="总结scala接触语法 -&amp;gt; sbt配置 -&amp;gt; actor（消息模式） -&amp;gt; cluster(分布式集群) -&amp;gt; stream（响应式流计算） -&amp;gt; scalaz(scalaJs) 需求来源相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源 初识首次知道scal">
+<meta name="keywords" content="sbt,Akka,Stream,Reactive,Scala,大数据,Actor">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scala学习记录">
 <meta property="og:url" content="https://blog.quantm.club/2018/03/10/scala/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="总结scala接触语法 -&amp;gt; sbt配置 -&amp;gt; actor（消息模式） -&amp;gt; cluster(分布式集群) -&amp;gt; stream（响应式流计算） -&amp;gt; scalaz(scalaJs)
-需求来源相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源
-初识首次知道scal">
-<meta property="og:image" content="https://blog.quantm.club/common-settings.png">
-<meta property="og:image" content="https://blog.quantm.club/source-flow.jpg">
+<meta property="og:description" content="总结scala接触语法 -&amp;gt; sbt配置 -&amp;gt; actor（消息模式） -&amp;gt; cluster(分布式集群) -&amp;gt; stream（响应式流计算） -&amp;gt; scalaz(scalaJs) 需求来源相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源 初识首次知道scal">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://blog.quantm.club/2018/03/10/scala/common-settings.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/03/10/scala/source-flow.jpg">
 <meta property="og:updated_time" content="2018-10-26T16:58:04.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scala学习记录">
-<meta name="twitter:description" content="总结scala接触语法 -&amp;gt; sbt配置 -&amp;gt; actor（消息模式） -&amp;gt; cluster(分布式集群) -&amp;gt; stream（响应式流计算） -&amp;gt; scalaz(scalaJs)
-需求来源相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源
-初识首次知道scal">
-<meta name="twitter:image" content="https://blog.quantm.club/common-settings.png">
+<meta name="twitter:description" content="总结scala接触语法 -&amp;gt; sbt配置 -&amp;gt; actor（消息模式） -&amp;gt; cluster(分布式集群) -&amp;gt; stream（响应式流计算） -&amp;gt; scalaz(scalaJs) 需求来源相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源 初识首次知道scal">
+<meta name="twitter:image" content="https://blog.quantm.club/2018/03/10/scala/common-settings.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -43,21 +39,21 @@
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"/></a>
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"></a>
 			</div>
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -73,17 +69,17 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search">
 						<input type="hidden" name="q" value="site:blog.quantm.club">
 					</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -95,15 +91,15 @@
        
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
-  <p class="article-time">
-    <time datetime="2018-03-10T14:00:00.000Z" itemprop="datePublished"> 发表于 2018-03-10</time>
+  </p><p class="article-time">
+    <time datetime="2018-03-10T14:00:00.000Z" itemprop="datePublished"> Published 2018-03-10</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求来源"><span class="toc-number">2.</span> <span class="toc-text">需求来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初识"><span class="toc-number">2.1.</span> <span class="toc-text">初识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sbt配置"><span class="toc-number">2.2.</span> <span class="toc-text">sbt配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dependency-version"><span class="toc-number">2.2.1.</span> <span class="toc-text">dependency-version</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plugin"><span class="toc-number">2.2.2.</span> <span class="toc-text">plugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#整合插件和项目依赖"><span class="toc-number">2.2.3.</span> <span class="toc-text">整合插件和项目依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Actor"><span class="toc-number">3.</span> <span class="toc-text">Actor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景"><span class="toc-number">3.1.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Akka-适用场景"><span class="toc-number">3.2.</span> <span class="toc-text">Akka 适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Akka-Stream"><span class="toc-number">4.</span> <span class="toc-text">Akka Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景-1"><span class="toc-number">4.1.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Akka-Stream整合"><span class="toc-number">5.</span> <span class="toc-text">Akka Stream整合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本文完"><span class="toc-number">7.</span> <span class="toc-text">本文完</span></a></li></ol>
 		
@@ -113,8 +109,8 @@
 <h2 id="需求来源"><a href="#需求来源" class="headerlink" title="需求来源"></a>需求来源</h2><p>相比java来说，scala最大的优点和缺点都是太过于灵活，其中语法糖的设计处处都体现了它为异步而生，相比同步调用而言，异步可以更大限度地利用CPU和IO资源</p>
 <h3 id="初识"><a href="#初识" class="headerlink" title="初识"></a>初识</h3><p>首次知道scala是在2016年底，由hadoop开始了解到spark，认识到scala语言，在当时接下来的一年的时间里，初步了解了基本语法，并在此基础在zeppelin[后来发现，这是个不错的单用户GraphQL，仅仅是单用户]里写spark的执行语句，并在此基础上了解了CNN的一些基础知识。当时在公司里做了一期Scala的基础介绍[笑cry]</p>
 <ol>
-<li><a href="https://docs.huihoo.com/scala/docs.scala-lang.org/zh-cn/cheatsheets/" target="_blank" rel="external">https://docs.huihoo.com/scala/docs.scala-lang.org/zh-cn/cheatsheets/</a></li>
-<li><a href="http://blog.javachen.com/2015/04/20/basic-of-scala.html" target="_blank" rel="external">http://blog.javachen.com/2015/04/20/basic-of-scala.html</a><br>以上两篇文章是对Scala基础语法很好的概括。 </li>
+<li><a href="https://docs.huihoo.com/scala/docs.scala-lang.org/zh-cn/cheatsheets/" target="_blank" rel="noopener">https://docs.huihoo.com/scala/docs.scala-lang.org/zh-cn/cheatsheets/</a></li>
+<li><a href="http://blog.javachen.com/2015/04/20/basic-of-scala.html" target="_blank" rel="noopener">http://blog.javachen.com/2015/04/20/basic-of-scala.html</a><br>以上两篇文章是对Scala基础语法很好的概括。 </li>
 </ol>
 <h3 id="sbt配置"><a href="#sbt配置" class="headerlink" title="sbt配置"></a>sbt配置</h3><ul>
 <li>再次拿起是在17年末，看到有人尝试用akka的Route写WEB-MVC，发现对jdbc的插入速度很快[没有事务，当然会快]， 于是这这个基础上快速了解了sbt的配置手法</li>
@@ -141,6 +137,7 @@
   val circeV            = &quot;0.9.3&quot;
   val sttpV             = &quot;1.1.13&quot;
 }
+
 </code></pre>
 <p>以下是Dependencies.scala片段</p>
 <pre><code class="scala">import sbt._
@@ -254,9 +251,9 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 <li>日志消息结构体 {list[持久化ID]}  timer(suber)  -&gt; graphStage</li>
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a href="https://www.cnblogs.com/tiger-xc/category/990815.html" target="_blank" rel="external">雪川大虫Akka笔记</a></li>
-<li><a href="https://docs.huihoo.com/scala/docs.scala-lang.org/zh-cn/cheatsheets/" target="_blank" rel="external">Scalasheat</a></li>
-<li><a href="http://blog.javachen.com/2015/04/20/basic-of-scala.html" target="_blank" rel="external">Scala基础语法</a><h2 id="本文完"><a href="#本文完" class="headerlink" title="本文完"></a>本文完</h2></li>
+<li><a href="https://www.cnblogs.com/tiger-xc/category/990815.html" target="_blank" rel="noopener">雪川大虫Akka笔记</a></li>
+<li><a href="https://docs.huihoo.com/scala/docs.scala-lang.org/zh-cn/cheatsheets/" target="_blank" rel="noopener">Scalasheat</a></li>
+<li><a href="http://blog.javachen.com/2015/04/20/basic-of-scala.html" target="_blank" rel="noopener">Scala基础语法</a><h2 id="本文完"><a href="#本文完" class="headerlink" title="本文完"></a>本文完</h2></li>
 </ol>
   
 	</div>
@@ -293,9 +290,9 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2018/10/21/docker-rep-maven/" title="docker-maven-plugin配置及SpringBoot使用">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   docker-maven-plugin配置及SpringBoot使用</span>
 </a>
@@ -303,8 +300,8 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
 
 <div class="next">
-<a href="/2017/01/27/Ranger使用体验/"  title="Ranger平台使用体验">
- <strong>下一篇：</strong><br/> 
+<a href="/2017/01/27/Ranger使用体验/" title="Ranger平台使用体验">
+ <strong>下一篇：</strong><br> 
  <span>Ranger平台使用体验
 </span>
 </a>
@@ -315,22 +312,22 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求来源"><span class="toc-number">2.</span> <span class="toc-text">需求来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初识"><span class="toc-number">2.1.</span> <span class="toc-text">初识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sbt配置"><span class="toc-number">2.2.</span> <span class="toc-text">sbt配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dependency-version"><span class="toc-number">2.2.1.</span> <span class="toc-text">dependency-version</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plugin"><span class="toc-number">2.2.2.</span> <span class="toc-text">plugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#整合插件和项目依赖"><span class="toc-number">2.2.3.</span> <span class="toc-text">整合插件和项目依赖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Actor"><span class="toc-number">3.</span> <span class="toc-text">Actor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景"><span class="toc-number">3.1.</span> <span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Akka-适用场景"><span class="toc-number">3.2.</span> <span class="toc-text">Akka 适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Akka-Stream"><span class="toc-number">4.</span> <span class="toc-text">Akka Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景-1"><span class="toc-number">4.1.</span> <span class="toc-text">适用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Akka-Stream整合"><span class="toc-number">5.</span> <span class="toc-text">Akka Stream整合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本文完"><span class="toc-number">7.</span> <span class="toc-text">本文完</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -359,7 +356,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -367,11 +364,11 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 			
 		
 			
-				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
+				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
+				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
 			
 		
 			
@@ -387,23 +384,43 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 			
 		
 			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+				<li><a href="/tags/mathjax/" title="mathjax">mathjax<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/系统维护/" title="系统维护">系统维护<sup>1</sup></a></li>
+				<li><a href="/tags/性能/" title="性能">性能<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+				<li><a href="/tags/语法/" title="语法">语法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/协同过滤/" title="协同过滤">协同过滤<sup>1</sup></a></li>
+				<li><a href="/tags/代码约定/" title="代码约定">代码约定<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spring/" title="spring">spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dubbo/" title="dubbo">dubbo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cas/" title="cas">cas<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OAuth/" title="OAuth">OAuth<sup>1</sup></a></li>
 			
 		
 			
@@ -415,31 +432,11 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 			
 		
 			
-				<li><a href="/tags/电商/" title="电商">电商<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/服务器/" title="服务器">服务器<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/单点登录/" title="单点登录">单点登录<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/系统搭建/" title="系统搭建">系统搭建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -447,7 +444,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -466,12 +463,12 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   
   <div class="tagcloudlist">
-    <p class="asidetitle">标签云</p>
+    <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
        <a href="/tags/Actor/" style="font-size: 10px;">Actor</a> <a href="/tags/Akka/" style="font-size: 10px;">Akka</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/OAuth/" style="font-size: 10px;">OAuth</a> <a href="/tags/PolarDB/" style="font-size: 10px;">PolarDB</a> <a href="/tags/Reactive/" style="font-size: 10px;">Reactive</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/cas/" style="font-size: 10px;">cas</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/mathjax/" style="font-size: 10px;">mathjax</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nexus/" style="font-size: 10px;">nexus</a> <a href="/tags/nexus3/" style="font-size: 10px;">nexus3</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sbt/" style="font-size: 15px;">sbt</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/单点登录/" style="font-size: 10px;">单点登录</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/推荐/" style="font-size: 15px;">推荐</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/比赛/" style="font-size: 10px;">比赛</a> <a href="/tags/电商/" style="font-size: 10px;">电商</a> <a href="/tags/相关性/" style="font-size: 15px;">相关性</a> <a href="/tags/系统搭建/" style="font-size: 10px;">系统搭建</a> <a href="/tags/系统维护/" style="font-size: 10px;">系统维护</a> <a href="/tags/论文/" style="font-size: 15px;">论文</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/阿里/" style="font-size: 10px;">阿里</a>
     </div>
@@ -480,7 +477,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
   
 <div class="github-card">
-<p class="asidetitle">访问统计</p>
+<p class="asidetitle">location Statics</p>
 <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
 </div>
 
@@ -488,7 +485,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -497,11 +494,11 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 	
 	
 	<section class="info">
-		<p> Christiansted, United States Virgin Islands <br/>
+		<p> Christiansted, United States Virgin Islands <br>
 			believer it or not</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -712,7 +709,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

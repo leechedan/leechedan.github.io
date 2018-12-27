@@ -1,7 +1,7 @@
 
  <!DOCTYPE HTML>
-<html >
-<head>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
     <title>docker-maven-plugin配置及SpringBoot使用 nexus Spring Boot Docker CI nexus3 持续集成 sbt maven plugin 插件 运维 开发 | Timmy live</title>
@@ -11,35 +11,22 @@
     
 
     
-    <meta name="description" content="安装nexus3本例中使用docker搭建nexus3之后，使用docker-maven-plugin在springBoot中配置maven插件，自动完成docker build tag push自动化操作 
-nexus-dockerDockerfile
-FROM java:8u111-jdk-alpine
-MAINTAINER lee &amp;lt;leechedan@gmail.com&amp;gt;
-
-E">
+    <meta name="description" content="安装nexus3本例中使用docker搭建nexus3之后，使用docker-maven-plugin在springBoot中配置maven插件，自动完成docker build tag push自动化操作  nexus-dockerDockerfile FROM java:8u111-jdk-alpine MAINTAINER lee &amp;lt;leechedan@gmail.com&amp;gt;  E">
+<meta name="keywords" content="nexus,Spring Boot,Docker,CI,nexus3,持续集成,sbt,maven,plugin,插件,运维,开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="docker-maven-plugin配置及SpringBoot使用">
 <meta property="og:url" content="https://blog.quantm.club/2018/10/21/docker-rep-maven/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="安装nexus3本例中使用docker搭建nexus3之后，使用docker-maven-plugin在springBoot中配置maven插件，自动完成docker build tag push自动化操作 
-nexus-dockerDockerfile
-FROM java:8u111-jdk-alpine
-MAINTAINER lee &amp;lt;leechedan@gmail.com&amp;gt;
-
-E">
-<meta property="og:image" content="https://blog.quantm.club/rep-list.png">
-<meta property="og:image" content="https://blog.quantm.club/rep-set.png">
-<meta property="og:image" content="https://blog.quantm.club/docker-rep-maven.png">
-<meta property="og:updated_time" content="2018-10-26T17:23:38.629Z">
+<meta property="og:description" content="安装nexus3本例中使用docker搭建nexus3之后，使用docker-maven-plugin在springBoot中配置maven插件，自动完成docker build tag push自动化操作  nexus-dockerDockerfile FROM java:8u111-jdk-alpine MAINTAINER lee &amp;lt;leechedan@gmail.com&amp;gt;  E">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://blog.quantm.club/2018/10/21/docker-rep-maven/rep-list.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/10/21/docker-rep-maven/rep-set.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/10/21/docker-rep-maven/docker-rep-maven.png">
+<meta property="og:updated_time" content="2018-10-26T17:23:38.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker-maven-plugin配置及SpringBoot使用">
-<meta name="twitter:description" content="安装nexus3本例中使用docker搭建nexus3之后，使用docker-maven-plugin在springBoot中配置maven插件，自动完成docker build tag push自动化操作 
-nexus-dockerDockerfile
-FROM java:8u111-jdk-alpine
-MAINTAINER lee &amp;lt;leechedan@gmail.com&amp;gt;
-
-E">
-<meta name="twitter:image" content="https://blog.quantm.club/rep-list.png">
+<meta name="twitter:description" content="安装nexus3本例中使用docker搭建nexus3之后，使用docker-maven-plugin在springBoot中配置maven插件，自动完成docker build tag push自动化操作  nexus-dockerDockerfile FROM java:8u111-jdk-alpine MAINTAINER lee &amp;lt;leechedan@gmail.com&amp;gt;  E">
+<meta name="twitter:image" content="https://blog.quantm.club/2018/10/21/docker-rep-maven/rep-list.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -53,21 +40,21 @@ E">
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"/></a>
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"></a>
 			</div>
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -83,17 +70,17 @@ E">
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search">
 						<input type="hidden" name="q" value="site:blog.quantm.club">
 					</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -105,15 +92,15 @@ E">
        
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
-  <p class="article-time">
-    <time datetime="2018-10-21T02:00:00.000Z" itemprop="datePublished"> 发表于 2018-10-21</time>
+  </p><p class="article-time">
+    <time datetime="2018-10-21T02:00:00.000Z" itemprop="datePublished"> Published 2018-10-21</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nexus3"><span class="toc-number">1.</span> <span class="toc-text">安装nexus3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nexus-docker"><span class="toc-number">1.1.</span> <span class="toc-text">nexus-docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nexus配置"><span class="toc-number">1.2.</span> <span class="toc-text">nexus配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#未完成部分"><span class="toc-number">1.2.1.</span> <span class="toc-text">未完成部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker的客户端配置"><span class="toc-number">1.3.</span> <span class="toc-text">docker的客户端配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在任意机器运行"><span class="toc-number">1.3.1.</span> <span class="toc-text">在任意机器运行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程配置"><span class="toc-number">2.</span> <span class="toc-text">工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-maven-plugin"><span class="toc-number">2.1.</span> <span class="toc-text">docker-maven-plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-sbt"><span class="toc-number">2.2.</span> <span class="toc-text">docker-sbt</span></a></li></ol></li></ol>
 		
@@ -203,6 +190,7 @@ Error response from daemon: Get https://ip:8082/v2/: http: server gave HTTP resp
   ],
   &quot;disable-legacy-registry&quot;: true
 }
+
 </code></pre>
 <p>重启docker服务生效</p>
 <pre><code class="shell">serivce docker restart
@@ -469,9 +457,9 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2018/11/02/polarDB/" title="PolarDB阿里初赛问题记录">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   PolarDB阿里初赛问题记录</span>
 </a>
@@ -479,8 +467,8 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
 
 <div class="next">
-<a href="/2018/03/10/scala/"  title="Scala学习记录">
- <strong>下一篇：</strong><br/> 
+<a href="/2018/03/10/scala/" title="Scala学习记录">
+ <strong>下一篇：</strong><br> 
  <span>Scala学习记录
 </span>
 </a>
@@ -491,22 +479,22 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nexus3"><span class="toc-number">1.</span> <span class="toc-text">安装nexus3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nexus-docker"><span class="toc-number">1.1.</span> <span class="toc-text">nexus-docker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nexus配置"><span class="toc-number">1.2.</span> <span class="toc-text">nexus配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#未完成部分"><span class="toc-number">1.2.1.</span> <span class="toc-text">未完成部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker的客户端配置"><span class="toc-number">1.3.</span> <span class="toc-text">docker的客户端配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#在任意机器运行"><span class="toc-number">1.3.1.</span> <span class="toc-text">在任意机器运行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程配置"><span class="toc-number">2.</span> <span class="toc-text">工程配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-maven-plugin"><span class="toc-number">2.1.</span> <span class="toc-text">docker-maven-plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-sbt"><span class="toc-number">2.2.</span> <span class="toc-text">docker-sbt</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -535,7 +523,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -543,11 +531,11 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 			
 		
 			
-				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
+				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
+				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
 			
 		
 			
@@ -563,23 +551,43 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 			
 		
 			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+				<li><a href="/tags/mathjax/" title="mathjax">mathjax<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/系统维护/" title="系统维护">系统维护<sup>1</sup></a></li>
+				<li><a href="/tags/性能/" title="性能">性能<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+				<li><a href="/tags/语法/" title="语法">语法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/协同过滤/" title="协同过滤">协同过滤<sup>1</sup></a></li>
+				<li><a href="/tags/代码约定/" title="代码约定">代码约定<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spring/" title="spring">spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dubbo/" title="dubbo">dubbo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cas/" title="cas">cas<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OAuth/" title="OAuth">OAuth<sup>1</sup></a></li>
 			
 		
 			
@@ -591,31 +599,11 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 			
 		
 			
-				<li><a href="/tags/电商/" title="电商">电商<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/服务器/" title="服务器">服务器<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/单点登录/" title="单点登录">单点登录<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/系统搭建/" title="系统搭建">系统搭建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -623,7 +611,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -642,12 +630,12 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   
   <div class="tagcloudlist">
-    <p class="asidetitle">标签云</p>
+    <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
        <a href="/tags/Actor/" style="font-size: 10px;">Actor</a> <a href="/tags/Akka/" style="font-size: 10px;">Akka</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/OAuth/" style="font-size: 10px;">OAuth</a> <a href="/tags/PolarDB/" style="font-size: 10px;">PolarDB</a> <a href="/tags/Reactive/" style="font-size: 10px;">Reactive</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/cas/" style="font-size: 10px;">cas</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/mathjax/" style="font-size: 10px;">mathjax</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nexus/" style="font-size: 10px;">nexus</a> <a href="/tags/nexus3/" style="font-size: 10px;">nexus3</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sbt/" style="font-size: 15px;">sbt</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/单点登录/" style="font-size: 10px;">单点登录</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/推荐/" style="font-size: 15px;">推荐</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/比赛/" style="font-size: 10px;">比赛</a> <a href="/tags/电商/" style="font-size: 10px;">电商</a> <a href="/tags/相关性/" style="font-size: 15px;">相关性</a> <a href="/tags/系统搭建/" style="font-size: 10px;">系统搭建</a> <a href="/tags/系统维护/" style="font-size: 10px;">系统维护</a> <a href="/tags/论文/" style="font-size: 15px;">论文</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/阿里/" style="font-size: 10px;">阿里</a>
     </div>
@@ -656,7 +644,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 
   
 <div class="github-card">
-<p class="asidetitle">访问统计</p>
+<p class="asidetitle">location Statics</p>
 <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
 </div>
 
@@ -664,7 +652,7 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -673,11 +661,11 @@ lazy val recommendStream = DockerProjectSpecificPackagerPlugin.sbtdockerPackager
 	
 	
 	<section class="info">
-		<p> Christiansted, United States Virgin Islands <br/>
+		<p> Christiansted, United States Virgin Islands <br>
 			believer it or not</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -888,7 +876,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

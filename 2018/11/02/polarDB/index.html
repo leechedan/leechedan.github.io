@@ -1,7 +1,7 @@
 
  <!DOCTYPE HTML>
-<html >
-<head>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
   
     <title>PolarDB阿里初赛问题记录 PolarDB 阿里 中间件 比赛 性能 工程手册 | Timmy live</title>
@@ -11,32 +11,25 @@
     
 
     
-    <meta name="description" content="PolarDB阿里初赛问题记录这篇纯碎是碎碎念记录。
-每个value都是4KB，总共最多会写6400W个value，算下来就是64 * 1000 * 1000 * 4 * 1024 Bytes ≈ 256G。
-
-每个value存储到文件中的时候，需要知道它在文件中的位置，这个位置是一个长整型，8 Bytes。Key也是8 Bytes。这两个值要放在一起，以便我们能在内存中构建起一对一的索引。而它们">
+    <meta name="description" content="PolarDB阿里初赛问题记录这篇纯碎是碎碎念记录。 每个value都是4KB，总共最多会写6400W个value，算下来就是64 * 1000 * 1000 * 4 * 1024 Bytes ≈ 256G。  每个value存储到文件中的时候，需要知道它在文件中的位置，这个位置是一个长整型，8 Bytes。Key也是8 Bytes。这两个值要放在一起，以便我们能在内存中构建起一对一的索引。而它们">
+<meta name="keywords" content="PolarDB,阿里,中间件,比赛,性能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PolarDB阿里初赛问题记录">
 <meta property="og:url" content="https://blog.quantm.club/2018/11/02/polarDB/index.html">
 <meta property="og:site_name" content="Timmy live">
-<meta property="og:description" content="PolarDB阿里初赛问题记录这篇纯碎是碎碎念记录。
-每个value都是4KB，总共最多会写6400W个value，算下来就是64 * 1000 * 1000 * 4 * 1024 Bytes ≈ 256G。
-
-每个value存储到文件中的时候，需要知道它在文件中的位置，这个位置是一个长整型，8 Bytes。Key也是8 Bytes。这两个值要放在一起，以便我们能在内存中构建起一对一的索引。而它们">
-<meta property="og:image" content="https://blog.quantm.club/add-param-gc.png">
-<meta property="og:image" content="https://blog.quantm.club/delete-db-snap.png">
-<meta property="og:image" content="https://blog.quantm.club/1876-512-300.png">
-<meta property="og:image" content="https://blog.quantm.club/1876-512-300-gc.png">
-<meta property="og:image" content="https://blog.quantm.club/last.png">
-<meta property="og:image" content="https://blog.quantm.club/1876-512-128-gc.png">
-<meta property="og:updated_time" content="2018-12-19T02:16:48.817Z">
+<meta property="og:description" content="PolarDB阿里初赛问题记录这篇纯碎是碎碎念记录。 每个value都是4KB，总共最多会写6400W个value，算下来就是64 * 1000 * 1000 * 4 * 1024 Bytes ≈ 256G。  每个value存储到文件中的时候，需要知道它在文件中的位置，这个位置是一个长整型，8 Bytes。Key也是8 Bytes。这两个值要放在一起，以便我们能在内存中构建起一对一的索引。而它们">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://blog.quantm.club/2018/11/02/polarDB/add-param-gc.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/11/02/polarDB/delete-db-snap.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/11/02/polarDB/1876-512-300.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/11/02/polarDB/1876-512-300-gc.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/11/02/polarDB/last.png">
+<meta property="og:image" content="https://blog.quantm.club/2018/11/02/polarDB/1876-512-128-gc.png">
+<meta property="og:updated_time" content="2018-12-19T02:16:48.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PolarDB阿里初赛问题记录">
-<meta name="twitter:description" content="PolarDB阿里初赛问题记录这篇纯碎是碎碎念记录。
-每个value都是4KB，总共最多会写6400W个value，算下来就是64 * 1000 * 1000 * 4 * 1024 Bytes ≈ 256G。
-
-每个value存储到文件中的时候，需要知道它在文件中的位置，这个位置是一个长整型，8 Bytes。Key也是8 Bytes。这两个值要放在一起，以便我们能在内存中构建起一对一的索引。而它们">
-<meta name="twitter:image" content="https://blog.quantm.club/add-param-gc.png">
+<meta name="twitter:description" content="PolarDB阿里初赛问题记录这篇纯碎是碎碎念记录。 每个value都是4KB，总共最多会写6400W个value，算下来就是64 * 1000 * 1000 * 4 * 1024 Bytes ≈ 256G。  每个value存储到文件中的时候，需要知道它在文件中的位置，这个位置是一个长整型，8 Bytes。Key也是8 Bytes。这两个值要放在一起，以便我们能在内存中构建起一对一的索引。而它们">
+<meta name="twitter:image" content="https://blog.quantm.club/2018/11/02/polarDB/add-param-gc.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
@@ -50,21 +43,21 @@
     
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
+</html>
   <body>
     <header>
       
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"/></a>
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"></a>
 			</div>
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -80,17 +73,17 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search">
 						<input type="hidden" name="q" value="site:blog.quantm.club">
 					</form>
 					
 					</li>
 				</ul>
-			</nav>			
+			</ul></nav>			
 </div>
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
   
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
@@ -102,17 +95,17 @@
        
 		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
 		
-  <p class="article-time">
-    <time datetime="2018-11-02T02:05:49.000Z" itemprop="datePublished"> 发表于 2018-11-02</time>
+  </p><p class="article-time">
+    <time datetime="2018-11-02T02:05:49.000Z" itemprop="datePublished"> Published 2018-11-02</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PolarDB阿里初赛问题记录"><span class="toc-number">1.</span> <span class="toc-text">PolarDB阿里初赛问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试流程"><span class="toc-number">1.0.1.</span> <span class="toc-text">测试流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发问题"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">并发问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key-index文件是否需要顺序加载"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">key-index文件是否需要顺序加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key的覆盖和value的覆盖"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">key的覆盖和value的覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mappedbyteBuffer的回收"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">mappedbyteBuffer的回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#int-long溢出问题"><span class="toc-number">1.0.1.5.</span> <span class="toc-text">int long溢出问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试结果"><span class="toc-number">1.0.2.</span> <span class="toc-text">测试结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能问题"><span class="toc-number">1.1.</span> <span class="toc-text">性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加jvm参数"><span class="toc-number">1.1.1.</span> <span class="toc-text">增加jvm参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无参数，使用intellij默认"><span class="toc-number">1.1.2.</span> <span class="toc-text">无参数，使用intellij默认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只增加内存大小"><span class="toc-number">1.1.3.</span> <span class="toc-text">只增加内存大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订版本"><span class="toc-number">1.1.4.</span> <span class="toc-text">订版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线上环境和线下环境的区别"><span class="toc-number">1.1.5.</span> <span class="toc-text">线上环境和线下环境的区别</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PolarDB阿里初赛问题记录"><span class="toc-number">1.</span> <span class="toc-text">PolarDB阿里初赛问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试流程"><span class="toc-number">1.0.1.</span> <span class="toc-text">测试流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发问题"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">并发问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key-index文件是否需要顺序加载"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">key-index文件是否需要顺序加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key的覆盖和value的覆盖"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">key的覆盖和value的覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mappedbyteBuffer的回收"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">mappedbyteBuffer的回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#int-long溢出问题"><span class="toc-number">1.0.1.5.</span> <span class="toc-text">int long溢出问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试结果"><span class="toc-number">1.0.2.</span> <span class="toc-text">测试结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能问题"><span class="toc-number">1.1.</span> <span class="toc-text">性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加jvm参数"><span class="toc-number">1.1.1.</span> <span class="toc-text">增加jvm参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无参数，使用intellij默认"><span class="toc-number">1.1.2.</span> <span class="toc-text">无参数，使用intellij默认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只增加内存大小"><span class="toc-number">1.1.3.</span> <span class="toc-text">只增加内存大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订版本"><span class="toc-number">1.1.4.</span> <span class="toc-text">订版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线上环境和线下环境的区别"><span class="toc-number">1.1.5.</span> <span class="toc-text">线上环境和线下环境的区别</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -134,7 +127,7 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 <ul>
 <li>1 失败  1成功  2  成功 1成功  2  成功 1成功  2  成功</li>
 <li>1 成功  1失败  2  失败  1失败  2  失败  1失败  2  失败</li>
-<li>初次操作，使用<byte[], integer="">组装concurrenthashmap，但是调整一直出错，自己的测试有毛病，提交测试之后还通过正确性测试。</byte[],></li>
+<li>初次操作，使用&lt;byte[], Integer&gt;组装concurrenthashmap，但是调整一直出错，自己的测试有毛病，提交测试之后还通过正确性测试。</li>
 </ul>
 <ol>
 <li>以上两项测试的原因在于，同内存写入的时候，进行读取的操作，key值的内存数值一样，所以在第一次1里面成功。但是进程重启之后，byte[]的hashcode是会随着进程的不同而变化的，所以找不到key，进行get时候会报空。</li>
@@ -182,7 +175,7 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 13:37:30,556 INFO  org.lee.disk.App.test(App.java:30) - start write
 13:40:46,510 INFO  org.lee.disk.App.test(App.java:35) - write elapsed 3115 ms
 13:43:34,460 INFO  org.lee.disk.App.test(App.java:43) - detach assert read elapsed 363903 ms
-</code></pre><h2 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h2><p><a href="https://blog.csdn.net/keketrtr/article/details/74448127" target="_blank" rel="external">https://blog.csdn.net/keketrtr/article/details/74448127</a><br>使用jvisualvm的插件GC进行判断，设置参数平截图，减少GC问题<br>以下是四张图，表示顺序写入+顺序读取640W次数的过程</p>
+</code></pre><h2 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h2><p><a href="https://blog.csdn.net/keketrtr/article/details/74448127" target="_blank" rel="noopener">https://blog.csdn.net/keketrtr/article/details/74448127</a><br>使用jvisualvm的插件GC进行判断，设置参数平截图，减少GC问题<br>以下是四张图，表示顺序写入+顺序读取640W次数的过程</p>
 <h3 id="增加jvm参数"><a href="#增加jvm参数" class="headerlink" title="增加jvm参数"></a>增加jvm参数</h3><p>-server -Xms1536m -Xmx1536m -XX:MaxDirectMemorySize=512m -XX:MaxMetaspaceSize=300m -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:-UseBiasedLocking<br><img src="add-param-gc.png" alt=""></p>
 <h3 id="无参数，使用intellij默认"><a href="#无参数，使用intellij默认" class="headerlink" title="无参数，使用intellij默认"></a>无参数，使用intellij默认</h3><p><img src="delete-db-snap.png" alt=""></p>
 <h3 id="只增加内存大小"><a href="#只增加内存大小" class="headerlink" title="只增加内存大小"></a>只增加内存大小</h3><p>-server -Xms1876m -Xmx1876m -XX:MaxDirectMemorySize=512m -XX:MaxMetaspaceSize=300m -XX:NewRatio=1 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:-UseBiasedLocking<br><img src="1876-512-300.png" alt=""><img src="1876-512-300-gc.png" alt=""></p>
@@ -223,9 +216,9 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
+ <div class="prev">
  <a href="/2018/11/15/docker-user-log/" title="docker-user-log">
-  <strong>上一篇：</strong><br/>
+  <strong>上一篇：</strong><br>
   <span>
   docker-user-log</span>
 </a>
@@ -233,8 +226,8 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 
 
 <div class="next">
-<a href="/2018/10/21/docker-rep-maven/"  title="docker-maven-plugin配置及SpringBoot使用">
- <strong>下一篇：</strong><br/> 
+<a href="/2018/10/21/docker-rep-maven/" title="docker-maven-plugin配置及SpringBoot使用">
+ <strong>下一篇：</strong><br> 
  <span>docker-maven-plugin配置及SpringBoot使用
 </span>
 </a>
@@ -245,22 +238,22 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PolarDB阿里初赛问题记录"><span class="toc-number">1.</span> <span class="toc-text">PolarDB阿里初赛问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试流程"><span class="toc-number">1.0.1.</span> <span class="toc-text">测试流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发问题"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">并发问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key-index文件是否需要顺序加载"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">key-index文件是否需要顺序加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key的覆盖和value的覆盖"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">key的覆盖和value的覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mappedbyteBuffer的回收"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">mappedbyteBuffer的回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#int-long溢出问题"><span class="toc-number">1.0.1.5.</span> <span class="toc-text">int long溢出问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试结果"><span class="toc-number">1.0.2.</span> <span class="toc-text">测试结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能问题"><span class="toc-number">1.1.</span> <span class="toc-text">性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加jvm参数"><span class="toc-number">1.1.1.</span> <span class="toc-text">增加jvm参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无参数，使用intellij默认"><span class="toc-number">1.1.2.</span> <span class="toc-text">无参数，使用intellij默认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只增加内存大小"><span class="toc-number">1.1.3.</span> <span class="toc-text">只增加内存大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订版本"><span class="toc-number">1.1.4.</span> <span class="toc-text">订版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线上环境和线下环境的区别"><span class="toc-number">1.1.5.</span> <span class="toc-text">线上环境和线下环境的区别</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PolarDB阿里初赛问题记录"><span class="toc-number">1.</span> <span class="toc-text">PolarDB阿里初赛问题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#测试流程"><span class="toc-number">1.0.1.</span> <span class="toc-text">测试流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#并发问题"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">并发问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key-index文件是否需要顺序加载"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">key-index文件是否需要顺序加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key的覆盖和value的覆盖"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">key的覆盖和value的覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mappedbyteBuffer的回收"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">mappedbyteBuffer的回收</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#int-long溢出问题"><span class="toc-number">1.0.1.5.</span> <span class="toc-text">int long溢出问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试结果"><span class="toc-number">1.0.2.</span> <span class="toc-text">测试结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能问题"><span class="toc-number">1.1.</span> <span class="toc-text">性能问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加jvm参数"><span class="toc-number">1.1.1.</span> <span class="toc-text">增加jvm参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无参数，使用intellij默认"><span class="toc-number">1.1.2.</span> <span class="toc-text">无参数，使用intellij默认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只增加内存大小"><span class="toc-number">1.1.3.</span> <span class="toc-text">只增加内存大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#订版本"><span class="toc-number">1.1.4.</span> <span class="toc-text">订版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线上环境和线下环境的区别"><span class="toc-number">1.1.5.</span> <span class="toc-text">线上环境和线下环境的区别</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -289,7 +282,7 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -297,11 +290,11 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 			
 		
 			
-				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
+				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
+				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
 			
 		
 			
@@ -317,23 +310,43 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 			
 		
 			
-				<li><a href="/tags/持续集成/" title="持续集成">持续集成<sup>1</sup></a></li>
+				<li><a href="/tags/mathjax/" title="mathjax">mathjax<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/系统维护/" title="系统维护">系统维护<sup>1</sup></a></li>
+				<li><a href="/tags/性能/" title="性能">性能<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+				<li><a href="/tags/工具/" title="工具">工具<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+				<li><a href="/tags/语法/" title="语法">语法<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/协同过滤/" title="协同过滤">协同过滤<sup>1</sup></a></li>
+				<li><a href="/tags/代码约定/" title="代码约定">代码约定<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/spring/" title="spring">spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/dubbo/" title="dubbo">dubbo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/eclipse/" title="eclipse">eclipse<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cas/" title="cas">cas<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/OAuth/" title="OAuth">OAuth<sup>1</sup></a></li>
 			
 		
 			
@@ -345,31 +358,11 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 			
 		
 			
-				<li><a href="/tags/电商/" title="电商">电商<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/服务器/" title="服务器">服务器<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/单点登录/" title="单点登录">单点登录<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/系统搭建/" title="系统搭建">系统搭建<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -377,7 +370,7 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -396,12 +389,12 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 </div>
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   
   <div class="tagcloudlist">
-    <p class="asidetitle">标签云</p>
+    <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
        <a href="/tags/Actor/" style="font-size: 10px;">Actor</a> <a href="/tags/Akka/" style="font-size: 10px;">Akka</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/OAuth/" style="font-size: 10px;">OAuth</a> <a href="/tags/PolarDB/" style="font-size: 10px;">PolarDB</a> <a href="/tags/Reactive/" style="font-size: 10px;">Reactive</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/cas/" style="font-size: 10px;">cas</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/mathjax/" style="font-size: 10px;">mathjax</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nexus/" style="font-size: 10px;">nexus</a> <a href="/tags/nexus3/" style="font-size: 10px;">nexus3</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sbt/" style="font-size: 15px;">sbt</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/单点登录/" style="font-size: 10px;">单点登录</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/推荐/" style="font-size: 15px;">推荐</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/比赛/" style="font-size: 10px;">比赛</a> <a href="/tags/电商/" style="font-size: 10px;">电商</a> <a href="/tags/相关性/" style="font-size: 15px;">相关性</a> <a href="/tags/系统搭建/" style="font-size: 10px;">系统搭建</a> <a href="/tags/系统维护/" style="font-size: 10px;">系统维护</a> <a href="/tags/论文/" style="font-size: 15px;">论文</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/阿里/" style="font-size: 10px;">阿里</a>
     </div>
@@ -410,7 +403,7 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 
   
 <div class="github-card">
-<p class="asidetitle">访问统计</p>
+<p class="asidetitle">location Statics</p>
 <script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
 </div>
 
@@ -418,7 +411,7 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 </aside>
 </div>
     </div>
-    <footer><div id="footer" >
+    <footer><div id="footer">
 	
 	<div class="line">
 		<span></span>
@@ -427,11 +420,11 @@ Key和Value还需要落盘，所以它们也需要大约1GB的磁盘空间。
 	
 	
 	<section class="info">
-		<p> Christiansted, United States Virgin Islands <br/>
+		<p> Christiansted, United States Virgin Islands <br>
 			believer it or not</p>
 	</section>
 	 
-	<div class="social-font" class="clearfix">
+	<div class="social-font">
 		
 		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
 		
@@ -642,7 +635,7 @@ ga('send', 'pageview');
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.quantm.club/2016/07/16/Yarn%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/</loc>
+    
+    <lastmod>2018-12-27T04:01:54.400Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.quantm.club/2018/11/02/polarDB/</loc>
     
-    <lastmod>2018-12-19T02:16:48.817Z</lastmod>
+    <lastmod>2018-12-19T02:16:48.818Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.quantm.club/2018/11/15/docker-user-log/</loc>
     
-    <lastmod>2018-12-18T08:10:17.255Z</lastmod>
+    <lastmod>2018-12-18T08:10:17.256Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.quantm.club/2018/10/21/docker-rep-maven/</loc>
     
-    <lastmod>2018-10-26T17:23:38.629Z</lastmod>
+    <lastmod>2018-10-26T17:23:38.630Z</lastmod>
     
   </url>
   
@@ -32,21 +39,14 @@
   <url>
     <loc>https://blog.quantm.club/2016/07/22/Correlation/</loc>
     
-    <lastmod>2018-10-26T17:06:24.418Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.quantm.club/2016/07/16/Yarn%E6%90%AD%E5%BB%BA%E6%89%8B%E5%86%8C/</loc>
-    
-    <lastmod>2018-10-26T17:05:04.341Z</lastmod>
+    <lastmod>2018-10-26T17:06:24.419Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.quantm.club/2016/07/23/mathjax-syntax/</loc>
     
-    <lastmod>2018-10-26T17:04:41.693Z</lastmod>
+    <lastmod>2018-10-26T17:04:41.694Z</lastmod>
     
   </url>
   
@@ -95,7 +95,7 @@
   <url>
     <loc>https://blog.quantm.club/2016/12/19/Zeppelin%E6%93%8D%E4%BD%9C%E8%AE%B0%E5%BD%95/</loc>
     
-    <lastmod>2016-12-19T13:04:30.669Z</lastmod>
+    <lastmod>2016-12-19T13:04:30.670Z</lastmod>
     
   </url>
   
@@ -123,7 +123,7 @@
   <url>
     <loc>https://blog.quantm.club/categories/index.html</loc>
     
-    <lastmod>2016-07-17T02:52:49.893Z</lastmod>
+    <lastmod>2016-07-17T02:52:49.894Z</lastmod>
     
   </url>
   
@@ -137,7 +137,7 @@
   <url>
     <loc>https://blog.quantm.club/about/index.html</loc>
     
-    <lastmod>2016-07-16T13:40:34.457Z</lastmod>
+    <lastmod>2016-07-16T13:40:34.458Z</lastmod>
     
   </url>
   
