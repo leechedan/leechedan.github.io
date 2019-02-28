@@ -1,0 +1,1597 @@
+
+ <!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  
+    <title>机器学习 | Timmy live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Lee">
+    
+
+    
+    <meta name="description" content="机器学习1. 下列说法正确的是？（多选）  A. AdaGrad 使用的是一阶导数   B. L-BFGS 使用的是二阶导数   C. AdaGrad 使用的是二阶导数   D. L-BFGS 使用的是一阶导数   答案：AB   解析：AdaGrad 是基于梯度下降算法的，AdaGrad算法能够在训练中自动的对学习速率 α 进行调整，对于出现频率较低参数采用较大的 α 更新；相反，对于出现频率较">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习">
+<meta property="og:url" content="https://blog.quantm.club/2019/03/01/机器学习/index.html">
+<meta property="og:site_name" content="Timmy live">
+<meta property="og:description" content="机器学习1. 下列说法正确的是？（多选）  A. AdaGrad 使用的是一阶导数   B. L-BFGS 使用的是二阶导数   C. AdaGrad 使用的是二阶导数   D. L-BFGS 使用的是一阶导数   答案：AB   解析：AdaGrad 是基于梯度下降算法的，AdaGrad算法能够在训练中自动的对学习速率 α 进行调整，对于出现频率较低参数采用较大的 α 更新；相反，对于出现频率较">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/1.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/2.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/3.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/4.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/5.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/6.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/7.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/8.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/9.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/10.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/11.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/12.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/13.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/14.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/15.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/16.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/17.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/18.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/19.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/20.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/21.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/22.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/23.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/24.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/25.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/26.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/27.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/28.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/29.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/30.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/80.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/81.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/31.jpg">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/hflWRBRSEZ5GjsgNtEhVyeINJRopLXuTZQwFNnuF40IdCOh41ZLcbiaiavK7ebGwYCd2buRyq5zKwSiaiaGDIKnc2Q/640?wxfrom=5&wx_lazy=1&retryload=0">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/33.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/34.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/35.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/36.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/37.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/38.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/39.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/40.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/41.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/42.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/43.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/44.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/45.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/46.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/47.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/48.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/49.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/50.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/51.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/52.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/53.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/54.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/55.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/56.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/57.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/58.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/59.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/60.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/61.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/62.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/63.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/64.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/65.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/66.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/67.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/68.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/69.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/70.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/71.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/72.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/73.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/82.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/74.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/75.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/76.jpg">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/77.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/78.png">
+<meta property="og:image" content="https://blog.quantm.club/2019/03/01/机器学习/79.jpg">
+<meta property="og:updated_time" content="2019-02-28T23:53:27.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习">
+<meta name="twitter:description" content="机器学习1. 下列说法正确的是？（多选）  A. AdaGrad 使用的是一阶导数   B. L-BFGS 使用的是二阶导数   C. AdaGrad 使用的是二阶导数   D. L-BFGS 使用的是一阶导数   答案：AB   解析：AdaGrad 是基于梯度下降算法的，AdaGrad算法能够在训练中自动的对学习速率 α 进行调整，对于出现频率较低参数采用较大的 α 更新；相反，对于出现频率较">
+<meta name="twitter:image" content="https://blog.quantm.club/2019/03/01/机器学习/1.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页Home</a></li>
+					
+						<li><a href="/archives">归档Archives</a></li>
+					
+						<li><a href="/about">关于About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search">
+						<input type="hidden" name="q" value="site:blog.quantm.club">
+					</form>
+					
+					</li>
+				</ul>
+			</ul></nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/03/01/机器学习/" title="机器学习" itemprop="url">机器学习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
+		
+  </p><p class="article-time">
+    <time datetime="2019-02-28T17:05:49.000Z" itemprop="datePublished"> Published 2019-03-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习"><span class="toc-number">1.</span> <span class="toc-text">机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下列说法正确的是？（多选）"><span class="toc-number">1.1.</span> <span class="toc-text">1. 下列说法正确的是？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-“增加卷积核的尺寸，一定能提高卷积神经网络的性能。”-这句话是否正确？"><span class="toc-number">1.2.</span> <span class="toc-text">2. “增加卷积核的尺寸，一定能提高卷积神经网络的性能。” 这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-假设你在卷积神经网络的第一层中有-5-个卷积核，每个卷积核尺寸为-7×7，具有零填充且步幅为-1。该层的输入图片的维度是-224×224×3。那么该层输出的维度是多少？"><span class="toc-number">1.3.</span> <span class="toc-text">3. 假设你在卷积神经网络的第一层中有 5 个卷积核，每个卷积核尺寸为 7×7，具有零填充且步幅为 1。该层的输入图片的维度是 224×224×3。那么该层输出的维度是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-假如现在有个神经网络，激活函数是-ReLU，若使用线性激活函数代替-ReLU，那么该神经网络还能表征-XNOR-函数吗？"><span class="toc-number">1.4.</span> <span class="toc-text">4. 假如现在有个神经网络，激活函数是 ReLU，若使用线性激活函数代替 ReLU，那么该神经网络还能表征 XNOR 函数吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-机器学习训练时，Mini-Batch-的大小优选为2个的幂，如-256-或-512。它背后的原因是什么？"><span class="toc-number">1.5.</span> <span class="toc-text">5. 机器学习训练时，Mini-Batch 的大小优选为2个的幂，如 256 或 512。它背后的原因是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-下列哪种方法可以用来减小过拟合？（多选）"><span class="toc-number">1.6.</span> <span class="toc-text">6. 下列哪种方法可以用来减小过拟合？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-下列说法错误的是？"><span class="toc-number">1.7.</span> <span class="toc-text">7. 下列说法错误的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-K-Means-算法无法聚以下哪种形状的样本？"><span class="toc-number">1.8.</span> <span class="toc-text">8. K-Means 算法无法聚以下哪种形状的样本？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-向量-X-1-2-3-4-9-0-的-L1-范数为？"><span class="toc-number">1.9.</span> <span class="toc-text">9. 向量 X=[1,2,3,4,-9,0] 的 L1 范数为？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-关于-L1、L2-正则化下列说法正确的是？"><span class="toc-number">1.10.</span> <span class="toc-text">10. 关于 L1、L2 正则化下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-有-N-个样本，一般用于训练，一般用于测试。若增大-N-值，则训练误差和测试误差之间的差距会如何变化？"><span class="toc-number">1.11.</span> <span class="toc-text">11. 有 N 个样本，一般用于训练，一般用于测试。若增大 N 值，则训练误差和测试误差之间的差距会如何变化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-假定你在神经网络中的隐藏层中使用激活函数-X。在特定神经元给定任意输入，你会得到输出-0-01。X-可能是以下哪一个激活函数？"><span class="toc-number">1.12.</span> <span class="toc-text">12. 假定你在神经网络中的隐藏层中使用激活函数 X。在特定神经元给定任意输入，你会得到输出 -0.01。X 可能是以下哪一个激活函数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-k-NN-最近邻方法在什么情况下效果较好？"><span class="toc-number">1.13.</span> <span class="toc-text">13. k-NN 最近邻方法在什么情况下效果较好？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-下列方法中，可以用于特征降维的方法包括？（多选）"><span class="toc-number">1.14.</span> <span class="toc-text">14. 下列方法中，可以用于特征降维的方法包括？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-以下哪些方法不可以直接来对文本分类？"><span class="toc-number">1.15.</span> <span class="toc-text">15. 以下哪些方法不可以直接来对文本分类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？"><span class="toc-number">1.16.</span> <span class="toc-text">16. 在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y-wx-b）来拟合数据。那么使用留一法（Leave-One-Out）交叉验证得到的均方误差是多少？"><span class="toc-number">1.17.</span> <span class="toc-text">17. 假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y=wx+b）来拟合数据。那么使用留一法（Leave-One Out）交叉验证得到的均方误差是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-下列关于极大似然估计（Maximum-Likelihood-Estimate，MLE），说法正确的是（多选）？"><span class="toc-number">1.18.</span> <span class="toc-text">18. 下列关于极大似然估计（Maximum Likelihood Estimate，MLE），说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？"><span class="toc-number">1.19.</span> <span class="toc-text">19. 如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-在一个线性回归问题中，我们使用-R-平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？"><span class="toc-number">1.20.</span> <span class="toc-text">20. 在一个线性回归问题中，我们使用 R 平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-下列关于线性回归分析中的残差（Residuals）说法正确的是？"><span class="toc-number">1.21.</span> <span class="toc-text">21. 下列关于线性回归分析中的残差（Residuals）说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-下列关于异方差（Heteroskedasticity）说法正确的是？"><span class="toc-number">1.22.</span> <span class="toc-text">22. 下列关于异方差（Heteroskedasticity）说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-下列哪一项能反映出-X-和-Y-之间的强相关性？"><span class="toc-number">1.23.</span> <span class="toc-text">23. 下列哪一项能反映出 X 和 Y 之间的强相关性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-下列哪些假设是我们推导线性回归参数时遵循的（多选）？"><span class="toc-number">1.24.</span> <span class="toc-text">24. 下列哪些假设是我们推导线性回归参数时遵循的（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-为了观察测试-Y-与-X-之间的线性关系，X-是连续变量，使用下列哪种图形比较适合？"><span class="toc-number">1.25.</span> <span class="toc-text">25. 为了观察测试 Y 与 X 之间的线性关系，X 是连续变量，使用下列哪种图形比较适合？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-一般来说，下列哪种方法常用来预测连续独立变量？"><span class="toc-number">1.26.</span> <span class="toc-text">26. 一般来说，下列哪种方法常用来预测连续独立变量？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27-个人健康和年龄的相关系数是-1-09。根据这个你可以告诉医生哪个结论？"><span class="toc-number">1.27.</span> <span class="toc-text">27. 个人健康和年龄的相关系数是 -1.09。根据这个你可以告诉医生哪个结论？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28-下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入-X，纵坐标是输出-Y。"><span class="toc-number">1.28.</span> <span class="toc-text">28. 下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入 X，纵坐标是输出 Y。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29-假如我们利用-Y-是-X-的-3-阶多项式产生一些数据（3-阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？"><span class="toc-number">1.29.</span> <span class="toc-text">29. 假如我们利用 Y 是 X 的 3 阶多项式产生一些数据（3 阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30-假如你在训练一个线性回归模型，有下面两句话："><span class="toc-number">1.30.</span> <span class="toc-text">30. 假如你在训练一个线性回归模型，有下面两句话：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31-假如我们使用-Lasso-回归来拟合数据集，该数据集输入特征有-100-个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大-10-倍（例如是特征-X1），然后用相同的正则化参数对-Lasso-回归进行修正。"><span class="toc-number">1.31.</span> <span class="toc-text">31. 假如我们使用 Lasso 回归来拟合数据集，该数据集输入特征有 100 个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大 10 倍（例如是特征 X1），然后用相同的正则化参数对 Lasso 回归进行修正。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-关于特征选择，下列对-Ridge-回归和-Lasso-回归说法正确的是？"><span class="toc-number">1.32.</span> <span class="toc-text">32. 关于特征选择，下列对 Ridge 回归和 Lasso 回归说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？"><span class="toc-number">1.33.</span> <span class="toc-text">33. 如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？"><span class="toc-number">1.34.</span> <span class="toc-text">34. 下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-下列哪些指标可以用来评估线性回归模型（多选）？"><span class="toc-number">1.35.</span> <span class="toc-text">35. 下列哪些指标可以用来评估线性回归模型（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-线性回归中，我们可以使用正规方程（Normal-Equation）来求解系数。下列关于正规方程说法正确的是？"><span class="toc-number">1.36.</span> <span class="toc-text">36. 线性回归中，我们可以使用正规方程（Normal Equation）来求解系数。下列关于正规方程说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37-如果-Y-是-X（X1，X2，…，Xn）的线性函数："><span class="toc-number">1.37.</span> <span class="toc-text">37. 如果 Y 是 X（X1，X2，…，Xn）的线性函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38-构建一个最简单的线性回归模型需要几个系数（只有一个特征）？"><span class="toc-number">1.38.</span> <span class="toc-text">38. 构建一个最简单的线性回归模型需要几个系数（只有一个特征）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39-下面两张图展示了两个拟合回归线（A-和-B），原始数据是随机产生的。现在，我想要计算-A-和-B-各自的残差之和。注意：两种图中的坐标尺度一样。"><span class="toc-number">1.39.</span> <span class="toc-text">39. 下面两张图展示了两个拟合回归线（A 和 B），原始数据是随机产生的。现在，我想要计算 A 和 B 各自的残差之和。注意：两种图中的坐标尺度一样。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40-如果两个变量相关，那么它们一定是线性关系吗？"><span class="toc-number">1.40.</span> <span class="toc-text">40. 如果两个变量相关，那么它们一定是线性关系吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#41-两个变量相关，它们的相关系数-r-可能为-0。这句话是否正确？"><span class="toc-number">1.41.</span> <span class="toc-text">41. 两个变量相关，它们的相关系数 r 可能为 0。这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42-加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？"><span class="toc-number">1.42.</span> <span class="toc-text">42. 加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43-下面这张图是一个简单的线性回归模型-图中标注了每个样本点预测值与真实值的残差。计算-SSE-为多少？"><span class="toc-number">1.43.</span> <span class="toc-text">43. 下面这张图是一个简单的线性回归模型,图中标注了每个样本点预测值与真实值的残差。计算 SSE 为多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44-假设变量-Var1-和-Var2-是正相关的，那么下面那张图是正确的？图中，横坐标是-Var1，纵坐标是-Var2，且对-Var1-和-Var2-都做了标准化处理。"><span class="toc-number">1.44.</span> <span class="toc-text">44. 假设变量 Var1 和 Var2 是正相关的，那么下面那张图是正确的？图中，横坐标是 Var1，纵坐标是 Var2，且对 Var1 和 Var2 都做了标准化处理。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45-假设一个公司的薪资水平中位数是-35-000，排名第-25-和-75-的薪资分别是-21-000-和-53-000。如果某人的薪水是-1，那么它可以被看成是异常值（Outlier）吗？"><span class="toc-number">1.45.</span> <span class="toc-text">45. 假设一个公司的薪资水平中位数是 $35,000，排名第 25% 和 75% 的薪资分别是 $21,000 和 $ 53,000。如果某人的薪水是 $1，那么它可以被看成是异常值（Outlier）吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46-关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x-是自变量，y-是因变量。"><span class="toc-number">1.46.</span> <span class="toc-text">46. 关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x 是自变量，y 是因变量。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#47-仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？"><span class="toc-number">1.47.</span> <span class="toc-text">47. 仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#48-假设有-n-组数据集，每组数据集中，x-的平均值都是-9，x-的方差都是-11，y-的平均值都是-7-50，x-与-y-的相关系数都是-0-816，拟合的线性回归方程都是-y-3-00-0-500-x。那么这-n-组数据集是否一样？"><span class="toc-number">1.48.</span> <span class="toc-text">48. 假设有 n 组数据集，每组数据集中，x 的平均值都是 9，x 的方差都是 11，y 的平均值都是 7.50，x 与 y 的相关系数都是 0.816，拟合的线性回归方程都是 y = 3.00 + 0.500*x。那么这 n 组数据集是否一样？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#49-观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。"><span class="toc-number">1.49.</span> <span class="toc-text">49. 观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#50-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较大时，关于偏差（bias）和方差（variance），下列说法正确的是？"><span class="toc-number">1.50.</span> <span class="toc-text">50. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较大时，关于偏差（bias）和方差（variance），下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#51-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较小时，关于偏差（bias）和方差（variance），下列说法正确的是？"><span class="toc-number">1.51.</span> <span class="toc-text">51. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较小时，关于偏差（bias）和方差（variance），下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-下列关于-Ridge-回归，说法正确的是（多选）？"><span class="toc-number">1.52.</span> <span class="toc-text">52. 下列关于 Ridge 回归，说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？"><span class="toc-number">1.53.</span> <span class="toc-text">53. 在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-下列哪一种方法的系数没有封闭形式（closed-form）的解？"><span class="toc-number">1.54.</span> <span class="toc-text">54. 下列哪一种方法的系数没有封闭形式（closed-form）的解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-观察如下数据集："><span class="toc-number">1.55.</span> <span class="toc-text">55. 观察如下数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？"><span class="toc-number">1.56.</span> <span class="toc-text">56. 在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-逻辑回归将输出概率限定在-0-1-之间。下列哪个函数起到这样的作用？"><span class="toc-number">1.57.</span> <span class="toc-text">57. 逻辑回归将输出概率限定在 [0,1] 之间。下列哪个函数起到这样的作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#58-线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？"><span class="toc-number">1.58.</span> <span class="toc-text">58. 线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#59-假设使用逻辑回归进行-n-多类别分类，使用-One-vs-rest-分类法。下列说法正确的是？"><span class="toc-number">1.59.</span> <span class="toc-text">59. 假设使用逻辑回归进行 n 多类别分类，使用 One-vs-rest 分类法。下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#60-下图是两个不同-β0、β1-对应的逻辑回归模型（绿色和黑色）："><span class="toc-number">1.60.</span> <span class="toc-text">60. 下图是两个不同 β0、β1 对应的逻辑回归模型（绿色和黑色）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#61-在-n-维空间中（n-gt-1），下列哪种方法最适合用来检测异常值？"><span class="toc-number">1.61.</span> <span class="toc-text">61. 在 n 维空间中（n &gt; 1），下列哪种方法最适合用来检测异常值？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#62-逻辑回归与多元回归分析有哪些不同之处？"><span class="toc-number">1.62.</span> <span class="toc-text">62. 逻辑回归与多元回归分析有哪些不同之处？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#63-下列关于-bootstrap-说法正确的是？"><span class="toc-number">1.63.</span> <span class="toc-text">63. 下列关于 bootstrap 说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#64-“监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？"><span class="toc-number">1.64.</span> <span class="toc-text">64. “监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#65-关于-k-折交叉验证，下列说法正确的是？"><span class="toc-number">1.65.</span> <span class="toc-text">65. 关于 k 折交叉验证，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#66-如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？"><span class="toc-number">1.66.</span> <span class="toc-text">66. 如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#67-评估完模型之后，发现模型存在高偏差（high-bias），应该如何解决？"><span class="toc-number">1.67.</span> <span class="toc-text">67. 评估完模型之后，发现模型存在高偏差（high bias），应该如何解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#68-在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？"><span class="toc-number">1.68.</span> <span class="toc-text">68. 在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#69-在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？"><span class="toc-number">1.69.</span> <span class="toc-text">69. 在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#70-如果一个-SVM-模型出现欠拟合，那么下列哪种方法能解决这一问题？"><span class="toc-number">1.70.</span> <span class="toc-text">70. 如果一个 SVM 模型出现欠拟合，那么下列哪种方法能解决这一问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#71-假设我们在支持向量机（SVM）算法中对-Gamma（RBF-核系数-γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令-g1、g2、g3-分别对应着下面的图-1、图-2-和图-3。则关于-g1、g2、g3-大小下列说法正确的是？"><span class="toc-number">1.71.</span> <span class="toc-text">71. 假设我们在支持向量机（SVM）算法中对 Gamma（RBF 核系数 γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令 g1、g2、g3 分别对应着下面的图 1、图 2 和图 3。则关于 g1、g2、g3 大小下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#72-我们知道二元分类的输出是概率值。一般设定输出概率大于或等于-0-5，则预测为正类；若输出概率小于-0-5，则预测为负类。那么，如果将阈值-0-5-提高，例如-0-6，大于或等于-0-6-的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？"><span class="toc-number">1.72.</span> <span class="toc-text">72. 我们知道二元分类的输出是概率值。一般设定输出概率大于或等于 0.5，则预测为正类；若输出概率小于 0.5，则预测为负类。那么，如果将阈值 0.5 提高，例如 0.6，大于或等于 0.6 的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#73-点击率预测是一个正负样本不平衡问题（例如-99-的没有点击，只有-1-点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是-99-，则下列说法正确的是？"><span class="toc-number">1.73.</span> <span class="toc-text">73. 点击率预测是一个正负样本不平衡问题（例如 99% 的没有点击，只有 1% 点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是 99%，则下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#74-假设我们使用-kNN-训练模型，其中训练数据具有较少的观测数据（下图是两个属性-x、y-和两个标记为-“-”-和-“o”-的训练数据）。现在令-k-1，则图中的-Leave-One-Out-交叉验证错误率是多少？"><span class="toc-number">1.74.</span> <span class="toc-text">74. 假设我们使用 kNN 训练模型，其中训练数据具有较少的观测数据（下图是两个属性 x、y 和两个标记为 “+” 和 “o” 的训练数据）。现在令 k = 1，则图中的 Leave-One-Out 交叉验证错误率是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#75-如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？"><span class="toc-number">1.75.</span> <span class="toc-text">75. 如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#76-关于神经网络，下列说法正确的是？"><span class="toc-number">1.76.</span> <span class="toc-text">76. 关于神经网络，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#77-假设我们使用原始的非线性可分版本的-Soft-SVM-优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？"><span class="toc-number">1.77.</span> <span class="toc-text">77. 假设我们使用原始的非线性可分版本的 Soft-SVM 优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#78-在训练完-SVM-之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？"><span class="toc-number">1.78.</span> <span class="toc-text">78. 在训练完 SVM 之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#79-下列哪些算法可以用来够造神经网络（多选）？"><span class="toc-number">1.79.</span> <span class="toc-text">79. 下列哪些算法可以用来够造神经网络（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#80-下列数据集适用于隐马尔可夫模型的是？"><span class="toc-number">1.80.</span> <span class="toc-text">80. 下列数据集适用于隐马尔可夫模型的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#81-我们想要训练一个-ML-模型，样本数量有-100-万个，特征维度是-5000，面对如此大数据，如何有效地训练模型（多选）？"><span class="toc-number">1.81.</span> <span class="toc-text">81. 我们想要训练一个 ML 模型，样本数量有 100 万个，特征维度是 5000，面对如此大数据，如何有效地训练模型（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#82-我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？"><span class="toc-number">1.82.</span> <span class="toc-text">82. 我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#83-下面关于-Random-Forest-和-Gradient-Boosting-Trees-说法正确的是？"><span class="toc-number">1.83.</span> <span class="toc-text">83. 下面关于 Random Forest 和 Gradient Boosting Trees 说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#84-“对于-PCA-处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？"><span class="toc-number">1.84.</span> <span class="toc-text">84. “对于 PCA 处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#85-下列关于-PCA-说法正确的是（多选）？"><span class="toc-number">1.85.</span> <span class="toc-text">85. 下列关于 PCA 说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#86-下图中，主成分的最佳数目是多少？"><span class="toc-number">1.86.</span> <span class="toc-text">86. 下图中，主成分的最佳数目是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#87-数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？"><span class="toc-number">1.87.</span> <span class="toc-text">87. 数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#88-如何在监督式学习中使用聚类算法（多选）？"><span class="toc-number">1.88.</span> <span class="toc-text">88. 如何在监督式学习中使用聚类算法（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#89-下面哪句话是正确的？"><span class="toc-number">1.89.</span> <span class="toc-text">89. 下面哪句话是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#90-关于-GBDT-算法，下列说法正确的是（多选）？"><span class="toc-number">1.90.</span> <span class="toc-text">90. 关于 GBDT 算法，下列说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#91-下面哪个对应的是正确的-KNN-决策边界？"><span class="toc-number">1.91.</span> <span class="toc-text">91. 下面哪个对应的是正确的 KNN 决策边界？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#92-如果一个经过训练的机器学习模型在测试集上达到-100-的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到-100-的准确率呢？"><span class="toc-number">1.92.</span> <span class="toc-text">92. 如果一个经过训练的机器学习模型在测试集上达到 100% 的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到 100% 的准确率呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#93-下面是交叉验证的几种方法："><span class="toc-number">1.93.</span> <span class="toc-text">93. 下面是交叉验证的几种方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#94-变量选择是用来选择最好的判别器子集，-如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）"><span class="toc-number">1.94.</span> <span class="toc-text">94. 变量选择是用来选择最好的判别器子集， 如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#95-下面有关分类算法的准确率，召回率，F1-值的描述，错误的是？"><span class="toc-number">1.95.</span> <span class="toc-text">95. 下面有关分类算法的准确率，召回率，F1 值的描述，错误的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#96-如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？"><span class="toc-number">1.96.</span> <span class="toc-text">96. 如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#97-如下图所示，对同一数据集进行训练，得到-3-个模型。对于这-3-个模型的评估，下列说法正确的是？（多选）"><span class="toc-number">1.97.</span> <span class="toc-text">97. 如下图所示，对同一数据集进行训练，得到 3 个模型。对于这 3 个模型的评估，下列说法正确的是？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#98-如果使用线性回归模型，下列说法正确的是？"><span class="toc-number">1.98.</span> <span class="toc-text">98. 如果使用线性回归模型，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#99-建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现-3-对变量（Var1-和-Var2、Var2-和-Var3、Var3-和-Var1）之间的相关性分别为-0-98、0-45-和-1-23。我们能从中推断出什么呢？（多选）"><span class="toc-number">1.99.</span> <span class="toc-text">99. 建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现 3 对变量（Var1 和 Var2、Var2 和 Var3、Var3 和 Var1）之间的相关性分别为 -0.98、0.45 和 1.23。我们能从中推断出什么呢？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#100-如果自变量-X-和因变量-Y-之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？"><span class="toc-number">1.100.</span> <span class="toc-text">100. 如果自变量 X 和因变量 Y 之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><h3 id="1-下列说法正确的是？（多选）"><a href="#1-下列说法正确的是？（多选）" class="headerlink" title="1. 下列说法正确的是？（多选）"></a>1. 下列说法正确的是？（多选）</h3><p>  A. AdaGrad 使用的是一阶导数</p>
+<p>  B. L-BFGS 使用的是二阶导数</p>
+<p>  C. AdaGrad 使用的是二阶导数</p>
+<p>  D. L-BFGS 使用的是一阶导数</p>
+<p>  答案：AB</p>
+<p>  解析：AdaGrad 是基于梯度下降算法的，AdaGrad算法能够在训练中自动的对学习速率 α 进行调整，对于出现频率较低参数采用较大的 α 更新；相反，对于出现频率较高的参数采用较小的 α 更新。Adagrad非常适合处理稀疏数据。很明显，AdaGrad 算法利用的是一阶导数。</p>
+<p><img src="1.jpg" alt="">  </p>
+<p>  L-BFGS 是基于牛顿优化算法的，牛顿优化算法使用的是二阶导数。  </p>
+<p><img src="2.jpg" alt=""></p>
+<h3 id="2-“增加卷积核的尺寸，一定能提高卷积神经网络的性能。”-这句话是否正确？"><a href="#2-“增加卷积核的尺寸，一定能提高卷积神经网络的性能。”-这句话是否正确？" class="headerlink" title="2. “增加卷积核的尺寸，一定能提高卷积神经网络的性能。” 这句话是否正确？"></a>2. “增加卷积核的尺寸，一定能提高卷积神经网络的性能。” 这句话是否正确？</h3><p>  A. 正确</p>
+<p>  B. 错误</p>
+<p>  答案：B</p>
+<p>  解析：卷积核的尺寸是超参数，不一定增加其尺寸就一定增加神经网络的性能，需要验证选择最佳尺寸。</p>
+<h3 id="3-假设你在卷积神经网络的第一层中有-5-个卷积核，每个卷积核尺寸为-7×7，具有零填充且步幅为-1。该层的输入图片的维度是-224×224×3。那么该层输出的维度是多少？"><a href="#3-假设你在卷积神经网络的第一层中有-5-个卷积核，每个卷积核尺寸为-7×7，具有零填充且步幅为-1。该层的输入图片的维度是-224×224×3。那么该层输出的维度是多少？" class="headerlink" title="3. 假设你在卷积神经网络的第一层中有 5 个卷积核，每个卷积核尺寸为 7×7，具有零填充且步幅为 1。该层的输入图片的维度是 224×224×3。那么该层输出的维度是多少？"></a>3. 假设你在卷积神经网络的第一层中有 5 个卷积核，每个卷积核尺寸为 7×7，具有零填充且步幅为 1。该层的输入图片的维度是 224×224×3。那么该层输出的维度是多少？</h3><p>  A. 217 x 217 x 3</p>
+<p>  B. 217 x 217 x 8</p>
+<p>  C. 218 x 218 x 5</p>
+<p>  D. 220 x 220 x 7</p>
+<p>  答案：C</p>
+<p>  解析：一般地，如果原始图片尺寸为 nxn，filter 尺寸为 fxf，则卷积后的图片尺寸为 (n-f+1)x(n-f+1)，注意 f 一般为奇数。</p>
+<p>  若考虑存在填充和步幅，用 s 表示 stride 长度，p 表示 padding 长度，如果原始图片尺寸为 nxn，filter 尺寸为 fxf，则卷积后的图片尺寸为：</p>
+<p><img src="3.png" alt=""></p>
+<p>  上式中，⌊⋯⌋ 表示向下取整。</p>
+<p>  此例中， n=224，p=0，f=7，s=1，因此，该层输出的尺寸为 218x218。</p>
+<p>  输出的第三个维度由滤波器的个数决定，即为 5。</p>
+<h3 id="4-假如现在有个神经网络，激活函数是-ReLU，若使用线性激活函数代替-ReLU，那么该神经网络还能表征-XNOR-函数吗？"><a href="#4-假如现在有个神经网络，激活函数是-ReLU，若使用线性激活函数代替-ReLU，那么该神经网络还能表征-XNOR-函数吗？" class="headerlink" title="4. 假如现在有个神经网络，激活函数是 ReLU，若使用线性激活函数代替 ReLU，那么该神经网络还能表征 XNOR 函数吗？"></a>4. 假如现在有个神经网络，激活函数是 ReLU，若使用线性激活函数代替 ReLU，那么该神经网络还能表征 XNOR 函数吗？</h3><p>  A. 可以</p>
+<p>  B. 不可以</p>
+<p>  答案：B</p>
+<p>  解析：异或（XNOR）关系是非线性的，线性激活函数只能解决线性问题，不能解决非线性问题。如果用线性激活代替 ReLU，则神经网络失去逼近非线性函数的能力。</p>
+<h3 id="5-机器学习训练时，Mini-Batch-的大小优选为2个的幂，如-256-或-512。它背后的原因是什么？"><a href="#5-机器学习训练时，Mini-Batch-的大小优选为2个的幂，如-256-或-512。它背后的原因是什么？" class="headerlink" title="5. 机器学习训练时，Mini-Batch 的大小优选为2个的幂，如 256 或 512。它背后的原因是什么？"></a>5. 机器学习训练时，Mini-Batch 的大小优选为2个的幂，如 256 或 512。它背后的原因是什么？</h3><p>  A. Mini-Batch 为偶数的时候，梯度下降算法训练的更快</p>
+<p>  B. Mini-Batch 设为 2 的 幂，是为了符合 CPU、GPU 的内存要求，利于并行化处理</p>
+<p>  C. 不使用偶数时，损失函数是不稳定的</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：B</p>
+<h3 id="6-下列哪种方法可以用来减小过拟合？（多选）"><a href="#6-下列哪种方法可以用来减小过拟合？（多选）" class="headerlink" title="6. 下列哪种方法可以用来减小过拟合？（多选）"></a>6. 下列哪种方法可以用来减小过拟合？（多选）</h3><p>  A. 更多的训练数据</p>
+<p>  B. L1 正则化</p>
+<p>  C. L2 正则化</p>
+<p>  D. 减小模型的复杂度</p>
+<p>  答案：ABCD</p>
+<p>  解析：增加训练样本、L1正则化、L2 正则化、减小模型复杂度都能有效避免发生过拟合。</p>
+<h3 id="7-下列说法错误的是？"><a href="#7-下列说法错误的是？" class="headerlink" title="7. 下列说法错误的是？"></a>7. 下列说法错误的是？</h3><p>  A. 当目标函数是凸函数时，梯度下降算法的解一般就是全局最优解</p>
+<p>  B. 进行 PCA 降维时，需要计算协方差矩阵</p>
+<p>  C. 沿负梯度的方向一定是最优的方向</p>
+<p>  D. 利用拉格朗日函数能解带约束的优化问题</p>
+<p>  答案：C</p>
+<p>  解析：沿负梯度的方向是函数值减少最快的方向但不一定就是最优方向。</p>
+<h3 id="8-K-Means-算法无法聚以下哪种形状的样本？"><a href="#8-K-Means-算法无法聚以下哪种形状的样本？" class="headerlink" title="8. K-Means 算法无法聚以下哪种形状的样本？"></a>8. K-Means 算法无法聚以下哪种形状的样本？</h3><p>  A. 圆形分布</p>
+<p>  B. 螺旋分布</p>
+<p>  C. 带状分布</p>
+<p>  D. 凸多边形分布</p>
+<p>  答案：B</p>
+<p>  解析：K-Means 算法是基于距离测量的，无法聚非凸形状的样本。</p>
+<h3 id="9-向量-X-1-2-3-4-9-0-的-L1-范数为？"><a href="#9-向量-X-1-2-3-4-9-0-的-L1-范数为？" class="headerlink" title="9. 向量 X=[1,2,3,4,-9,0] 的 L1 范数为？"></a>9. 向量 X=[1,2,3,4,-9,0] 的 L1 范数为？</h3><p>  A. 1</p>
+<p>  B. 19</p>
+<p>  C. 6</p>
+<p>  D. √111</p>
+<p>  答案：B</p>
+<p>  解析：L0 范数表示向量中所有非零元素的个数；L1 范数指的是向量中各元素的绝对值之和，又称“稀疏矩阵算子”；L2 范数指的是向量中各元素的平方和再求平方根。</p>
+<p>  本例中，L0 范数为 5，L1 范数为 19，L2 范数为 √111。</p>
+<h3 id="10-关于-L1、L2-正则化下列说法正确的是？"><a href="#10-关于-L1、L2-正则化下列说法正确的是？" class="headerlink" title="10. 关于 L1、L2 正则化下列说法正确的是？"></a>10. 关于 L1、L2 正则化下列说法正确的是？</h3><p>  A. L2 正则化能防止过拟合，提升模型的泛化能力，但 L1 做不到这点</p>
+<p>  B. L2 正则化技术又称为 Lasso Regularization</p>
+<p>  C. L1 正则化得到的解更加稀疏</p>
+<p>  D. L2 正则化得到的解更加稀疏</p>
+<p>  答案：C</p>
+<p>  解析：L1、L2 正则化都能防止过拟合，提升模型的泛化能力。L1 正则化技术又称为 Lasso Regularization。L1 正则化得到的解更加稀疏，如下图所示：</p>
+<p><img src="4.jpg" alt=""></p>
+<p>  以二维情况讨论，上图左边是 L2 正则化，右边是 L1 正则化。从另一个方面来看，满足正则化条件，实际上是求解蓝色区域与黄色区域的交点，即同时满足限定条件和 Ein 最小化。对于 L2 来说，限定区域是圆，这样，得到的解 w1 或 w2 为 0 的概率很小，很大概率是非零的。</p>
+<p>  对于 L1 来说，限定区域是正方形，方形与蓝色区域相交的交点是顶点的概率很大，这从视觉和常识上来看是很容易理解的。也就是说，方形的凸点会更接近 Ein 最优解对应的 wlin 位置，而凸点处必有 w1 或 w2 为 0。这样，得到的解 w1 或 w2 为零的概率就很大了。所以，L1 正则化的解具有稀疏性。</p>
+<p>  扩展到高维，同样的道理，L2 的限定区域是平滑的，与中心点等距；而 L1 的限定区域是包含凸点的，尖锐的。这些凸点更接近 Ein 的最优解位置，而在这些凸点上，很多 wj 为 0。</p>
+<h3 id="11-有-N-个样本，一般用于训练，一般用于测试。若增大-N-值，则训练误差和测试误差之间的差距会如何变化？"><a href="#11-有-N-个样本，一般用于训练，一般用于测试。若增大-N-值，则训练误差和测试误差之间的差距会如何变化？" class="headerlink" title="11. 有 N 个样本，一般用于训练，一般用于测试。若增大 N 值，则训练误差和测试误差之间的差距会如何变化？"></a>11. 有 N 个样本，一般用于训练，一般用于测试。若增大 N 值，则训练误差和测试误差之间的差距会如何变化？</h3><p>  A. 增大</p>
+<p>  B. 减小</p>
+<p>  答案：B</p>
+<p>  解析：增加数据，能够有效减小过拟合，减小训练样本误差和测试样本误差之间的差距。</p>
+<h3 id="12-假定你在神经网络中的隐藏层中使用激活函数-X。在特定神经元给定任意输入，你会得到输出-0-01。X-可能是以下哪一个激活函数？"><a href="#12-假定你在神经网络中的隐藏层中使用激活函数-X。在特定神经元给定任意输入，你会得到输出-0-01。X-可能是以下哪一个激活函数？" class="headerlink" title="12. 假定你在神经网络中的隐藏层中使用激活函数 X。在特定神经元给定任意输入，你会得到输出 -0.01。X 可能是以下哪一个激活函数？"></a>12. 假定你在神经网络中的隐藏层中使用激活函数 X。在特定神经元给定任意输入，你会得到输出 -0.01。X 可能是以下哪一个激活函数？</h3><p>  A. ReLU</p>
+<p>  B. tanh</p>
+<p>  C. Sigmoid</p>
+<p>  D. 以上都有可能</p>
+<p>  答案：B</p>
+<p>  解析：ReLU 的输出范围是 [0,+∞)，tanh 的输出范围是 (-1,+1)，Sigmoid 的输出范围是 (0,+1)。</p>
+<h3 id="13-k-NN-最近邻方法在什么情况下效果较好？"><a href="#13-k-NN-最近邻方法在什么情况下效果较好？" class="headerlink" title="13. k-NN 最近邻方法在什么情况下效果较好？"></a>13. k-NN 最近邻方法在什么情况下效果较好？</h3><p>  A. 样本较多但典型性不好</p>
+<p>  B. 样本较少但典型性好</p>
+<p>  C. 样本呈团状分布</p>
+<p>  D. 样本呈链状分布</p>
+<p>  答案：B</p>
+<p>  解析：K 近邻算法主要依靠的是周围的点，因此如果样本过多，则难以区分，典型性好的容易区分。</p>
+<p>  样本呈团状或链状都具有迷惑性，这样 kNN 就发挥不出其求近邻的优势了，整体样本应该具有典型性好，样本较少，比较适宜。</p>
+<h3 id="14-下列方法中，可以用于特征降维的方法包括？（多选）"><a href="#14-下列方法中，可以用于特征降维的方法包括？（多选）" class="headerlink" title="14. 下列方法中，可以用于特征降维的方法包括？（多选）"></a>14. 下列方法中，可以用于特征降维的方法包括？（多选）</h3><p>  A. 主成分分析 PCA</p>
+<p>  B. 线性判别分析 LDA</p>
+<p>  C. AutoEncoder</p>
+<p>  D. 矩阵奇异值分解 SVD</p>
+<p>  E. 最小二乘法 LeastSquares</p>
+<p>  答案：ABCD</p>
+<p>  解析：主成分分析 PCA 、线性判别分析 LDA 、AutoEncoder、矩阵奇异值分解 SVD 都是用于特征降维的方法。最小二乘法是解决线性回归问题的算法，但是并没有进行降维。</p>
+<h3 id="15-以下哪些方法不可以直接来对文本分类？"><a href="#15-以下哪些方法不可以直接来对文本分类？" class="headerlink" title="15. 以下哪些方法不可以直接来对文本分类？"></a>15. 以下哪些方法不可以直接来对文本分类？</h3><p>  A. K-Means</p>
+<p>  B. 决策树</p>
+<p>  C. 支持向量机</p>
+<p>  D. kNN</p>
+<p>  答案：A</p>
+<p>  解析：K-Means 是无监督算法，它之所以不能称为分类是因为它之前并没有类别标签，因此只能聚类。</p>
+<h3 id="16-在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？"><a href="#16-在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？" class="headerlink" title="16. 在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？"></a>16. 在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？</h3><p>  A. 多项式阶数</p>
+<p>  B. 更新权重 w 时，使用的是矩阵求逆还是梯度下降</p>
+<p>  C. 使用常数项</p>
+<p>  答案：A</p>
+<p>  解析：选择合适的多项式阶数非常重要。如果阶数过大，模型就会更加复杂，容易发生过拟合；如果阶数较小，模型就会过于简单，容易发生欠拟合。如果有对过拟合和欠拟合概念不清楚的，见下图所示：</p>
+<p><img src="5.jpg" alt="">   </p>
+<h3 id="17-假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y-wx-b）来拟合数据。那么使用留一法（Leave-One-Out）交叉验证得到的均方误差是多少？"><a href="#17-假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y-wx-b）来拟合数据。那么使用留一法（Leave-One-Out）交叉验证得到的均方误差是多少？" class="headerlink" title="17. 假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y=wx+b）来拟合数据。那么使用留一法（Leave-One Out）交叉验证得到的均方误差是多少？"></a>17. 假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y=wx+b）来拟合数据。那么使用留一法（Leave-One Out）交叉验证得到的均方误差是多少？</h3><p><img src="6.png" alt=""></p>
+<p>  A. 10/27</p>
+<p>  B. 39/27</p>
+<p>  C. 49/27</p>
+<p>  D. 55/27</p>
+<p>  答案：C</p>
+<p>  解析：留一法，简单来说就是假设有 N 个样本，将每一个样本作为测试样本，其它 N-1 个样本作为训练样本。这样得到 N 个分类器，N 个测试结果。用这 N个结果的平均值来衡量模型的性能。</p>
+<p>  对于该题，我们先画出 3 个样本点的坐标：</p>
+<p><img src="7.png" alt=""></p>
+<p>  使用两个点进行线性拟合，分成三种情况，如下图所示：</p>
+<p><img src="8.png" alt=""></p>
+<p>  第一种情况下，回归模型是 y = 2，误差 E1 = 1。</p>
+<p>  第二种情况下，回归模型是 y = -x + 4，误差 E2 = 2。</p>
+<p>  第三种情况下，回归模型是 y = -1/3x + 2,误差 E3 = 2/3。</p>
+<p>  则总的均方误差为：</p>
+<p><img src="9.png" alt=""></p>
+<h3 id="18-下列关于极大似然估计（Maximum-Likelihood-Estimate，MLE），说法正确的是（多选）？"><a href="#18-下列关于极大似然估计（Maximum-Likelihood-Estimate，MLE），说法正确的是（多选）？" class="headerlink" title="18. 下列关于极大似然估计（Maximum Likelihood Estimate，MLE），说法正确的是（多选）？"></a>18. 下列关于极大似然估计（Maximum Likelihood Estimate，MLE），说法正确的是（多选）？</h3><p>  A. MLE 可能并不存在</p>
+<p>  B. MLE 总是存在</p>
+<p>  C. 如果 MLE 存在，那么它的解可能不是唯一的</p>
+<p>  D. 如果 MLE 存在，那么它的解一定是唯一的</p>
+<p>  答案：AC</p>
+<p>  解析：如果极大似然函数 L(θ) 在极大值处不连续，一阶导数不存在，则 MLE 不存在，如下图所示：</p>
+<p><img src="10.png" alt=""></p>
+<p>另一种情况是 MLE 并不唯一，极大值对应两个 θ。如下图所示：  </p>
+<p><img src="11.png" alt=""></p>
+<h3 id="19-如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？"><a href="#19-如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？" class="headerlink" title="19. 如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？"></a>19. 如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？</h3><p>  A. 测试样本误差始终为零</p>
+<p>  B. 测试样本误差不可能为零</p>
+<p>  C. 以上答案都不对</p>
+<p>  答案：C</p>
+<p>  解析：根据训练样本误差为零，无法推断测试样本误差是否为零。值得一提是，如果测试样本样本很大，则很可能发生过拟合，模型不具备很好的泛化能力！</p>
+<h3 id="20-在一个线性回归问题中，我们使用-R-平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？"><a href="#20-在一个线性回归问题中，我们使用-R-平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？" class="headerlink" title="20. 在一个线性回归问题中，我们使用 R 平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？"></a>20. 在一个线性回归问题中，我们使用 R 平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？</h3><p>  A. 如果 R-Squared 增加，则这个特征有意义</p>
+<p>  B. 如果R-Squared 减小，则这个特征没有意义</p>
+<p>  C. 仅看 R-Squared 单一变量，无法确定这个特征是否有意义。</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：C</p>
+<p>解析：线性回归问题中，R-Squared 是用来衡量回归方程与真实样本输出之间的相似程度。其表达式如下所示：</p>
+<p><img src="12.png" alt=""></p>
+<p>上式中，分子部分表示真实值与预测值的平方差之和，类似于均方差 MSE；分母部分表示真实值与均值的平方差之和，类似于方差 Var。根据 R-Squared 的取值，来判断模型的好坏：如果结果是 0，说明模型拟合效果很差；如果结果是 1，说明模型无错误。一般来说，R-Squared 越大，表示模型拟合效果越好。R-Squared 反映的是大概有多准，因为，随着样本数量的增加，R-Square必然增加，无法真正定量说明准确程度，只能大概定量。</p>
+<p>  对于本题来说，单独看 R-Squared，并不能推断出增加的特征是否有意义。通常来说，增加一个特征，R-Squared 可能变大也可能保持不变，两者不一定呈正相关。</p>
+<p>  如果使用校正决定系数（Adjusted R-Square）：</p>
+<p><img src="13.jpg" alt=""></p>
+<p>  其中，n 是样本数量，p 是特征数量。Adjusted R-Square 抵消样本数量对 R-Square的影响，做到了真正的 0~1，越大越好。</p>
+<h3 id="21-下列关于线性回归分析中的残差（Residuals）说法正确的是？"><a href="#21-下列关于线性回归分析中的残差（Residuals）说法正确的是？" class="headerlink" title="21. 下列关于线性回归分析中的残差（Residuals）说法正确的是？"></a>21. 下列关于线性回归分析中的残差（Residuals）说法正确的是？</h3><p>  A. 残差均值总是为零</p>
+<p>  B. 残差均值总是小于零</p>
+<p>  C. 残差均值总是大于零</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：线性回归分析中，目标是残差最小化。残差平方和是关于参数的函数，为了求残差极小值，令残差关于参数的偏导数为零，会得到残差和为零，即残差均值为零。</p>
+<h3 id="22-下列关于异方差（Heteroskedasticity）说法正确的是？"><a href="#22-下列关于异方差（Heteroskedasticity）说法正确的是？" class="headerlink" title="22. 下列关于异方差（Heteroskedasticity）说法正确的是？"></a>22. 下列关于异方差（Heteroskedasticity）说法正确的是？</h3><p>  A. 线性回归具有不同的误差项</p>
+<p>  B. 线性回归具有相同的误差项</p>
+<p>  C. 线性回归误差项为零</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：异方差性是相对于同方差（Homoskedasticity）而言的。所谓同方差，是为了保证回归参数估计量具有良好的统计性质，经典线性回归模型的一个重要假定：总体回归函数中的随机误差项满足同方差性，即它们都有相同的方差。如果这一假定不满足，即：随机误差项具有不同的方差，则称线性回归模型存在异方差性。</p>
+<p>  通常来说，奇异值的出现会导致异方差性增大。</p>
+<h3 id="23-下列哪一项能反映出-X-和-Y-之间的强相关性？"><a href="#23-下列哪一项能反映出-X-和-Y-之间的强相关性？" class="headerlink" title="23. 下列哪一项能反映出 X 和 Y 之间的强相关性？"></a>23. 下列哪一项能反映出 X 和 Y 之间的强相关性？</h3><p>  A. 相关系数为 0.9</p>
+<p>  B. 对于无效假设 β=0 的 p 值为 0.0001</p>
+<p>  C. 对于无效假设 β=0 的 t 值为 30</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：相关系数的概念我们很熟悉，它反映了不同变量之间线性相关程度，一般用 r 表示。</p>
+<p><img src="14.png" alt=""></p>
+<p>  其中，Cov(X,Y) 为 X 与 Y 的协方差，Var[X] 为 X 的方差，Var[Y] 为 Y 的方差。r 取值范围在 [-1,1] 之间，r 越大表示相关程度越高。A 选项中，r=0.9 表示 X 和 Y 之间有较强的相关性。</p>
+<p>  而 p 和 t 的数值大小没有统计意义，只是将其与某一个阈值进行比对,以得到二选一的结论。例如，有两个假设：</p>
+<ul>
+<li><p>无效假设（null hypothesis）H0：两参量间不存在“线性”相关。</p>
+</li>
+<li><p>备择假设（alternative hypothesis）H1：两参量间存在“线性”相关。</p>
+<p>如果阈值是 0.05，计算出的 p 值很小，比如为 0.001，则可以说“有非常显著的证据拒绝 H0 假设,相信 H1 假设。即两参量间存在“线性”相关。p 值只用于二值化判断，因此不能说 p=0.06 一定比 p=0.07 更好。</p>
+</li>
+</ul>
+<h3 id="24-下列哪些假设是我们推导线性回归参数时遵循的（多选）？"><a href="#24-下列哪些假设是我们推导线性回归参数时遵循的（多选）？" class="headerlink" title="24. 下列哪些假设是我们推导线性回归参数时遵循的（多选）？"></a>24. 下列哪些假设是我们推导线性回归参数时遵循的（多选）？</h3><p>  A. X 与 Y 有线性关系（多项式关系）</p>
+<p>  B. 模型误差在统计学上是独立的</p>
+<p>  C. 误差一般服从 0 均值和固定标准差的正态分布</p>
+<p>  D. X 是非随机且测量没有误差的</p>
+<p>  答案：ABCD</p>
+<p>  解析：在进行线性回归推导和分析时，我们已经默认上述四个条件是成立的。</p>
+<h3 id="25-为了观察测试-Y-与-X-之间的线性关系，X-是连续变量，使用下列哪种图形比较适合？"><a href="#25-为了观察测试-Y-与-X-之间的线性关系，X-是连续变量，使用下列哪种图形比较适合？" class="headerlink" title="25. 为了观察测试 Y 与 X 之间的线性关系，X 是连续变量，使用下列哪种图形比较适合？"></a>25. 为了观察测试 Y 与 X 之间的线性关系，X 是连续变量，使用下列哪种图形比较适合？</h3><p>  A. 散点图</p>
+<p>  B. 柱形图</p>
+<p>  C. 直方图</p>
+<p>  D. 以上都不对</p>
+<p>  答案：A</p>
+<p>  解析：散点图反映了两个变量之间的相互关系，在测试 Y 与 X 之间的线性关系时，使用散点图最为直观。</p>
+<h3 id="26-一般来说，下列哪种方法常用来预测连续独立变量？"><a href="#26-一般来说，下列哪种方法常用来预测连续独立变量？" class="headerlink" title="26. 一般来说，下列哪种方法常用来预测连续独立变量？"></a>26. 一般来说，下列哪种方法常用来预测连续独立变量？</h3><p>  A. 线性回归</p>
+<p>  B. 逻辑回顾</p>
+<p>  C. 线性回归和逻辑回归都行</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：线性回归一般用于实数预测，逻辑回归一般用于分类问题。</p>
+<h3 id="27-个人健康和年龄的相关系数是-1-09。根据这个你可以告诉医生哪个结论？"><a href="#27-个人健康和年龄的相关系数是-1-09。根据这个你可以告诉医生哪个结论？" class="headerlink" title="27. 个人健康和年龄的相关系数是 -1.09。根据这个你可以告诉医生哪个结论？"></a>27. 个人健康和年龄的相关系数是 -1.09。根据这个你可以告诉医生哪个结论？</h3><p>  A. 年龄是健康程度很好的预测器</p>
+<p>  B. 年龄是健康程度很糟的预测器</p>
+<p>  C. 以上说法都不对</p>
+<p>  答案：C</p>
+<p>  解析：因为相关系数的范围是 [-1,1] 之间，所以，-1.09 不可能存在。</p>
+<h3 id="28-下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入-X，纵坐标是输出-Y。"><a href="#28-下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入-X，纵坐标是输出-Y。" class="headerlink" title="28. 下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入 X，纵坐标是输出 Y。"></a>28. 下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入 X，纵坐标是输出 Y。</h3><p><img src="15.png" alt=""></p>
+<p>  A. 垂直偏移（vertical offsets）</p>
+<p>  B. 垂向偏移（perpendicular offsets）</p>
+<p>  C. 两种偏移都可以</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：线性回归模型计算损失函数，例如均方差损失函数时，使用的都是 vertical offsets。perpendicular offsets 一般用于主成分分析（PCA）中。</p>
+<h3 id="29-假如我们利用-Y-是-X-的-3-阶多项式产生一些数据（3-阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？"><a href="#29-假如我们利用-Y-是-X-的-3-阶多项式产生一些数据（3-阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？" class="headerlink" title="29. 假如我们利用 Y 是 X 的 3 阶多项式产生一些数据（3 阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？"></a>29. 假如我们利用 Y 是 X 的 3 阶多项式产生一些数据（3 阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？</h3><p>  A. 简单的线性回归容易造成高偏差（bias）、低方差（variance）</p>
+<p>  B. 简单的线性回归容易造成低偏差（bias）、高方差（variance）</p>
+<p>  C. 3 阶多项式拟合会造成低偏差（bias）、高方差（variance）</p>
+<p>  D. 3 阶多项式拟合具备低偏差（bias）、低方差（variance）</p>
+<p>  答案：AD</p>
+<p>  解析：偏差和方差是两个相对的概念，就像欠拟合和过拟合一样。如果模型过于简单，通常会造成欠拟合，伴随着高偏差、低方差；如果模型过于复杂，通常会造成过拟合，伴随着低偏差、高方差。</p>
+<p>  用一张图来形象地表示偏差与方差的关系：</p>
+<p><img src="16.jpg" alt=""></p>
+<p>图片来源：<a href="https://www.zhihu.com/question/27068705" target="_blank" rel="noopener">https://www.zhihu.com/question/27068705</a></p>
+<p>偏差（bias）可以看成模型预测与真实样本的差距，想要得到 low bias，就得复杂化模型，但是容易造成过拟合。方差（variance）可以看成模型在测试集上的表现，想要得到 low variance，就得简化模型，但是容易造成欠拟合。实际应用中，偏差和方差是需要权衡的。若模型在训练样本和测试集上都表现的不错，偏差和方差都会比较小，这也是模型比较理想的情况。</p>
+<h3 id="30-假如你在训练一个线性回归模型，有下面两句话："><a href="#30-假如你在训练一个线性回归模型，有下面两句话：" class="headerlink" title="30. 假如你在训练一个线性回归模型，有下面两句话："></a>30. 假如你在训练一个线性回归模型，有下面两句话：</h3><pre><code>  1. 如果数据量较少，容易发生过拟合。
+
+  2. 如果假设空间较小，容易发生过拟合。
+</code></pre><p>关于这两句话，下列说法正确的是？</p>
+<p>  A. 1 和 2 都错误</p>
+<p>  B. 1 正确，2 错误</p>
+<p>  C. 1 错误，2 正确</p>
+<p>  D. 1 和 2 都正确</p>
+<p>  答案：B</p>
+<p>  解析：先来看第 1 句话，如果数据量较少，容易在假设空间找到一个模型对训练样本的拟合度很好，容易造成过拟合，该模型不具备良好的泛化能力。</p>
+<p>  再来看第 2 句话，如果假设空间较小，包含的可能的模型就比较少，也就不太可能找到一个模型能够对样本拟合得很好，容易造成高偏差、低方差，即欠拟合。</p>
+<h3 id="31-假如我们使用-Lasso-回归来拟合数据集，该数据集输入特征有-100-个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大-10-倍（例如是特征-X1），然后用相同的正则化参数对-Lasso-回归进行修正。"><a href="#31-假如我们使用-Lasso-回归来拟合数据集，该数据集输入特征有-100-个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大-10-倍（例如是特征-X1），然后用相同的正则化参数对-Lasso-回归进行修正。" class="headerlink" title="31. 假如我们使用 Lasso 回归来拟合数据集，该数据集输入特征有 100 个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大 10 倍（例如是特征 X1），然后用相同的正则化参数对 Lasso 回归进行修正。"></a>31. 假如我们使用 Lasso 回归来拟合数据集，该数据集输入特征有 100 个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大 10 倍（例如是特征 X1），然后用相同的正则化参数对 Lasso 回归进行修正。</h3><p>  那么，下列说法正确的是？</p>
+<p>  A. 特征 X1 很可能被排除在模型之外</p>
+<p>  B. 特征 X1 很可能还包含在模型之中</p>
+<p>  C. 无法确定特征 X1 是否被舍弃</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案： B</p>
+<p>  解析：Lasso 回归类似于线性回归，只不过它在线性回归的基础上，增加了一个对所有参数的数值大小约束，如下所示：</p>
+<p><img src="17.png" alt=""></p>
+<p>  其中，t 为正则化参数。Lasso 回归其实就是在普通线性回归的损失函数的基础上增加了个 β 的约束。那么 β 的约束为什么要使用这种形式，而不使用 β 的平方约束呢？原因就在于第一范数的约束下，一部分回归系数刚好可以被约束为 0。这样的话，就达到了特征选择的效果。如下图所示：</p>
+<p><img src="18.png" alt=""></p>
+<p>  左边是第二范式，右边是第一范式。第一范数约束下，β 更有可能被约束成 0。这点非常类似于 L1 和 L2 正则化的区别。</p>
+<p>  因此，Lasso 回归适用于样本数量较少，特征维度较大的情形，便于从较多特征中进行特征选择。例如 DNA 数据，特征维度很大，我们只希望通过 Lasso 回归找出与某些疾病有关的 DNA 片段。</p>
+<p>  本题中，将特征 X1 数值扩大 10 倍，他对应的回归系数将相应会减小，但不为 0，以此来保证仍然满足 β 的正则化约束。</p>
+<h3 id="32-关于特征选择，下列对-Ridge-回归和-Lasso-回归说法正确的是？"><a href="#32-关于特征选择，下列对-Ridge-回归和-Lasso-回归说法正确的是？" class="headerlink" title="32. 关于特征选择，下列对 Ridge 回归和 Lasso 回归说法正确的是？"></a>32. 关于特征选择，下列对 Ridge 回归和 Lasso 回归说法正确的是？</h3><p>  A. Ridge 回归适用于特征选择</p>
+<p>  B. Lasso 回归适用于特征选择</p>
+<p>  C. 两个都适用于特征选择</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：B</p>
+<p>  解析：上一题我们已经介绍过，Lasso 回归会让一部分回归系数刚好可以被约束为 0，起到特征选择的效果。</p>
+<p>  Ridge 回归又称岭回归，它是普通线性回归加上 L2 正则项，用来防止训练过程中出现的过拟合。L2 正则化效果类似上一题左图，限定区域是圆，这样，得到的回归系数为 0 的概率很小，很大概率是非零的。因此，比较来说，Lasso 回归更容易得到稀疏的回归系数，有利于舍弃冗余或无用特征，适用于特征选择。</p>
+<h3 id="33-如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？"><a href="#33-如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？" class="headerlink" title="33. 如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？"></a>33. 如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？</h3><p>  A. R-squared 增大，Adjust R-squared 增大</p>
+<p>  B. R-squared 增大，Adjust R-squared 减小</p>
+<p>  C. R-squared 减小，Adjust R-squared 减小</p>
+<p>  D. R-squared 减小，Adjust R-squared 增大</p>
+<p>  答案：AB</p>
+<p>  解析：线性回归问题中，R-Squared 是用来衡量回归方程与真实样本输出之间的相似程度。其表达式如下所示：</p>
+<p><img src="19.png" alt=""></p>
+<p>  上式中，分子部分表示真实值与预测值的平方差之和，类似于均方差 MSE；分母部分表示真实值与均值的平方差之和，类似于方差 Var。一般来说，R-Squared 越大，表示模型拟合效果越好。R-Squared 反映的是大概有多准，因为，随着样本数量的增加，R-Squared 必然增加，无法真正定量说明准确程度，只能大概定量。</p>
+<p>  单独看 R-Squared，并不能推断出增加的特征是否有意义。通常来说，增加一个特征特征，R-Squared 可能变大也可能保持不变，两者不一定呈正相关。</p>
+<p>  如果使用校正决定系数（Adjusted R-Squared）：</p>
+<p><img src="20.jpg" alt=""></p>
+<p>  其中，n 是样本数量，p 是特征数量。Adjusted R-Squared 抵消样本数量对 R-Squared 的影响，做到了真正的 0~1，越大越好。</p>
+<p>  增加一个特征变量，如果这个特征有意义，Adjusted R-Square 就会增大，若这个特征是冗余特征，Adjusted R-Squared 就会减小。</p>
+<h3 id="34-下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？"><a href="#34-下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？" class="headerlink" title="34. 下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？"></a>34. 下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？</h3><p><img src="21.png" alt=""></p>
+<p>  A. 第 1 个模型的训练误差大于第 2 个、第 3 个模型</p>
+<p>  B. 最好的模型是第 3 个，因为它的训练误差最小</p>
+<p>  C. 第 2 个模型最为“健壮”，因为它对未知样本的拟合效果最好</p>
+<p>  D. 第 3 个模型发生了过拟合</p>
+<p>  E. 所有模型的表现都一样，因为我们并没有看到测试数据</p>
+<p>  答案：ACD</p>
+<p>  解析：1、2、3 模型分别对应的多项式阶数由小到大，即模型由简单到复杂。模型越简单，容易发生欠拟合；模型越复杂，容易发生过拟合。第 1 个模型过于简单，出现欠拟合；第 3 个模型过于复杂，对训练样本拟合得很好，但在测试样本上效果会很差，即过拟合；第 2 个模型最为“健壮”，在训练样本和测试样本上拟合效果都不错！</p>
+<h3 id="35-下列哪些指标可以用来评估线性回归模型（多选）？"><a href="#35-下列哪些指标可以用来评估线性回归模型（多选）？" class="headerlink" title="35. 下列哪些指标可以用来评估线性回归模型（多选）？"></a>35. 下列哪些指标可以用来评估线性回归模型（多选）？</h3><p>  A. R-Squared</p>
+<p>  B. Adjusted R-Squared</p>
+<p>  C. F Statistics</p>
+<p>  D. RMSE / MSE / MAE</p>
+<p>  答案：ABCD</p>
+<p>  解析：R-Squared 和 Adjusted R-Squared 的概念，我们在 Q3 有过介绍，它们都可以用来评估线性回归模型。F Statistics 是指在零假设成立的情况下，符合F分布的统计量，多用于计量统计学中。</p>
+<p>  RMSE 指的是均方根误差：</p>
+<p><img src="22.png" alt=""></p>
+<p>  MSE 指的是均方误差：</p>
+<p><img src="23.png" alt=""></p>
+<p>  MAE 指的是评价绝对误差：</p>
+<p><img src="24.png" alt=""></p>
+<p>  以上指标都可以用来评估线性回归模型。</p>
+<h3 id="36-线性回归中，我们可以使用正规方程（Normal-Equation）来求解系数。下列关于正规方程说法正确的是？"><a href="#36-线性回归中，我们可以使用正规方程（Normal-Equation）来求解系数。下列关于正规方程说法正确的是？" class="headerlink" title="36. 线性回归中，我们可以使用正规方程（Normal Equation）来求解系数。下列关于正规方程说法正确的是？"></a>36. 线性回归中，我们可以使用正规方程（Normal Equation）来求解系数。下列关于正规方程说法正确的是？</h3><p>  A. 不需要选择学习因子</p>
+<p>  B. 当特征数目很多的时候，运算速度会很慢</p>
+<p>  C. 不需要迭代训练</p>
+<p>  答案：ABC</p>
+<p>  解析：求解线性回归系数，我们一般最常用的方法是梯度下降，利用迭代优化的方式。除此之外，还有一种方法是使用正规方程，原理是基于最小二乘法。下面对正规方程做简要的推导。</p>
+<p>  已知线性回归模型的损失函数 Ein 为：</p>
+<p><img src="25.png" alt=""></p>
+<p>  对 Ein 计算导数，令 ∇Ein=0：</p>
+<p><img src="26.png" alt=""></p>
+<p>  然后就能计算出 W：</p>
+<p><img src="27.png" alt=""></p>
+<p>  以上就是使用正规方程求解系数 W 的过程。可以看到，正规方程求解过程不需要学习因子，也没有迭代训练过程。当特征数目很多的时候，XTX 矩阵求逆会很慢，这时梯度下降算法更好一些。</p>
+<p>  如果 XTX 矩阵不可逆，是奇异矩阵怎么办呢？其实，大部分的计算逆矩阵的软件程序，都可以处理这个问题，也会计算出一个逆矩阵。所以，一般伪逆矩阵是可解的。</p>
+<h3 id="37-如果-Y-是-X（X1，X2，…，Xn）的线性函数："><a href="#37-如果-Y-是-X（X1，X2，…，Xn）的线性函数：" class="headerlink" title="37. 如果 Y 是 X（X1，X2，…，Xn）的线性函数："></a>37. 如果 Y 是 X（X1，X2，…，Xn）的线性函数：</h3><p>  Y = β0 + β1X1 + β2X2 + ··· + βnXn</p>
+<p>  则下列说法正确的是（多选）？</p>
+<p>  A. 如果变量 Xi 改变一个微小变量 ΔXi，其它变量不变。那么 Y 会相应改变 βiΔXi。</p>
+<p>  B. βi 是固定的，不管 Xi 如何变化</p>
+<p>  C. Xi 对 Y 的影响是相互独立的，且 X 对 Y 的总的影响为各自分量 Xi 之和</p>
+<p>  答案：ABC</p>
+<p>  解析：这题非常简单，Y 与 X（X1，X2，…，Xn）是线性关系，故能得出 ABC 结论。</p>
+<h3 id="38-构建一个最简单的线性回归模型需要几个系数（只有一个特征）？"><a href="#38-构建一个最简单的线性回归模型需要几个系数（只有一个特征）？" class="headerlink" title="38. 构建一个最简单的线性回归模型需要几个系数（只有一个特征）？"></a>38. 构建一个最简单的线性回归模型需要几个系数（只有一个特征）？</h3><p>  A. 1 个</p>
+<p>  B. 2 个</p>
+<p>  C. 3 个</p>
+<p>  D. 4 个</p>
+<p>  答案：B</p>
+<p>  解析：最简单的线性回归模型，只有一个特征，即 Y = aX + b，包含 a 和 b 两个系数。</p>
+<h3 id="39-下面两张图展示了两个拟合回归线（A-和-B），原始数据是随机产生的。现在，我想要计算-A-和-B-各自的残差之和。注意：两种图中的坐标尺度一样。"><a href="#39-下面两张图展示了两个拟合回归线（A-和-B），原始数据是随机产生的。现在，我想要计算-A-和-B-各自的残差之和。注意：两种图中的坐标尺度一样。" class="headerlink" title="39. 下面两张图展示了两个拟合回归线（A 和 B），原始数据是随机产生的。现在，我想要计算 A 和 B 各自的残差之和。注意：两种图中的坐标尺度一样。"></a>39. 下面两张图展示了两个拟合回归线（A 和 B），原始数据是随机产生的。现在，我想要计算 A 和 B 各自的残差之和。注意：两种图中的坐标尺度一样。</h3><p><img src="28.jpg" alt=""></p>
+<p>  关于 A 和 B 各自的残差之和，下列说法正确的是？</p>
+<p>  A. A 比 B 高</p>
+<p>  B. A 比 B 小</p>
+<p>  C. A 与 B 相同</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：C</p>
+<p>  解析：A 和 B 中各自的残差之和应该是相同的。线性回归模型的损失函数为：</p>
+<p><img src="29.png" alt=""></p>
+<p>  对损失函数求导，并令 ∇J=0，即可得到 XW-Y=0，即残差之和始终为零。</p>
+<h3 id="40-如果两个变量相关，那么它们一定是线性关系吗？"><a href="#40-如果两个变量相关，那么它们一定是线性关系吗？" class="headerlink" title="40. 如果两个变量相关，那么它们一定是线性关系吗？"></a>40. 如果两个变量相关，那么它们一定是线性关系吗？</h3><p>  A. 是</p>
+<p>  B. 不是</p>
+<p>  答案：B</p>
+<p>  解析：相关不一定是线性关系，也有可能是非线性相关。</p>
+<h3 id="41-两个变量相关，它们的相关系数-r-可能为-0。这句话是否正确？"><a href="#41-两个变量相关，它们的相关系数-r-可能为-0。这句话是否正确？" class="headerlink" title="41. 两个变量相关，它们的相关系数 r 可能为 0。这句话是否正确？"></a>41. 两个变量相关，它们的相关系数 r 可能为 0。这句话是否正确？</h3><p>  A. 正确</p>
+<p>  B. 错误</p>
+<p>  答案：A</p>
+<p>  解析：一般来说，相关系数 r=0 是两变量相互独立的必要不充分条件。也就是说，如果两个变量相互独立，那么相关系数 r 一定为 0，如果相关系数 r=0，则不一定相互独立。相关系数 r=0 只能说明两个变量之间不存在线性关系，仍然可能存在非线性关系。</p>
+<p>  那么，若两个变量相关，存在非线性关系，那么它们的相关系数 r 就为 0。</p>
+<h3 id="42-加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？"><a href="#42-加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？" class="headerlink" title="42. 加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？"></a>42. 加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？</h3><p>  A. 训练样本准确率一定会降低</p>
+<p>  B. 训练样本准确率一定增加或保持不变</p>
+<p>  C. 测试样本准确率一定会降低</p>
+<p>  D. 测试样本准确率一定增加或保持不变</p>
+<p>  答案：B</p>
+<p>  解析：在模型中增加更多特征一般会增加训练样本的准确率，减小 bias。但是测试样本准确率不一定增加，除非增加的特征是有效特征。</p>
+<p>  这题对应的知识点也包括了增加模型复杂度，虽然会减小训练样本误差，但是容易发生过拟合。</p>
+<h3 id="43-下面这张图是一个简单的线性回归模型-图中标注了每个样本点预测值与真实值的残差。计算-SSE-为多少？"><a href="#43-下面这张图是一个简单的线性回归模型-图中标注了每个样本点预测值与真实值的残差。计算-SSE-为多少？" class="headerlink" title="43. 下面这张图是一个简单的线性回归模型,图中标注了每个样本点预测值与真实值的残差。计算 SSE 为多少？"></a>43. 下面这张图是一个简单的线性回归模型,图中标注了每个样本点预测值与真实值的残差。计算 SSE 为多少？</h3><p><img src="30.jpg" alt=""></p>
+<p>  A. 3.02</p>
+<p>  B. 0.75</p>
+<p>  C. 1.01</p>
+<p>  D. 0.604</p>
+<p>  答案：A</p>
+<p>  解析：SSE 是平方误差之和（Sum of Squared Error），SSE = (-0.2)^2 + (0.4)^2 + (-0.8)^2 + (1.3)^2 + (-0.7)^2 = 3.02</p>
+<h3 id="44-假设变量-Var1-和-Var2-是正相关的，那么下面那张图是正确的？图中，横坐标是-Var1，纵坐标是-Var2，且对-Var1-和-Var2-都做了标准化处理。"><a href="#44-假设变量-Var1-和-Var2-是正相关的，那么下面那张图是正确的？图中，横坐标是-Var1，纵坐标是-Var2，且对-Var1-和-Var2-都做了标准化处理。" class="headerlink" title="44. 假设变量 Var1 和 Var2 是正相关的，那么下面那张图是正确的？图中，横坐标是 Var1，纵坐标是 Var2，且对 Var1 和 Var2 都做了标准化处理。"></a>44. 假设变量 Var1 和 Var2 是正相关的，那么下面那张图是正确的？图中，横坐标是 Var1，纵坐标是 Var2，且对 Var1 和 Var2 都做了标准化处理。</h3><p><img src="80.png" alt=""></p>
+<p>  A. Plot 1</p>
+<p>  B. Plot 2</p>
+<p>  答案：B</p>
+<p>  解析：显然，Plot 2 显示出 Var2 与 Var1 是正相关的，例如 Var2 = Var1。Plot 1 显示出 Var2 与 Var1 是负相关的，例如 Var2 = -Var1。</p>
+<h3 id="45-假设一个公司的薪资水平中位数是-35-000，排名第-25-和-75-的薪资分别是-21-000-和-53-000。如果某人的薪水是-1，那么它可以被看成是异常值（Outlier）吗？"><a href="#45-假设一个公司的薪资水平中位数是-35-000，排名第-25-和-75-的薪资分别是-21-000-和-53-000。如果某人的薪水是-1，那么它可以被看成是异常值（Outlier）吗？" class="headerlink" title="45. 假设一个公司的薪资水平中位数是 $35,000，排名第 25% 和 75% 的薪资分别是 $21,000 和 $ 53,000。如果某人的薪水是 $1，那么它可以被看成是异常值（Outlier）吗？"></a>45. 假设一个公司的薪资水平中位数是 $35,000，排名第 25% 和 75% 的薪资分别是 $21,000 和 $ 53,000。如果某人的薪水是 $1，那么它可以被看成是异常值（Outlier）吗？</h3><p>  A. 可以</p>
+<p>  B. 不可以</p>
+<p>  C. 需要更多的信息才能判断</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：C</p>
+<p>  解析：异常值（Outlier）指样本中的个别值，其数值明显偏离它（或他们）所属样本的其余观测值，也称异常数据，离群值。目前人们对异常值的判别与剔除主要采用物理判别法和统计判别法两种方法。</p>
+<p>  所谓物理判别法就是根据人们对客观事物已有的认识，判别由于外界干扰、人为误差等原因造成实测数据值偏离正常结果，在实验过程中随时判断，随时剔除。</p>
+<p>  统计判别法是给定一个置信概率，并确定一个置信限，凡超过此限的误差，就认为它不属于随机误差范围，将其视为异常值剔除。当物理识别不易判断时，一般采用统计识别法。</p>
+<p>  该题中，所给的信息量过少，无法肯定一定是异常值。</p>
+<h3 id="46-关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x-是自变量，y-是因变量。"><a href="#46-关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x-是自变量，y-是因变量。" class="headerlink" title="46. 关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x 是自变量，y 是因变量。"></a>46. 关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x 是自变量，y 是因变量。</h3><p>  A. 回归和相关在 x 和 y 之间都是互为对称的</p>
+<p>  B. 回归和相关在 x 和 y 之间都是非对称的</p>
+<p>  C. 回归在 x 和 y 之间是非对称的，相关在 x 和 y 之间是互为对称的</p>
+<p>  D. 回归在 x 和 y 之间是对称的，相关在 x 和 y 之间是非对称的</p>
+<p>  答案：D</p>
+<p>  解析：相关（Correlation）是计算两个变量的线性相关程度，是对称的。也就是说，x 与 y 的相关系数和 y 与 x 的相关系数是一样的，没有差别。</p>
+<p>  回归（Regression）一般是利用 特征 x 预测输出 y，是单向的、非对称的。</p>
+<h3 id="47-仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？"><a href="#47-仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？" class="headerlink" title="47. 仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？"></a>47. 仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？</h3><p>  A. 可以</p>
+<p>  B. 不可以</p>
+<p>  答案：B</p>
+<p>  解析：偏斜度是对统计数据分布偏斜方向及程度的度量。偏斜度是利用 3 阶矩定义的，其计算公式如下：</p>
+<p><img src="81.png" alt=""></p>
+<p>  其中，n 是样本数量。统计数据的频数分布有的是对称的，有的是不对称的，即呈现偏态。在偏态分布中，当偏斜度为正值时，分布正偏，即众数位于算术平均数的左侧；当偏斜度为负值时，分布负偏，即众数位于算术平均数的右侧。</p>
+<p>  我们可以利用众数、中位数和算术平均数之间的关系判断分布是左偏态还是右偏态，但要度量分布偏斜的程度，就需要计算偏斜度了。</p>
+<h3 id="48-假设有-n-组数据集，每组数据集中，x-的平均值都是-9，x-的方差都是-11，y-的平均值都是-7-50，x-与-y-的相关系数都是-0-816，拟合的线性回归方程都是-y-3-00-0-500-x。那么这-n-组数据集是否一样？"><a href="#48-假设有-n-组数据集，每组数据集中，x-的平均值都是-9，x-的方差都是-11，y-的平均值都是-7-50，x-与-y-的相关系数都是-0-816，拟合的线性回归方程都是-y-3-00-0-500-x。那么这-n-组数据集是否一样？" class="headerlink" title="48. 假设有 n 组数据集，每组数据集中，x 的平均值都是 9，x 的方差都是 11，y 的平均值都是 7.50，x 与 y 的相关系数都是 0.816，拟合的线性回归方程都是 y = 3.00 + 0.500*x。那么这 n 组数据集是否一样？"></a>48. 假设有 n 组数据集，每组数据集中，x 的平均值都是 9，x 的方差都是 11，y 的平均值都是 7.50，x 与 y 的相关系数都是 0.816，拟合的线性回归方程都是 y = 3.00 + 0.500*x。那么这 n 组数据集是否一样？</h3><p><img src="31.jpg" alt=""></p>
+<p>  A. 一样</p>
+<p>  B. 不一样</p>
+<p>  C. 无法确定</p>
+<p>  答案：C</p>
+<p>  解析：这里需要知道的是 Anscombe’s quartet。1973年，统计学家F.J. Anscombe 构造出了四组奇特的数据。这四组数据中，x 值的平均数都是 9.0，y 值的平均数都是 7.5；x 值的方差都是 10.0，y值的方差都是 3.75；它们的相关度都是 0.816，线性回归线都是 y=3+0.5x。单从这些统计数字上看来，四组数据所反映出的实际情况非常相近，而事实上，这四组数据有着天壤之别，如下图所示：</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/hflWRBRSEZ5GjsgNtEhVyeINJRopLXuTZQwFNnuF40IdCOh41ZLcbiaiavK7ebGwYCd2buRyq5zKwSiaiaGDIKnc2Q/640?wxfrom=5&amp;wx_lazy=1&amp;retryload=0" alt=""></p>
+<p>  相应的 Python 代码为：</p>
+<pre><code class="python">  import seaborn as sns
+
+  sns.set(style=&quot;ticks&quot;)
+  # Load the example dataset for Anscombe&#39;s quartet
+  df = sns.load_dataset(&quot;anscombe&quot;)
+  # Show the results of a linear regression within each dataset
+  sns.lmplot(x=&quot;x&quot;, y=&quot;y&quot;, col=&quot;dataset&quot;, hue=&quot;dataset&quot;, data=df,
+           col_wrap=2, ci=None, palette=&quot;muted&quot;, size=4,
+           scatter_kws={&quot;s&quot;: 50, &quot;alpha&quot;: 1})
+</code></pre>
+<h3 id="49-观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。"><a href="#49-观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。" class="headerlink" title="49. 观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。"></a>49. 观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。</h3><p>  A. 观察次数少，容易发生过拟合</p>
+<p>  B. 观察次数少，不容易发生过拟合</p>
+<p>  C. 观察次数多，容易发生过拟合</p>
+<p>  D. 观察次数多，不容易发生过拟合</p>
+<p>  答案：AD</p>
+<p>  解析：如果样本观察次数较少，且样本数量较少，通过提高模型复杂度，例如多项式阶数，很容易对所有样本点都拟合的非常好，造成过拟合。但是，如果观察次数多，样本更具有代表性，这时候，即使模型复杂，也不容易发生过拟合，得到的模型能够较真实地反映真实的数据分布。</p>
+<h3 id="50-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较大时，关于偏差（bias）和方差（variance），下列说法正确的是？"><a href="#50-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较大时，关于偏差（bias）和方差（variance），下列说法正确的是？" class="headerlink" title="50. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较大时，关于偏差（bias）和方差（variance），下列说法正确的是？"></a>50. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较大时，关于偏差（bias）和方差（variance），下列说法正确的是？</h3><p>  A. 若 λ 较大时，偏差减小，方差减小</p>
+<p>  B. 若 λ 较大时，偏差减小，方差增大</p>
+<p>  C. 若 λ 较大时，偏差增大，方差减小</p>
+<p>  D. 若 λ 较大时，偏差增大，方差增大</p>
+<p>  答案：C</p>
+<p>  解析：若 λ 较大时，意味着模型复杂度较低，这时候容易发生欠拟合，对应偏差增大，方差减小。做个简单总结：</p>
+<pre><code>  - λ 较小：偏差减小，方差增大，容易发生过拟合
+
+  - λ 较大：偏差增大，方差减小，容易发生欠拟合
+</code></pre><p><img src="33.png" alt=""></p>
+<h3 id="51-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较小时，关于偏差（bias）和方差（variance），下列说法正确的是？"><a href="#51-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较小时，关于偏差（bias）和方差（variance），下列说法正确的是？" class="headerlink" title="51. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较小时，关于偏差（bias）和方差（variance），下列说法正确的是？"></a>51. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较小时，关于偏差（bias）和方差（variance），下列说法正确的是？</h3><p>  A. 若 λ 较小时，偏差减小，方差减小</p>
+<p>  B. 若 λ 较小时，偏差减小，方差增大</p>
+<p>  C. 若 λ 较小时，偏差增大，方差减小</p>
+<p>  D. 若 λ 较小时，偏差增大，方差增大</p>
+<p>  答案：B</p>
+<p>  解析：见 题5。</p>
+<h3 id="52-下列关于-Ridge-回归，说法正确的是（多选）？"><a href="#52-下列关于-Ridge-回归，说法正确的是（多选）？" class="headerlink" title="52. 下列关于 Ridge 回归，说法正确的是（多选）？"></a>52. 下列关于 Ridge 回归，说法正确的是（多选）？</h3><p>  A. 若 λ=0，则等价于一般的线性回归</p>
+<p>  B. 若 λ=0，则不等价于一般的线性回归</p>
+<p>  C. 若 λ=+∞，则得到的权重系数很小，接近于零</p>
+<p>  D. 若 λ=+∞，则得到的权重系数很大，接近与无穷大</p>
+<p>  答案：AC</p>
+<p>  解析：若 λ=0，即没有正则化项，等价于一般的线性回归，可以使用最小二乘法求解系数。若 λ=+∞，正则化项对权重系数的“惩罚”非常大，对应得到的权重系数很小，接近于零。</p>
+<p><img src="34.png" alt=""></p>
+<p>  关于正则化的图形化解释，请参考我的这篇文章：</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwOTc2MTUyMg==&amp;mid=2247484510&amp;idx=1&amp;sn=d7df438e67e460ee4f30df1310d22147&amp;chksm=976fa1c3a01828d54c8b715851b5ce3bf2e63cb601a98a296228f4a0b98829e0b1b779fc1b68&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">机器学习中 L1 和 L2 正则化的直观解释</a></p>
+<h3 id="53-在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？"><a href="#53-在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？" class="headerlink" title="53. 在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？"></a>53. 在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？</h3><p>  注意：</p>
+<ol>
+<li>所有的残差都已经标准化</li>
+</ol>
+<ol start="2">
+<li>图中横坐标是预测值，纵坐标是残差</li>
+</ol>
+<p><img src="35.jpg" alt=""></p>
+<p>  A. 1</p>
+<p>  B. 2</p>
+<p>  C. 3</p>
+<p>  D. 无法比较</p>
+<p>  答案：C</p>
+<p>  解析：预测值与残差之间不应该存在任何函数关系，若存在函数关系，表明模型拟合的效果并不很好。对应在图中，若横坐标是预测值，纵坐标是残差，残差应表现为与预测值无关的随机分布。但是，图 3 中残差与预测值呈二次函数关系，表明该模型并不理想。</p>
+<h3 id="54-下列哪一种方法的系数没有封闭形式（closed-form）的解？"><a href="#54-下列哪一种方法的系数没有封闭形式（closed-form）的解？" class="headerlink" title="54. 下列哪一种方法的系数没有封闭形式（closed-form）的解？"></a>54. 下列哪一种方法的系数没有封闭形式（closed-form）的解？</h3><p>  A. Ridge 回归</p>
+<p>  B. Lasso</p>
+<p>  C. Ridge 回归和 Lasso</p>
+<p>  D. 以上都不是</p>
+<p>  答案：B</p>
+<p>  解析：Ridge 回归是一般的线性回归再加上 L2 正则项，它具有封闭形式的解，可以基于最小二乘法求解  </p>
+<p><img src="36.png" alt=""></p>
+<p><img src="37.png" alt=""></p>
+<p>  Lasso 回归是一般的线性回归再加上 L1 正则项，L1 正则项使解是非线性的，没有封闭形式的解。<br><img src="38.png" alt=""></p>
+<h3 id="55-观察如下数据集："><a href="#55-观察如下数据集：" class="headerlink" title="55. 观察如下数据集："></a>55. 观察如下数据集：</h3><p><img src="39.png" alt=""></p>
+<p>删除 a，b，c，d 哪个点对拟合回归线的影响最大？</p>
+<p>  A. a</p>
+<p>  B. b</p>
+<p>  C. c</p>
+<p>  D. d</p>
+<p>  答案：D</p>
+<p>  解析：线性回归对数据中的离群点比较敏感。虽然 c 点也是离群点，但它接近与回归线，残差较小。因此，d 点对拟合回归线的影响最大。</p>
+<h3 id="56-在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？"><a href="#56-在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？" class="headerlink" title="56. 在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？"></a>56. 在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？</h3><p>  A. 一个单位</p>
+<p>  B. 不变</p>
+<p>  C. 截距</p>
+<p>  D. 回归模型的尺度因子</p>
+<p>  答案：D</p>
+<p>  解析：很简单，假设线性回归模型是：y=a+bx，若 x 改变一个单位，例如 x+1，则 y 改变 b 个单位。b 是回归模型的尺度因子。</p>
+<h3 id="57-逻辑回归将输出概率限定在-0-1-之间。下列哪个函数起到这样的作用？"><a href="#57-逻辑回归将输出概率限定在-0-1-之间。下列哪个函数起到这样的作用？" class="headerlink" title="57. 逻辑回归将输出概率限定在 [0,1] 之间。下列哪个函数起到这样的作用？"></a>57. 逻辑回归将输出概率限定在 [0,1] 之间。下列哪个函数起到这样的作用？</h3><p>  A. Sigmoid 函数</p>
+<p>  B. tanh 函数</p>
+<p>  C. ReLU 函数</p>
+<p>  D. Leaky ReLU 函数</p>
+<p>  答案：A</p>
+<p>  解析：Sigmoid 函数的表达式和图形如下所示：</p>
+<p><img src="40.png" alt=""></p>
+<p><img src="41.png" alt=""></p>
+<p>Sigmoid 函数输出值限定在 [0,1] 之间。</p>
+<p>  tanh 函数：</p>
+<p><img src="42.png" alt=""></p>
+<p><img src="43.png" alt=""></p>
+<p>  ReLU 函数：</p>
+<p><img src="44.png" alt=""></p>
+<p><img src="45.png" alt=""></p>
+<p>  Leaky ReLU 函数：</p>
+<p><img src="46.png" alt=""></p>
+<p><img src="47.png" alt=""></p>
+<p>其中，λ 为可变参数，例如 λ=0.01。</p>
+<h3 id="58-线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？"><a href="#58-线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？" class="headerlink" title="58. 线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？"></a>58. 线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？</h3><p>  A. 两者不一样</p>
+<p>  B. 两者一样</p>
+<p>  C. 无法确定</p>
+<p>  答案：B</p>
+<p>  解析：线性回归的损失函数为：</p>
+<p><img src="48.png" alt=""></p>
+<p>  逻辑回归的损失函数为：</p>
+<p><img src="49.png" alt=""></p>
+<p>  逻辑回归输出层包含了 Sigmoid 非线性函数，其损失函数对 Sigmoid 函数之前的线性输出 Z 的偏导数与线性回归的损失函数对线性输出 Z 的偏导数一样，都是：</p>
+<p><img src="50.png" alt=""></p>
+<p>  具体推导过程比较简单，此处省略。</p>
+<p>  dZ 是一样的，反向求导过程中，对所有权重系数的偏导数表达式都是一样的。</p>
+<h3 id="59-假设使用逻辑回归进行-n-多类别分类，使用-One-vs-rest-分类法。下列说法正确的是？"><a href="#59-假设使用逻辑回归进行-n-多类别分类，使用-One-vs-rest-分类法。下列说法正确的是？" class="headerlink" title="59. 假设使用逻辑回归进行 n 多类别分类，使用 One-vs-rest 分类法。下列说法正确的是？"></a>59. 假设使用逻辑回归进行 n 多类别分类，使用 One-vs-rest 分类法。下列说法正确的是？</h3><p>  A. 对于 n 类别，需要训练 n 个模型</p>
+<p>  B. 对于 n 类别，需要训练 n-1 个模型</p>
+<p>  C. 对于 n 类别，只需要训练 1 个模型</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：One-vs-rest 分类法中，假设有 n 个类别，那么就会建立 n 个二项分类器，每个分类器针对其中一个类别和剩余类别进行分类。进行预测时，利用这 n个二项分类器进行分类，得到数据属于当前类的概率，选择其中概率最大的一个类别作为最终的预测结果。</p>
+<p>  举个简单的例子，3 分类，类别分别是 {-1, 0, 1}。构建 3 个 二分类器：</p>
+<pre><code>      -1 与 0，1
+
+      0 与 -1，1
+
+      1 与 -1，0
+</code></pre><p>  若第 1 个二分类器得到 -1 的概率是 0.7，第 2 个二分类器得到 0 的概率是 0.2，第 3 个二分类器得到 1 的 概率是 0.4，则最终预测的类别是 -1。</p>
+<h3 id="60-下图是两个不同-β0、β1-对应的逻辑回归模型（绿色和黑色）："><a href="#60-下图是两个不同-β0、β1-对应的逻辑回归模型（绿色和黑色）：" class="headerlink" title="60. 下图是两个不同 β0、β1 对应的逻辑回归模型（绿色和黑色）："></a>60. 下图是两个不同 β0、β1 对应的逻辑回归模型（绿色和黑色）：</h3><p><img src="51.png" alt=""></p>
+<p>  关于两个逻辑回归模型中的 β0、β1 值，下列说法正确的是？</p>
+<p>  注意：y= β0+β1*x， β0 是截距，β1 是权重系数。</p>
+<p>  A. 绿色模型的 β1 比黑色模型的 β1 大</p>
+<p>  B. 绿色模型的 β1 比黑色模型的 β1 小</p>
+<p>  C. 两个模型的 β1 相同</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：B</p>
+<p>  解析：逻辑回归模型最终还要经过 Sigmoid 非线性函数，Sigmoid 是增函数，其图形与上图中的黑色模型相近。黑色模型是增函数，说明其 β1&gt;0，绿色模型是减函数，说明其 β1&lt;0。所以，得出结论：绿色模型的 β1 比黑色模型的 β1 小。</p>
+<h3 id="61-在-n-维空间中（n-gt-1），下列哪种方法最适合用来检测异常值？"><a href="#61-在-n-维空间中（n-gt-1），下列哪种方法最适合用来检测异常值？" class="headerlink" title="61. 在 n 维空间中（n &gt; 1），下列哪种方法最适合用来检测异常值？"></a>61. 在 n 维空间中（n &gt; 1），下列哪种方法最适合用来检测异常值？</h3><p>  A. 正态概率图</p>
+<p>  B. 箱形图</p>
+<p>  C. 马氏距离</p>
+<p>  D. 散点图</p>
+<p>  答案：C</p>
+<p>  解析：正态概率图（Normal Probability Plot）一般用来检查一组数据是否服从正态分布。是实数与正态分布数据之间函数关系的散点图。如果这组实数服从正态分布，正态概率图将是一条直线。如下图所示：</p>
+<p><img src="52.png" alt=""></p>
+<p><img src="53.png" alt=""></p>
+<p>  箱形图（Box Plot），是一种用作显示一组数据分散情况资料的统计图。因型状如箱子而得名。如下图所示：</p>
+<p><img src="54.jpg" alt=""></p>
+<p>  散点图（Scatter Plot）是描述离散数据点的空间分布。</p>
+<p>  马氏距离（Mahalonobis distance）多用来计算某样本点与数据集的距离，优点是具有尺度无关性。马氏距离的计算公式如下：</p>
+<p><img src="55.png" alt=""></p>
+<p>  其中，μ 是样本集均值，S 是样本集协方差矩阵。我们注意到马氏距离的公式与欧式距离公式只是多了一个协方差矩阵的逆。这也正是马氏距离的优点之处，它考虑了不同特征之间的协方差不同，将其进行归一化，使得距离度量与尺度无关。</p>
+<p>  举个简单的例子来说明，假如 A 的身高体重为（170，60000），B 的身高体重为（170，61000），C 的身高体重是（160，60000），其中身高体重的单位分别是 cm、g。按照常理来说，A 和 B 的体型是比较相近的，但是如果使用欧式距离，计算得到 A 和 C 比较相近。原因在于身高维度的方差较小，而体重维度的方差较大。马氏距离恰恰消除了各个维度方差不同的影响，把方差归一化，使得特征之间的关系更加符合实际情况。</p>
+<p>  因此，马氏距离更适合来判断样本点与数据集的位置关系，判断其是否离群。正态概率图、箱形图、散点图都比较直观，容易判断出错。</p>
+<h3 id="62-逻辑回归与多元回归分析有哪些不同之处？"><a href="#62-逻辑回归与多元回归分析有哪些不同之处？" class="headerlink" title="62. 逻辑回归与多元回归分析有哪些不同之处？"></a>62. 逻辑回归与多元回归分析有哪些不同之处？</h3><p>  A. 逻辑回归用来预测事件发生的概率</p>
+<p>  B. 逻辑回归用来计算拟合优度指数</p>
+<p>  C. 逻辑回归用来对回归系数进行估计</p>
+<p>  D. 以上都是</p>
+<p>  答案：D</p>
+<p>  解析：A 选项，逻辑回归是用来解决分类问题的，可以用于预测事件发生的概率。</p>
+<p>  B 选项，一般来说，为了测量真实样本与模型的拟合程度，可以使用逻辑回归来计算拟合优度指数。</p>
+<p>  C 选项，在拟合逻辑回归模型之后，我们还可以根据系数值，来判断各个独立特征与目标输出的关系（正相关或负相关）。</p>
+<h3 id="63-下列关于-bootstrap-说法正确的是？"><a href="#63-下列关于-bootstrap-说法正确的是？" class="headerlink" title="63. 下列关于 bootstrap 说法正确的是？"></a>63. 下列关于 bootstrap 说法正确的是？</h3><p>  A. 从总的 M 个特征中，有放回地抽取 m 个特征（m &lt; M）</p>
+<p>  B. 从总的 M 个特征中，无放回地抽取 m 个特征（m &lt; M）</p>
+<p>  C. 从总的 N 个样本中，有放回地抽取 n 个样本（n &lt; N）</p>
+<p>  D. 从总的 N 个样本中，无放回地抽取 n 个样本（n &lt; N）</p>
+<p>  答案：C</p>
+<p>  解析：bootstrap 的思想是从已有的数据集中模拟出类似但又不完全一样的数据集。主要是针对没有足够数据来训练多个模型的情况。</p>
+<p>  bootstrap 的做法是，假设有 N 笔资料 D，先从中选出一个样本，再放回去，再选择一个样本，再放回去，共重复 n 次。这样我们就得到了一个新的 n 笔资料 D’，这个新的数据集中可能包含原数据集里的重复样本点，也可能没有原数据集里的某些样本，D’ 与 D 类似但又不完全相同。值得一提的是，抽取-放回的操作次数不一定非要是 N，次数可以任意设定。例如原始样本有 10000 个，我们可以抽取-放回 3000 次，得到包含 3000 个样本的 D’ 也是完全可以的。</p>
+<h3 id="64-“监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？"><a href="#64-“监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？" class="headerlink" title="64. “监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？"></a>64. “监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？</h3><p>  A. 正确</p>
+<p>  B. 错误</p>
+<p>  答案：B</p>
+<p>  解析：对于非监督式学习，仍然可能存在过拟合。一般来说，评估非监督式学习的指标也有很多，例如使用调整兰德指数（Adjusted Rand Score）来评估聚类模型。</p>
+<p>  聚类模型中，假设实际类别信息为 C，聚类结果为 K，a 表示在 C 与 K 中都是同类别的元素有几对，b 表示在 C 与 K 中都是不同类别的元素有几对，则兰德指数为：</p>
+<p><img src="56.png" alt=""></p>
+<p>  RI 取值范围为 [0,1]，值越大意味着聚类结果与真实情况越吻合。</p>
+<p>  但是，在聚类结果随机的情况下，RI 并不为 0。因此，为了解决这一问题，调整兰德指数（Adjusted Rand Score）被提出，它具有更高的区分度：</p>
+<p><img src="57.png" alt=""></p>
+<p>  ARI 取值范围为 [−1,1]，值越大意味着聚类结果与真实情况越吻合。从广义的角度来讲，ARI 衡量的是两个数据分布的吻合程度。</p>
+<h3 id="65-关于-k-折交叉验证，下列说法正确的是？"><a href="#65-关于-k-折交叉验证，下列说法正确的是？" class="headerlink" title="65. 关于 k 折交叉验证，下列说法正确的是？"></a>65. 关于 k 折交叉验证，下列说法正确的是？</h3><p>  A. k 值并不是越大越好，k 值过大，会降低运算速度</p>
+<p>  B. 选择更大的 k 值，会让偏差更小，因为 k 值越大，训练集越接近整个训练样本</p>
+<p>  C. 选择合适的 k 值，能减小验方差</p>
+<p>  D. 以上说法都正确</p>
+<p>  答案： D</p>
+<p>  解析：机器学习中，在样本量不充足的情况下，为了充分利用数据集对算法效果进行测试，将数据集随机分为 k 个包，每次将其中一个包作为测试集，剩下 k-1 个包作为训练集进行训练。</p>
+<p>  k 折交叉验证的的 k 值不能太大，也不能太小。k 值过大，会降低运算速度。若 k 与样本数量 N 相同，则是留一法（Leave-One-Out）。k 值较大，训练集越接近整个训练样本，有利于减小模型偏差（bias）。一般可以将 k 作为超参数调试，根据表现选择合适的 k 值。</p>
+<p>  k 折交叉验证能够有效提高模型的学习能力，类似于增加了训练样本数量，使得学习的模型更加稳健，鲁棒性更强。选择合适的 k 值能够有效避免过拟合。</p>
+<h3 id="66-如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？"><a href="#66-如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？" class="headerlink" title="66. 如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？"></a>66. 如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？</h3><p>  A. 剔除所有的共线性变量</p>
+<p>  B. 剔除共线性变量中的一个</p>
+<p>  C. 通过计算方差膨胀因子（Variance Inflation Factor，VIF）来检查共线性程度，并采取相应措施</p>
+<p>  D. 删除相关变量可能会有信息损失，我们可以不删除相关变量，而使用一些正则化方法来解决多重共线性问题，例如 Ridge 或 Lasso 回归。</p>
+<p>  答案：BCD</p>
+<p>  解析：如果回归模型中存在共线性变量，那么可以采取相应措施，剔除共线性变量中的一个。为了检验多重共线性，我们可以创建一个相关矩阵来识别和去除相关度在 75% 以上的变量（阈值大小可人为设置）。此外，我们可以使用计算方差膨胀因子（VIF）来检查多重共线性的存在。若 VIF &lt;= 4 则没有多重共线性，若 VIF＞10 值意味着严重的多重共线性。此外，我们可以使用容忍度作为多重共线性的指标。</p>
+<p>  方差膨胀因子（Variance Inflation Factor，VIF）：是指解释变量之间存在多重共线性时的方差与不存在多重共线性时的方差之比。VIF 跟容忍度是倒数关系。详细介绍可自行查阅统计学资料。</p>
+<p>  但是，去除相关变量可能导致信息的丢失。为了保留这些变量，我们可以使用正则化来“惩罚”回归模型，如 Ridge 和 Lasso 回归。此外，我们可以添加一些随机噪声相关变量，使变量变得彼此不同。但是，增加噪声可能会影响预测精度，因此应该谨慎使用这种方法。</p>
+<h3 id="67-评估完模型之后，发现模型存在高偏差（high-bias），应该如何解决？"><a href="#67-评估完模型之后，发现模型存在高偏差（high-bias），应该如何解决？" class="headerlink" title="67. 评估完模型之后，发现模型存在高偏差（high bias），应该如何解决？"></a>67. 评估完模型之后，发现模型存在高偏差（high bias），应该如何解决？</h3><p>  A. 减少模型的特征数量</p>
+<p>  B. 增加模型的特征数量</p>
+<p>  C. 增加样本数量</p>
+<p>  D. 以上说法都正确</p>
+<p>  答案：B</p>
+<p>  解析：如果模型存在高偏差（high bias），意味着模型过于简单。为了使模型更加健壮，我们可以在特征空间中添加更多的特征。而添加样本数量将减少方差。</p>
+<p><img src="58.png" alt=""></p>
+<h3 id="68-在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？"><a href="#68-在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？" class="headerlink" title="68. 在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？"></a>68. 在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？</h3><p><img src="59.jpg" alt=""></p>
+<p>  A. outlook</p>
+<p>  B. humidity</p>
+<p>  C. windy</p>
+<p>  D. temperature</p>
+<p>  答案：A</p>
+<p>  解析：李航的《统计学习方法》中，对信息增益有如下定义：特征 A 对训练数据集 D 的信息增益 g(D,A)，定义为集合 D 的经验熵 H(D) 与特征 A 给定条件下 D 的经验条件熵 H(D|A) 之差，即</p>
+<p>  g(D,A) = H(D) - H(D|A)</p>
+<p>  这一题，我们先计算经验熵 H(D)：</p>
+<pre><code>  H(D) = -9/14 * log(9/14) - 5/14 * log(5/14)
+
+          = 0.6518
+</code></pre><p>  图一中，经验条件熵 H(D|A) 为：</p>
+<p>  H(D|A) = 5/14 <em> (-2/5</em>log(2/5)-3/5*log(3/5))</p>
+<pre><code>             + 4/14 * (-1*log(1)-0)
+
+             + 5/14 * (-3/5*log(3/5)-2/5*log(2/5))
+
+             = 0.4807
+</code></pre><p>  图一的信息增益为：</p>
+<p>  g(D,A) = H(D) - H(D|A) = 0.6518 - 0.4807</p>
+<pre><code>         = 0.1711
+</code></pre><p>  图二中，经验条件熵 H(D|A) 为：</p>
+<p>  H(D|A) = 7/14 <em> (-3/7</em>log(3/7)-4/7*log(4/7))</p>
+<pre><code>         + 7/14 * (-6/7*log(6/7)-1/7*log(1/7))
+
+         = 0.5465
+</code></pre><p>  图二的信息增益为：</p>
+<p>  g(D,A) = H(D) - H(D|A) = 0.6518 - 0.5465</p>
+<pre><code>         = 0.1053
+</code></pre><p>  图三中，经验条件熵 H(D|A) 为：</p>
+<p>  H(D|A) = 8/14 <em> (-6/8</em>log(6/8)-2/8*log(2/8))</p>
+<pre><code>         + 6/14 * (-3/6*log(3/6)-3/6*log(3/6))
+
+         = 0.6184
+</code></pre><p>  图三的信息增益为：</p>
+<p>  g(D,A) = H(D) - H(D|A) = 0.6518 - 0.6184</p>
+<pre><code>         = 0.0334
+</code></pre><p>  图四中，经验条件熵 H(D|A) 为：</p>
+<p>  H(D|A) = 4/14 <em> (-2/4</em>log(2/4)-2/4*log(2/4))</p>
+<pre><code>         /+ 6/14 * (-4/6*log(4/6)-2/6*log(2/6))
+
+         /+ 4/14 * (-3/4*log(3/4)-1/4*log(1/4))
+
+         = 0.6315
+</code></pre><p>  图四的信息增益为：</p>
+<p>  g(D,A) = H(D) - H(D|A) = 0.6518 - 0.6315</p>
+<pre><code>         = 0.0203
+</code></pre><p>  显然，图一 outlook 对应的信息增益最大。</p>
+<h3 id="69-在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？"><a href="#69-在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？" class="headerlink" title="69. 在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？"></a>69. 在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？</h3><p>  A. 纯度高的结点需要更多的信息来描述它</p>
+<p>  B. 信息增益可以用”1比特-熵”获得</p>
+<p>  C. 如果选择一个属性具有许多特征值, 那么这个信息增益是有偏差的</p>
+<p>  答案： BC</p>
+<h3 id="70-如果一个-SVM-模型出现欠拟合，那么下列哪种方法能解决这一问题？"><a href="#70-如果一个-SVM-模型出现欠拟合，那么下列哪种方法能解决这一问题？" class="headerlink" title="70. 如果一个 SVM 模型出现欠拟合，那么下列哪种方法能解决这一问题？"></a>70. 如果一个 SVM 模型出现欠拟合，那么下列哪种方法能解决这一问题？</h3><p>  A. 增大惩罚参数 C 的值</p>
+<p>  B. 减小惩罚参数 C 的值</p>
+<p>  C. 减小核系数（gamma参数）</p>
+<p>  答案：A</p>
+<p>  解析：SVM模型出现欠拟合，表明模型过于简单，需要提高模型复杂度。</p>
+<p>  Soft-Margin SVM 的目标为：</p>
+<p><img src="60.png" alt=""></p>
+<p>  C 值越大，相应的模型月复杂。接下来，我们看看 C 取不同的值时，模型的复杂程度。</p>
+<p><img src="61.png" alt=""></p>
+<p>  从上图可以看出，C=1 时，模型比较简单，分类错误的点也比较多，发生欠拟合。当 C 越来越大的时候，模型越来越复杂，分类错误的点也在减少。但是，当 C 值很大的时候，虽然分类正确率提高，但很可能把 noise 也进行了处理，从而可能造成过拟合。</p>
+<p>  而对于 SVM 的核函数，同样，核系数越大，模型越复杂。举个例子，核系数分别取 1, 10, 100 时对应的分类效果如下：</p>
+<p><img src="62.png" alt=""></p>
+<p>  从图中可以看出，当核系数比较小的时候，分类线比较光滑。当核系数越来越大的时候，分类线变得越来越复杂和扭曲，直到最后，分类线变成一个个独立的小区域。为什么会出现这种区别呢？这是因为核系数越大，其对应的核函数越尖瘦，那么有限个核函数的线性组合就比较离散，分类效果并不好。所以， SVM 也会出现过拟合现象，核系数的正确选择尤为重要，不能太小也不能太大。</p>
+<h3 id="71-假设我们在支持向量机（SVM）算法中对-Gamma（RBF-核系数-γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令-g1、g2、g3-分别对应着下面的图-1、图-2-和图-3。则关于-g1、g2、g3-大小下列说法正确的是？"><a href="#71-假设我们在支持向量机（SVM）算法中对-Gamma（RBF-核系数-γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令-g1、g2、g3-分别对应着下面的图-1、图-2-和图-3。则关于-g1、g2、g3-大小下列说法正确的是？" class="headerlink" title="71. 假设我们在支持向量机（SVM）算法中对 Gamma（RBF 核系数 γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令 g1、g2、g3 分别对应着下面的图 1、图 2 和图 3。则关于 g1、g2、g3 大小下列说法正确的是？"></a>71. 假设我们在支持向量机（SVM）算法中对 Gamma（RBF 核系数 γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令 g1、g2、g3 分别对应着下面的图 1、图 2 和图 3。则关于 g1、g2、g3 大小下列说法正确的是？</h3><p><img src="63.jpg" alt=""></p>
+<p>  A. g1 &gt; g2 &gt; g3</p>
+<p>  B. g1 = g2 = g3</p>
+<p>  C. g1 &lt; g2 &lt; g3</p>
+<p>  D. g1 &gt; g2 = g3</p>
+<p>  E. g1 &lt; g2 = g3</p>
+<p>  答案：C</p>
+<p>  解析：本题考查的是 Kernel SVM 中 Gamma γ 对模型形状的影响。</p>
+<p>  SVM 中为了得到更加复杂的分类面并提高运算速度，通常会使用核函数的技巧。径向基核函数（RBF）也称为高斯核函数是最常用的核函数，其核函数的表达式如下所示：</p>
+<p><img src="64.png" alt=""></p>
+<p>  形式与高斯分布类似，Gamma γ 是高斯分布中标准差 Sigma σ 的导数。我们知道在高斯分布中，σ 越小，对应的高斯曲线就越尖瘦。也就是说 γ 越大，高斯核函数对应的曲线就越尖瘦。这样，运用核技巧得到的 SVM 分类面就更加曲折复杂，甚至会将许多样本隔离成单个的小岛。</p>
+<p>  下面是 γ 分别取 1、10、100 时对应的 SVM 分类效果：</p>
+<p><img src="65.png" alt=""></p>
+<p>  值得一提的是，γ 过小容易造成欠拟合，γ 过大容易造成过拟合。</p>
+<h3 id="72-我们知道二元分类的输出是概率值。一般设定输出概率大于或等于-0-5，则预测为正类；若输出概率小于-0-5，则预测为负类。那么，如果将阈值-0-5-提高，例如-0-6，大于或等于-0-6-的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？"><a href="#72-我们知道二元分类的输出是概率值。一般设定输出概率大于或等于-0-5，则预测为正类；若输出概率小于-0-5，则预测为负类。那么，如果将阈值-0-5-提高，例如-0-6，大于或等于-0-6-的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？" class="headerlink" title="72. 我们知道二元分类的输出是概率值。一般设定输出概率大于或等于 0.5，则预测为正类；若输出概率小于 0.5，则预测为负类。那么，如果将阈值 0.5 提高，例如 0.6，大于或等于 0.6 的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？"></a>72. 我们知道二元分类的输出是概率值。一般设定输出概率大于或等于 0.5，则预测为正类；若输出概率小于 0.5，则预测为负类。那么，如果将阈值 0.5 提高，例如 0.6，大于或等于 0.6 的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？</h3><p>  A. 准确率（Precision）增加或者不变</p>
+<p>  B. 准确率（Precision）减小</p>
+<p>  C. 召回率（Recall）减小或者不变</p>
+<p>  D. 召回率（Recall）增大</p>
+<p>  答案：AC</p>
+<p>  解析：本题考察的是二元分类阈值提高对准确率和召回率的影响。</p>
+<p>  首先来看一下什么是准确率和召回率，下面分别用 P 和 R 代表。以一个简单的例子来说明，例如预测 20 个西瓜中哪些是好瓜，这 20 个西瓜中实际有 15 个好瓜，5 个坏瓜。某个模型预测的结果是：16 个好瓜，4 个坏瓜。其中，预测的 16 个好瓜中有 14 个确实是好瓜，预测的 4 个坏瓜中有 3 个确实是坏瓜。下面以一张图表说明：</p>
+<table><br><tr><br><th><br></th><br><th><br>真实好瓜 P<br></th><br><th><br>真实坏瓜 N<br></th><br></tr><br><tr><br><td><br>预测好瓜 P<br></td><br><td><br>TP = 14<br></td><br><td><br>FP = 2<br></td><br></tr><br><tr><br><td><br>预测坏瓜 N<br></td><br><td><br>FN = 1<br></td><br><td><br>TN = 3<br></td><br></tr><br></table>
+
+<p>  这样，准确率 P 的定义是：</p>
+<p><img src="66.png" alt=""></p>
+<p>  可以理解为预测好瓜中，确实是好瓜的比例。该例子中 P = 14/(14+2)。</p>
+<p>  召回率 R 的定义是：</p>
+<p><img src="67.png" alt=""></p>
+<p>  可以理解为真实的好瓜被预测出来的比例。该例子中 R = 14/(14+1)。</p>
+<p>  现在，如果二元分类阈值提高，相当于判定好瓜的标准更严格了。所以可能会造成预测是好瓜的数目减少，即 TP 和 FP 均减小。因此准确率可能会增加，极端的，苛刻条件，只预测一个是好瓜，那该瓜是好瓜的概率会很大，即准确率很高。但是 15 个好瓜你只挑出来 1 个，召回率就降低了。</p>
+<p>  准确率和召回率都不能很好地反映模型性能，通常使用 F1 score 来作为模型预测水平判据。F1 Score 被定义为准确率和召回率的调和平均数。，如下所示：</p>
+<p><img src="68.png" alt=""></p>
+<h3 id="73-点击率预测是一个正负样本不平衡问题（例如-99-的没有点击，只有-1-点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是-99-，则下列说法正确的是？"><a href="#73-点击率预测是一个正负样本不平衡问题（例如-99-的没有点击，只有-1-点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是-99-，则下列说法正确的是？" class="headerlink" title="73. 点击率预测是一个正负样本不平衡问题（例如 99% 的没有点击，只有 1% 点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是 99%，则下列说法正确的是？"></a>73. 点击率预测是一个正负样本不平衡问题（例如 99% 的没有点击，只有 1% 点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是 99%，则下列说法正确的是？</h3><p>  A. 模型正确率很高，不需要优化模型了</p>
+<p>  B. 模型正确率并不高，应该建立更好的模型</p>
+<p>  C. 无法对模型做出好坏评价</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：B</p>
+<p>  解析：这一题延续了上题中准确率和召回率的知识点，考查了正负样本分布不均问题。</p>
+<p>  模型训练过程中正负样本分布不均是常见的问题。这时候不能单独只看预测正确率。对于此题来说，如果我们预测的结果是 100% 没有点击，0% 点击，那么可以说正确率是 99%，因为只有 1% 的点击预测错误。但是，我们其实更关心的那 1% 的点击率并没有预测出来。可以说这样的模型是没有任何意义的。</p>
+<p>  对应正负样本不平衡的情况需要做一些数据处理，主要包括：采样、数据合成、惩罚因子加权、一分类。其中，一分类即是在正负样本分布极不平衡的时候，把它看做一分类（One Class Learning）或异常检测（Novelty Detection）问题。这类方法的重点不在于捕捉类间的差别，而是为其中一类进行建模，经典的工作包括 One-class SVM 等。</p>
+<h3 id="74-假设我们使用-kNN-训练模型，其中训练数据具有较少的观测数据（下图是两个属性-x、y-和两个标记为-“-”-和-“o”-的训练数据）。现在令-k-1，则图中的-Leave-One-Out-交叉验证错误率是多少？"><a href="#74-假设我们使用-kNN-训练模型，其中训练数据具有较少的观测数据（下图是两个属性-x、y-和两个标记为-“-”-和-“o”-的训练数据）。现在令-k-1，则图中的-Leave-One-Out-交叉验证错误率是多少？" class="headerlink" title="74. 假设我们使用 kNN 训练模型，其中训练数据具有较少的观测数据（下图是两个属性 x、y 和两个标记为 “+” 和 “o” 的训练数据）。现在令 k = 1，则图中的 Leave-One-Out 交叉验证错误率是多少？"></a>74. 假设我们使用 kNN 训练模型，其中训练数据具有较少的观测数据（下图是两个属性 x、y 和两个标记为 “+” 和 “o” 的训练数据）。现在令 k = 1，则图中的 Leave-One-Out 交叉验证错误率是多少？</h3><p><img src="69.png" alt=""></p>
+<p>  A. 0%</p>
+<p>  B. 20%</p>
+<p>  C. 50%</p>
+<p>  D. 100%</p>
+<p>  答案：D</p>
+<p>  解析：本题考查的是 kNN 算法和 Leave-One-Out 交叉验证。</p>
+<p>  kNN 算法是标记类算法，取当前实例最近邻的 k 个样本，k 个样本中所属的最多类别即判定为该实例的类别。本题中 k = 1，则只需要看最近邻的那一个样本属于“+” 还是“o”即可。</p>
+<p>  Leave-One-Out 交叉验证是一种用来训练和测试分类器的方法，假定数据集有N 个样本，将这个样本分为两份，第一份 N-1 个样本用来训练分类器，另一份 1 个样本用来测试，如此迭代 N 次，所有的样本里所有对象都经历了测试和训练。</p>
+<p>  分别对这 10 个点进行观察可以发现，每个实例点最近邻的都不是当前实例所属的类别，因此每次验证都是错误的。整体的错误率即为 100%。</p>
+<h3 id="75-如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？"><a href="#75-如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？" class="headerlink" title="75. 如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？"></a>75. 如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？</h3><p>  A. 增加树的深度</p>
+<p>  B. 增加学习率</p>
+<p>  C. 减小树的深度</p>
+<p>  D. 减少树的数量</p>
+<p>  答案：C</p>
+<p>  解析：本题考查的是决策树相关概念。</p>
+<p>  一般用决策树进行分类，从根结点开始，对实例的某一特征进行测试，根据测试结果，将实例分配到其子结点。这时，每一个子结点对应着该特征的一个取值。如此递归地对实例进行测试并分类，直至达到叶结点。最后将实例分到叶结点的类中。—— 引自李航 《统计学习方法》</p>
+<p>  决策树深度越深，在训练集上误差会越小，准确率越高。但是容易造成过拟合，而且增加模型的训练时间。对决策树进行修剪，减小树的深度，能够提高模型的训练速度，有效避免过拟合。</p>
+<p>  单决策树中，学习率不是一个有效参数。</p>
+<p>  决策树是单树，随机森林由多个决策树组成。</p>
+<h3 id="76-关于神经网络，下列说法正确的是？"><a href="#76-关于神经网络，下列说法正确的是？" class="headerlink" title="76. 关于神经网络，下列说法正确的是？"></a>76. 关于神经网络，下列说法正确的是？</h3><p>  A. 增加网络层数，可能会增加测试集分类错误率</p>
+<p>  B. 增加网络层数，一定会增加训练集分类错误率</p>
+<p>  C. 减少网络层数，可能会减少测试集分类错误率</p>
+<p>  D. 减少网络层数，一定会减少训练集分类错误率</p>
+<p>  答案：AC</p>
+<p>  解析：本题考查的是神经网络层数对训练误差和测试误差的影响。</p>
+<p>  一般来说，神经网络层数越多，模型越复杂，对数据的分类效果越好。所以，从最简单的层数开始，增加网络层数都能使得训练误差和测试误差减小。但是，神经网络层数过多容易造成过拟合，即对训练样本分类效果很好，误差小，但是测试误差很大。</p>
+<p>  为了避免发生过拟合，应该选择合适的神经网络层数并使用正则化技术来让神经网络更加稳健。</p>
+<h3 id="77-假设我们使用原始的非线性可分版本的-Soft-SVM-优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？"><a href="#77-假设我们使用原始的非线性可分版本的-Soft-SVM-优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？" class="headerlink" title="77. 假设我们使用原始的非线性可分版本的 Soft-SVM 优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？"></a>77. 假设我们使用原始的非线性可分版本的 Soft-SVM 优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？</h3><p>  A. C = 0</p>
+<p>  B. C = 1</p>
+<p>  C. C 正无穷大</p>
+<p>  D. C 负无穷大</p>
+<p>  答案：C</p>
+<p>  解析：本题考查的是 SVM 和 Soft-SVM 之间的联系和彼此转化条件。</p>
+<p>  Soft-SVM 在原来的 SVM 基础上增加了分类错误项，如下式：</p>
+<p><img src="70.png" alt=""></p>
+<p>  其中，第二项即为分类错误项。C 为参数类似于正则化中的惩罚因子。其中， ξn 表示每个点犯错误的程度，ξn = 0，表示没有错误，ξn 越大，表示错误越大，即点距离边界（负的）越大。参数 C 表示尽可能选择宽边界和尽可能不要犯错两者之间的权衡，因为边界宽了，往往犯错误的点会增加。large C 表示希望得到更少的分类错误，即不惜选择窄边界也要尽可能把更多点正确分类；small C 表示希望得到更宽的边界，即不惜增加错误点个数也要选择更宽的分类边界。因此，C 正无穷大时，可以实现没有分类错误的点，模型线性可分。</p>
+<p>  从另一方面来看，线性可分 SVM 中，对偶形式解得拉格朗日因子 αn≥0；而在 Soft-SVM 中，对偶形式解得拉格朗日因子 0 ≤ αn ≤ C。显然，当 C 无正无穷大的时候，两者形式相同。</p>
+<p>  值得一提的是，当 C 值很大的时候，虽然分类正确率提高，但很可能把 noise 也进行了处理，从而可能造成过拟合。也就是说 Soft-SVM 同样可能会出现过拟合现象，所以参数 C 的选择非常重要。下图是 C 分别取1、10、100时，相应的分类曲线：</p>
+<p><img src="71.png" alt=""></p>
+<h3 id="78-在训练完-SVM-之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？"><a href="#78-在训练完-SVM-之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？" class="headerlink" title="78. 在训练完 SVM 之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？"></a>78. 在训练完 SVM 之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？</h3><p>  A. 正确</p>
+<p>  B. 错误</p>
+<p>  答案：A</p>
+<p>  解析：本题考查的是对支持向量机 SVM 的概念理解。</p>
+<p>  其实，刚学习支持向量机时会有个疑问，就是为什么会叫这个名字。该算法决定分类面的一般是关键的几个点，这几个点构建了分类面，因此被称为支持向量。该算法也就叫支持向量机了。训练完毕之后，其它非支持向量对分类面并无影响，去掉无妨。</p>
+<p>  对于线性可分的 SVM，可以根据拉格朗日因子 αn 数值来判断当前样本 (xn, yn) 是否为 SV。</p>
+<pre><code>- 若 αn = 0：不是 SV
+
+- 若 αn &gt; 0：是 SV，且分类正确
+</code></pre><p><img src="72.jpg" alt=""></p>
+<p>  对于 Soft-SVM（线性不可分），可以根据拉格朗日因子 αn 数值与参数 C 的关系来判断当前样本 (xn, yn) 是否为 SV。</p>
+<pre><code>  - 若 αn = 0：不是 SV，且分类正确
+
+  - 若 0 &lt; αn &lt; C：是 SV
+
+  - 若 αn = C：不是 SV，且分类错误（或恰好位于分类面上）
+</code></pre><p><img src="73.jpg" alt=""></p>
+<p>  对 SVM 概念不太清楚的同学可以看看林轩田机器学习技法 1-6 对 SVM 的讲解，通俗易懂，内容翔实。对应的笔记可以在本公众号查阅，放上第 1 讲链接：</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzIwOTc2MTUyMg==&amp;mid=2247483942&amp;idx=1&amp;sn=564b65607d2e682bdedfdba51296a80e&amp;chksm=976fa7bba0182ead76a6a22cf4d720efa281287c710beeb9304fc59057356029d8c7c2fac4f3&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">深入浅出机器学习技法（一）：线性支持向量机</a></p>
+<h3 id="79-下列哪些算法可以用来够造神经网络（多选）？"><a href="#79-下列哪些算法可以用来够造神经网络（多选）？" class="headerlink" title="79. 下列哪些算法可以用来够造神经网络（多选）？"></a>79. 下列哪些算法可以用来够造神经网络（多选）？</h3><p>  A. kNN</p>
+<p>  B. 线性回归</p>
+<p>  C. 逻辑回归</p>
+<p>  答案：BC</p>
+<p>  解析：本题考查的是 kNN、线性回归、逻辑回归与神经网络之间的一些关系。</p>
+<p>  kNN 是一种基于实例的学习算法，不具有任何训练参数。因此不能用来构造神经网络。</p>
+<p>  线性回归和逻辑回归都可以用来构造神经网络模型，其实二者就是单神经元的神经网络。</p>
+<h3 id="80-下列数据集适用于隐马尔可夫模型的是？"><a href="#80-下列数据集适用于隐马尔可夫模型的是？" class="headerlink" title="80. 下列数据集适用于隐马尔可夫模型的是？"></a>80. 下列数据集适用于隐马尔可夫模型的是？</h3><p>  A. 基因数据</p>
+<p>  B. 影评数据</p>
+<p>  C. 股票市场价格</p>
+<p>  D. 以上所有</p>
+<p>  答案：D</p>
+<p>  解析：本题考查的是隐马尔可夫模型适用于解决哪类问题。</p>
+<p>  隐马尔可夫模型（Hidden Markov Model，HMM）是关于时序的概率模型，描述一个隐藏的马尔可夫链随机生成不可观测的状态随机序列，再由各个状态生成一个观察而产生观测随机序列的过程。因此，隐马尔可夫模型适用于解决时间序列问题。</p>
+<h3 id="81-我们想要训练一个-ML-模型，样本数量有-100-万个，特征维度是-5000，面对如此大数据，如何有效地训练模型（多选）？"><a href="#81-我们想要训练一个-ML-模型，样本数量有-100-万个，特征维度是-5000，面对如此大数据，如何有效地训练模型（多选）？" class="headerlink" title="81. 我们想要训练一个 ML 模型，样本数量有 100 万个，特征维度是 5000，面对如此大数据，如何有效地训练模型（多选）？"></a>81. 我们想要训练一个 ML 模型，样本数量有 100 万个，特征维度是 5000，面对如此大数据，如何有效地训练模型（多选）？</h3><p>  A. 对训练集随机采样，在随机采样的数据上建立模型</p>
+<p>  B. 尝试使用在线机器学习算法</p>
+<p>  C. 使用 PCA 算法减少特征维度</p>
+<p>  答案：ABC</p>
+<p>  解析：本题考查的是如何解决样本数量和特征维度过大的问题。</p>
+<p>  在有限的内存下，如何处理高特征纬度的训练样本是一项非常艰巨的任务。下面这些方法可以用来解决这一问题。</p>
+<pre><code>  我们可以随机抽样数据集，包括样本数量和特征数量。这意味着，我们可以创建一个更小的数据集，比如说，有 1000 个特征和 300000 个样本进行训练。
+
+  使用在线学习（online learning）算法
+
+  使用主成分分析算法（PCA）挑选有效的特征，去除冗余特征。
+</code></pre><p>  关于在线学习与离线学习，离线学习是我们最为常见的一种机器学习算法模式，使用全部数据参与训练。训练完成，整个模型就确定了；而在线学习一般每次使用一个数据或是小批量数据进行训练，每次训练都会优化模型，模型处于不断优化更改状态。  </p>
+<p>  PCA(principal Component Analysis)，是一种使用最广泛的数据压缩算法。在PCA中，数据从原来的坐标系转换到新的坐标系，由数据本身决定。转换坐标系时，以方差最大的方向作为坐标轴方向，因为数据的最大方差给出了数据的最重要的信息。第一个新坐标轴选择的是原始数据中方差最大的方法，第二个新坐标轴选择的是与第一个新坐标轴正交且方差次大的方向。重复该过程，重复次数为原始数据的特征维数。</p>
+<p>  什么是冗余特征呢？比如汽车数据中，里面既有以“千米/每小时”度量特征，也有“英里/小时”的特征，显然这两个特征有一个是多余的。</p>
+<h3 id="82-我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？"><a href="#82-我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？" class="headerlink" title="82. 我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？"></a>82. 我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？</h3><p>  A. 使用正向选择法（Forward Selection）</p>
+<p>  B. 使用反向消除法（Backward Elimination）</p>
+<p>  C. 逐步选择消除法（Stepwise）</p>
+<p>  D. 计算不同特征之间的相关系数，删去相关系数高的特征之一</p>
+<p>  答案：ABCD</p>
+<p>  解析：本题考查的是机器学习模型中特征选择问题。</p>
+<p>  正向选择（Forward Selection）是首先选择一个特征，每个特征都试一遍，选择对模型准确率提升最高的那个特征；然后再在这个特征基础上添加另外一个特征，方法类似，直到模型准确率不再提示为止。</p>
+<p>  反向消除（Backward Elimination）是首先包含了所有的特征，然后尝试删除每个特征，最终删掉对模型准确率提升最高的一个特征（因为删除这个特征，模型准确率反而增加了，说明是无用特征）。如此类推，直到删除特征并不能提升模型为止。</p>
+<p>  相对于 Forward Selection，Backward Elimination 的优点在于其允许一些低贡献值的特征能够进到模型中去(有时候低贡献值的特征能在组合中有更大的贡献值，而 Forward Selection 忽略了这种组合的可能性)，因此Backward Elimination能够避免受一两个占主导地位的特征的干扰。</p>
+<p>  另外还有一种特征选择方法是 Stepwise，该方法结合上述两者的方法，新加入一个特征之后，再尝试删去一个特征，直至达到某个预设的标准。这种方法的缺点是，预设的标准不好定，而且容易陷入到过拟合当中。</p>
+<p>  除此之外，也可以使用基于相关性的特征选择，可以去除多重线性特征。例如上一题中“千米/每小时”和“英里/小时”是相关性很大的特征，可删其一。</p>
+<h3 id="83-下面关于-Random-Forest-和-Gradient-Boosting-Trees-说法正确的是？"><a href="#83-下面关于-Random-Forest-和-Gradient-Boosting-Trees-说法正确的是？" class="headerlink" title="83. 下面关于 Random Forest 和 Gradient Boosting Trees 说法正确的是？"></a>83. 下面关于 Random Forest 和 Gradient Boosting Trees 说法正确的是？</h3><p>  A. Random Forest 的中间树不是相互独立的，而 Gradient Boosting Trees 的中间树是相互独立的</p>
+<p>  B. 两者都使用随机特征子集来创建中间树</p>
+<p>  C. 在 Gradient Boosting Trees 中可以生成并行树，因为它们是相互独立的</p>
+<p>  D. 无论任何数据，Gradient Boosting Trees 总是优于 Random Forest</p>
+<p>  答案：B</p>
+<p>  解析：本题考查的是随机森林和梯度提升树（GBDT）的基本概率和区别。</p>
+<p>  Random Forest 是基于 Bagging 的，而 Gradient Boosting Trees 是基于 Boosting 的。Bagging 和 Boosting 的区别在于：</p>
+<p>  1）样本选择上：</p>
+<p>  Bagging：训练集是在原始集中有放回选取的，从原始集中选出的各轮训练集之间是独立的。</p>
+<p>  Boosting：每一轮的训练集不变，只是训练集中每个样例在分类器中的权重发生变化。而权值是根据上一轮的分类结果进行调整。</p>
+<p>  2）样例权重：</p>
+<p>  Bagging：使用均匀取样，每个样例的权重相等。</p>
+<p>  Boosting：根据错误率不断调整样例的权值，错误率越大则权重越大。</p>
+<p>  3）预测函数：</p>
+<p>  Bagging：所有预测函数的权重相等。</p>
+<p>  Boosting：每个弱分类器都有相应的权重，对于分类误差小的分类器会有更大的权重。</p>
+<p>  4）并行计算：</p>
+<p>  Bagging：各个预测函数可以并行生成。</p>
+<p>  Boosting：各个预测函数只能顺序生成，因为后一个模型参数需要前一轮模型的结果。</p>
+<p>  因此，Gradient Boosting Trees 的中间树不是相互独立的，因为前一棵树的结果影响下一棵树。Random Forest 的中间树相互独立，因此可以并行生成这些树。</p>
+<p>  在这两种算法中，我们使用随机特征集来生成中间树。</p>
+<p>  Gradient Boosting Trees 并不总比 Random Forest 好，依赖于数据。</p>
+<h3 id="84-“对于-PCA-处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？"><a href="#84-“对于-PCA-处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？" class="headerlink" title="84. “对于 PCA 处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？"></a>84. “对于 PCA 处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？</h3><p>  A. True</p>
+<p>  B. False</p>
+<p>  答案：B</p>
+<p>  解析：本题考查的是 PCA 和 朴素贝叶斯的基本概率和区别。</p>
+<p>  这句话有两处错误：一是 PCA 转换之后的特征不一定不相关；二是不相关并不等价于相互独立。</p>
+<p>  正交和不相关没有必然关系，只有当一个随机变量的统计平均等于零时，正交和不相关等价。</p>
+<p>  独立则必定不相关，而不相关却不一定互相独立，只有是高斯时独立和不相关才等价。</p>
+<h3 id="85-下列关于-PCA-说法正确的是（多选）？"><a href="#85-下列关于-PCA-说法正确的是（多选）？" class="headerlink" title="85. 下列关于 PCA 说法正确的是（多选）？"></a>85. 下列关于 PCA 说法正确的是（多选）？</h3><p>  A. 在使用 PCA 之前，我们必须标准化数据</p>
+<p>  B. 应该选择具有最大方差的主成分</p>
+<p>  C. 应该选择具有最小方差的主成分</p>
+<p>  D. 可以使用 PCA 在低维空间中可视化数据</p>
+<p>  答案：ABD</p>
+<p>  解析：本题考查的是主成分分析（PCA）的基本概念和推导原理。</p>
+<p>  PCA 对数据中变量的尺度非常敏感，因此我们需要对各个变量进行标准化。方法是减去各自变量的均值，除以标准差。</p>
+<p><img src="82.png" alt=""></p>
+<p>  举个例子，假如某个变量单位从 km 改成 cm，大大增加了其方差，那么该变量可能就成为了主成分。这是我们不希望看大的。</p>
+<p>  B 是正确的，因为我们总是选择方差最大的主成分。可以这么来理解，方差越大，说明在该特征上分布越广泛，说明该特征月有用，影响越大。</p>
+<p>  PCA 有时在较低维度上绘制数据是非常有用。例如我们可以提取前 2 个主要组成部分，然后在二维平面上使用散点图可视化数据。</p>
+<h3 id="86-下图中，主成分的最佳数目是多少？"><a href="#86-下图中，主成分的最佳数目是多少？" class="headerlink" title="86. 下图中，主成分的最佳数目是多少？"></a>86. 下图中，主成分的最佳数目是多少？</h3><p><img src="74.jpg" alt=""><br>  A. 10</p>
+<p>  B. 20</p>
+<p>  C. 30</p>
+<p>  D. 无法确定</p>
+<p>  答案：C</p>
+<p>  解析：本题考查的是 PCA 的基本概念。</p>
+<p>  显然，当主成分数目为 30 的时候，积累的方差比例最大。</p>
+<h3 id="87-数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？"><a href="#87-数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？" class="headerlink" title="87. 数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？"></a>87. 数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？</h3><p>  A. 基本模型之间相关性高</p>
+<p>  B. 基本模型之间相关性低</p>
+<p>  C. 集成方法中，使用加权平均代替投票方法</p>
+<p>  D. 基本模型都来自于同一算法</p>
+<p>  答案：B</p>
+<p>  解析：本题考查的是集成学习的基本原理。</p>
+<p>  集成学习，顾名思义，通过将多个单个学习器集成/组合在一起，使它们共同完成学习任务。</p>
+<p>  举个例子来说明，假如你有 T 个朋友，每个朋友向你预测推荐明天某支股票会涨还是会跌，那么你该选择哪个朋友的建议呢？第一种方法是从 T 个朋友中选择一个最受信任，对股票预测能力最强的人，直接听从他的建议就好。这是一种普遍的做法，对应的就是 validation 的思想，即选择犯错误最小的模型。第二种方法，如果每个朋友在股票预测方面都是比较厉害的，都有各自的专长，那么就同时考虑 T 个朋友的建议，将所有结果做个投票，一人一票，最终决定出对该支股票的预测。这种方法对应的是 uniformly 思想。第三种方法，如果每个朋友水平不一，有的比较厉害，投票比重应该更大一些，有的比较差，投票比重应该更小一些。那么，仍然对 T 个朋友进行投票，只是每个人的投票权重不同。这种方法对应的是 non-uniformly 的思想。第四种方法与第三种方法类似，但是权重不是固定的，根据不同的条件，给予不同的权重。比如如果是传统行业的股票，那么给这方面比较厉害的朋友较高的投票权重，如果是服务行业，那么就给这方面比较厉害的朋友较高的投票权重。以上所述的这四种方法都是将不同人不同意见融合起来的方式，这就是集成思想，即把多个基本模型结合起来，得到更好的预测效果。</p>
+<p>  通常来说，基本模型之间的相关性越低越好，因为每个模型有各自的特长，集成起来才更加强大。</p>
+<h3 id="88-如何在监督式学习中使用聚类算法（多选）？"><a href="#88-如何在监督式学习中使用聚类算法（多选）？" class="headerlink" title="88. 如何在监督式学习中使用聚类算法（多选）？"></a>88. 如何在监督式学习中使用聚类算法（多选）？</h3><p>  A. 首先，可以创建聚类，然后分别在不同的集群上应用监督式学习算法</p>
+<p>  B. 在应用监督式学习算法之前，可以将其类别 ID 作为特征空间中的一个额外的特征</p>
+<p>  C. 在应用监督式学习之前，不能创建聚类</p>
+<p>  D. 在应用监督式学习算法之前，不能将其类别 ID 作为特征空间中的一个额外的特征</p>
+<p>  答案：AB</p>
+<p>  解析：本题考查的是聚类算法与监督式学习。</p>
+<p>  我们可以为不同的集群构建独立的机器学习模型，并且可以提高预测精度。将每个类别的 ID 作为特征空间中的一个额外的特征可能会提高的精度结果。</p>
+<h3 id="89-下面哪句话是正确的？"><a href="#89-下面哪句话是正确的？" class="headerlink" title="89. 下面哪句话是正确的？"></a>89. 下面哪句话是正确的？</h3><p>  A. 机器学习模型的精准度越高，则模型的性能越好</p>
+<p>  B. 增加模型的复杂度，总能减小测试样本误差</p>
+<p>  C. 增加模型的复杂度，总能减小训练样本误差</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：C</p>
+<p>  解析：本题考查的是机器学习模型的评判指标。</p>
+<p>  机器学习模型的精准度（Precision）越高，模型性能不一定越好，还要看模型的召回率（Recall），特别是在正负样本分布不均的情况下。一般使用 F1 score 评判标准。</p>
+<p><img src="75.png" alt=""></p>
+<p>  增加模型复杂度，通常可能造成过拟合。过拟合的表现是训练样本误差减小，而测试样本误差增大。</p>
+<h3 id="90-关于-GBDT-算法，下列说法正确的是（多选）？"><a href="#90-关于-GBDT-算法，下列说法正确的是（多选）？" class="headerlink" title="90. 关于 GBDT 算法，下列说法正确的是（多选）？"></a>90. 关于 GBDT 算法，下列说法正确的是（多选）？</h3><p>  A. 增加用于分割的最小样本数量，有助于避免过拟合</p>
+<p>  B. 增加用于分割的最小样本数量，容易造成过拟合</p>
+<p>  C. 减小每个基本树的样本比例，有助于减小方差</p>
+<p>  D. 减小每个基本树的样本比例，有助于减小偏差</p>
+<p>  答案：AC</p>
+<p>  解析：本题考查的是 GBDT 的基本概念。</p>
+<p>  节点中用于分割所需的最小样本数用来控制过拟合。过高的值可能导致欠拟合，因此，它应该使用交叉验证进行调整。</p>
+<p>  每个基本树选择的样本比例是通过随机抽样来完成的。小于1的值能够减小方差使模型具有鲁棒性。典型值 0.8 通常工作良好，但可以进一步精细调整。</p>
+<p>  GBDT 通过多轮迭代,每轮迭代产生一个弱分类器，每个分类器在上一轮分类器的残差基础上进行训练。对弱分类器的要求一般是足够简单，并且是低方差和高偏差的，因为训练的过程是通过降低偏差来不断提高最终分类器的精度。</p>
+<h3 id="91-下面哪个对应的是正确的-KNN-决策边界？"><a href="#91-下面哪个对应的是正确的-KNN-决策边界？" class="headerlink" title="91. 下面哪个对应的是正确的 KNN 决策边界？"></a>91. 下面哪个对应的是正确的 KNN 决策边界？</h3><p><img src="76.jpg" alt=""></p>
+<p>  A. A</p>
+<p>  B. B</p>
+<p>  C. C</p>
+<p>  D. D</p>
+<p>  答案：A</p>
+<p>  解析：本题考查的是 KNN 的相关知识点。</p>
+<p>  KNN 分类算法是一个比较成熟也是最简单的机器学习(Machine Learning)算法之一。该方法的思路是：如果一个样本在特征空间中与K个实例最为相似(即特征空间中最邻近)，那么这 K 个实例中大多数属于哪个类别，则该样本也属于这个类别。其中，计算样本与其他实例的相似性一般采用距离衡量法。离得越近越相似，离得越远越不相似。因此，决策边界可能不是线性的。</p>
+<h3 id="92-如果一个经过训练的机器学习模型在测试集上达到-100-的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到-100-的准确率呢？"><a href="#92-如果一个经过训练的机器学习模型在测试集上达到-100-的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到-100-的准确率呢？" class="headerlink" title="92. 如果一个经过训练的机器学习模型在测试集上达到 100% 的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到 100% 的准确率呢？"></a>92. 如果一个经过训练的机器学习模型在测试集上达到 100% 的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到 100% 的准确率呢？</h3><p>  A. 是的，因为这个模型泛化能力已经很好了，可以应用于任何数据</p>
+<p>  B. 不行，因为还有一些模型不确定的东西，例如噪声</p>
+<p>  答案：B</p>
+<p>  解析：本题考查的是机器学习泛化能力与噪声。</p>
+<p>  现实世界的数据并不总是无噪声的，所以在这种情况下，我们不会得到 100% 的准确度。</p>
+<h3 id="93-下面是交叉验证的几种方法："><a href="#93-下面是交叉验证的几种方法：" class="headerlink" title="93. 下面是交叉验证的几种方法："></a>93. 下面是交叉验证的几种方法：</h3><ol>
+<li>Bootstrap</li>
+</ol>
+<ol start="2">
+<li>留一法交叉验证</li>
+</ol>
+<ol start="3">
+<li>5 折交叉验证</li>
+</ol>
+<ol start="4">
+<li>重复使用两次 5 折交叉验证</li>
+</ol>
+<p>  请对上面四种方法的执行时间进行排序，样本数量为 1000。</p>
+<p>  A. 1 &gt; 2 &gt; 3 &gt; 4</p>
+<p>  B. 2 &gt; 4 &gt; 3 &gt; 1</p>
+<p>  C. 4 &gt; 1 &gt; 2 &gt;３</p>
+<p>  D. 2 &gt; 4 &gt; 3 &gt; 1</p>
+<p>  答案：D</p>
+<p>  解析：本题考查的是 k 折交叉验证和 Bootstrap 的基本概念。</p>
+<p>  Bootstrap 是统计学的一个工具，思想就是从已有数据集 D 中模拟出其他类似的样本 Dt。Bootstrap 的做法是，假设有 N 笔资料，先从中选出一个样本，再放回去，再选择一个样本，再放回去，共重复 N 次。这样我们就得到了一个新的 N 笔资料，这个新的 Dt 中可能包含原 D 里的重复样本点，也可能没有原 D 里的某些样本，Dt 与 D 类似但又不完全相同。值得一提的是，抽取-放回的操作不一定非要是 N，次数可以任意设定。例如原始样本有 10000 个，我们可以抽取-放回 3000 次，得到包含 3000 个样本的 Dt 也是完全可以的。因此，使用 bootstrap 只相当于有 1 个模型需要训练，所需时间最少。</p>
+<p>  留一法（Leave-One-Out）交叉验证每次选取 N-1 个样本作为训练集，另外一个样本作为验证集，重复 N 次。因此，留一法相当于有 N 个模型需要训练，所需的时间最长。</p>
+<p>  5 折交叉验证把 N 个样本分成 5 份，其中 4 份作为训练集，另外 1 份作为验证集，重复 5 次。因此，5 折交叉验证相当于有 5 个模型需要训练。</p>
+<p>  2 次重复的 5 折交叉验证相当于有 10 个模型需要训练。</p>
+<h3 id="94-变量选择是用来选择最好的判别器子集，-如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）"><a href="#94-变量选择是用来选择最好的判别器子集，-如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）" class="headerlink" title="94. 变量选择是用来选择最好的判别器子集， 如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）"></a>94. 变量选择是用来选择最好的判别器子集， 如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）</h3><p>  A. 多个变量是否有相同的功能</p>
+<p>  B. 模型是否具有解释性</p>
+<p>  C. 特征是否携带有效信息</p>
+<p>  D. 交叉验证</p>
+<p>  答案：ACD</p>
+<p>  解析：本题考查的是模型特征选择。</p>
+<p>  如果多个变量试图做相同的工作，那么可能存在多重共线性，影响模型性能，需要考虑。如果特征是携带有效信息的，总是会增加模型的有效信息。我们需要应用交叉验证来检查模型的通用性。关于模型性能，我们不需要看到模型的可解释性。</p>
+<h3 id="95-下面有关分类算法的准确率，召回率，F1-值的描述，错误的是？"><a href="#95-下面有关分类算法的准确率，召回率，F1-值的描述，错误的是？" class="headerlink" title="95. 下面有关分类算法的准确率，召回率，F1 值的描述，错误的是？"></a>95. 下面有关分类算法的准确率，召回率，F1 值的描述，错误的是？</h3><p>  A.准确率是检索出相关文档数与检索出的文档总数的比率，衡量的是检索系统的查准率</p>
+<p>  B.召回率是指检索出的相关文档数和文档库中所有的相关文档数的比率，衡量的是检索系统的查全率</p>
+<p>  C.正确率、召回率和 F 值取值都在 0 和 1 之间，数值越接近 0，查准率或查全率就越高</p>
+<p>  D.为了解决准确率和召回率冲突问题，引入了F1分数</p>
+<p>  答案：C</p>
+<p>  解析：对于二类分类问题常用的评价指标是精准度（precision）与召回率（recall）。通常以关注的类为正类，其他类为负类，分类器在测试数据集上的预测或正确或不正确，4种情况出现的总数分别记作：</p>
+<p>  TP——将正类预测为正类数</p>
+<p>  FN——将正类预测为负类数</p>
+<p>  FP——将负类预测为正类数</p>
+<p>  TN——将负类预测为负类数</p>
+<p>  精准率定义为：P = TP / (TP + FP)</p>
+<p>  召回率定义为：R = TP / (TP + FN)</p>
+<p>  F1值定义为： F1 = 2PR / (P + R)</p>
+<p>  精准率和召回率和 F1 取值都在 0 和 1 之间，精准率和召回率高，F1 值也会高，不存在数值越接近 0 越高的说法，应该是数值越接近 1 越高。</p>
+<h3 id="96-如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？"><a href="#96-如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？" class="headerlink" title="96. 如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？"></a>96. 如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？</h3><p>  A. R-Squared 和 Adjusted R-Squared 都会增大</p>
+<p>  B. R-Squared 保持不变 Adjusted R-Squared 增加</p>
+<p>  C. R-Squared 和 Adjusted R-Squared 都会减小</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：D</p>
+<p>  解析：本题考查的是线性回归模型的评估准则 R-Squared 和 Adjusted R-Squared。</p>
+<p>  线性回归问题中，R-Squared 是用来衡量回归方程与真实样本输出之间的相似程度。其表达式如下所示：</p>
+<p><img src="77.png" alt=""></p>
+<p>  上式中，分子部分表示真实值与预测值的平方差之和，类似于均方差 MSE；分母部分表示真实值与均值的平方差之和，类似于方差 Var。根据 R-Squared 的取值，来判断模型的好坏：如果结果是 0，说明模型拟合效果很差；如果结果是 1，说明模型无错误。一般来说，R-Squared 越大，表示模型拟合效果越好。R-Squared 反映的是大概有多准，因为，随着样本数量的增加，R-Square必然增加，无法真正定量说明准确程度，只能大概定量。</p>
+<p>  单独看 R-Squared，并不能推断出增加的特征是否有意义。通常来说，增加一个特征，R-Squared 可能变大也可能保持不变，两者不一定呈正相关。</p>
+<p>  如果使用校正决定系数（Adjusted R-Square）：</p>
+<p><img src="78.png" alt=""></p>
+<p>  其中，n 是样本数量，p 是特征数量。Adjusted R-Square 抵消样本数量对 R-Square的影响，做到了真正的 0~1，越大越好。若增加的特征有效，则 Adjusted R-Square 就会增大，反之则减小。</p>
+<h3 id="97-如下图所示，对同一数据集进行训练，得到-3-个模型。对于这-3-个模型的评估，下列说法正确的是？（多选）"><a href="#97-如下图所示，对同一数据集进行训练，得到-3-个模型。对于这-3-个模型的评估，下列说法正确的是？（多选）" class="headerlink" title="97. 如下图所示，对同一数据集进行训练，得到 3 个模型。对于这 3 个模型的评估，下列说法正确的是？（多选）"></a>97. 如下图所示，对同一数据集进行训练，得到 3 个模型。对于这 3 个模型的评估，下列说法正确的是？（多选）</h3><p><img src="79.jpg" alt=""></p>
+<p>  A. 第一个模型的训练误差最大</p>
+<p>  B. 第三个模型性能最好，因为其训练误差最小</p>
+<p>  C. 第二个模型最稳健，其在测试集上表现应该最好</p>
+<p>  D. 第三个模型过拟合</p>
+<p>  答案：ACD</p>
+<p>  解析：本题考查的是机器学习模型欠拟合、过拟合概念。</p>
+<p>  很简单，第一个模型过于简单，发生欠拟合，训练误差很大，在训练样本和测试样本上表现都不佳。第二个模型较好，泛化能力强，模型较为健壮，在训练样本和测试样本上表现都不错。第三个模型过于复杂，发生过拟合，训练样本误差虽然很小，但是在测试样本集上一般表现很差，泛化能力很差。</p>
+<p>  模型选择应该避免欠拟合和过拟合，对于模型复杂的情况可以选择使用正则化方法。</p>
+<h3 id="98-如果使用线性回归模型，下列说法正确的是？"><a href="#98-如果使用线性回归模型，下列说法正确的是？" class="headerlink" title="98. 如果使用线性回归模型，下列说法正确的是？"></a>98. 如果使用线性回归模型，下列说法正确的是？</h3><p>  A. 检查异常值是很重要的，因为线性回归对离群效应很敏感</p>
+<p>  B. 线性回归分析要求所有变量特征都必须具有正态分布</p>
+<p>  C. 线性回归假设数据中基本没有多重共线性</p>
+<p>  D. 以上说法都不对</p>
+<p>  答案：A</p>
+<p>  解析：本题考查的是线性回归的一些基本原理。</p>
+<p>  异常值是数据中的一个非常有影响的点，它可以改变最终回归线的斜率。因此，去除或处理异常值在回归分析中一直是很重要的。</p>
+<p>  了解变量特征的分布是有用的。类似于正态分布的变量特征对提升模型性能很有帮助。例如，数据预处理的时候经常做的一件事就是将数据特征归一化到（0，1）分布。但这也不是必须的。</p>
+<p>  当模型包含相互关联的多个特征时，会发生多重共线性。因此，线性回归中变量特征应该尽量减少冗余性。C 选择绝对化了。</p>
+<h3 id="99-建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现-3-对变量（Var1-和-Var2、Var2-和-Var3、Var3-和-Var1）之间的相关性分别为-0-98、0-45-和-1-23。我们能从中推断出什么呢？（多选）"><a href="#99-建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现-3-对变量（Var1-和-Var2、Var2-和-Var3、Var3-和-Var1）之间的相关性分别为-0-98、0-45-和-1-23。我们能从中推断出什么呢？（多选）" class="headerlink" title="99. 建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现 3 对变量（Var1 和 Var2、Var2 和 Var3、Var3 和 Var1）之间的相关性分别为 -0.98、0.45 和 1.23。我们能从中推断出什么呢？（多选）"></a>99. 建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现 3 对变量（Var1 和 Var2、Var2 和 Var3、Var3 和 Var1）之间的相关性分别为 -0.98、0.45 和 1.23。我们能从中推断出什么呢？（多选）</h3><p>  A. Var1 和 Var2 具有很高的相关性</p>
+<p>  B. Var1 和 Var2 存在多重共线性，模型可以去掉其中一个特征</p>
+<p>  C. Var3 和 Var1 相关系数为 1.23 是不可能的</p>
+<p>  答案：ABC</p>
+<p>  解析：本题考查的是相关系数的基本概念。</p>
+<p>  Var1 和 Var2 之间的相关性非常高，并且是负的，因此我们可以将其视为多重共线性的情况。此外，当数据中存在多重线性特征时，我们可以去掉一个。一般来说，如果相关大于 0.7 或小于 -0.7，那么我们认为特征之间有很高的相关性。第三个选项是不言自明的，相关系数介于 [-1,1] 之间，1.23 明显有误。</p>
+<h3 id="100-如果自变量-X-和因变量-Y-之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？"><a href="#100-如果自变量-X-和因变量-Y-之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？" class="headerlink" title="100. 如果自变量 X 和因变量 Y 之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？"></a>100. 如果自变量 X 和因变量 Y 之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？</h3><p>  A. 正确</p>
+<p>  B. 错误</p>
+<p>  答案：A</p>
+<p>  解析：本题考查的是回归模型的选择。</p>
+<p>  当数据是非线性的时，经典回归模型泛化能力不强，而基于树的模型通常表现更好。</p>
+<p>  参考文献：</p>
+<blockquote>
+<p><a href="https://www.analyticsvidhya.com/blog/2016/12/45-questions-to-test-a-data-scientist-on-regression-skill-test-regression-solution/" target="_blank" rel="noopener">https://www.analyticsvidhya.com/blog/2016/12/45-questions-to-test-a-data-scientist-on-regression-skill-test-regression-solution/</a><br><a href="https://www.analyticsvidhya.com/blog/2016/11/solution-for-skilltest-machine-learning-revealed/" target="_blank" rel="noopener">https://www.analyticsvidhya.com/blog/2016/11/solution-for-skilltest-machine-learning-revealed/</a>  <a href="https://www.analyticsvidhya.com/blog/2017/04/40-questions-test-data-scientist-machine-learning-solution-skillpower-machine-learning-datafest-2017/" target="_blank" rel="noopener">https://www.analyticsvidhya.com/blog/2017/04/40-questions-test-data-scientist-machine-learning-solution-skillpower-machine-learning-datafest-2017/</a></p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://blog.quantm.club/2019/03/01/机器学习/" data-title="机器学习 | Timmy live" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/03/01/Spring/" title="Spring 概述">
+ <strong>下一篇：</strong><br> 
+ <span>Spring 概述
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习"><span class="toc-number">1.</span> <span class="toc-text">机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下列说法正确的是？（多选）"><span class="toc-number">1.1.</span> <span class="toc-text">1. 下列说法正确的是？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-“增加卷积核的尺寸，一定能提高卷积神经网络的性能。”-这句话是否正确？"><span class="toc-number">1.2.</span> <span class="toc-text">2. “增加卷积核的尺寸，一定能提高卷积神经网络的性能。” 这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-假设你在卷积神经网络的第一层中有-5-个卷积核，每个卷积核尺寸为-7×7，具有零填充且步幅为-1。该层的输入图片的维度是-224×224×3。那么该层输出的维度是多少？"><span class="toc-number">1.3.</span> <span class="toc-text">3. 假设你在卷积神经网络的第一层中有 5 个卷积核，每个卷积核尺寸为 7×7，具有零填充且步幅为 1。该层的输入图片的维度是 224×224×3。那么该层输出的维度是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-假如现在有个神经网络，激活函数是-ReLU，若使用线性激活函数代替-ReLU，那么该神经网络还能表征-XNOR-函数吗？"><span class="toc-number">1.4.</span> <span class="toc-text">4. 假如现在有个神经网络，激活函数是 ReLU，若使用线性激活函数代替 ReLU，那么该神经网络还能表征 XNOR 函数吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-机器学习训练时，Mini-Batch-的大小优选为2个的幂，如-256-或-512。它背后的原因是什么？"><span class="toc-number">1.5.</span> <span class="toc-text">5. 机器学习训练时，Mini-Batch 的大小优选为2个的幂，如 256 或 512。它背后的原因是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-下列哪种方法可以用来减小过拟合？（多选）"><span class="toc-number">1.6.</span> <span class="toc-text">6. 下列哪种方法可以用来减小过拟合？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-下列说法错误的是？"><span class="toc-number">1.7.</span> <span class="toc-text">7. 下列说法错误的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-K-Means-算法无法聚以下哪种形状的样本？"><span class="toc-number">1.8.</span> <span class="toc-text">8. K-Means 算法无法聚以下哪种形状的样本？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-向量-X-1-2-3-4-9-0-的-L1-范数为？"><span class="toc-number">1.9.</span> <span class="toc-text">9. 向量 X=[1,2,3,4,-9,0] 的 L1 范数为？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-关于-L1、L2-正则化下列说法正确的是？"><span class="toc-number">1.10.</span> <span class="toc-text">10. 关于 L1、L2 正则化下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-有-N-个样本，一般用于训练，一般用于测试。若增大-N-值，则训练误差和测试误差之间的差距会如何变化？"><span class="toc-number">1.11.</span> <span class="toc-text">11. 有 N 个样本，一般用于训练，一般用于测试。若增大 N 值，则训练误差和测试误差之间的差距会如何变化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-假定你在神经网络中的隐藏层中使用激活函数-X。在特定神经元给定任意输入，你会得到输出-0-01。X-可能是以下哪一个激活函数？"><span class="toc-number">1.12.</span> <span class="toc-text">12. 假定你在神经网络中的隐藏层中使用激活函数 X。在特定神经元给定任意输入，你会得到输出 -0.01。X 可能是以下哪一个激活函数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-k-NN-最近邻方法在什么情况下效果较好？"><span class="toc-number">1.13.</span> <span class="toc-text">13. k-NN 最近邻方法在什么情况下效果较好？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-下列方法中，可以用于特征降维的方法包括？（多选）"><span class="toc-number">1.14.</span> <span class="toc-text">14. 下列方法中，可以用于特征降维的方法包括？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-以下哪些方法不可以直接来对文本分类？"><span class="toc-number">1.15.</span> <span class="toc-text">15. 以下哪些方法不可以直接来对文本分类？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？"><span class="toc-number">1.16.</span> <span class="toc-text">16. 在回归模型中，下列哪一项在权衡欠拟合（under-fitting）和过拟合（over-fitting）中影响最大？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y-wx-b）来拟合数据。那么使用留一法（Leave-One-Out）交叉验证得到的均方误差是多少？"><span class="toc-number">1.17.</span> <span class="toc-text">17. 假设你有以下数据：输入和输出都只有一个变量。使用线性回归模型（y=wx+b）来拟合数据。那么使用留一法（Leave-One Out）交叉验证得到的均方误差是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-下列关于极大似然估计（Maximum-Likelihood-Estimate，MLE），说法正确的是（多选）？"><span class="toc-number">1.18.</span> <span class="toc-text">18. 下列关于极大似然估计（Maximum Likelihood Estimate，MLE），说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？"><span class="toc-number">1.19.</span> <span class="toc-text">19. 如果我们说“线性回归”模型完美地拟合了训练样本（训练样本误差为零），则下面哪个说法是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-在一个线性回归问题中，我们使用-R-平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？"><span class="toc-number">1.20.</span> <span class="toc-text">20. 在一个线性回归问题中，我们使用 R 平方（R-Squared）来判断拟合度。此时，如果增加一个特征，模型不变，则下面说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-下列关于线性回归分析中的残差（Residuals）说法正确的是？"><span class="toc-number">1.21.</span> <span class="toc-text">21. 下列关于线性回归分析中的残差（Residuals）说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-下列关于异方差（Heteroskedasticity）说法正确的是？"><span class="toc-number">1.22.</span> <span class="toc-text">22. 下列关于异方差（Heteroskedasticity）说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-下列哪一项能反映出-X-和-Y-之间的强相关性？"><span class="toc-number">1.23.</span> <span class="toc-text">23. 下列哪一项能反映出 X 和 Y 之间的强相关性？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-下列哪些假设是我们推导线性回归参数时遵循的（多选）？"><span class="toc-number">1.24.</span> <span class="toc-text">24. 下列哪些假设是我们推导线性回归参数时遵循的（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-为了观察测试-Y-与-X-之间的线性关系，X-是连续变量，使用下列哪种图形比较适合？"><span class="toc-number">1.25.</span> <span class="toc-text">25. 为了观察测试 Y 与 X 之间的线性关系，X 是连续变量，使用下列哪种图形比较适合？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-一般来说，下列哪种方法常用来预测连续独立变量？"><span class="toc-number">1.26.</span> <span class="toc-text">26. 一般来说，下列哪种方法常用来预测连续独立变量？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27-个人健康和年龄的相关系数是-1-09。根据这个你可以告诉医生哪个结论？"><span class="toc-number">1.27.</span> <span class="toc-text">27. 个人健康和年龄的相关系数是 -1.09。根据这个你可以告诉医生哪个结论？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28-下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入-X，纵坐标是输出-Y。"><span class="toc-number">1.28.</span> <span class="toc-text">28. 下列哪一种偏移，是我们在最小二乘直线拟合的情况下使用的？图中横坐标是输入 X，纵坐标是输出 Y。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29-假如我们利用-Y-是-X-的-3-阶多项式产生一些数据（3-阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？"><span class="toc-number">1.29.</span> <span class="toc-text">29. 假如我们利用 Y 是 X 的 3 阶多项式产生一些数据（3 阶多项式能很好地拟合数据）。那么，下列说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30-假如你在训练一个线性回归模型，有下面两句话："><span class="toc-number">1.30.</span> <span class="toc-text">30. 假如你在训练一个线性回归模型，有下面两句话：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31-假如我们使用-Lasso-回归来拟合数据集，该数据集输入特征有-100-个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大-10-倍（例如是特征-X1），然后用相同的正则化参数对-Lasso-回归进行修正。"><span class="toc-number">1.31.</span> <span class="toc-text">31. 假如我们使用 Lasso 回归来拟合数据集，该数据集输入特征有 100 个（X1，X2，…，X100）。现在，我们把其中一个特征值扩大 10 倍（例如是特征 X1），然后用相同的正则化参数对 Lasso 回归进行修正。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-关于特征选择，下列对-Ridge-回归和-Lasso-回归说法正确的是？"><span class="toc-number">1.32.</span> <span class="toc-text">32. 关于特征选择，下列对 Ridge 回归和 Lasso 回归说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？"><span class="toc-number">1.33.</span> <span class="toc-text">33. 如果在线性回归模型中增加一个特征变量，下列可能发生的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？"><span class="toc-number">1.34.</span> <span class="toc-text">34. 下面三张图展示了对同一训练样本，使用不同的模型拟合的效果（蓝色曲线）。那么，我们可以得出哪些结论（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-下列哪些指标可以用来评估线性回归模型（多选）？"><span class="toc-number">1.35.</span> <span class="toc-text">35. 下列哪些指标可以用来评估线性回归模型（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-线性回归中，我们可以使用正规方程（Normal-Equation）来求解系数。下列关于正规方程说法正确的是？"><span class="toc-number">1.36.</span> <span class="toc-text">36. 线性回归中，我们可以使用正规方程（Normal Equation）来求解系数。下列关于正规方程说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37-如果-Y-是-X（X1，X2，…，Xn）的线性函数："><span class="toc-number">1.37.</span> <span class="toc-text">37. 如果 Y 是 X（X1，X2，…，Xn）的线性函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38-构建一个最简单的线性回归模型需要几个系数（只有一个特征）？"><span class="toc-number">1.38.</span> <span class="toc-text">38. 构建一个最简单的线性回归模型需要几个系数（只有一个特征）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39-下面两张图展示了两个拟合回归线（A-和-B），原始数据是随机产生的。现在，我想要计算-A-和-B-各自的残差之和。注意：两种图中的坐标尺度一样。"><span class="toc-number">1.39.</span> <span class="toc-text">39. 下面两张图展示了两个拟合回归线（A 和 B），原始数据是随机产生的。现在，我想要计算 A 和 B 各自的残差之和。注意：两种图中的坐标尺度一样。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40-如果两个变量相关，那么它们一定是线性关系吗？"><span class="toc-number">1.40.</span> <span class="toc-text">40. 如果两个变量相关，那么它们一定是线性关系吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#41-两个变量相关，它们的相关系数-r-可能为-0。这句话是否正确？"><span class="toc-number">1.41.</span> <span class="toc-text">41. 两个变量相关，它们的相关系数 r 可能为 0。这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42-加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？"><span class="toc-number">1.42.</span> <span class="toc-text">42. 加入使用逻辑回归对样本进行分类，得到训练样本的准确率和测试样本的准确率。现在，在数据中增加一个新的特征，其它特征保持不变。然后重新训练测试。则下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43-下面这张图是一个简单的线性回归模型-图中标注了每个样本点预测值与真实值的残差。计算-SSE-为多少？"><span class="toc-number">1.43.</span> <span class="toc-text">43. 下面这张图是一个简单的线性回归模型,图中标注了每个样本点预测值与真实值的残差。计算 SSE 为多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44-假设变量-Var1-和-Var2-是正相关的，那么下面那张图是正确的？图中，横坐标是-Var1，纵坐标是-Var2，且对-Var1-和-Var2-都做了标准化处理。"><span class="toc-number">1.44.</span> <span class="toc-text">44. 假设变量 Var1 和 Var2 是正相关的，那么下面那张图是正确的？图中，横坐标是 Var1，纵坐标是 Var2，且对 Var1 和 Var2 都做了标准化处理。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45-假设一个公司的薪资水平中位数是-35-000，排名第-25-和-75-的薪资分别是-21-000-和-53-000。如果某人的薪水是-1，那么它可以被看成是异常值（Outlier）吗？"><span class="toc-number">1.45.</span> <span class="toc-text">45. 假设一个公司的薪资水平中位数是 $35,000，排名第 25% 和 75% 的薪资分别是 $21,000 和 $ 53,000。如果某人的薪水是 $1，那么它可以被看成是异常值（Outlier）吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46-关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x-是自变量，y-是因变量。"><span class="toc-number">1.46.</span> <span class="toc-text">46. 关于“回归（Regression）”和“相关（Correlation）”，下列说法正确的是？注意：x 是自变量，y 是因变量。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#47-仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？"><span class="toc-number">1.47.</span> <span class="toc-text">47. 仅仅知道变量的均值（Mean）和中值（Median），能计算的到变量的偏斜度（Skewness）吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#48-假设有-n-组数据集，每组数据集中，x-的平均值都是-9，x-的方差都是-11，y-的平均值都是-7-50，x-与-y-的相关系数都是-0-816，拟合的线性回归方程都是-y-3-00-0-500-x。那么这-n-组数据集是否一样？"><span class="toc-number">1.48.</span> <span class="toc-text">48. 假设有 n 组数据集，每组数据集中，x 的平均值都是 9，x 的方差都是 11，y 的平均值都是 7.50，x 与 y 的相关系数都是 0.816，拟合的线性回归方程都是 y = 3.00 + 0.500*x。那么这 n 组数据集是否一样？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#49-观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。"><span class="toc-number">1.49.</span> <span class="toc-text">49. 观察样本次数如何影响过拟合（多选）？注意：所有情况的参数都保持一致。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#50-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较大时，关于偏差（bias）和方差（variance），下列说法正确的是？"><span class="toc-number">1.50.</span> <span class="toc-text">50. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较大时，关于偏差（bias）和方差（variance），下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#51-假如使用一个较复杂的回归模型来拟合样本数据，使用-Ridge-回归，调试正则化参数-λ，来降低模型复杂度。若-λ-较小时，关于偏差（bias）和方差（variance），下列说法正确的是？"><span class="toc-number">1.51.</span> <span class="toc-text">51. 假如使用一个较复杂的回归模型来拟合样本数据，使用 Ridge 回归，调试正则化参数 λ，来降低模型复杂度。若 λ 较小时，关于偏差（bias）和方差（variance），下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52-下列关于-Ridge-回归，说法正确的是（多选）？"><span class="toc-number">1.52.</span> <span class="toc-text">52. 下列关于 Ridge 回归，说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53-在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？"><span class="toc-number">1.53.</span> <span class="toc-text">53. 在下面给出的三个残差图中，下面哪一个代表了与其他模型相比更差的模型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54-下列哪一种方法的系数没有封闭形式（closed-form）的解？"><span class="toc-number">1.54.</span> <span class="toc-text">54. 下列哪一种方法的系数没有封闭形式（closed-form）的解？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55-观察如下数据集："><span class="toc-number">1.55.</span> <span class="toc-text">55. 观察如下数据集：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#56-在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？"><span class="toc-number">1.56.</span> <span class="toc-text">56. 在一个简单的线性回归模型中（只有一个变量），如果将输入变量改变一个单位（增加或减少），那么输出将改变多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#57-逻辑回归将输出概率限定在-0-1-之间。下列哪个函数起到这样的作用？"><span class="toc-number">1.57.</span> <span class="toc-text">57. 逻辑回归将输出概率限定在 [0,1] 之间。下列哪个函数起到这样的作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#58-线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？"><span class="toc-number">1.58.</span> <span class="toc-text">58. 线性回归和逻辑回归中，关于损失函数对权重系数的偏导数，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#59-假设使用逻辑回归进行-n-多类别分类，使用-One-vs-rest-分类法。下列说法正确的是？"><span class="toc-number">1.59.</span> <span class="toc-text">59. 假设使用逻辑回归进行 n 多类别分类，使用 One-vs-rest 分类法。下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#60-下图是两个不同-β0、β1-对应的逻辑回归模型（绿色和黑色）："><span class="toc-number">1.60.</span> <span class="toc-text">60. 下图是两个不同 β0、β1 对应的逻辑回归模型（绿色和黑色）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#61-在-n-维空间中（n-gt-1），下列哪种方法最适合用来检测异常值？"><span class="toc-number">1.61.</span> <span class="toc-text">61. 在 n 维空间中（n &gt; 1），下列哪种方法最适合用来检测异常值？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#62-逻辑回归与多元回归分析有哪些不同之处？"><span class="toc-number">1.62.</span> <span class="toc-text">62. 逻辑回归与多元回归分析有哪些不同之处？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#63-下列关于-bootstrap-说法正确的是？"><span class="toc-number">1.63.</span> <span class="toc-text">63. 下列关于 bootstrap 说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#64-“监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？"><span class="toc-number">1.64.</span> <span class="toc-text">64. “监督式学习中存在过拟合，而对于非监督式学习来说，没有过拟合”，这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#65-关于-k-折交叉验证，下列说法正确的是？"><span class="toc-number">1.65.</span> <span class="toc-text">65. 关于 k 折交叉验证，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#66-如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？"><span class="toc-number">1.66.</span> <span class="toc-text">66. 如果回归模型中存在多重共线性（multicollinearity），应该如何解决这一问题而不丢失太多信息（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#67-评估完模型之后，发现模型存在高偏差（high-bias），应该如何解决？"><span class="toc-number">1.67.</span> <span class="toc-text">67. 评估完模型之后，发现模型存在高偏差（high bias），应该如何解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#68-在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？"><span class="toc-number">1.68.</span> <span class="toc-text">68. 在构建一个决策树模型时，我们对某个属性分割节点，下面四张图中，哪个属性对应的信息增益最大？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#69-在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？"><span class="toc-number">1.69.</span> <span class="toc-text">69. 在决策树分割结点的时候，下列关于信息增益说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#70-如果一个-SVM-模型出现欠拟合，那么下列哪种方法能解决这一问题？"><span class="toc-number">1.70.</span> <span class="toc-text">70. 如果一个 SVM 模型出现欠拟合，那么下列哪种方法能解决这一问题？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#71-假设我们在支持向量机（SVM）算法中对-Gamma（RBF-核系数-γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令-g1、g2、g3-分别对应着下面的图-1、图-2-和图-3。则关于-g1、g2、g3-大小下列说法正确的是？"><span class="toc-number">1.71.</span> <span class="toc-text">71. 假设我们在支持向量机（SVM）算法中对 Gamma（RBF 核系数 γ）的不同值进行可视化。由于某种原因，我们忘记了标记伽马值的可视化。令 g1、g2、g3 分别对应着下面的图 1、图 2 和图 3。则关于 g1、g2、g3 大小下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#72-我们知道二元分类的输出是概率值。一般设定输出概率大于或等于-0-5，则预测为正类；若输出概率小于-0-5，则预测为负类。那么，如果将阈值-0-5-提高，例如-0-6，大于或等于-0-6-的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？"><span class="toc-number">1.72.</span> <span class="toc-text">72. 我们知道二元分类的输出是概率值。一般设定输出概率大于或等于 0.5，则预测为正类；若输出概率小于 0.5，则预测为负类。那么，如果将阈值 0.5 提高，例如 0.6，大于或等于 0.6 的才预测为正类。则准确率（Precision）和召回率（Recall）会发生什么变化（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#73-点击率预测是一个正负样本不平衡问题（例如-99-的没有点击，只有-1-点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是-99-，则下列说法正确的是？"><span class="toc-number">1.73.</span> <span class="toc-text">73. 点击率预测是一个正负样本不平衡问题（例如 99% 的没有点击，只有 1% 点击）。假如在这个非平衡的数据集上建立一个模型，得到训练样本的正确率是 99%，则下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#74-假设我们使用-kNN-训练模型，其中训练数据具有较少的观测数据（下图是两个属性-x、y-和两个标记为-“-”-和-“o”-的训练数据）。现在令-k-1，则图中的-Leave-One-Out-交叉验证错误率是多少？"><span class="toc-number">1.74.</span> <span class="toc-text">74. 假设我们使用 kNN 训练模型，其中训练数据具有较少的观测数据（下图是两个属性 x、y 和两个标记为 “+” 和 “o” 的训练数据）。现在令 k = 1，则图中的 Leave-One-Out 交叉验证错误率是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#75-如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？"><span class="toc-number">1.75.</span> <span class="toc-text">75. 如果在大型数据集上训练决策树。为了花费更少的时间来训练这个模型，下列哪种做法是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#76-关于神经网络，下列说法正确的是？"><span class="toc-number">1.76.</span> <span class="toc-text">76. 关于神经网络，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#77-假设我们使用原始的非线性可分版本的-Soft-SVM-优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？"><span class="toc-number">1.77.</span> <span class="toc-text">77. 假设我们使用原始的非线性可分版本的 Soft-SVM 优化目标函数。我们需要做什么来保证得到的模型是线性可分离的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#78-在训练完-SVM-之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？"><span class="toc-number">1.78.</span> <span class="toc-text">78. 在训练完 SVM 之后，我们可以只保留支持向量，而舍去所有非支持向量。仍然不会影响模型分类能力。这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#79-下列哪些算法可以用来够造神经网络（多选）？"><span class="toc-number">1.79.</span> <span class="toc-text">79. 下列哪些算法可以用来够造神经网络（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#80-下列数据集适用于隐马尔可夫模型的是？"><span class="toc-number">1.80.</span> <span class="toc-text">80. 下列数据集适用于隐马尔可夫模型的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#81-我们想要训练一个-ML-模型，样本数量有-100-万个，特征维度是-5000，面对如此大数据，如何有效地训练模型（多选）？"><span class="toc-number">1.81.</span> <span class="toc-text">81. 我们想要训练一个 ML 模型，样本数量有 100 万个，特征维度是 5000，面对如此大数据，如何有效地训练模型（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#82-我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？"><span class="toc-number">1.82.</span> <span class="toc-text">82. 我们希望减少数据集中的特征数量。你可以采取以下哪一个步骤来减少特征（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#83-下面关于-Random-Forest-和-Gradient-Boosting-Trees-说法正确的是？"><span class="toc-number">1.83.</span> <span class="toc-text">83. 下面关于 Random Forest 和 Gradient Boosting Trees 说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#84-“对于-PCA-处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？"><span class="toc-number">1.84.</span> <span class="toc-text">84. “对于 PCA 处理后的特征，其朴素贝叶斯特征相互独立的假设一定成立，因为所有主成分都是正交的，所以不相关”。这句话是否正确？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#85-下列关于-PCA-说法正确的是（多选）？"><span class="toc-number">1.85.</span> <span class="toc-text">85. 下列关于 PCA 说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#86-下图中，主成分的最佳数目是多少？"><span class="toc-number">1.86.</span> <span class="toc-text">86. 下图中，主成分的最佳数目是多少？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#87-数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？"><span class="toc-number">1.87.</span> <span class="toc-text">87. 数据科学家经常使用多个算法进行预测，并将多个机器学习算法的输出（称为“集成学习”）结合起来，以获得比所有个体模型都更好的更健壮的输出。则下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#88-如何在监督式学习中使用聚类算法（多选）？"><span class="toc-number">1.88.</span> <span class="toc-text">88. 如何在监督式学习中使用聚类算法（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#89-下面哪句话是正确的？"><span class="toc-number">1.89.</span> <span class="toc-text">89. 下面哪句话是正确的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#90-关于-GBDT-算法，下列说法正确的是（多选）？"><span class="toc-number">1.90.</span> <span class="toc-text">90. 关于 GBDT 算法，下列说法正确的是（多选）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#91-下面哪个对应的是正确的-KNN-决策边界？"><span class="toc-number">1.91.</span> <span class="toc-text">91. 下面哪个对应的是正确的 KNN 决策边界？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#92-如果一个经过训练的机器学习模型在测试集上达到-100-的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到-100-的准确率呢？"><span class="toc-number">1.92.</span> <span class="toc-text">92. 如果一个经过训练的机器学习模型在测试集上达到 100% 的准确率，这是否意味着该模型将在另外一个新的测试集上也能得到 100% 的准确率呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#93-下面是交叉验证的几种方法："><span class="toc-number">1.93.</span> <span class="toc-text">93. 下面是交叉验证的几种方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#94-变量选择是用来选择最好的判别器子集，-如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）"><span class="toc-number">1.94.</span> <span class="toc-text">94. 变量选择是用来选择最好的判别器子集， 如果要考虑模型效率，我们应该做哪些变量选择的考虑？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#95-下面有关分类算法的准确率，召回率，F1-值的描述，错误的是？"><span class="toc-number">1.95.</span> <span class="toc-text">95. 下面有关分类算法的准确率，召回率，F1 值的描述，错误的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#96-如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？"><span class="toc-number">1.96.</span> <span class="toc-text">96. 如果在线性回归模型中额外增加一个变量特征之后，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#97-如下图所示，对同一数据集进行训练，得到-3-个模型。对于这-3-个模型的评估，下列说法正确的是？（多选）"><span class="toc-number">1.97.</span> <span class="toc-text">97. 如下图所示，对同一数据集进行训练，得到 3 个模型。对于这 3 个模型的评估，下列说法正确的是？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#98-如果使用线性回归模型，下列说法正确的是？"><span class="toc-number">1.98.</span> <span class="toc-text">98. 如果使用线性回归模型，下列说法正确的是？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#99-建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现-3-对变量（Var1-和-Var2、Var2-和-Var3、Var3-和-Var1）之间的相关性分别为-0-98、0-45-和-1-23。我们能从中推断出什么呢？（多选）"><span class="toc-number">1.99.</span> <span class="toc-text">99. 建立线性模型时，我们看变量之间的相关性。在寻找相关矩阵中的相关系数时，如果发现 3 对变量（Var1 和 Var2、Var2 和 Var3、Var3 和 Var1）之间的相关性分别为 -0.98、0.45 和 1.23。我们能从中推断出什么呢？（多选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#100-如果自变量-X-和因变量-Y-之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？"><span class="toc-number">1.100.</span> <span class="toc-text">100. 如果自变量 X 和因变量 Y 之间存在高度的非线性和复杂关系，那么树模型很可能优于经典回归方法。这个说法正确吗？</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/环境部署/" title="环境部署">环境部署<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sbt/" title="sbt">sbt<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/相关性/" title="相关性">相关性<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/协同过滤/" title="协同过滤">协同过滤<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cas/" title="cas">cas<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电商/" title="电商">电商<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/服务器/" title="服务器">服务器<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/系统维护/" title="系统维护">系统维护<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/单点登录/" title="单点登录">单点登录<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nexus/" title="nexus">nexus<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.hoterran.info" target="_blank" title="一个面向程序员交流分享的新一代社区">运维与开发</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://club.alibabatech.org/" target="_blank" title="ali Blog">ali Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Actor/" style="font-size: 10px;">Actor</a> <a href="/tags/Akka/" style="font-size: 10px;">Akka</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/OAuth/" style="font-size: 10px;">OAuth</a> <a href="/tags/PolarDB/" style="font-size: 10px;">PolarDB</a> <a href="/tags/Reactive/" style="font-size: 10px;">Reactive</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/cas/" style="font-size: 10px;">cas</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/mathjax/" style="font-size: 10px;">mathjax</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nexus/" style="font-size: 10px;">nexus</a> <a href="/tags/nexus3/" style="font-size: 10px;">nexus3</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sbt/" style="font-size: 15px;">sbt</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/单点登录/" style="font-size: 10px;">单点登录</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/推荐/" style="font-size: 15px;">推荐</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/比赛/" style="font-size: 10px;">比赛</a> <a href="/tags/电商/" style="font-size: 10px;">电商</a> <a href="/tags/相关性/" style="font-size: 15px;">相关性</a> <a href="/tags/系统搭建/" style="font-size: 10px;">系统搭建</a> <a href="/tags/系统维护/" style="font-size: 10px;">系统维护</a> <a href="/tags/论文/" style="font-size: 15px;">论文</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/阿里/" style="font-size: 10px;">阿里</a>
+    </div>
+  </div>
+
+
+  
+<div class="github-card">
+<p class="asidetitle">location Statics</p>
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer">
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Christiansted, United States Virgin Islands <br>
+			believer it or not</p>
+	</section>
+	 
+	<div class="social-font">
+		
+		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Lee">Lee</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-128202528-1', 'blog.quantm.club');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+  </body>
+</html>

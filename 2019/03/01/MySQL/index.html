@@ -1,0 +1,814 @@
+
+ <!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  
+    <title>MySQL概述 | Timmy live</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Lee">
+    
+
+    
+    <meta name="description" content="MySQL概述1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？一张表，里面有ID自增主键，当insert了17条记录之后，删除了第15,16,17条记录，再重启和插入记录，ID是多少1.如果表的类型是MyISAM，那么是18.因为MyISAM会把自己增主键的最大ID记录到数据文件里，重启MySQL自增主键的最大ID也不会丢失。2.如果表的类型是InnoDB，那么是15.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL概述">
+<meta property="og:url" content="https://blog.quantm.club/2019/03/01/MySQL/index.html">
+<meta property="og:site_name" content="Timmy live">
+<meta property="og:description" content="MySQL概述1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？一张表，里面有ID自增主键，当insert了17条记录之后，删除了第15,16,17条记录，再重启和插入记录，ID是多少1.如果表的类型是MyISAM，那么是18.因为MyISAM会把自己增主键的最大ID记录到数据文件里，重启MySQL自增主键的最大ID也不会丢失。2.如果表的类型是InnoDB，那么是15.">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006DGX4tly1fvjufj9m9gj30h704it8n.jpg">
+<meta property="og:updated_time" content="2019-02-28T23:48:35.586Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL概述">
+<meta name="twitter:description" content="MySQL概述1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？一张表，里面有ID自增主键，当insert了17条记录之后，删除了第15,16,17条记录，再重启和插入记录，ID是多少1.如果表的类型是MyISAM，那么是18.因为MyISAM会把自己增主键的最大ID记录到数据文件里，重启MySQL自增主键的最大ID也不会丢失。2.如果表的类型是InnoDB，那么是15.">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006DGX4tly1fvjufj9m9gj30h704it8n.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Timmy live" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.jpg" alt="Timmy live" title="Timmy live"></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Timmy live">Timmy live</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页Home</a></li>
+					
+						<li><a href="/archives">归档Archives</a></li>
+					
+						<li><a href="/about">关于About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search">
+						<input type="hidden" name="q" value="site:blog.quantm.club">
+					</form>
+					
+					</li>
+				</ul>
+			</ul></nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope="" itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/03/01/MySQL/" title="MySQL概述" itemprop="url">MySQL概述</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Lee" target="_blank" itemprop="author">Lee</a>
+		
+  </p><p class="article-time">
+    <time datetime="2019-02-28T17:05:49.000Z" itemprop="datePublished"> Published 2019-03-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL概述"><span class="toc-number">1.</span> <span class="toc-text">MySQL概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Mysql重启，再insert一条记录，这条记录的ID是18还是15-？"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Mysql的技术特点是什么？"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、Mysql的技术特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、Heap表是什么？"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、Heap表是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、Mysql服务器默认端口是什么？"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、Mysql服务器默认端口是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、与Oracle相比，Mysql有什么优势？"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、与Oracle相比，Mysql有什么优势？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、如何区分FLOAT和DOUBLE？"><span class="toc-number">1.0.6.</span> <span class="toc-text">6、如何区分FLOAT和DOUBLE？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、区分CHAR-LENGTH和LENGTH？"><span class="toc-number">1.0.7.</span> <span class="toc-text">7、区分CHAR_LENGTH和LENGTH？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？"><span class="toc-number">1.0.8.</span> <span class="toc-text">8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、在Mysql中ENUM的用法是什么？"><span class="toc-number">1.0.9.</span> <span class="toc-text">9、在Mysql中ENUM的用法是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、如何定义REGEXP？"><span class="toc-number">1.0.10.</span> <span class="toc-text">10、如何定义REGEXP？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、CHAR和VARCHAR的区别？"><span class="toc-number">1.0.11.</span> <span class="toc-text">11、CHAR和VARCHAR的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12、列的字符串类型可以是什么？"><span class="toc-number">1.0.12.</span> <span class="toc-text">12、列的字符串类型可以是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13、如何获取当前的Mysql版本？"><span class="toc-number">1.0.13.</span> <span class="toc-text">13、如何获取当前的Mysql版本？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14、Mysql中使用什么存储引擎？"><span class="toc-number">1.0.14.</span> <span class="toc-text">14、Mysql中使用什么存储引擎？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15、Mysql驱动程序是什么？"><span class="toc-number">1.0.15.</span> <span class="toc-text">15、Mysql驱动程序是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16、TIMESTAMP在UPDATE-CURRENT-TIMESTAMP数据类型上做什么？"><span class="toc-number">1.0.16.</span> <span class="toc-text">16、TIMESTAMP在UPDATE CURRENT_TIMESTAMP数据类型上做什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17、主键和候选键有什么区别？"><span class="toc-number">1.0.17.</span> <span class="toc-text">17、主键和候选键有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18、如何使用Unix-shell登录Mysql？"><span class="toc-number">1.0.18.</span> <span class="toc-text">18、如何使用Unix shell登录Mysql？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19、-myisamchk是用来做什么的？"><span class="toc-number">1.0.19.</span> <span class="toc-text">19、 myisamchk是用来做什么的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20、MYSQL数据库服务器性能分析的方法命令有哪些"><span class="toc-number">1.0.20.</span> <span class="toc-text">20、MYSQL数据库服务器性能分析的方法命令有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21、如何控制HEAP表的最大尺寸？"><span class="toc-number">1.0.21.</span> <span class="toc-text">21、如何控制HEAP表的最大尺寸？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22、MyISAM-Static和MyISAM-Dynamic有什么区别？"><span class="toc-number">1.0.22.</span> <span class="toc-text">22、MyISAM Static和MyISAM Dynamic有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23、federated表是什么？"><span class="toc-number">1.0.23.</span> <span class="toc-text">23、federated表是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24、如果一个表有一列定义为TIMESTAMP，将发生什么？"><span class="toc-number">1.0.24.</span> <span class="toc-text">24、如果一个表有一列定义为TIMESTAMP，将发生什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25、列设置为AUTO-INCREMENT时，如果在表中达到最大值，会发生什么情况？"><span class="toc-number">1.0.25.</span> <span class="toc-text">25、列设置为AUTO INCREMENT时，如果在表中达到最大值，会发生什么情况？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26、怎样才能找出最后一次插入时分配了哪个自动增量？"><span class="toc-number">1.0.26.</span> <span class="toc-text">26、怎样才能找出最后一次插入时分配了哪个自动增量？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27、你怎么看到为表格定义的所有索引？"><span class="toc-number">1.0.27.</span> <span class="toc-text">27、你怎么看到为表格定义的所有索引？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28-、LIKE声明中的％和-是什么意思？"><span class="toc-number">1.0.28.</span> <span class="toc-text">28.、LIKE声明中的％和_是什么意思？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29、如何在Unix和Mysql时间戳之间进行转换？"><span class="toc-number">1.0.29.</span> <span class="toc-text">29、如何在Unix和Mysql时间戳之间进行转换？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30、列对比运算符是什么？"><span class="toc-number">1.0.30.</span> <span class="toc-text">30、列对比运算符是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31、我们如何得到受查询影响的行数？"><span class="toc-number">1.0.31.</span> <span class="toc-text">31、我们如何得到受查询影响的行数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32、Mysql查询是否区分大小写？"><span class="toc-number">1.0.32.</span> <span class="toc-text">32、Mysql查询是否区分大小写？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-、LIKE和REGEXP操作有什么区别？"><span class="toc-number">1.0.33.</span> <span class="toc-text">33.、LIKE和REGEXP操作有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-、BLOB和TEXT有什么区别？"><span class="toc-number">1.0.34.</span> <span class="toc-text">34.、BLOB和TEXT有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35、mysql-fetch-array和mysql-fetch-object的区别是什么？"><span class="toc-number">1.0.35.</span> <span class="toc-text">35、mysql_fetch_array和mysql_fetch_object的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36、我们如何在mysql中运行批处理模式？"><span class="toc-number">1.0.36.</span> <span class="toc-text">36、我们如何在mysql中运行批处理模式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37、MyISAM表格将在哪里存储，并且还提供其存储格式？"><span class="toc-number">1.0.37.</span> <span class="toc-text">37、MyISAM表格将在哪里存储，并且还提供其存储格式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38、Mysql中有哪些不同的表格？"><span class="toc-number">1.0.38.</span> <span class="toc-text">38、Mysql中有哪些不同的表格？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39、ISAM是什么？"><span class="toc-number">1.0.39.</span> <span class="toc-text">39、ISAM是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40、InnoDB是什么？"><span class="toc-number">1.0.40.</span> <span class="toc-text">40、InnoDB是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#41、Mysql如何优化DISTINCT？"><span class="toc-number">1.0.41.</span> <span class="toc-text">41、Mysql如何优化DISTINCT？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42、如何输入字符为十六进制数字？"><span class="toc-number">1.0.42.</span> <span class="toc-text">42、如何输入字符为十六进制数字？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43、如何显示前50行？"><span class="toc-number">1.0.43.</span> <span class="toc-text">43、如何显示前50行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44、可以使用多少列创建索引？"><span class="toc-number">1.0.44.</span> <span class="toc-text">44、可以使用多少列创建索引？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45、NOW（）和CURRENT-DATE（）有什么区别？"><span class="toc-number">1.0.45.</span> <span class="toc-text">45、NOW（）和CURRENT_DATE（）有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46、什么样的对象可以使用CREATE语句创建？"><span class="toc-number">1.0.46.</span> <span class="toc-text">46、什么样的对象可以使用CREATE语句创建？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#47、Mysql表中允许有多少个TRIGGERS？"><span class="toc-number">1.0.47.</span> <span class="toc-text">47、Mysql表中允许有多少个TRIGGERS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#48、什么是非标准字符串类型？"><span class="toc-number">1.0.48.</span> <span class="toc-text">48、什么是非标准字符串类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#49、什么是通用SQL函数？"><span class="toc-number">1.0.49.</span> <span class="toc-text">49、什么是通用SQL函数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#50、解释访问控制列表"><span class="toc-number">1.0.50.</span> <span class="toc-text">50、解释访问控制列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#51、MYSQL支持事务吗？"><span class="toc-number">1.0.51.</span> <span class="toc-text">51、MYSQL支持事务吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52、-mysql里记录货币用什么字段类型好"><span class="toc-number">1.0.52.</span> <span class="toc-text">52、 mysql里记录货币用什么字段类型好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53、MYSQL数据表在什么情况下容易损坏？"><span class="toc-number">1.0.53.</span> <span class="toc-text">53、MYSQL数据表在什么情况下容易损坏？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54、mysql有关权限的表都有哪几个？"><span class="toc-number">1.0.54.</span> <span class="toc-text">54、mysql有关权限的表都有哪几个？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55、Mysql中有哪几种锁？"><span class="toc-number">1.0.55.</span> <span class="toc-text">55、Mysql中有哪几种锁？</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="MySQL概述"><a href="#MySQL概述" class="headerlink" title="MySQL概述"></a>MySQL概述</h1><h3 id="1、Mysql重启，再insert一条记录，这条记录的ID是18还是15-？"><a href="#1、Mysql重启，再insert一条记录，这条记录的ID是18还是15-？" class="headerlink" title="1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？"></a>1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？</h3><p>一张表，里面有ID自增主键，当insert了17条记录之后，删除了第15,16,17条记录，再重启和插入记录，ID是多少<br>1.如果表的类型是MyISAM，那么是18.因为MyISAM会把自己增主键的最大ID记录到数据文件里，重启MySQL自增主键的最大ID也不会丢失。<br>2.如果表的类型是InnoDB，那么是15.InnoDB表只是把自增主键的最大ID记录到内存中，所以重启数据库或者是对表进行OPTIMIZE操作，都会导致最大ID丢失。</p>
+<h3 id="2、Mysql的技术特点是什么？"><a href="#2、Mysql的技术特点是什么？" class="headerlink" title="2、Mysql的技术特点是什么？"></a>2、Mysql的技术特点是什么？</h3><p>Mysql数据库软件是一个客户端或服务器系统，其中包括：支持各种客户端程序和库的多线程SQL服务器、不同的后端、广泛的应用程序编程接口和管理工具。</p>
+<h3 id="3、Heap表是什么？"><a href="#3、Heap表是什么？" class="headerlink" title="3、Heap表是什么？"></a>3、Heap表是什么？</h3><p>HEAP表存在于内存中，用于临时高速存储。</p>
+<p>BLOB或TEXT字段是不允许的</p>
+<p>只能使用比较运算符=，&lt;，&gt;，=&gt;，= &lt;</p>
+<p>HEAP表不支持AUTO_INCREMENT</p>
+<p>索引不可为NULL</p>
+<h3 id="4、Mysql服务器默认端口是什么？"><a href="#4、Mysql服务器默认端口是什么？" class="headerlink" title="4、Mysql服务器默认端口是什么？"></a>4、Mysql服务器默认端口是什么？</h3><p>Mysql服务器的默认端口是3306。</p>
+<h3 id="5、与Oracle相比，Mysql有什么优势？"><a href="#5、与Oracle相比，Mysql有什么优势？" class="headerlink" title="5、与Oracle相比，Mysql有什么优势？"></a>5、与Oracle相比，Mysql有什么优势？</h3><p>Mysql是开源软件，随时可用，无需付费。</p>
+<p>Mysql是便携式的</p>
+<p>带有命令提示符的GUI。</p>
+<p>使用Mysql查询浏览器支持管理</p>
+<h3 id="6、如何区分FLOAT和DOUBLE？"><a href="#6、如何区分FLOAT和DOUBLE？" class="headerlink" title="6、如何区分FLOAT和DOUBLE？"></a>6、如何区分FLOAT和DOUBLE？</h3><p>以下是FLOAT和DOUBLE的区别：</p>
+<p>浮点数以8位精度存储在FLOAT中，并且有四个字节。</p>
+<p>浮点数存储在DOUBLE中，精度为18位，有八个字节。</p>
+<h3 id="7、区分CHAR-LENGTH和LENGTH？"><a href="#7、区分CHAR-LENGTH和LENGTH？" class="headerlink" title="7、区分CHAR_LENGTH和LENGTH？"></a>7、区分CHAR_LENGTH和LENGTH？</h3><p>CHAR_LENGTH是字符数，而LENGTH是字节数。Latin字符的这两个数据是相同的，但是对于Unicode和其他编码，它们是不同的。</p>
+<h3 id="8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？"><a href="#8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？" class="headerlink" title="8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？"></a>8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？</h3><p>SQL标准定义的四个隔离级别为：</p>
+<p>read uncommited ：读到未提交数据</p>
+<p>read committed：脏读，不可重复读</p>
+<p>repeatable read：可重读</p>
+<p>serializable ：串行事物<br>详细解释如下：<br>Read Uncommitted（读取未提交内容）<br>在该隔离级别，所有事务都可以看到其他未提交事务的执行结果。本隔离级别很少用于实际应用，因为它的性能也不比其他级别好多少。读取未提交的数据，也被称之为脏读（Dirty Read）。<br>Read Committed（读取提交内容）<br>这是大多数数据库系统的默认隔离级别（但不是MySQL默认的）。它满足了隔离的简单定义：一个事务只能看见已经提交事务所做的改变。这种隔离级别也支持所谓的不可重复读（Nonrepeatable Read），因为同一事务的其他实例在该实例处理其间可能会有新的commit，所以同一select可能返回不同结果。<br>Repeatable Read（可重读）<br>这是MySQL的默认事务隔离级别，它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。不过理论上，这会导致另一个棘手的问题：幻读（Phantom Read）。简单的说，幻读指当用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的“幻影” 行。InnoDB和Falcon存储引擎通过多版本并发控制（MVCC，Multiversion Concurrency Control 间隙锁）机制解决了该问题。注：其实多版本只是解决不可重复读问题，而加上间隙锁（也就是它这里所谓的并发控制）才解决了幻读问题。<br>Serializable（可串行化）<br>这是最高的隔离级别，它通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。简言之，它是在每个读的数据行上加上共享锁。在这个级别，可能导致大量的超时现象和锁竞争。<br>对于不同的事务，采用不同的隔离级别分别有不同的结果。不同的隔离级别有不同的现象。主要有下面3种现在：<br>1、脏读（dirty read）：一个事务可以读取另一个尚未提交事务的修改数据。<br>2、非重复读（nonrepeatable read）：在同一个事务中，同一个查询在T1时间读取某一行，在T2时间重新读取这一行时候，这一行的数据已经发生修改，可能被更新了（update），也可能被删除了（delete）。<br>3、幻像读（phantom read）：在同一事务中，同一查询多次进行时候，由于其他插入操作（insert）的事务提交，导致每次返回不同的结果集。<br>不同的隔离级别有不同的现象，并有不同的锁定/并发机制，隔离级别越高，数据库的并发性就越差，4种事务隔离级别分别表现的现象如下表：<br><img src="https://ws1.sinaimg.cn/large/006DGX4tly1fvjufj9m9gj30h704it8n.jpg" alt=""></p>
+<h3 id="9、在Mysql中ENUM的用法是什么？"><a href="#9、在Mysql中ENUM的用法是什么？" class="headerlink" title="9、在Mysql中ENUM的用法是什么？"></a>9、在Mysql中ENUM的用法是什么？</h3><p>ENUM是一个字符串对象，用于指定一组预定义的值，并可在创建表时使用。</p>
+<p>Create table size(name ENUM(‘Smail,’Medium’,’Large’);</p>
+<h3 id="10、如何定义REGEXP？"><a href="#10、如何定义REGEXP？" class="headerlink" title="10、如何定义REGEXP？"></a>10、如何定义REGEXP？</h3><p>REGEXP是模式匹配，其中匹配模式在搜索值的任何位置。</p>
+<h3 id="11、CHAR和VARCHAR的区别？"><a href="#11、CHAR和VARCHAR的区别？" class="headerlink" title="11、CHAR和VARCHAR的区别？"></a>11、CHAR和VARCHAR的区别？</h3><p>以下是CHAR和VARCHAR的区别：</p>
+<p>CHAR和VARCHAR类型在存储和检索方面有所不同</p>
+<p>CHAR列长度固定为创建表时声明的长度，长度值范围是1到255</p>
+<p>当CHAR值被存储时，它们被用空格填充到特定长度，检索CHAR值时需删除尾随空格。</p>
+<h3 id="12、列的字符串类型可以是什么？"><a href="#12、列的字符串类型可以是什么？" class="headerlink" title="12、列的字符串类型可以是什么？"></a>12、列的字符串类型可以是什么？</h3><p>字符串类型是：</p>
+<p>SET</p>
+<p>BLOB</p>
+<p>ENUM</p>
+<p>CHAR</p>
+<p>TEXT</p>
+<p>VARCHAR</p>
+<h3 id="13、如何获取当前的Mysql版本？"><a href="#13、如何获取当前的Mysql版本？" class="headerlink" title="13、如何获取当前的Mysql版本？"></a>13、如何获取当前的Mysql版本？</h3><p>SELECT VERSION();用于获取当前Mysql的版本。</p>
+<h3 id="14、Mysql中使用什么存储引擎？"><a href="#14、Mysql中使用什么存储引擎？" class="headerlink" title="14、Mysql中使用什么存储引擎？"></a>14、Mysql中使用什么存储引擎？</h3><p>存储引擎称为表类型，数据使用各种技术存储在文件中。</p>
+<p>技术涉及：</p>
+<p>Storage mechanism</p>
+<p>Locking levels</p>
+<p>Indexing</p>
+<p>Capabilities and functions.</p>
+<h3 id="15、Mysql驱动程序是什么？"><a href="#15、Mysql驱动程序是什么？" class="headerlink" title="15、Mysql驱动程序是什么？"></a>15、Mysql驱动程序是什么？</h3><p>以下是Mysql中可用的驱动程序：</p>
+<p>PHP驱动程序</p>
+<p>JDBC驱动程序</p>
+<p>ODBC驱动程序</p>
+<p>CWRAPPER</p>
+<p>PYTHON驱动程序</p>
+<p>PERL驱动程序</p>
+<p>RUBY驱动程序</p>
+<p>CAP11PHP驱动程序</p>
+<p>Ado.net5.mxj</p>
+<h3 id="16、TIMESTAMP在UPDATE-CURRENT-TIMESTAMP数据类型上做什么？"><a href="#16、TIMESTAMP在UPDATE-CURRENT-TIMESTAMP数据类型上做什么？" class="headerlink" title="16、TIMESTAMP在UPDATE CURRENT_TIMESTAMP数据类型上做什么？"></a>16、TIMESTAMP在UPDATE CURRENT_TIMESTAMP数据类型上做什么？</h3><p>创建表时TIMESTAMP列用Zero更新。只要表中的其他字段发生更改，UPDATE CURRENT_TIMESTAMP修饰符就将时间戳字段更新为当前时间。</p>
+<h3 id="17、主键和候选键有什么区别？"><a href="#17、主键和候选键有什么区别？" class="headerlink" title="17、主键和候选键有什么区别？"></a>17、主键和候选键有什么区别？</h3><p>表格的每一行都由主键唯一标识,一个表只有一个主键。</p>
+<p>主键也是候选键。按照惯例，候选键可以被指定为主键，并且可以用于任何外键引用。</p>
+<h3 id="18、如何使用Unix-shell登录Mysql？"><a href="#18、如何使用Unix-shell登录Mysql？" class="headerlink" title="18、如何使用Unix shell登录Mysql？"></a>18、如何使用Unix shell登录Mysql？</h3><p>我们可以通过以下命令登录：</p>
+<pre><code class="sql"># [mysql dir]/bin/mysql -h hostname -u -p
+</code></pre>
+<h3 id="19、-myisamchk是用来做什么的？"><a href="#19、-myisamchk是用来做什么的？" class="headerlink" title="19、 myisamchk是用来做什么的？"></a>19、 myisamchk是用来做什么的？</h3><p>它用来压缩MyISAM表，这减少了磁盘或内存使用。</p>
+<h3 id="20、MYSQL数据库服务器性能分析的方法命令有哪些"><a href="#20、MYSQL数据库服务器性能分析的方法命令有哪些" class="headerlink" title="20、MYSQL数据库服务器性能分析的方法命令有哪些?"></a>20、MYSQL数据库服务器性能分析的方法命令有哪些?</h3><p>Show status</p>
+<p>一些值得监控的变量值：</p>
+<p>Bytes_received和Bytes_sent</p>
+<p>和服务器之间来往的流量。</p>
+<p>Com_*服务器正在执行的命令。</p>
+<p>Created_*在查询执行期限间创建的临时表和文件。</p>
+<p>Handler_*存储引擎操作。</p>
+<p>Select_*不同类型的联接执行计划。</p>
+<p>Sort_*几种排序信息。</p>
+<p>Show session status like ‘Select’;</p>
+<p>Show profiles</p>
+<p>SET profiling=1;</p>
+<p>Show profiles \G</p>
+<p>Show profile;</p>
+<h3 id="21、如何控制HEAP表的最大尺寸？"><a href="#21、如何控制HEAP表的最大尺寸？" class="headerlink" title="21、如何控制HEAP表的最大尺寸？"></a>21、如何控制HEAP表的最大尺寸？</h3><p>Heal表的大小可通过称为max_heap_table_size的Mysql配置变量来控制。</p>
+<h3 id="22、MyISAM-Static和MyISAM-Dynamic有什么区别？"><a href="#22、MyISAM-Static和MyISAM-Dynamic有什么区别？" class="headerlink" title="22、MyISAM Static和MyISAM Dynamic有什么区别？"></a>22、MyISAM Static和MyISAM Dynamic有什么区别？</h3><p>在MyISAM Static上的所有字段有固定宽度。动态MyISAM表将具有像TEXT，BLOB等字段，以适应不同长度的数据类型。点击这里有一套最全阿里面试题总结。</p>
+<p>MyISAM Static在受损情况下更容易恢复。</p>
+<h3 id="23、federated表是什么？"><a href="#23、federated表是什么？" class="headerlink" title="23、federated表是什么？"></a>23、federated表是什么？</h3><p>federated表，允许访问位于其他服务器数据库上的表。</p>
+<h3 id="24、如果一个表有一列定义为TIMESTAMP，将发生什么？"><a href="#24、如果一个表有一列定义为TIMESTAMP，将发生什么？" class="headerlink" title="24、如果一个表有一列定义为TIMESTAMP，将发生什么？"></a>24、如果一个表有一列定义为TIMESTAMP，将发生什么？</h3><p>每当行被更改时，时间戳字段将获取当前时间戳。</p>
+<h3 id="25、列设置为AUTO-INCREMENT时，如果在表中达到最大值，会发生什么情况？"><a href="#25、列设置为AUTO-INCREMENT时，如果在表中达到最大值，会发生什么情况？" class="headerlink" title="25、列设置为AUTO INCREMENT时，如果在表中达到最大值，会发生什么情况？"></a>25、列设置为AUTO INCREMENT时，如果在表中达到最大值，会发生什么情况？</h3><p>它会停止递增，任何进一步的插入都将产生错误，因为密钥已被使用。</p>
+<h3 id="26、怎样才能找出最后一次插入时分配了哪个自动增量？"><a href="#26、怎样才能找出最后一次插入时分配了哪个自动增量？" class="headerlink" title="26、怎样才能找出最后一次插入时分配了哪个自动增量？"></a>26、怎样才能找出最后一次插入时分配了哪个自动增量？</h3><p>LAST_INSERT_ID将返回由Auto_increment分配的最后一个值，并且不需要指定表名称。</p>
+<h3 id="27、你怎么看到为表格定义的所有索引？"><a href="#27、你怎么看到为表格定义的所有索引？" class="headerlink" title="27、你怎么看到为表格定义的所有索引？"></a>27、你怎么看到为表格定义的所有索引？</h3><p>索引是通过以下方式为表格定义的：</p>
+<p>SHOW INDEX FROM ;</p>
+<h3 id="28-、LIKE声明中的％和-是什么意思？"><a href="#28-、LIKE声明中的％和-是什么意思？" class="headerlink" title="28.、LIKE声明中的％和_是什么意思？"></a>28.、LIKE声明中的％和_是什么意思？</h3><p>％对应于0个或更多字符，_ 只是LIKE语句中的一个字符。</p>
+<h3 id="29、如何在Unix和Mysql时间戳之间进行转换？"><a href="#29、如何在Unix和Mysql时间戳之间进行转换？" class="headerlink" title="29、如何在Unix和Mysql时间戳之间进行转换？"></a>29、如何在Unix和Mysql时间戳之间进行转换？</h3><p>UNIX_TIMESTAMP是从Mysql时间戳转换为Unix时间戳的命令</p>
+<p>FROM_UNIXTIME是从Unix时间戳转换为Mysql时间戳的命令</p>
+<h3 id="30、列对比运算符是什么？"><a href="#30、列对比运算符是什么？" class="headerlink" title="30、列对比运算符是什么？"></a>30、列对比运算符是什么？</h3><p>在SELECT语句的列比较中使用=，&lt;&gt;，&lt;=，&lt;，&gt; =，&gt;，&lt;&lt;，&gt;&gt;，&lt;=&gt;，AND，OR或LIKE运算符。</p>
+<h3 id="31、我们如何得到受查询影响的行数？"><a href="#31、我们如何得到受查询影响的行数？" class="headerlink" title="31、我们如何得到受查询影响的行数？"></a>31、我们如何得到受查询影响的行数？</h3><p>行数可以通过以下代码获得：</p>
+<p>SELECT COUNT(user_id)FROM users;</p>
+<h3 id="32、Mysql查询是否区分大小写？"><a href="#32、Mysql查询是否区分大小写？" class="headerlink" title="32、Mysql查询是否区分大小写？"></a>32、Mysql查询是否区分大小写？</h3><p>不区分</p>
+<pre><code class="sql">SELECT VERSION(), CURRENT_DATE;
+
+SeLect version(), current_date;
+
+seleCt vErSiOn(), current_DATE;
+</code></pre>
+<p>所有这些例子都是一样的，Mysql不区分大小写。</p>
+<h3 id="33-、LIKE和REGEXP操作有什么区别？"><a href="#33-、LIKE和REGEXP操作有什么区别？" class="headerlink" title="33.、LIKE和REGEXP操作有什么区别？"></a>33.、LIKE和REGEXP操作有什么区别？</h3><p>LIKE和REGEXP运算符用于表示^和％。</p>
+<pre><code class="sql">SELECT * FROM employee WHERE emp_name LIKE &quot;%b&quot;;
+
+SELECT * FROM employee WHERE emp_name REGEXP &quot;^b&quot;;
+</code></pre>
+<h3 id="34-、BLOB和TEXT有什么区别？"><a href="#34-、BLOB和TEXT有什么区别？" class="headerlink" title="34.、BLOB和TEXT有什么区别？"></a>34.、BLOB和TEXT有什么区别？</h3><p>BLOB是一个二进制对象，可以容纳可变数量的数据。有四种类型的BLOB -</p>
+<p>TINYBLOB</p>
+<p>BLOB</p>
+<p>MEDIUMBLOB和</p>
+<p>LONGBLOB</p>
+<p>它们只能在所能容纳价值的最大长度上有所不同。</p>
+<p>TEXT是一个不区分大小写的BLOB。四种TEXT类型</p>
+<p>TINYTEXT</p>
+<p>TEXT</p>
+<p>MEDIUMTEXT和</p>
+<p>LONGTEXT</p>
+<p>它们对应于四种BLOB类型，并具有相同的最大长度和存储要求。</p>
+<p>BLOB和TEXT类型之间的唯一区别在于对BLOB值进行排序和比较时区分大小写，对TEXT值不区分大小写。</p>
+<h3 id="35、mysql-fetch-array和mysql-fetch-object的区别是什么？"><a href="#35、mysql-fetch-array和mysql-fetch-object的区别是什么？" class="headerlink" title="35、mysql_fetch_array和mysql_fetch_object的区别是什么？"></a>35、mysql_fetch_array和mysql_fetch_object的区别是什么？</h3><p>以下是mysql_fetch_array和mysql_fetch_object的区别：</p>
+<ul>
+<li><p>mysql_fetch_array（） - 将结果行作为关联数组或来自数据库的常规数组返回。</p>
+</li>
+<li><p>mysql_fetch_object - 从数据库返回结果行作为对象。</p>
+</li>
+</ul>
+<h3 id="36、我们如何在mysql中运行批处理模式？"><a href="#36、我们如何在mysql中运行批处理模式？" class="headerlink" title="36、我们如何在mysql中运行批处理模式？"></a>36、我们如何在mysql中运行批处理模式？</h3><p>以下命令用于在批处理模式下运行：</p>
+<pre><code class="sql">mysql;
+
+mysql mysql.out
+</code></pre>
+<h3 id="37、MyISAM表格将在哪里存储，并且还提供其存储格式？"><a href="#37、MyISAM表格将在哪里存储，并且还提供其存储格式？" class="headerlink" title="37、MyISAM表格将在哪里存储，并且还提供其存储格式？"></a>37、MyISAM表格将在哪里存储，并且还提供其存储格式？</h3><p>每个MyISAM表格以三种格式存储在磁盘上：</p>
+<p>·“.frm”文件存储表定义</p>
+<p>·数据文件具有“.MYD”（MYData）扩展名</p>
+<p>索引文件具有“.MYI”（MYIndex）扩展名</p>
+<h3 id="38、Mysql中有哪些不同的表格？"><a href="#38、Mysql中有哪些不同的表格？" class="headerlink" title="38、Mysql中有哪些不同的表格？"></a>38、Mysql中有哪些不同的表格？</h3><p>共有5种类型的表格：</p>
+<pre><code>MyISAM
+
+Heap
+
+Merge
+
+INNODB
+
+ISAM
+</code></pre><p>MyISAM是Mysql的默认存储引擎。</p>
+<h3 id="39、ISAM是什么？"><a href="#39、ISAM是什么？" class="headerlink" title="39、ISAM是什么？"></a>39、ISAM是什么？</h3><p>ISAM简称为索引顺序访问方法。它是由IBM开发的，用于在磁带等辅助存储系统上存储和检索数据。</p>
+<h3 id="40、InnoDB是什么？"><a href="#40、InnoDB是什么？" class="headerlink" title="40、InnoDB是什么？"></a>40、InnoDB是什么？</h3><p>lnnoDB是一个由Oracle公司开发的Innobase Oy事务安全存储引擎。</p>
+<h3 id="41、Mysql如何优化DISTINCT？"><a href="#41、Mysql如何优化DISTINCT？" class="headerlink" title="41、Mysql如何优化DISTINCT？"></a>41、Mysql如何优化DISTINCT？</h3><p>DISTINCT在所有列上转换为GROUP BY，并与ORDER BY子句结合使用。</p>
+<pre><code class="sql">SELECT DISTINCT t1.a FROM t1,t2 where t1.a=t2.a;
+</code></pre>
+<h3 id="42、如何输入字符为十六进制数字？"><a href="#42、如何输入字符为十六进制数字？" class="headerlink" title="42、如何输入字符为十六进制数字？"></a>42、如何输入字符为十六进制数字？</h3><p>如果想输入字符为十六进制数字，可以输入带有单引号的十六进制数字和前缀（X），或者只用（Ox）前缀输入十六进制数字。</p>
+<p>如果表达式上下文是字符串，则十六进制数字串将自动转换为字符串。</p>
+<h3 id="43、如何显示前50行？"><a href="#43、如何显示前50行？" class="headerlink" title="43、如何显示前50行？"></a>43、如何显示前50行？</h3><p>在Mysql中，使用以下代码查询显示前50行：</p>
+<pre><code class="sql">SELECT*FROM
+
+LIMIT 0,50;
+</code></pre>
+<h3 id="44、可以使用多少列创建索引？"><a href="#44、可以使用多少列创建索引？" class="headerlink" title="44、可以使用多少列创建索引？"></a>44、可以使用多少列创建索引？</h3><p>任何标准表最多可以创建16个索引列。</p>
+<h3 id="45、NOW（）和CURRENT-DATE（）有什么区别？"><a href="#45、NOW（）和CURRENT-DATE（）有什么区别？" class="headerlink" title="45、NOW（）和CURRENT_DATE（）有什么区别？"></a>45、NOW（）和CURRENT_DATE（）有什么区别？</h3><p>NOW（）命令用于显示当前年份，月份，日期，小时，分钟和秒。</p>
+<p>CURRENT_DATE（）仅显示当前年份，月份和日期。</p>
+<h3 id="46、什么样的对象可以使用CREATE语句创建？"><a href="#46、什么样的对象可以使用CREATE语句创建？" class="headerlink" title="46、什么样的对象可以使用CREATE语句创建？"></a>46、什么样的对象可以使用CREATE语句创建？</h3><p>以下对象是使用CREATE语句创建的：</p>
+<pre><code>DATABASE
+
+EVENT
+
+FUNCTION
+
+INDEX
+
+PROCEDURE
+
+TABLE
+
+TRIGGER
+
+USER
+
+VIEW
+</code></pre><h3 id="47、Mysql表中允许有多少个TRIGGERS？"><a href="#47、Mysql表中允许有多少个TRIGGERS？" class="headerlink" title="47、Mysql表中允许有多少个TRIGGERS？"></a>47、Mysql表中允许有多少个TRIGGERS？</h3><p>在Mysql表中允许有六个触发器，如下：</p>
+<pre><code>BEFORE INSERT
+
+AFTER INSERT
+
+BEFORE UPDATE
+
+AFTER UPDATE
+
+BEFORE DELETE
+
+AFTER DELETE
+</code></pre><h3 id="48、什么是非标准字符串类型？"><a href="#48、什么是非标准字符串类型？" class="headerlink" title="48、什么是非标准字符串类型？"></a>48、什么是非标准字符串类型？</h3><p>以下是非标准字符串类型：</p>
+<pre><code>TINYTEXT
+
+TEXT
+
+MEDIUMTEXT
+
+LONGTEXT
+</code></pre><h3 id="49、什么是通用SQL函数？"><a href="#49、什么是通用SQL函数？" class="headerlink" title="49、什么是通用SQL函数？"></a>49、什么是通用SQL函数？</h3><pre><code>CONCAT(A, B) - 连接两个字符串值以创建单个字符串输出。通常用于将两个或多个字段合并为一个字段。
+
+FORMAT(X, D)- 格式化数字X到D有效数字。
+
+CURRDATE(), CURRTIME()- 返回当前日期或时间。
+
+NOW（） - 将当前日期和时间作为一个值返回。
+
+MONTH（），DAY（），YEAR（），WEEK（），WEEKDAY（） - 从日期值中提取给定数据。
+
+HOUR（），MINUTE（），SECOND（） - 从时间值中提取给定数据。
+
+DATEDIFF（A，B） - 确定两个日期之间的差异，通常用于计算年龄
+
+SUBTIMES（A，B） - 确定两次之间的差异。
+
+FROMDAYS（INT） - 将整数天数转换为日期值。
+</code></pre><h3 id="50、解释访问控制列表"><a href="#50、解释访问控制列表" class="headerlink" title="50、解释访问控制列表"></a>50、解释访问控制列表</h3><p>ACL（访问控制列表）是与对象关联的权限列表。这个列表是Mysql服务器安全模型的基础，它有助于排除用户无法连接的问题。</p>
+<p>Mysql将ACL（也称为授权表）缓存在内存中。当用户尝试认证或运行命令时，Mysql会按照预定的顺序检查ACL的认证信息和权限。</p>
+<h3 id="51、MYSQL支持事务吗？"><a href="#51、MYSQL支持事务吗？" class="headerlink" title="51、MYSQL支持事务吗？"></a>51、MYSQL支持事务吗？</h3><p>在缺省模式下，MYSQL是autocommit模式的，所有的数据库更新操作都会即时提交，所以在缺省情况下，mysql是不支持事务的。</p>
+<p>但是如果你的MYSQL表类型是使用InnoDB Tables 或 BDB tables的话，你的MYSQL就可以使用事务处理,使用SET AUTOCOMMIT=0就可以使MYSQL允许在非autocommit模式，在非autocommit模式下，你必须使用COMMIT来提交你的更改，或者用ROLLBACK来回滚你的更改。</p>
+<p>示例如下：</p>
+<pre><code>一
+
+START TRANSACTION;
+
+SELECT @A:=SUM(salary) FROM table1 WHERE type=1;
+
+UPDATE table2 SET summmary=@A WHERE type=1;
+
+COMMIT;
+</code></pre><h3 id="52、-mysql里记录货币用什么字段类型好"><a href="#52、-mysql里记录货币用什么字段类型好" class="headerlink" title="52、 mysql里记录货币用什么字段类型好"></a>52、 mysql里记录货币用什么字段类型好</h3><p>NUMERIC和DECIMAL类型被Mysql实现为同样的类型，这在SQL92标准允许。他们被用于保存值，该值的准确精度是极其重要的值，例如与金钱有关的数据。当声明一个类是这些类型之一时，精度和规模的能被(并且通常是)指定；点击这里有一套最全阿里面试题总结。</p>
+<p>例如：</p>
+<p>salary DECIMAL(9,2)</p>
+<p>在这个例子中，9(precision)代表将被用于存储值的总的小数位数，而2(scale)代表将被用于存储小数点后的位数。</p>
+<p>因此，在这种情况下，能被存储在salary列中的值的范围是从-9999999.99到9999999.99。在ANSI/ISO SQL92中，句法DECIMAL(p)等价于DECIMAL(p,0)。</p>
+<p>同样，句法DECIMAL等价于DECIMAL(p,0)，这里实现被允许决定值p。Mysql当前不支持DECIMAL/NUMERIC数据类型的这些变种形式的任一种。</p>
+<p>这一般说来不是一个严重的问题，因为这些类型的主要益处得自于明显地控制精度和规模的能力。</p>
+<p>DECIMAL和NUMERIC值作为字符串存储，而不是作为二进制浮点数，以便保存那些值的小数精度。</p>
+<p>一个字符用于值的每一位、小数点(如果scale&gt;0)和“-”符号(对于负值)。如果scale是0，DECIMAL和NUMERIC值不包含小数点或小数部分。</p>
+<p>DECIMAL和NUMERIC值得最大的范围与DOUBLE一样，但是对于一个给定的DECIMAL或NUMERIC列，实际的范围可由制由给定列的precision或scale限制。</p>
+<p>当这样的列赋给了小数点后面的位超过指定scale所允许的位的值，该值根据scale四舍五入。</p>
+<p>当一个DECIMAL或NUMERIC列被赋给了其大小超过指定(或缺省的）precision和scale隐含的范围的值，Mysql存储表示那个范围的相应的端点值。</p>
+<p>我希望本文可以帮助你提升技术水平。那些，感觉学的好难，甚至会令你沮丧的人，别担心，我认为，如果你愿意试一试本文介绍的几点，会向前迈进，克服这种感觉。这些要点也许对你不适用，但你会明确一个重要的道理：接受自己觉得受困这个事实是摆脱这个困境的第一步。</p>
+<h3 id="53、MYSQL数据表在什么情况下容易损坏？"><a href="#53、MYSQL数据表在什么情况下容易损坏？" class="headerlink" title="53、MYSQL数据表在什么情况下容易损坏？"></a>53、MYSQL数据表在什么情况下容易损坏？</h3><p>服务器突然断电导致数据文件损坏。</p>
+<p>强制关机，没有先关闭 mysql 服务等。</p>
+<h3 id="54、mysql有关权限的表都有哪几个？"><a href="#54、mysql有关权限的表都有哪几个？" class="headerlink" title="54、mysql有关权限的表都有哪几个？"></a>54、mysql有关权限的表都有哪几个？</h3><p>Mysql服务器通过权限表来控制用户对数据库的访问，权限表存放在mysql数据库里，由mysql_install_db脚本初始化。这些权限表分别user，db，table_priv，columns_priv和host。</p>
+<h3 id="55、Mysql中有哪几种锁？"><a href="#55、Mysql中有哪几种锁？" class="headerlink" title="55、Mysql中有哪几种锁？"></a>55、Mysql中有哪几种锁？</h3><p>MyISAM支持表锁，InnoDB支持表锁和行锁，默认为行锁。</p>
+<ul>
+<li><p>表级锁：开销小，加锁快，不会出现死锁。锁定粒度大，发生锁冲突的概率最高，并发量最低</p>
+</li>
+<li><p>行级锁：开销大，加锁慢，会出现死锁。锁力度小，发生锁冲突的概率小，并发度最高</p>
+</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://blog.quantm.club/2019/03/01/MySQL/" data-title="MySQL概述 | Timmy live" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev">
+ <a href="/2019/03/01/Spring/" title="Spring 概述">
+  <strong>上一篇：</strong><br>
+  <span>
+  Spring 概述</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/11/15/docker-user-log/" title="docker-user-log">
+ <strong>下一篇：</strong><br> 
+ <span>docker-user-log
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL概述"><span class="toc-number">1.</span> <span class="toc-text">MySQL概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、Mysql重启，再insert一条记录，这条记录的ID是18还是15-？"><span class="toc-number">1.0.1.</span> <span class="toc-text">1、Mysql重启，再insert一条记录，这条记录的ID是18还是15 ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、Mysql的技术特点是什么？"><span class="toc-number">1.0.2.</span> <span class="toc-text">2、Mysql的技术特点是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、Heap表是什么？"><span class="toc-number">1.0.3.</span> <span class="toc-text">3、Heap表是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、Mysql服务器默认端口是什么？"><span class="toc-number">1.0.4.</span> <span class="toc-text">4、Mysql服务器默认端口是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、与Oracle相比，Mysql有什么优势？"><span class="toc-number">1.0.5.</span> <span class="toc-text">5、与Oracle相比，Mysql有什么优势？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、如何区分FLOAT和DOUBLE？"><span class="toc-number">1.0.6.</span> <span class="toc-text">6、如何区分FLOAT和DOUBLE？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、区分CHAR-LENGTH和LENGTH？"><span class="toc-number">1.0.7.</span> <span class="toc-text">7、区分CHAR_LENGTH和LENGTH？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？"><span class="toc-number">1.0.8.</span> <span class="toc-text">8、请简洁描述Mysql中InnoDB支持的四种事务隔离级别名称，以及逐级之间的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、在Mysql中ENUM的用法是什么？"><span class="toc-number">1.0.9.</span> <span class="toc-text">9、在Mysql中ENUM的用法是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、如何定义REGEXP？"><span class="toc-number">1.0.10.</span> <span class="toc-text">10、如何定义REGEXP？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、CHAR和VARCHAR的区别？"><span class="toc-number">1.0.11.</span> <span class="toc-text">11、CHAR和VARCHAR的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12、列的字符串类型可以是什么？"><span class="toc-number">1.0.12.</span> <span class="toc-text">12、列的字符串类型可以是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13、如何获取当前的Mysql版本？"><span class="toc-number">1.0.13.</span> <span class="toc-text">13、如何获取当前的Mysql版本？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14、Mysql中使用什么存储引擎？"><span class="toc-number">1.0.14.</span> <span class="toc-text">14、Mysql中使用什么存储引擎？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15、Mysql驱动程序是什么？"><span class="toc-number">1.0.15.</span> <span class="toc-text">15、Mysql驱动程序是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16、TIMESTAMP在UPDATE-CURRENT-TIMESTAMP数据类型上做什么？"><span class="toc-number">1.0.16.</span> <span class="toc-text">16、TIMESTAMP在UPDATE CURRENT_TIMESTAMP数据类型上做什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17、主键和候选键有什么区别？"><span class="toc-number">1.0.17.</span> <span class="toc-text">17、主键和候选键有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18、如何使用Unix-shell登录Mysql？"><span class="toc-number">1.0.18.</span> <span class="toc-text">18、如何使用Unix shell登录Mysql？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19、-myisamchk是用来做什么的？"><span class="toc-number">1.0.19.</span> <span class="toc-text">19、 myisamchk是用来做什么的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20、MYSQL数据库服务器性能分析的方法命令有哪些"><span class="toc-number">1.0.20.</span> <span class="toc-text">20、MYSQL数据库服务器性能分析的方法命令有哪些?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21、如何控制HEAP表的最大尺寸？"><span class="toc-number">1.0.21.</span> <span class="toc-text">21、如何控制HEAP表的最大尺寸？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22、MyISAM-Static和MyISAM-Dynamic有什么区别？"><span class="toc-number">1.0.22.</span> <span class="toc-text">22、MyISAM Static和MyISAM Dynamic有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23、federated表是什么？"><span class="toc-number">1.0.23.</span> <span class="toc-text">23、federated表是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24、如果一个表有一列定义为TIMESTAMP，将发生什么？"><span class="toc-number">1.0.24.</span> <span class="toc-text">24、如果一个表有一列定义为TIMESTAMP，将发生什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25、列设置为AUTO-INCREMENT时，如果在表中达到最大值，会发生什么情况？"><span class="toc-number">1.0.25.</span> <span class="toc-text">25、列设置为AUTO INCREMENT时，如果在表中达到最大值，会发生什么情况？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26、怎样才能找出最后一次插入时分配了哪个自动增量？"><span class="toc-number">1.0.26.</span> <span class="toc-text">26、怎样才能找出最后一次插入时分配了哪个自动增量？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#27、你怎么看到为表格定义的所有索引？"><span class="toc-number">1.0.27.</span> <span class="toc-text">27、你怎么看到为表格定义的所有索引？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#28-、LIKE声明中的％和-是什么意思？"><span class="toc-number">1.0.28.</span> <span class="toc-text">28.、LIKE声明中的％和_是什么意思？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#29、如何在Unix和Mysql时间戳之间进行转换？"><span class="toc-number">1.0.29.</span> <span class="toc-text">29、如何在Unix和Mysql时间戳之间进行转换？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#30、列对比运算符是什么？"><span class="toc-number">1.0.30.</span> <span class="toc-text">30、列对比运算符是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#31、我们如何得到受查询影响的行数？"><span class="toc-number">1.0.31.</span> <span class="toc-text">31、我们如何得到受查询影响的行数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32、Mysql查询是否区分大小写？"><span class="toc-number">1.0.32.</span> <span class="toc-text">32、Mysql查询是否区分大小写？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-、LIKE和REGEXP操作有什么区别？"><span class="toc-number">1.0.33.</span> <span class="toc-text">33.、LIKE和REGEXP操作有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-、BLOB和TEXT有什么区别？"><span class="toc-number">1.0.34.</span> <span class="toc-text">34.、BLOB和TEXT有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35、mysql-fetch-array和mysql-fetch-object的区别是什么？"><span class="toc-number">1.0.35.</span> <span class="toc-text">35、mysql_fetch_array和mysql_fetch_object的区别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36、我们如何在mysql中运行批处理模式？"><span class="toc-number">1.0.36.</span> <span class="toc-text">36、我们如何在mysql中运行批处理模式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#37、MyISAM表格将在哪里存储，并且还提供其存储格式？"><span class="toc-number">1.0.37.</span> <span class="toc-text">37、MyISAM表格将在哪里存储，并且还提供其存储格式？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#38、Mysql中有哪些不同的表格？"><span class="toc-number">1.0.38.</span> <span class="toc-text">38、Mysql中有哪些不同的表格？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#39、ISAM是什么？"><span class="toc-number">1.0.39.</span> <span class="toc-text">39、ISAM是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#40、InnoDB是什么？"><span class="toc-number">1.0.40.</span> <span class="toc-text">40、InnoDB是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#41、Mysql如何优化DISTINCT？"><span class="toc-number">1.0.41.</span> <span class="toc-text">41、Mysql如何优化DISTINCT？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#42、如何输入字符为十六进制数字？"><span class="toc-number">1.0.42.</span> <span class="toc-text">42、如何输入字符为十六进制数字？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#43、如何显示前50行？"><span class="toc-number">1.0.43.</span> <span class="toc-text">43、如何显示前50行？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#44、可以使用多少列创建索引？"><span class="toc-number">1.0.44.</span> <span class="toc-text">44、可以使用多少列创建索引？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#45、NOW（）和CURRENT-DATE（）有什么区别？"><span class="toc-number">1.0.45.</span> <span class="toc-text">45、NOW（）和CURRENT_DATE（）有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#46、什么样的对象可以使用CREATE语句创建？"><span class="toc-number">1.0.46.</span> <span class="toc-text">46、什么样的对象可以使用CREATE语句创建？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#47、Mysql表中允许有多少个TRIGGERS？"><span class="toc-number">1.0.47.</span> <span class="toc-text">47、Mysql表中允许有多少个TRIGGERS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#48、什么是非标准字符串类型？"><span class="toc-number">1.0.48.</span> <span class="toc-text">48、什么是非标准字符串类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#49、什么是通用SQL函数？"><span class="toc-number">1.0.49.</span> <span class="toc-text">49、什么是通用SQL函数？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#50、解释访问控制列表"><span class="toc-number">1.0.50.</span> <span class="toc-text">50、解释访问控制列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#51、MYSQL支持事务吗？"><span class="toc-number">1.0.51.</span> <span class="toc-text">51、MYSQL支持事务吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#52、-mysql里记录货币用什么字段类型好"><span class="toc-number">1.0.52.</span> <span class="toc-text">52、 mysql里记录货币用什么字段类型好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#53、MYSQL数据表在什么情况下容易损坏？"><span class="toc-number">1.0.53.</span> <span class="toc-text">53、MYSQL数据表在什么情况下容易损坏？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#54、mysql有关权限的表都有哪几个？"><span class="toc-number">1.0.54.</span> <span class="toc-text">54、mysql有关权限的表都有哪几个？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#55、Mysql中有哪几种锁？"><span class="toc-number">1.0.55.</span> <span class="toc-text">55、Mysql中有哪几种锁？</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/scala/" title="scala">scala<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具介绍/" title="工具介绍">工具介绍<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工程手册/" title="工程手册">工程手册<sup>5</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/搜索推荐/" title="搜索推荐">搜索推荐<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/环境部署/" title="环境部署">环境部署<sup>5</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/centos/" title="centos">centos<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/sbt/" title="sbt">sbt<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/推荐/" title="推荐">推荐<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/论文/" title="论文">论文<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/相关性/" title="相关性">相关性<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hadoop/" title="hadoop">hadoop<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/协同过滤/" title="协同过滤">协同过滤<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/cas/" title="cas">cas<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/https/" title="https">https<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电商/" title="电商">电商<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/web/" title="web">web<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/服务器/" title="服务器">服务器<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/系统维护/" title="系统维护">系统维护<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hadoop/" title="Hadoop">Hadoop<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/单点登录/" title="单点登录">单点登录<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/yarn-client/" title="yarn-client">yarn-client<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/zookeeper/" title="zookeeper">zookeeper<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nexus/" title="nexus">nexus<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.hoterran.info" target="_blank" title="一个面向程序员交流分享的新一代社区">运维与开发</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://club.alibabatech.org/" target="_blank" title="ali Blog">ali Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Actor/" style="font-size: 10px;">Actor</a> <a href="/tags/Akka/" style="font-size: 10px;">Akka</a> <a href="/tags/CI/" style="font-size: 10px;">CI</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/OAuth/" style="font-size: 10px;">OAuth</a> <a href="/tags/PolarDB/" style="font-size: 10px;">PolarDB</a> <a href="/tags/Reactive/" style="font-size: 10px;">Reactive</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spring-Boot/" style="font-size: 10px;">Spring Boot</a> <a href="/tags/Stream/" style="font-size: 10px;">Stream</a> <a href="/tags/cas/" style="font-size: 10px;">cas</a> <a href="/tags/centos/" style="font-size: 20px;">centos</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/eclipse/" style="font-size: 10px;">eclipse</a> <a href="/tags/hadoop/" style="font-size: 15px;">hadoop</a> <a href="/tags/https/" style="font-size: 10px;">https</a> <a href="/tags/mathjax/" style="font-size: 10px;">mathjax</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nexus/" style="font-size: 10px;">nexus</a> <a href="/tags/nexus3/" style="font-size: 10px;">nexus3</a> <a href="/tags/plugin/" style="font-size: 10px;">plugin</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/sbt/" style="font-size: 15px;">sbt</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/yarn-client/" style="font-size: 10px;">yarn-client</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/tags/代码约定/" style="font-size: 10px;">代码约定</a> <a href="/tags/协同过滤/" style="font-size: 10px;">协同过滤</a> <a href="/tags/单点登录/" style="font-size: 10px;">单点登录</a> <a href="/tags/大数据/" style="font-size: 10px;">大数据</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/开发/" style="font-size: 10px;">开发</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/推荐/" style="font-size: 15px;">推荐</a> <a href="/tags/插件/" style="font-size: 10px;">插件</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a> <a href="/tags/比赛/" style="font-size: 10px;">比赛</a> <a href="/tags/电商/" style="font-size: 10px;">电商</a> <a href="/tags/相关性/" style="font-size: 15px;">相关性</a> <a href="/tags/系统搭建/" style="font-size: 10px;">系统搭建</a> <a href="/tags/系统维护/" style="font-size: 10px;">系统维护</a> <a href="/tags/论文/" style="font-size: 15px;">论文</a> <a href="/tags/语法/" style="font-size: 10px;">语法</a> <a href="/tags/运维/" style="font-size: 10px;">运维</a> <a href="/tags/阿里/" style="font-size: 10px;">阿里</a>
+    </div>
+  </div>
+
+
+  
+<div class="github-card">
+<p class="asidetitle">location Statics</p>
+<script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=50om5cdoa3h&amp;m=7&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=49" async="async"></script>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer">
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Christiansted, United States Virgin Islands <br>
+			believer it or not</p>
+	</section>
+	 
+	<div class="social-font">
+		
+		<a href="http://weibo.com/3665494445" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Lee">Lee</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+<script src="/js/prettify.js"></script>
+<link rel="stylesheet" href="/fancybox/prettify.css" media="screen" type="text/css">
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');
+  prettyPrint();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-128202528-1', 'blog.quantm.club');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+  </body>
+</html>
